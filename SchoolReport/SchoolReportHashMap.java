@@ -49,7 +49,6 @@ public class SchoolReportHashMap {
         for (Integer key : notesInMonth.keySet()) {
 
             if (notesInMonth.get(key) == bestNote) {
-                bestMonthNumber = key;
                 bestMonthsArray.add(key);
             }
 
