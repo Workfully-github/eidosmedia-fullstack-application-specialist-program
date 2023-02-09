@@ -6,7 +6,7 @@ public class MostExpensive {
         
         ArrayList<Double> decimalNumbers = new ArrayList<>(){
             {
-                add(74.46);
+                add(99.46);
                 add(63.99);
                 add(10.57);
                 add(81.37);
