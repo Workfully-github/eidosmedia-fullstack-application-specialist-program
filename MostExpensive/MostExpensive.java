@@ -13,7 +13,7 @@ public class MostExpensive {
             }
         };
 
-        double mostExpensive = 0;
+        double mostExpensive = 0d;
 
         for (Double decimalNumber : decimalNumbers) {
 
