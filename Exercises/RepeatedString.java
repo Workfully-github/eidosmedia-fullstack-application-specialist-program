@@ -5,7 +5,8 @@ public class RepeatedString {
         int n = 10;
         String letters = "aba";
 
-        for (int i = 0; i < letters.length; i++) {
+
+        for (int i = 0; i < letters.length(); i++) {
             if (letters.charAt(i) == 'a') {
                 numberA ++;
             }
