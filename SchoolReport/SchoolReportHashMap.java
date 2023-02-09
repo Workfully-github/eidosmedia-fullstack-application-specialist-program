@@ -12,46 +12,10 @@ public class SchoolReportHashMap {
         int average = 0;
 
         int bestNote = 0;
-
+        
         int bestMonthNumber = 0;
 
         ArrayList<Integer> bestMonthsArray = new ArrayList<>();
-
-        HashMap<Integer, Integer[]> moreNotesInMonth = new HashMap<>() {
-            {
-                put(1, new Integer[] { 10, 2 });
-                put(2, new Integer[] { 1 });
-                put(3, new Integer[] { 6 });
-                put(3, new Integer[] { 6 });
-                put(3, new Integer[] { 6 });
-                put(3, new Integer[] { 6, 5 });
-                put(3, new Integer[] { 6, 10 });
-                put(3, new Integer[] { 6, 9 });
-                put(3, new Integer[] { 6, 5 });
-                put(3, new Integer[] { 6 });
-                put(3, new Integer[] { 6 });
-                put(3, new Integer[] { 6 });
-            }
-        };
-
-        for (Integer key : moreNotesInMonth.keySet()) {
-            // Find Average
-
-            for(int i = 0; i < moreNotesInMonth.get(key).length; i++){
-
-            }
-
-/*             totalSum += moreNotesInMonth.get(key);
-
-            if (moreNotesInMonth.get(key) > bestNote) {
-                bestNote = moreNotesInMonth.get(key);
-            } */
-        }
-
-
-
-
-        /////////////////////////////////////////////////////////////////////////////////////
 
         HashMap<Integer, Integer> notesInMonth = new HashMap<>() {
             {
@@ -95,6 +59,7 @@ public class SchoolReportHashMap {
         System.out.println("Average Note: " + average);
 
         System.out.println("The best Months are: " + bestMonthsArray.toString());
+        System.out.println("The worst Months are: " + bestMonthsArray.toString());
 
        
     }
