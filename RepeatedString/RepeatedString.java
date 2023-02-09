@@ -14,9 +14,10 @@ public class RepeatedString {
         }
         
         /* 
-         * 'n' divided by the string length will tell us how many times the word can fit in 'n'
-         * The Math.round will always be exact because if result < .49 it means the word would not fit and if result > .50 then it will fit
-         * When we multiply by 'counter' we know exactly how many 'a' we have 
+         * n divided by string.length() will tell us how many times string can fit in n
+         * 10 / 3 = 3.33.. which means the string "aba" fits 3 times and a bit more
+         * We use Mathematical "Rule of Three" to solve this problem
+         * a / b = c / d
          */
 
         return Math.round((n / string.length()) * counter ); 
