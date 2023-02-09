@@ -1,19 +1,20 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 public class SchoolReportHashMap {
 
     public static void main(String[] args) {
+
+        /*
+         * First Example with only one value;
+         * @see Exercises.SchoolReport.SchoolReportHashMapWithArray.java for full exercise
+         */
 
         int totalSum = 0;
 
         int average = 0;
 
         int bestNote = 0;
-        
-        int bestMonthNumber = 0;
 
         ArrayList<Integer> bestMonthsArray = new ArrayList<>();
 
