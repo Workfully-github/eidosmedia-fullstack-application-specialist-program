@@ -2,12 +2,6 @@ import java.util.ArrayList;
 
 public class SchoolReport {
 
-    // 20 different notes
-
-    // from 1 - 10
-
-    // make average
-
     public static void main(String[] args) {
 
         int totalSum = 0;
