@@ -1,9 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
-public class test {
+public class GradesAverage {
     public static void main(String[] args) {
         HashMap<Integer, List<Integer>> yearTable = new HashMap<Integer, List<Integer>>();
         
@@ -89,19 +88,36 @@ public class test {
        int yearSumOfMonthAvg = 0;
        int YearAvg = 0;
 
-       //Calculate the avg for each month
+       int bestMonthNote = 0;
+       int worstMonthNote = 20;
+       int bestMonth = 0;
+       int worstMonth = 20;
+
        for(int month = 1; month <= 12; month++){
             monthSumOfGrades = 0;
             for(int grade = 0; grade < yearTable.get(month).size(); grade++){
                 monthSumOfGrades += yearTable.get(month).get(grade);
             }
+
             monthAvg = monthSumOfGrades / yearTable.get(month).size();
+
+            if(bestMonthNote < monthAvg){
+                bestMonthNote = monthAvg;
+                bestMonth = month;
+            }
+            
+            if(worstMonthNote > monthAvg){
+                worstMonthNote = monthAvg;
+                worstMonth = month;
+            }
             yearSumOfMonthAvg += monthAvg; 
             System.out.println("your average for month number " + month + " is " + monthAvg);
-            // System.out.println(monthSumOfGrades);
        }
        YearAvg = yearSumOfMonthAvg / 12;
        System.out.println("your annual average is " + YearAvg);
+       System.out.println("Your best month is: " + bestMonth);
+       System.out.println("Your worst month is: " + worstMonth);
+
 
     }
 }
