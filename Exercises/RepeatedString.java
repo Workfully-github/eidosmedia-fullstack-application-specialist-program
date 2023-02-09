@@ -7,7 +7,7 @@ public class RepeatedString {
         int restOfLetters = n - numbLetters;
         int letterNotCounted = restOfLetters % numbLetters;
 
-        // First let's count the number of times that a's appears in the string
+        // First let's count the number of times that a's appear in the string
         for (int i = 0; i < letters.length(); i++) {
             if (letters.charAt(i) == 'a') {
                 numberA ++;
@@ -21,7 +21,7 @@ public class RepeatedString {
 
         // To finish we just need to take into account the letters that are not enough to
         // complete the whole string.
-        // So we know that the number o missing letter is smaller than the lenght of the initial string
+        // So we know that the number of missing letters is smaller than the length of the initial string.
         // This means that we only need to count the number of a's in a string smaller than our inicial
         // string and add it to the number of a's.
         for (int j = 0; j < letterNotCounted; j++) {
