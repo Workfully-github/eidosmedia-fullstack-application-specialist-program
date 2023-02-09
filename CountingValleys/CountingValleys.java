@@ -41,6 +41,8 @@ public class CountingValleys {
                 isOutsideValley = true;
             }
 
+            System.out.println(level);
+
         }
 
         return valleyCounter;
