@@ -1,3 +1,5 @@
+package MyBalance;
+
 public class MyBalance {
 
     // Properties
