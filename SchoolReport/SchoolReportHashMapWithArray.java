@@ -116,8 +116,7 @@ public class SchoolReportHashMapWithArray {
         System.out.println("Best Note: " + bestNote);
         System.out.println("Worst Note: " + worstNote);
         System.out.println("Best Month: " + month);
-        
-       
+    
     }
 
 }
