@@ -46,17 +46,16 @@ public class CountingValleys {
         }
 
         return valleyCounter;
-
     }
 
     public static void main(String[] args) {
 
-        String samplePattern = "UDDDUDUU";
+        /* String samplePattern = "UDDDUDUU";
         String samplePattern2 = "UUDUDUDDUDUDUDDDDDDUDUU";
         String samplePattern3 = "UDDDUDDUUUUDUDUDUUUDUDDUU";
         String samplePattern4 = "UDDDUDUUDUDUDUDDDUUUUDDUU";
         String twoValleysOneMountain = "UDDDUDUUUUUDDDDDDDDUUUDUDUDDUUUU";
-        String twoMountainsOneValley = "UUDDDDUDUUUUDDUUDD";
+        String twoMountainsOneValley = "UUDDDDUDUUUUDDUUDD"; */
 
         
         //System.out.println("\n" + numberOfValleys(samplePattern));

@@ -39,7 +39,4 @@ public class JumpingOnTheClouds {
         System.out.println("You jumped: " + jumpingOnTheCloudsGame(6, 0, 0, 0, 0, 1, 0) + " times.");
 
     }
-
-
-    
 }
