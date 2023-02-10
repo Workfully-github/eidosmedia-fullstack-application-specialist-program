@@ -24,11 +24,11 @@ public class CountingValleys {
                 bellowSeaLevelConsecutiveStepsCounter++;
             }
 
-            if(bellowSeaLevelConsecutiveStepsCounter == 2){
+            if(bellowSeaLevelConsecutiveStepsCounter == 1){
                 isValley = true;
             }
 
-            if(bellowSeaLevelConsecutiveStepsCounter != 2){
+            if(bellowSeaLevelConsecutiveStepsCounter != 1){
                 isValley = false;
             }
 
@@ -64,7 +64,7 @@ public class CountingValleys {
         //System.out.println("\n" + numberOfValleys(samplePattern3));
         //System.out.println("\n" + numberOfValleys(samplePattern4));
         //System.out.println("\n" + numberOfValleys(twoValleysOneMountain));
-        System.out.println("\n" + numberOfValleys(twoMountainsOneValley));
+        System.out.println("\n" + numberOfValleys("twoMountainsOneValley"));
     }
     
 }
