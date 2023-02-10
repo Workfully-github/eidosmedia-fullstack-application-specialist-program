@@ -20,14 +20,24 @@ public class RepeatedString {
          * a / b = c / d
          */
 
+        System.out.println("Word: " + string);
         return Math.round((n / string.length()) * counter ); 
     }
 
     public static void main(String[] args) {
 
-        System.out.println(repeatedStringMethod("aba", 10d));
+        System.out.println(repeatedStringMethod("aba", 10d) + "\n");
 
-        System.out.println(repeatedStringMethod("a", 1000000000000d)); 
+        System.out.println(repeatedStringMethod("a", 1000000000000d) + "\n"); 
+
+        System.out.println(repeatedStringMethod("ricardo", 10d) + "\n" );
+
+        System.out.println(repeatedStringMethod("aab", 882787d)  + "\n");
+
+        System.out.println(repeatedStringMethod("ceebbcb", 817723d) + "\n");
+
+        System.out.println(repeatedStringMethod("jdiacikk", 899491d) + "\n");
+
 
     }
     
