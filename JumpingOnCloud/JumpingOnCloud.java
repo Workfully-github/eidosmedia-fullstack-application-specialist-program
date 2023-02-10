@@ -44,7 +44,7 @@ public class JumpingOnCloud {
     }
     
     public static void main(String[] args) {
-        //o for ordinary-cloud and t for thunderclouds
+        //0 for ordinary-cloud and 1 for thunderclouds
         int[] clouds = {0,0,0,0,1,0};
         int jumps = JumpingOnCloud.jumpingOnCloud_n(clouds);
 
