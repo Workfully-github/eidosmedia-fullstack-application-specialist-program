@@ -18,8 +18,8 @@ public class CountingValley {
     }
 
     public static void main(String[] args) {
-        int nb = 8;
-        String steps = "UDDDUDUU";
+        int nb = 100;
+        String steps = "DUDUUUUUUUUDUDDUUDUUDDDUUDDDDDUUDUUUUDDDUUUUUUUDDUDUDUUUDDDDUUDDDUDDDDUUDDUDDUUUDUUUDUUDUDUDDDDDDDDD";
         int valleysNb = CountingValley.countingValleys(nb, steps);
         
         System.out.println("the number of valley is : " + valleysNb);

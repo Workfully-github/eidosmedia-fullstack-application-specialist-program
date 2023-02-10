@@ -32,15 +32,15 @@ public class RepeatedString {
     }
 
     public static void main(String[] args) {
-        String s = "a";
-        long n = 10000000000L;
+        String s = "jdiacikk";
+        long n = 899491;
         
         System.out.println(" the number of a is : " + RepeatedString.count_a(s, n));
 
-        String s0 = "aba";
-        long n0 = 10;
+        // String s0 = "aba";
+        // long n0 = 10;
         
-        System.out.println(" the number of a is : " + RepeatedString.count_a(s0, n0));
+        // System.out.println(" the number of a is : " + RepeatedString.count_a(s0, n0));
 
 
     }
