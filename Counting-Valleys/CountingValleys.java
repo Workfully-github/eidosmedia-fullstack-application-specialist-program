@@ -6,7 +6,7 @@ class CountingValleys {
         // DDUUDDUDUUUD 12    ---->     Expected Output: 2
         // DUDDDUUDUU 10      ---->     Expected Output: 2
         
-        String s = "UDDDUDUU";
+        String s = "DUDUUUUUUUUDUDDUUDUUDDDUUDDDDDUUDUUUUDDDUUUUUUUDDUDUDUUUDDDDUUDDDUDDDDUUDDUDDUUUDUUUDUUDUDUDDDDDDDDD";
         char[] arrayOfSteps = s.toUpperCase().toCharArray();
         int level = 0;
         int numOfVall = 0;

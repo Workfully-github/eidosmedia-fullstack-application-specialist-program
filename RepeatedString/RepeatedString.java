@@ -1,8 +1,8 @@
 public class RepeatedString {
     public static void main(String[] args) {
 
-        String s = "aba";
-        double n = 10;
+        String s = "jdiacikk";
+        double n = 899491;
 
         double letterCounter = 0;
         char[] arrOfS = s.toCharArray();
