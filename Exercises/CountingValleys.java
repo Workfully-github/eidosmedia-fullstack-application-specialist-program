@@ -1,8 +1,8 @@
 public class CountingValleys {
 
     public static void main (String[] args) {
-        int n = 8;
-        String steps = "UDDDUDUU";
+        int n = 100;
+        String steps = "DUDUUUUUUUUDUDDUUDUUDDDUUDDDDDUUDUUUUDDDUUUUUUUDDUDUDUUUDDDDUUDDDUDDDDUUDDUDDUUUDUUUDUUDUDUDDDDDDDDD";
         int seaLevel = 0;
         int numValleys = 0;
         boolean isValley = false;

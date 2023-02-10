@@ -1,8 +1,8 @@
 public class RepeatedString {
     public static void main (String[] args) {
         int numberA = 0;
-        int n = 100;
-        String letters = "ricardo";
+        int n = 899491;
+        String letters = "jdiacikk";
         int numbLetters = letters.length();
         int restOfLetters = n - numbLetters;
         int letterNotCounted = restOfLetters % numbLetters;
