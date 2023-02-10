@@ -4,8 +4,11 @@ public class JumpingOnTheClouds {
 
     public static int jumpingOnTheCloudsGame(int numberOfClouds, int ... clouds ){
 
-        /* Explicit > Implicit */
         int counter = 0;
+        /* 
+         * Renaming variables to serve as documentation
+         * Explicit > Implicit
+         */
         final int FINALPOSITION = clouds.length-1;
 
         for (int myCloudPosition = 0; myCloudPosition < clouds.length; myCloudPosition++) {
