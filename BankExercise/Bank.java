@@ -7,8 +7,11 @@ public class Bank {
     //private CheckingAccount accountOne;
     //private CheckingAccount accountTwo;
 
+
+    /* We store CheckingAccounts in an ArrayList */
     private ArrayList<CheckingAccount> checkingAccountLocalDataBase = new ArrayList<>();
 
+    /* Constructors */
     public Bank(){
 
     }
@@ -44,8 +47,10 @@ public class Bank {
 
         System.out.println(bank.getAccountInfo(0));
 
-        bank.getAccount(0).transaction(-20);
         bank.getAccount(0).transaction(40);
+        bank.getAccount(0).transaction(10);
+        bank.getAccount(0).transaction(50);
+
         
         bank.getAccount(0).calculateTransactionList();
 

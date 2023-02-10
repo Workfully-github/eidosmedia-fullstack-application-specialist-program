@@ -10,8 +10,6 @@ public class CheckingAccount {
     private static int counter = 0;
 
     private ArrayList<Float> transactionList;
-
-    
     
     public CheckingAccount(String name) {
         this.name = name;
@@ -37,8 +35,6 @@ public class CheckingAccount {
 
         System.out.println("Here is your account status.");
         System.out.println(toString());
-
-
 
     }
 
