@@ -16,10 +16,15 @@ public class CheckingAccount {
         this.transactions = transactions;
     }
 
-
     public int getBalance() {
         for (int i = 0; i < transactions.length; i++) {
-            balance += transactions[i];
+            if (balance + transactions[i] < 0) {
+                System.out.println("You can't afford to buy this item!");
+                continue;
+            } else {
+                balance += transactions[i];
+                System.out.println("You just spent " + transactions[i] + " and you balance is " + balance);
+            }
         }
         return balance;
     }
