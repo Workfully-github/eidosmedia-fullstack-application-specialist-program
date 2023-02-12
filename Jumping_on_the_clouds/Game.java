@@ -13,8 +13,8 @@ public class Game {
             if(currentCloudIndex >= (n - 2)) break;
             jumps ++;
 
-            if(NatureOfCloudsArr[currentCloudIndex + 2] != "1") {
-                currentCloudIndex = currentCloudIndex + 1;
+            if(NatureOfCloudsArr[currentCloudIndex + 2] == "0") {
+                currentCloudIndex++;
             }
         }
         System.out.println("You can win the game with just " + jumps + " jumps!");
