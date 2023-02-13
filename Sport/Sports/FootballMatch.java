@@ -11,7 +11,7 @@ public class FootballMatch extends AbstractSports {
 
     /* Constructor */
     public FootballMatch(
-        ArrayList<Teams> teams, 
+        ArrayList<Teams> teamList, 
         HashMap<Teams, Integer> scoreMap, 
         int duration, 
         String location
@@ -20,7 +20,7 @@ public class FootballMatch extends AbstractSports {
         this.scoreMap = scoreMap;
         this.duration = duration;
         this.location = location;
-        this.teams = teams;
+        this.teamList = teamList;
     }
 
 

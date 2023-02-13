@@ -100,89 +100,32 @@ public class Sandbox {
         System.out.print("\n");
 
         System.out.println("We present the following teams: ");
-        presentTeams(teamList);
+        footballMatch.presentTeams(footballMatch.getTeamsList());
 
         System.out.print("\n");
         
         System.out.println("This match score is:");
-        presentMatchScore(teamList);
+        footballMatch.presentMatchScore(footballMatch.getTeamsList());
 
         System.out.print("\n");
 
         System.out.println("This match scorers");
-        presentScorers(teamList);
+        footballMatch.presentScorers(footballMatch.getTeamsList());
 
         System.out.print("\n");
   
         System.out.println("Team A Performance Ratings");
-        presentPerformanceRating(teamList.get(0));
+        footballMatch.presentPerformanceRating(footballMatch.getTeamsList().get(0));
 
         System.out.print("\n");
 
         System.out.println("Team B Performance Ratings");
-        presentPerformanceRating(teamList.get(1));
+        footballMatch.presentPerformanceRating(footballMatch.getTeamsList().get(1));
 
-        System.out.println("The man of the game is: " + calculateManOfTheGame(teamList).getName());
+        System.out.print("\n");
 
-    }
+        System.out.println("The man of the game is: " + footballMatch.calculateManOfTheGame(footballMatch.getTeamsList()).getName());
 
-    public static void presentTeams(ArrayList<Teams> teamList){
-        for (int i = 0; i < teamList.size(); i++) {
-            System.out.println(teamList.get(i).getName());
-            System.out.print("\n");
-            for (int j = 0; j < teamList.get(i).getListOfPlayers().size(); j++) {
-                System.out.println(teamList.get(i).getListOfPlayers().get(j).getName());
-            }
-            System.out.print("\n");
-        }
-    }
-
-    public static void presentMatchScore(ArrayList<Teams> teamList){
-        for (int i = 0; i < teamList.size()/2; i++) {
-            System.out.println(teamList.get(i).getName() + " " + teamList.get(i).getScore() + " - " + teamList.get(i+1).getScore() + " " + teamList.get(i+1).getName());
-        }
-    };
-
-    public static void presentScorers(ArrayList<Teams> teamList){
-
-        for (int i = 0; i < teamList.size(); i++) {
-            for (int j = 0; j < teamList.get(i).getListOfPlayers().size(); j++) {
-                if(teamList.get(i).getListOfPlayers().get(j).getScores() > 0){
-                    System.out.println(teamList.get(i).getListOfPlayers().get(j).getName() + " scored " + teamList.get(i).getListOfPlayers().get(j).getScores() + " points." );
-                }
-            }
-            
-        }
-    }
-
-    public static void presentPerformanceRating(Teams team){
-        for (AbstractPlayer player : team.getListOfPlayers()) {
-            System.out.println(player.getName() + " performance: " + team.getPerformanceRatingList().get(player));
-        }
-
-    }
-
-    public static AbstractPlayer calculateManOfTheGame(ArrayList<Teams> teamList){
-
-        /* MAN OF THE GAME PERFORMANCE IS CALCULATED BY
-         * Performance Rating + (Score * 2);
-         */
-
-        int manOfTheGamePerformanceRating = 0;
-        int currentManOfTheGameIndex = 0;
-        int currentManOfTheGameTeam = 0;
-
-        for (int i = 0; i < teamList.size(); i++) {
-            for (int j = 0; j < teamList.get(i).getListOfPlayers().size(); j++) {
-                if(teamList.get(i).getListOfPlayers().get(j).getScores() + (teamList.get(i).getPerformanceRatingList().get(teamList.get(i).getListOfPlayers().get(j)) * 2) > manOfTheGamePerformanceRating){
-                    manOfTheGamePerformanceRating = teamList.get(i).getListOfPlayers().get(j).getScores() + (teamList.get(i).getPerformanceRatingList().get(teamList.get(i).getListOfPlayers().get(j)) * 2);
-                    currentManOfTheGameIndex = j;
-                    currentManOfTheGameTeam = i;
-                }
-            }
-        }
-
-        return teamList.get(currentManOfTheGameTeam).getListOfPlayers().get(currentManOfTheGameIndex);
     }
 
 }
