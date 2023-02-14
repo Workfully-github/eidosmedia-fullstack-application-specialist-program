@@ -2,6 +2,7 @@ package Football_Match;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class FootballMain {
     
@@ -67,5 +68,57 @@ public class FootballMain {
                 add(new FootballTeams(playersTeamB, "Team B", "Lisbon", 15, 2, 35, 20));
             }
         };
+
+        // Create score
+        HashMap<FootballTeams, Integer> score = new HashMap<FootballTeams, Integer>() {
+            {
+                for (int i = 0; i < teams.size(); i ++) {
+                    put(teams.get(i), (int) Math.floor((Math.random() * 5) + 1));
+                }
+            }
+        };
+
+        // Scorers for Team A
+        /* HashMap<FootballPlayers, Integer> scorersTeamA = new HashMap<FootballPlayers, Integer>() {
+            {
+                int numbGoals = get(teams.get(0));
+
+                for (int i = 0; i < numbGoals; i ++) {
+                    int randomPlayerIndex = (int) Math.floor((Math.random() * 5) + 1);
+                    FootballPlayers randomPlayer = playersTeamA.get(randomPlayerIndex);
+                    scorersTeamA.merge(randomPlayer, 1, Integer::sum);
+                } 
+                
+
+            }
+        }; */
+
+        // Scorers for Team B
+        /* HashMap<FootballPlayers, Integer> scorersTeamB = new HashMap<FootballPlayers, Integer>() {
+            {
+                int numbGoals = get(teams.get(1));
+
+                for (int i = 0; i < numbGoals; i ++) {
+                    int randomPlayerIndex = (int) Math.floor((Math.random() * 5) + 1);
+                    FootballPlayers randomPlayer = playersTeamB.get(randomPlayerIndex);
+                    scorersTeamB.merge(randomPlayer, 1, Integer::sum);
+                } 
+                
+
+            }
+        }; */
+
+        ArrayList<FootballPlayers> lineupTeamA = playersTeamA;
+        ArrayList<FootballPlayers> lineupTeamB = playersTeamB;
+
+        FootballMatch match = new FootballMatch(playersTeamA, playersTeamB, score, ratingsTeamA, ratingsTeamB, lineupTeamA, lineupTeamB, teams, ratingsTeamA, ratingsTeamB, null);
+        
+        match.showMatchInfo();
+
+        match.getLineups();
+
+        match.getScorers();
+
+        
     }
 }
