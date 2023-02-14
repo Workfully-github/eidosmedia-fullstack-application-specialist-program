@@ -3,6 +3,7 @@ package Football_Match;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Scanner;
 
 public class FootballMain {
     
@@ -91,7 +92,7 @@ public class FootballMain {
                 
 
             }
-        }; */
+        }; 
 
         // Scorers for Team B
         /* HashMap<FootballPlayers, Integer> scorersTeamB = new HashMap<FootballPlayers, Integer>() {
@@ -113,12 +114,49 @@ public class FootballMain {
 
         FootballMatch match = new FootballMatch(playersTeamA, playersTeamB, score, ratingsTeamA, ratingsTeamB, lineupTeamA, lineupTeamB, teams, ratingsTeamA, ratingsTeamB, null);
         
-        match.showMatchInfo();
+/*         match.showMatchInfo();
 
         match.getLineups();
 
         match.getScorers(); 
 
-        match.getRating();  
+        match.getRating();  */ 
+
     }
+        ArrayList<FootballPlayers> playersTeamA = new ArrayList<>();
+
+        
+        //Goal goal1 = scoredGoal(playersTeamA.get(3), 35, playersTeamA.get(4));
+        //Goal goal1 = scoredGoal(enterScorer(), enterMinute(), enterAssistant());
+
+
+
+        /* private static Goal scoredGoal(FootballPlayers scorer, int minute) {
+            scoredGoal(scorer, minute, null);
+        } */
+        private static Goal scoredGoal(FootballPlayers scorer, int minute, FootballPlayers assistant) {
+            return new Goal(scorer, minute, assistant);
+        }
+
+        public String enterScorer() {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter the scorer of the goal - ");  
+            String scorer = sc.nextLine();
+            FootballPlayers goalScorer;
+
+            return scorer; 
+        }
+        public int enterMinute() {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter the minute of the goal - ");  
+            int minute = sc.nextInt();
+            return minute;
+        }
+        public String enterAssistant() {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter the assistant - ");  
+            String assistant = sc.nextLine();
+            return assistant;
+        }
+    
 }
