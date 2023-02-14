@@ -37,7 +37,8 @@ public class SportsReview {
         //Goal code implementation
         //Goal goal1 = scoredGoal(teams.get(0).getTeamPlayers().get(5), 35);
         Scanner sc= new Scanner(System.in);    //System.in is a standard input stream  
-        System.out.print("Enter the team number (0/1)- ");  
+        System.out.print("\nTest for manuel parameters####");  
+        System.out.print("\nEnter the team number (0/1)- ");  
         int numTeam= sc.nextInt();  
         System.out.print("Enter the player number- ");  
         int numPlayer= sc.nextInt();  
@@ -48,9 +49,14 @@ public class SportsReview {
 
         System.out.println(goal1.toString());
 
-        //the part for the ligue
-        
+        //the part for the ligue standings
+        Ligue championLigue = new Ligue(teams, "14/02/2023", "12/06/2023");
 
+        TeamPerformence performenceTeam1 = new TeamPerformence(4, 2, 0, 2);
+        TeamPerformence performenceTeam2 = new TeamPerformence(7, 6, 1, 2);
+        championLigue.addTeamAndStat(team2, performenceTeam2);
+        championLigue.addTeamAndStat(team1, performenceTeam1);
+        championLigue.showStanding();
     }
 
     private static Goal scoredGoal(Player player, int minute){
