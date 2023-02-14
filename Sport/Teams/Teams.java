@@ -3,17 +3,33 @@ package Sport.Teams;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Sport.Scores.Score;
 import Sport.Teams.Players.AbstractPlayer;
 
 public class Teams {
 
     private String name;
-    private String color;
-    private int score;
+    private ArrayList<Score> score;
+    private int totalScore;
     private ArrayList<AbstractPlayer> listOfPlayers = new ArrayList<>();
     private HashMap<AbstractPlayer, Integer> performanceRatingList = new HashMap<>();
 
+
+    /* Empty Constructor */
+    public Teams(){
+
+    }
+    
+
     /* Constructor */
+    public Teams(
+        String name,
+        ArrayList<AbstractPlayer> listOfPlayers
+    ){
+        this.name = name;
+        this.listOfPlayers = listOfPlayers;
+    }
+
     public Teams(
         String name, 
         String color, 
@@ -22,13 +38,12 @@ public class Teams {
         ){
 
         this.name = name;
-        this.color = color;
         this.listOfPlayers = listOfPlayers;
         this.performanceRatingList = performanceRating;
 
-        for (AbstractPlayer abstractPlayer : listOfPlayers) {
+/*         for (AbstractPlayer abstractPlayer : listOfPlayers) {
             this.score += abstractPlayer.getScores();
-        }
+        } */
         
     }
 
@@ -40,10 +55,6 @@ public class Teams {
         return color;
     }
 
-    public int getScore() {
-        return score;
-    }
-
     public ArrayList<AbstractPlayer> getListOfPlayers() {
         return listOfPlayers;
     }
@@ -52,7 +63,11 @@ public class Teams {
         return performanceRatingList;
     }
 
-    
+    public ArrayList<Score> getScore() {
+        return score;
+    }
 
-    
+    public int getTotalScore() {
+        return totalScore;
+    }
 }

@@ -2,6 +2,7 @@ package Sport.Teams.Players;
 
 public abstract class AbstractPlayer {
 
+    protected int playerID;
     protected String name;
     protected int scores = calculateTimesScored();
 
@@ -25,6 +26,10 @@ public abstract class AbstractPlayer {
     }
     public int getScores() {
         return scores;
+    }
+
+    public int getPlayerID() {
+        return playerID;
     }
 
     

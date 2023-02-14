@@ -3,6 +3,7 @@ package Sport.Sports;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Sport.Scores.Score;
 import Sport.Teams.Teams;
 
 public class TennisMatch extends AbstractSports {
@@ -12,7 +13,7 @@ public class TennisMatch extends AbstractSports {
     /* Constructor */
     public TennisMatch(
         ArrayList<Teams> teamList, 
-        HashMap<Teams, Integer> scoreMap, 
+        HashMap<Teams, Score> scoreMap, 
         int duration, 
         String location
         ){

@@ -3,13 +3,14 @@ package Sport.Sports;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Sport.Scores.Score;
 import Sport.Teams.Teams;
 import Sport.Teams.Players.AbstractPlayer;
 
 public abstract class AbstractSports {
 
-    protected ArrayList<Teams> teamList = new ArrayList<>();
-    protected HashMap<Teams, Integer> scoreMap;
+    protected ArrayList<Teams> teamList;
+    protected HashMap<Teams, Score> scoreMap;
     protected int duration;
     protected String location;
     protected Teams winner;
@@ -80,7 +81,7 @@ public abstract class AbstractSports {
     public ArrayList<Teams> getTeamsList() {
         return teamList;
     }
-    public HashMap<Teams, Integer> getScoreMap() {
+    public HashMap<Teams, Score> getScoreMap() {
         return scoreMap;
     }
     public int getDuration() {
