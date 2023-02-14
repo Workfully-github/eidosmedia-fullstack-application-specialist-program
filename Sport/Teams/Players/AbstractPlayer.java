@@ -1,6 +1,6 @@
 package Sport.Teams.Players;
 
-public class AbstractPlayer {
+public abstract class AbstractPlayer {
 
     protected String name;
     protected int scores;
