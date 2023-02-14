@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+// import java.util.Map;
+// import java.util.Set;
 
 public class FootBallMatch {
     private ArrayList<Team>opponents;
@@ -9,7 +9,7 @@ public class FootBallMatch {
     private HashMap<Team, Integer> finaleScore;
     private ArrayList<Player>scorers;
     private Player MoM;
-    private int mOfMatchAssissts, mOfMatchIndex;
+    private int mOfMatchAssissts;
     
 
     public FootBallMatch(
@@ -24,7 +24,7 @@ public class FootBallMatch {
             this.stadium = stadium;
             this.liga = liga;
             this.mOfMatchAssissts = 0;
-            this.mOfMatchIndex = 0;
+            // this.mOfMatchIndex = 0;
             // this.finaleScore = finaleScore;
             // this.scorers = scorers;
             // this.MoM = MoM; 

@@ -14,7 +14,7 @@ public class Team {
         this.nulls = 0;
         this.players = players;
     }
-
+    
     public void setGoals(int goals) {
          this.goals += goals;
     }

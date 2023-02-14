@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class KickOff {
     //Players for the
@@ -80,39 +81,74 @@ public class KickOff {
         sporting.lineUp();
 
         //Describing the match from FC Porto Perspective
-
-        gabriel.assissted();
-        gabriel.assissted();
-        goncalo.assissted();
-        mehdi.scored();
-        fcPorto.setGoals(mehdi.getGoalsScored());
-        goncalo.assissted();
-        gabriel.assissted();
-        gabriel.assissted();
-        gabriel.scored();
-        fcPorto.setGoals(gabriel.getGoalsScored());
-
         ArrayList<Player>matchScorers = new ArrayList<Player>();
-        matchScorers.add(mehdi);
-        matchScorers.add(gabriel);
+
+        // gabriel.assissted();
+        // gabriel.assissted();
+        // goncalo.assissted();
+        // mehdi.scored();
+        // fcPorto.setGoals(mehdi.getGoalsScored());
+        // goncalo.assissted();
+        // gabriel.assissted();
+        // gabriel.assissted();
+        // gabriel.scored();
+        // fcPorto.setGoals(gabriel.getGoalsScored());
+
+        // matchScorers.add(mehdi);
+        // matchScorers.add(gabriel);
 
 
         // FcPort_Sporting.setScorers(fcPortoScorers);
 
         //Describing the match from Sporting Perspective
+        //Get user input to score the goals
+        /*
+         The user is inputing the goals...
+         we need a logic to stop the input --> (Put a comment for the user: inter 0 to end the match)
+         if (nextInt == 90) return FootballMatch //Match ended;
+         */
 
-        braganca.assissted();
-        braganca.assissted();
-        santos.assissted();
-        fatawu.scored();
-        sporting.setGoals(fatawu.getGoalsScored());
-        paulinho.assissted();
-        braganca.assissted();
+         //ask for player index, then, wich team
+         Scanner newGoal = new Scanner(System.in);
+        int time = 0;
 
-        matchScorers.add(fatawu);
+        while(time < 90) {
+            System.out.println("Enter Team Index:\n" + "0--> " + opponents.get(0).teamName +"\n1--> " + opponents.get(1).teamName);
+            int teamIndex = newGoal.nextInt();
 
+            System.out.println("Enter Player Index:");
+            for(int i = 0; i < opponents.get(teamIndex).players.size(); i++){
+                System.out.println(i + " --> " + opponents.get(teamIndex).players.get(i).playerName);
+            }
+            int playerIndex = newGoal.nextInt();
 
+            opponents.get(teamIndex).players.get(playerIndex).scored();
+            opponents.get(teamIndex).setGoals(opponents.get(teamIndex).players.get(playerIndex).getGoalsScored());
+            matchScorers.add(opponents.get(teamIndex).players.get(playerIndex));
+
+            System.out.println("at what time did he scored");
+            time = newGoal.nextInt();
+            
+            
+            System.out.println("What time is now?");
+            time = newGoal.nextInt();
+        }
+        
         FcPort_Sporting.setScorers(matchScorers);
+
+
+        // braganca.assissted();
+        // braganca.assissted();
+        // santos.assissted();
+        // fatawu.scored();
+        // sporting.setGoals(fatawu.getGoalsScored());
+        // paulinho.assissted();
+        // braganca.assissted();
+
+        // matchScorers.add(fatawu);
+
+
+        // FcPort_Sporting.setScorers(matchScorers);
 
 
         // System.out.println(FcPort_Sporting.getFinaleScore());
