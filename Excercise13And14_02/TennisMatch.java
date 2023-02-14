@@ -1,4 +1,4 @@
-package Excercise13_02;
+package Excercise13And14_02;
 
 public class TennisMatch extends Tennis {
     protected Player player1;
@@ -24,7 +24,7 @@ public class TennisMatch extends Tennis {
 
     public Player winner(){
         if(this.player1IsPoints1 > this.player1IsPoints2){
-            player1.nb_win += 1 ;
+            player1.nb_wins += 1 ;
             return this.player1;
         }
         else if(this.player1IsPoints1 < this.player1IsPoints2){

@@ -1,14 +1,17 @@
-package Excercise13_02.FootBall;
+package Excercise13And14_02.FootBall;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import Excercise13And14_02.Player;
 
 public class FootBallMatch {
     private ArrayList<FootBallTeam> teams = new ArrayList<>();
     private int duration;
     private HashMap<FootBallTeam, Integer> score = new HashMap<FootBallTeam,Integer>();
     private String location;
-    private FootBallTeam winner;
+    private FootBallTeam winner ;
+    private Player mOfTheMatch;
 
     public FootBallMatch(ArrayList<FootBallTeam> teams, int duration, HashMap<FootBallTeam, Integer> score,
             String location) {
@@ -16,7 +19,10 @@ public class FootBallMatch {
         this.duration = duration;
         this.score = score;
         this.location = location;
-        this.winner = this.getMatchWinner();
+    }
+
+    public Player getManOfMatch() {
+        return null;
     }
 
 
@@ -27,7 +33,7 @@ public class FootBallMatch {
         System.out.print("\nThe match duration was " + duration);
     }
 
-    private FootBallTeam getMatchWinner() {
+    public FootBallTeam updateMatchWinner() {
         if(score.get(teams.get(0)) > score.get(teams.get(1))){
             return teams.get(0);
         }
@@ -41,7 +47,16 @@ public class FootBallMatch {
 
     public String getReadableFinalScore(){
         return teams.get(0).name + " " + score.get(teams.get(0)) + " - " 
-        + score.get(teams.get(1)) + " " + teams.get(0).name;
+        + score.get(teams.get(1)) + " " + teams.get(1).name;
+    }
+
+    public void scoredAGoal(Goal goal1) {
+        if(teams.get(0).teamPlayers.contains(goal1.scorer)){
+            score.put(teams.get(0), score.get(teams.get(0)) + 1); 
+        }
+        else{
+            score.put(teams.get(1), score.get(teams.get(1)) + 1);
+        }
     }
 
     

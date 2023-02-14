@@ -1,10 +1,10 @@
-package Excercise13_02;
+package Excercise13And14_02.FootBall;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
-import Excercise13_02.FootBall.FootBallMatch;
-import Excercise13_02.FootBall.FootBallTeam;
+import Excercise13And14_02.Player;
 
 public class SportsReview {
 
@@ -33,5 +33,32 @@ public class SportsReview {
         score.put(team2, 2);
         FootBallMatch footMatch = new FootBallMatch(teams, 60, score, "Paris");
         footMatch.showMatchInfos();
+
+        //Goal code implementation
+        //Goal goal1 = scoredGoal(teams.get(0).getTeamPlayers().get(5), 35);
+        Scanner sc= new Scanner(System.in);    //System.in is a standard input stream  
+        System.out.print("Enter the team number (0/1)- ");  
+        int numTeam= sc.nextInt();  
+        System.out.print("Enter the player number- ");  
+        int numPlayer= sc.nextInt();  
+        System.out.print("Enter the minute - ");
+        int minute= sc.nextInt();  
+        Goal goal1 = scoredGoal(teams.get(numTeam).getTeamPlayers().get(numPlayer), minute);
+        footMatch.scoredAGoal(goal1);
+
+        System.out.println(goal1.toString());
+
+        //the part for the ligue
+        
+
     }
+
+    private static Goal scoredGoal(Player player, int minute){
+        return scoredGoal(player, minute,null);
+    }
+
+    private static Goal scoredGoal(Player scorer, int minute, Player assistant){
+        return new Goal(scorer, minute,assistant);
+    }
+
 }
