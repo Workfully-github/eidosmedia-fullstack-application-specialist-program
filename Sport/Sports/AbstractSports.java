@@ -91,9 +91,5 @@ public abstract class AbstractSports {
     }
     public Teams getWinner() {
         return winner;
-    }
-
-    
-
-    
+    }    
 }
