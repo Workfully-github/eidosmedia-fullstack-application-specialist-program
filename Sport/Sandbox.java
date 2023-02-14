@@ -1,8 +1,6 @@
 package Sport;
 
-import java.util.ArrayList;
-
-import Sport.Teams.Teams;
+import Sport.Championships.League;
 
 public class Sandbox {
 
@@ -14,11 +12,10 @@ public class Sandbox {
 
         Bootstrap bootstrap = new Bootstrap();
 
-        bootstrap.bootstrapNewLeagueWithInput();
+        League nationalLeague = bootstrap.bootstrapInit();
 
-        
-
-        
+        /* LEAGUE STANDING */
+        nationalLeague.presentStandingTable();
 
 
     }

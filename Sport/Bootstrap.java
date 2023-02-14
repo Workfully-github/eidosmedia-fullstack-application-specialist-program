@@ -13,7 +13,11 @@ import Sport.Teams.Players.FootballPlayer;
 
 public class Bootstrap {
 
-    public ArrayList<Teams> bootstrapTeamsWithInput(){
+    public League bootstrapInit(){
+       return bootstrapNewLeagueWithInput();
+    }
+
+    private ArrayList<Teams> bootstrapTeamsWithInput(){
         
         Scanner scNumberOfTeamsInLeague = new Scanner(System.in);
         System.out.println("How many teams will play in this league?");
@@ -41,7 +45,7 @@ public class Bootstrap {
         return teamList;
     }
     
-    public League bootstrapNewLeagueWithInput(){
+    private League bootstrapNewLeagueWithInput(){
         
         int leagueTypeCounter = 0;
         System.out.println("What League do you want to play?");

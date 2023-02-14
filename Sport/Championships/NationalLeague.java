@@ -6,14 +6,32 @@ import Sport.Teams.Teams;
 
 public class NationalLeague extends League{
 
-    ArrayList<Teams> teamList;
 
+    /* CONSTRUCTOR */
     public NationalLeague(){
         
     }
 
     public NationalLeague(ArrayList<Teams> teamList){
         this.teamList = teamList;
+        logMapsInit();
+    }
+
+    /* GETTERS */
+
+    public ArrayList<Teams> getTeamList() {
+        return teamList;
+    }
+
+    @Override
+    public void logMapsInit() {
+        for (Teams team : teamList) {
+            goalsLogMap.put(team, new ArrayList<>());
+            victoryLogMap.put(team, 0);
+            stalemateLogMap.put(team, 0);
+            defeatLogMap.put(team, 0);
+        }
+        
     }
 
     
