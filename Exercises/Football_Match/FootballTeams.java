@@ -19,16 +19,4 @@ public class FootballTeams {
         this.goalsConceded = goalsConceded;
         //this.scorers = scorers;
     }
-
-    public void showTeamPlayers() {
-
-    }
-
-    public void showTeamStats() {
-
-    }
-    
-    public void showPresentation() {
-
-    }
 }

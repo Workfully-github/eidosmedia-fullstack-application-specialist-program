@@ -98,6 +98,20 @@ public class FootballMatch {
         }
     }
 
+    public void getRating() {
+        System.out.println("RATINGS:");
+        System.out.println("Team A");
+        for (HashMap.Entry<FootballPlayers, Integer> rating : ratingsTeamA.entrySet()) {
+                System.out.println(rating.getKey().name + " had a rating of " + rating.getValue());
+            }
+        
+        System.out.println("Team B");
+        for (HashMap.Entry<FootballPlayers, Integer> rating : ratingsTeamB.entrySet()) {
+                System.out.println(rating.getKey().name + " had a rating of " + rating.getValue());
+            }
+            
+    }
+
 /*     public FootballPlayers getMVP() {
         
         // HashMap<FootballPlayers, Double> ratingsTeamA

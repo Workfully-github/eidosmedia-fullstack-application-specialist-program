@@ -117,8 +117,8 @@ public class FootballMain {
 
         match.getLineups();
 
-        match.getScorers();
+        match.getScorers(); 
 
-        
+        match.getRating();  
     }
 }
