@@ -3,11 +3,7 @@ package Sport.Teams.Players;
 public abstract class AbstractPlayer {
 
     protected String name;
-    protected int scores;
-
-    public AbstractPlayer(){
-       this.scores = calculateTimesScored();
-    }
+    protected int scores = calculateTimesScored();
 
     private int calculateTimesScored(){
 
