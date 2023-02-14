@@ -14,6 +14,7 @@ public class Sandbox {
 
         /* TIP: COLLAPSE ALL METHODS FOR BETTER VIEW */
 
+        /* BOOTSTRAPING VALUES */
         // TEAM A
         ArrayList<AbstractPlayer> footballPlayerListA = new ArrayList<>() {
             {

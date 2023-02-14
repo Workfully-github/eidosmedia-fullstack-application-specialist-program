@@ -6,5 +6,4 @@ public class FootballPlayer extends AbstractPlayer {
         this.name = name;
     }
 
-
 }
