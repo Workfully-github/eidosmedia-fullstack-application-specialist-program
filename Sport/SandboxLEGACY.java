@@ -71,7 +71,8 @@ public class SandboxLEGACY {
         };
 
         /* CREATING TEAMS */
-        ArrayList<Teams> teamList = new ArrayList<>() {
+        ArrayList<Teams> teamList = new ArrayList<>() 
+        {
             {
                 add(new Teams("TeamA", "Red", footballPlayerListA, performanceRatingTeamA));
                 add(new Teams("TeamB", "Blue", footballPlayerListB, performanceRatingTeamB));
@@ -81,7 +82,7 @@ public class SandboxLEGACY {
 
         /* SCANNING INPUT */
         
-        scanScorer(teamList);
+        //scanScorer(teamList);
 
         
 
@@ -139,7 +140,7 @@ public class SandboxLEGACY {
 
     }
 
-    public static HashMap<Teams, AbstractPlayer> scanScorer(ArrayList<Teams> teams){
+    /* public static HashMap<Teams, AbstractPlayer> scanScorer(ArrayList<Teams> teams){
 
         Scanner scGoal = new Scanner(System.in);
 
@@ -191,13 +192,18 @@ public class SandboxLEGACY {
                 System.out.println(counter + " - " + player.getName());
             }
 
-            return selectedTeam.getListOfPlayers().get(scGoal.nextInt() -1);
+            return new HashMap<Teams, AbstractPlayer>()
+            { 
+                {
+                    put(selectedTeam, selectedTeam.getListOfPlayers().get(scGoal.nextInt() -1));
+                }
+            };
         }
 
         System.out.println("You need to select a valid option.");
         return null;
     }
-
+ */
 }
 
 /* update the score goals live: each time a player scores i want to have an input to have a goal

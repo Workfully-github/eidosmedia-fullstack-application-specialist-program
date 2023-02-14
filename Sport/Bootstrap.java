@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import Sport.Championships.League;
+import Sport.Championships.LeagueType;
+import Sport.Championships.NationalLeague;
 import Sport.Teams.Teams;
 import Sport.Teams.Players.AbstractPlayer;
 import Sport.Teams.Players.FootballPlayer;
@@ -38,4 +41,26 @@ public class Bootstrap {
         return teamList;
     }
     
+    public League bootstrapNewLeagueWithInput(){
+        
+        int leagueTypeCounter = 0;
+        System.out.println("What League do you want to play?");
+        Scanner scLeagueSelection = new Scanner(System.in);
+
+        for (LeagueType leagueType : LeagueType.values()) {
+            leagueTypeCounter++;
+            System.out.println(leagueTypeCounter + " - " + LeagueType.NATIONALLEAGUE.getLeagueType());
+        }
+
+        switch (scLeagueSelection.nextInt()) {
+            case 1:
+                return new NationalLeague(bootstrapTeamsWithInput());
+        
+            default:
+                System.out.println("Empty League Instantiated");
+                break;
+        }
+
+        return new NationalLeague();
+    }
 }

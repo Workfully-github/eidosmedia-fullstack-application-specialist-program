@@ -14,7 +14,9 @@ public class Sandbox {
 
         Bootstrap bootstrap = new Bootstrap();
 
-        ArrayList<Teams> teamList = bootstrap.bootstrapTeamsWithInput();
+        bootstrap.bootstrapNewLeagueWithInput();
+
+        
 
         
 

@@ -51,10 +51,6 @@ public class Teams {
         return name;
     }
 
-    public String getColor() {
-        return color;
-    }
-
     public ArrayList<AbstractPlayer> getListOfPlayers() {
         return listOfPlayers;
     }
