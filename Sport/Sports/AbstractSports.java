@@ -8,7 +8,6 @@ import Sport.Teams.Players.AbstractPlayer;
 
 public abstract class AbstractSports {
 
-    protected ArrayList<AbstractPlayer> playerList = new ArrayList<>();
     protected ArrayList<Teams> teamList = new ArrayList<>();
     protected HashMap<Teams, Integer> scoreMap;
     protected int duration;
@@ -78,9 +77,6 @@ public abstract class AbstractSports {
 
 
     /* GETTERS */
-    public ArrayList<AbstractPlayer> getPlayerList() {
-        return playerList;
-    }
     public ArrayList<Teams> getTeamsList() {
         return teamList;
     }

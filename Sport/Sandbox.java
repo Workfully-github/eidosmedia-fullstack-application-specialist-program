@@ -49,6 +49,7 @@ public class Sandbox {
             }
         };
         // PERFORMANCE RATING A
+        // RANDOMLY GENERATES PERFORMANCE RATING FROM 1 TO 10
         HashMap<AbstractPlayer, Integer> performanceRatingTeamA = new HashMap<>() {
             {
                 for (int i = 0; i < footballPlayerListA.size(); i++) {
@@ -57,6 +58,7 @@ public class Sandbox {
             }
         };
         // PERFORMANCE RATING B
+        // RANDOMLY GENERATES PERFORMANCE RATING FROM 1 TO 10
         HashMap<AbstractPlayer, Integer> performanceRatingTeamB = new HashMap<>(){
             {
                 for (int i = 0; i < footballPlayerListB.size(); i++) {
