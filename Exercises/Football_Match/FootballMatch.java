@@ -38,6 +38,7 @@ public class FootballMatch {
     public void showMatchInfo() {
         System.out.println("This game was " + teams.get(0).name + " VS " + teams.get(1).name);
         System.out.println("The winner was " + getMatchWinner().name + " by " + getScore());
+        System.out.println("\n");
         /* System.out.println("The man of the match was " + mvp); */
     }
 
@@ -71,11 +72,13 @@ public class FootballMatch {
         for (FootballPlayers lineupA : lineupTeamA) {
             System.out.println(lineupA.name + " ");
         }
+        System.out.println("\n");
 
         System.out.println(teams.get(1).name + " lineup is: ");
         for (FootballPlayers lineupB : lineupTeamB) {
             System.out.println(lineupB.name + " ");
         }
+        System.out.println("\n");
     }
 
     public void getScorers() {
@@ -84,8 +87,10 @@ public class FootballMatch {
             for (HashMap.Entry<FootballPlayers, Integer> goals : scorersTeamA.entrySet()) {
                 System.out.println(goals.getKey().name + " scored " + goals.getValue());
             }
+            System.out.println("\n");
         } else {
             System.out.println("No goals from " + teams.get(0).name);
+            System.out.println("\n");
         }
 
         if (!(scorersTeamB.isEmpty())) {
@@ -93,22 +98,27 @@ public class FootballMatch {
             for (HashMap.Entry<FootballPlayers, Integer> goals : scorersTeamB.entrySet()) {
                 System.out.println(goals.getKey().name + " scored " + goals.getValue());
             }
+            System.out.println("\n");
         } else {
             System.out.println("No goals from " + teams.get(1).name);
+            System.out.println("\n");
         }
     }
 
     public void getRating() {
+        System.out.println("\n");
         System.out.println("RATINGS:");
+        System.out.println("\n");
         System.out.println("Team A");
         for (HashMap.Entry<FootballPlayers, Integer> rating : ratingsTeamA.entrySet()) {
                 System.out.println(rating.getKey().name + " had a rating of " + rating.getValue());
             }
-        
+            System.out.println("\n");
         System.out.println("Team B");
         for (HashMap.Entry<FootballPlayers, Integer> rating : ratingsTeamB.entrySet()) {
                 System.out.println(rating.getKey().name + " had a rating of " + rating.getValue());
             }
+            System.out.println("\n");
             
     }
 
