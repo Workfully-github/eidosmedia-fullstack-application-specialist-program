@@ -15,13 +15,18 @@ public class FootballMatch extends AbstractSports {
     /* CONSTRUCTOR ONE */
 
     public FootballMatch(
-            ArrayList<Teams> teamList,
-            String location) {
+            ArrayList<Teams> teamList
+            ) {
 
-        this.location = location;
         this.teamList = teamList;
         
+        
         populateScoreHashMap(teamList.get(0), teamList.get(1));
+
+        findResult();
+
+        //System.out.println("Here: " + getScoreMap().get(teamList.get(0)));
+        //System.out.println("Here: " + getScoreMap().get(teamList.get(1)));
 
     }
 
@@ -47,8 +52,8 @@ public class FootballMatch extends AbstractSports {
      * 30% of scoring one goal
      * Scorer will be selected randomly from team rooster
      */
-    public HashMap<Teams, ArrayList<Score>> populateScoreHashMap(Teams homeTeam, Teams awayTeam) {
-        return scoreMap = new HashMap<>() {
+    public void populateScoreHashMap(Teams homeTeam, Teams awayTeam) {
+        scoreMap = new HashMap<>() {
             {
                 put(homeTeam, generateRandomScore(homeTeam));
                 put(awayTeam, generateRandomScore(awayTeam));
@@ -74,7 +79,7 @@ public class FootballMatch extends AbstractSports {
 
     public ArrayList<Score> generateRandomScore(Teams team){
 
-        return new ArrayList<Score>() {
+        ArrayList<Score> arrayList = new ArrayList<Score>() {
             {
                 int randomGoalChance = (int) Math.floor((Math.random() * 10) + 0);
                 
@@ -89,6 +94,35 @@ public class FootballMatch extends AbstractSports {
                 }          
             }
         };
+
+        return arrayList;
     }
+
+    private void findResult(){
+
+        Teams homeTeam = teamList.get(0);
+        Teams awayTeam = teamList.get(1);
+
+        if(scoreMap.get(homeTeam).size() > scoreMap.get(awayTeam).size()){
+            
+            setWinner(homeTeam);
+            setLoser(awayTeam);
+            //System.out.println("There was a winner. " + getWinner().getName());
+        };
+
+        if(scoreMap.get(homeTeam).size() < scoreMap.get(awayTeam).size()){
+            
+            setWinner(awayTeam);
+            setLoser(homeTeam);
+            //System.out.println("There was a loser " + getLoser().getName());
+        };
+
+        if(scoreMap.get(homeTeam).size() == scoreMap.get(awayTeam).size()){
+            //System.out.println("There was a stalemate between " + homeTeam.getName() + " " + awayTeam.getName());
+            setStalemate(true);
+        };
+    }
+
+
 
 }

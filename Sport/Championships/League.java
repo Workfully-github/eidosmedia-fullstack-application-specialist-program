@@ -26,7 +26,6 @@ public abstract class League {
     /* LEAGUE STANDING TABLE */
     public void presentStandingTable() {
 
-
         System.out.println("| TEAM | GOALS | V | S | D | PTS ");
         for (Teams team : teamList) {
             System.out.println(
@@ -41,71 +40,17 @@ public abstract class League {
     }
 
     /* GENERATE FOOTBALL MATCH */
-    public FootballMatch generateFootballMatch(Teams homeTeam, Teams awayTeam, String location) {
+    private FootballMatch generateFootballMatch(Teams homeTeam, Teams awayTeam) {
 
         return new FootballMatch(new ArrayList<Teams>() {
             {
                 add(homeTeam);
                 add(awayTeam);
             }
-        }, location);
+        });
     }
 
     /* METHODS */
-
-    public void playAllMatches(){
-        for (int i = 0; i < teamList.size(); i++) {
-            for (int j = 0; j < teamList.size()-1; j++) {
-                Teams homeTeam = teamList.get(i);
-                Teams awayTeam = teamList.get(j);
-                if(i != j)
-                playFootballMatch(homeTeam, awayTeam);
-            }
-            
-        }
-    }
-
-    public void playFootballMatch(Teams homeTeam, Teams awayTeam){
-        populateStandingTable(generateFootballMatch(homeTeam, awayTeam, "London"));
-    }
-
-    private void populateStandingTable(FootballMatch footballMatch){
-
-        for (int i = 0; i < teamList.size(); i++) {
-            for (int j = 1; j < teamList.size(); j++) {
-                Teams homeTeam = teamList.get(i);
-                Teams awayTeam = teamList.get(j);
-
-                goalsLogMap.put(teamList.get(i), getScoreMapfromMatch(footballMatch, teamList.get(i)));
-                goalsLogMap.put(teamList.get(j), getScoreMapfromMatch(footballMatch, teamList.get(j)));
-
-                int homeTeamGoals = getScoreMapfromMatch(footballMatch, teamList.get(i)).size();
-                int awayTeamGoals = getScoreMapfromMatch(footballMatch, teamList.get(j)).size();
-
-                if(homeTeamGoals > awayTeamGoals){
-                    victoryLogMap.put(homeTeam, +1);
-                    defeatLogMap.put(awayTeam, +1);
-                }
-
-                if(homeTeamGoals < awayTeamGoals){
-                    victoryLogMap.put(awayTeam, +1);
-                    defeatLogMap.put(homeTeam, +1);
-                }
-
-                if(homeTeamGoals == awayTeamGoals){
-                    stalemateLogMap.put(homeTeam, +1);
-                    stalemateLogMap.put(awayTeam, +1);
-        
-                }
-            }
-
-        }
-    }
-
-
-    private ArrayList<Score> getScoreMapfromMatch(FootballMatch footballMatch, Teams team){
-        return footballMatch.getScoreMap().get(team);
-    }
 
     /*
      * GENERATE EVERY POSSIBLE FOOTBALL MATCH FOR WHOLE LEAGUE
@@ -115,21 +60,63 @@ public abstract class League {
      * CHECK OUTPUT IN SANDBOX FOR BETTER UNDERSTANDING
      */
     public void generateAllFootballMatchesForThisLeague() {
-        for (int i = 0; i < getTeamList().size(); i++) {
-            for (int j = 1; j < getTeamList().size(); j++) {
-                footballMatchesLogMap.add(generateFootballMatch(getTeamList().get(i), getTeamList().get(j), null));
+        for (int i = 0; i < teamList.size(); i++) {
+            for (int j = 0; j < teamList.size(); j++) {
+
+                Teams homeTeam = teamList.get(i);
+                Teams awayTeam = teamList.get(j);
+
+                if (i != j)
+                    footballMatchesLogMap.add(generateFootballMatch(homeTeam, awayTeam));
             }
         }
 
-        calculateGoalMap();
+        populateStandingTable();
     }
 
-    private void calculateGoalMap() {
-        for (int i = 0; i < teamList.size(); i++) {
-            for (int j = 0; j < teamList.size(); j++) {
-                goalsLogMap.put(teamList.get(i), footballMatchesLogMap.get(j).getTeamsList().get(i).getScore());
+    private ArrayList<Score> collectAllGoals(Teams team) {
+        return new ArrayList<Score>() {
+            {
+                for (FootballMatch footballMatch : footballMatchesLogMap) {
+                    if (footballMatch.getScoreMap().get(team) != null)
+                        addAll(footballMatch.getScoreMap().get(team));
+                }
             }
+        };
+    }
 
+    private void countGoals() {
+        for (Teams team : teamList) {
+            goalsLogMap.put(team, collectAllGoals(team));
+        }
+    }
+
+    private void verifyOutcomes(Teams team) {
+        for (FootballMatch footballMatch : footballMatchesLogMap) {
+
+            if (footballMatch.getTeamsList().contains(team)) {
+                if (footballMatch.isStalemate()) {
+                    stalemateLogMap.put(team, stalemateLogMap.get(team) + 1);
+                    continue;
+                }
+                if (footballMatch.getWinner() == team) {
+                    victoryLogMap.put(team, victoryLogMap.get(team) + 1);
+                    continue;
+                }
+                if (footballMatch.getLoser() == team) {
+                    defeatLogMap.put(team, defeatLogMap.get(team) + 1);
+                    continue;
+                }
+            }
+        }
+    }
+
+    private void populateStandingTable() {
+
+        countGoals();
+
+        for (Teams team : teamList) {
+            verifyOutcomes(team);
         }
     }
 

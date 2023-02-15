@@ -12,7 +12,7 @@ public class StringPresentation {
     }
 
     public static String goalMapFormatter(ArrayList<Score> goalList){
-        return goalList.size() > 9 ? " ".repeat(3) + goalList.size() + " ".repeat(3) : " ".repeat(3) + goalList.size() + " ".repeat(3);
+        return goalList.size() > 9 ? " ".repeat(2) + goalList.size() + " ".repeat(3) : " ".repeat(3) + goalList.size() + " ".repeat(3);
     }
     
     public static String victoryMapFormatter(Integer victoryAmount){
@@ -29,6 +29,6 @@ public class StringPresentation {
 
     public static String pointCalculationAndPresentation(Integer victoryAmount, Integer stalemateAmount){
 
-        return victoryAmount * 3 + stalemateAmount > 9 ? " ".repeat(1) + "0" + Integer.toString(victoryAmount * 3 + stalemateAmount) : " ".repeat(3) + Integer.toString(victoryAmount * 3 + stalemateAmount);
+        return victoryAmount * 3 + stalemateAmount > 9 ? " ".repeat(2) + Integer.toString(victoryAmount * 3 + stalemateAmount) : " ".repeat(3) + Integer.toString(victoryAmount * 3 + stalemateAmount);
     }
 }

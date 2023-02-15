@@ -1,7 +1,6 @@
 package Sport;
 
 import Sport.Championships.League;
-import Sport.Teams.Teams;
 
 public class Sandbox {
 
@@ -15,28 +14,13 @@ public class Sandbox {
 
         League nationalLeague = bootstrap.bootstrapInit();
 
-        /* LEAGUE STANDING */
-        nationalLeague.presentStandingTable();
-
-        /* @see #generateAllFootballMatchesForThisLeague() */
-        //nationalLeague.generateAllFootballMatchesForThisLeague();
-
-        //nationalLeague.playAllMatches();
-
-        //nationalLeague.playFootballMatch(nationalLeague.getTeamList().get(0), nationalLeague.getTeamList().get(1));
-        //nationalLeague.playFootballMatch(nationalLeague.getTeamList().get(1), nationalLeague.getTeamList().get(0));
-        
-        nationalLeague.playAllMatches();
-
-
-        
+        /* RUN HERE */
 
         nationalLeague.presentStandingTable();
+        
+        nationalLeague.generateAllFootballMatchesForThisLeague();
 
-
-
-
-
+        nationalLeague.presentStandingTable();
 
     }
 }

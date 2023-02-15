@@ -19,10 +19,6 @@ public class NationalLeague extends League{
 
     /* GETTERS */
 
-    public ArrayList<Teams> getTeamList() {
-        return teamList;
-    }
-
     @Override
     public void logMapsInit() {
         for (Teams team : teamList) {

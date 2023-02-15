@@ -14,6 +14,8 @@ public abstract class AbstractSports {
     protected int duration;
     protected String location;
     protected Teams winner;
+    protected Teams loser;
+    protected boolean stalemate = false;
 
     /* METHODS */
 
@@ -92,5 +94,27 @@ public abstract class AbstractSports {
     }
     public Teams getWinner() {
         return winner;
+    }
+
+    public Teams getLoser() {
+        return loser;
+    }
+
+    public boolean isStalemate() {
+        return stalemate;
+    }
+
+    public void setWinner(Teams winner) {
+        this.winner = winner;
+    }
+
+    public void setLoser(Teams loser) {
+        this.loser = loser;
+    }
+
+    public void setStalemate(boolean stalemate) {
+        this.stalemate = stalemate;
     }    
+
+    
 }
