@@ -20,7 +20,9 @@ public class Sandbox {
         
         nationalLeague.generateAllFootballMatchesForThisLeague();
 
-        nationalLeague.presentStandingTable();
+        //nationalLeague.presentStandingTable();
+
+        nationalLeague.presentStandingTableSorted();
 
     }
 }

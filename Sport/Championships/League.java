@@ -1,8 +1,11 @@
 package Sport.Championships;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import Sport.Scores.Score;
 import Sport.Sports.FootballMatch;
 import Sport.Teams.Teams;
@@ -19,6 +22,8 @@ public abstract class League {
     public League() {
 
     }
+
+    /* METHODS */
 
     /* INITIALIZE LOG MAPS */
     public abstract void logMapsInit();
@@ -37,10 +42,32 @@ public abstract class League {
                             StringPresentation.pointCalculationAndPresentation(victoryLogMap.get(team),
                                     stalemateLogMap.get(team)));
         }
+
+        //System.out.println(sort(generatePtsLogMap()));
     }
 
+    public void presentStandingTableSorted() {
+
+        System.out.println("| TEAM | GOALS | V | S | D | PTS ");
+        for (Teams team : sort(generatePtsLogMap())) {
+            System.out.println(
+                    StringPresentation.teamFormatter(team.getName()) +
+                            StringPresentation.goalMapFormatter(goalsLogMap.get(team)) +
+                            StringPresentation.victoryMapFormatter(victoryLogMap.get(team)) +
+                            StringPresentation.stalemateMapFormatter(stalemateLogMap.get(team)) +
+                            StringPresentation.defeatMapFormatter(defeatLogMap.get(team)) +
+                            StringPresentation.pointCalculationAndPresentation(victoryLogMap.get(team),
+                                    stalemateLogMap.get(team)));
+        }
+
+        //System.out.println(sort(generatePtsLogMap()));
+    }
+
+    /* GENERATES A POINTS MAP BASED ON VICTORIES AND STALEMATES
+     * THIS MAP IS LATER USED TO SORT OTHER MAPS BY POINTS
+     */
     private HashMap<Teams, Integer> generatePtsLogMap() {
-        return new HashMap<Teams, Integer>(){
+        return new HashMap<Teams, Integer>() {
             {
                 for (Teams team : teamList) {
                     put(team, victoryLogMap.get(team) * 3 + stalemateLogMap.get(team));
@@ -49,12 +76,27 @@ public abstract class League {
         };
     }
 
-    private ArrayList<Teams> sort(HashMap<Teams, Integer> ptsLogMap){
+    /* RETURNS ArrayList<Teams> SORTED BY POINTS */
+    private ArrayList<Teams> sort(HashMap<Teams, Integer> ptsLogMap) {
 
-      
+        List<Integer> teamsByPts = new ArrayList<>(ptsLogMap.values());
 
-        return new ArrayList<Teams>();
+        Collections.sort(teamsByPts, Collections.reverseOrder());
 
+        //System.out.println(teamsByPts);
+
+        return new ArrayList<Teams>() {
+            {
+                for (int i = 0; i < teamsByPts.size(); i++) {
+                    for (Map.Entry<Teams, Integer> key : ptsLogMap.entrySet()) {
+                        if (Objects.equals(teamsByPts.get(i), key.getValue())) {
+                            add(key.getKey());
+                           
+                        }
+                    }
+                }
+            }
+        };
     }
 
     /* GENERATE FOOTBALL MATCH */
@@ -68,8 +110,7 @@ public abstract class League {
         });
     }
 
-    /* METHODS */
-
+    
     /*
      * GENERATE EVERY POSSIBLE FOOTBALL MATCH FOR WHOLE LEAGUE
      * MATCHES WILL BE AUTOMATICALLY PLAYED
