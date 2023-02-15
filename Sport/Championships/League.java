@@ -53,15 +53,28 @@ public abstract class League {
 
     /* METHODS */
 
-    public void populateGoalsLogMap(){
-
-        FootballMatch footballMatch;
-
+    public void playAllMatches(){
         for (int i = 0; i < teamList.size(); i++) {
-            for (int j = i+1; j < teamList.size(); j++) {
+            for (int j = 0; j < teamList.size()-1; j++) {
                 Teams homeTeam = teamList.get(i);
                 Teams awayTeam = teamList.get(j);
-                footballMatch = generateFootballMatch(teamList.get(i), teamList.get(j), "London");
+                if(i != j)
+                playFootballMatch(homeTeam, awayTeam);
+            }
+            
+        }
+    }
+
+    public void playFootballMatch(Teams homeTeam, Teams awayTeam){
+        populateStandingTable(generateFootballMatch(homeTeam, awayTeam, "London"));
+    }
+
+    private void populateStandingTable(FootballMatch footballMatch){
+
+        for (int i = 0; i < teamList.size(); i++) {
+            for (int j = 1; j < teamList.size(); j++) {
+                Teams homeTeam = teamList.get(i);
+                Teams awayTeam = teamList.get(j);
 
                 goalsLogMap.put(teamList.get(i), getScoreMapfromMatch(footballMatch, teamList.get(i)));
                 goalsLogMap.put(teamList.get(j), getScoreMapfromMatch(footballMatch, teamList.get(j)));
@@ -71,10 +84,18 @@ public abstract class League {
 
                 if(homeTeamGoals > awayTeamGoals){
                     victoryLogMap.put(homeTeam, +1);
+                    defeatLogMap.put(awayTeam, +1);
                 }
 
                 if(homeTeamGoals < awayTeamGoals){
                     victoryLogMap.put(awayTeam, +1);
+                    defeatLogMap.put(homeTeam, +1);
+                }
+
+                if(homeTeamGoals == awayTeamGoals){
+                    stalemateLogMap.put(homeTeam, +1);
+                    stalemateLogMap.put(awayTeam, +1);
+        
                 }
             }
 

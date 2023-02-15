@@ -21,7 +21,15 @@ public class Sandbox {
         /* @see #generateAllFootballMatchesForThisLeague() */
         //nationalLeague.generateAllFootballMatchesForThisLeague();
 
-        nationalLeague.populateGoalsLogMap();
+        //nationalLeague.playAllMatches();
+
+        //nationalLeague.playFootballMatch(nationalLeague.getTeamList().get(0), nationalLeague.getTeamList().get(1));
+        //nationalLeague.playFootballMatch(nationalLeague.getTeamList().get(1), nationalLeague.getTeamList().get(0));
+        
+        nationalLeague.playAllMatches();
+
+
+        
 
         nationalLeague.presentStandingTable();
 
