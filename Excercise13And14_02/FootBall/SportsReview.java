@@ -35,7 +35,7 @@ public class SportsReview {
         footMatch.showMatchInfos();
 
         //Goal code implementation
-        //Goal goal1 = scoredGoal(teams.get(0).getTeamPlayers().get(5), 35);
+        Goal goal0 = scoredGoal(teams.get(0).getTeamPlayers().get(5), 35);
         Scanner sc= new Scanner(System.in);    //System.in is a standard input stream  
         System.out.print("\nTest for manuel parameters####");  
         System.out.print("\nEnter the team number (0/1)- ");  
@@ -56,7 +56,12 @@ public class SportsReview {
         TeamPerformence performenceTeam2 = new TeamPerformence(7, 6, 1, 2);
         championLigue.addTeamAndStat(team2, performenceTeam2);
         championLigue.addTeamAndStat(team1, performenceTeam1);
+        championLigue.addGoal(goal0);
+        championLigue.addGoal(goal1);
+        championLigue.addGoal(goal1);
+        championLigue.addMatch(footMatch);
         championLigue.showStanding();
+        championLigue.showScorePlayer();
     }
 
     private static Goal scoredGoal(Player player, int minute){

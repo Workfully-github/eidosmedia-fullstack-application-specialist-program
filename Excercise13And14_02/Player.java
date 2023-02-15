@@ -15,7 +15,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player [name=" + name + ", nb_wins=" + nb_wins + ", nb_losses=" + nb_losses + ", perf=" + perf + "]";
+        return "Player [name=" + name + ", nb_wins=" + nb_wins + ", nb_losses=" + nb_losses + ", perf=" + perf + "] ";
     }
 
     public int getPerf() {

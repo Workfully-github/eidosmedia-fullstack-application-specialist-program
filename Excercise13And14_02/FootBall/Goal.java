@@ -15,7 +15,7 @@ public class Goal {
 
     @Override
     public String toString() {
-        return "Goal [scorer=" + scorer + ", minute=" + minute + ", assistant=" + assistant + "]";
+        return "Goal [scorer=" + scorer + ", minute=" + minute + ", assistant=" + assistant + "] ";
     }
 
     
