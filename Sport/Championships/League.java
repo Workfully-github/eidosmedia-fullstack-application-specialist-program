@@ -39,6 +39,24 @@ public abstract class League {
         }
     }
 
+    private HashMap<Teams, Integer> generatePtsLogMap() {
+        return new HashMap<Teams, Integer>(){
+            {
+                for (Teams team : teamList) {
+                    put(team, victoryLogMap.get(team) * 3 + stalemateLogMap.get(team));
+                }
+            }
+        };
+    }
+
+    private ArrayList<Teams> sort(HashMap<Teams, Integer> ptsLogMap){
+
+      
+
+        return new ArrayList<Teams>();
+
+    }
+
     /* GENERATE FOOTBALL MATCH */
     private FootballMatch generateFootballMatch(Teams homeTeam, Teams awayTeam) {
 
