@@ -61,7 +61,7 @@ public class SoccerFinalGame {
         setNewcastlePlayers(newcastle);
 
         // Create League
-        englandCup = new SoccerLeague("England Cup", leagueTeams, allMatches, points, wins, losses, draws, goalsScored, goalsSuffered);
+        //englandCup = new SoccerLeague("England Cup", leagueTeams, allMatches, points, wins, losses, draws, goalsScored, goalsSuffered);
 
         // Create teams
         manchesterCity = getHomeTeam("Manchester City", city, "Guardiola", "Manchester");

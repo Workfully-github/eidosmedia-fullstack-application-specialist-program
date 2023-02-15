@@ -9,31 +9,16 @@ public class SoccerLeague {
     private ArrayList<SoccerTeam> teams;
     private ArrayList<SoccerMatch> matches;
     private HashMap<SoccerTeam, Integer> standings = new HashMap<SoccerTeam,Integer>();
-    /* private HashMap<SoccerTeam, Integer> wins;
-    private HashMap<SoccerTeam, Integer> losses;
-    private HashMap<SoccerTeam, Integer> draws;
-    private HashMap<SoccerTeam, Integer> goalsScored;
-    private HashMap<SoccerTeam, Integer> goalsSuffered; */
 
     private static int POINTS_WIN = 3;
     private static int POINTS_DRAW = 1;
-    private static int POINTS_DEFEAT = 0;
+    private static int MAX_NUMBER_GOALS = 5;
 
-    public SoccerLeague(String name, ArrayList<SoccerTeam> teams, ArrayList<SoccerMatch> matches,
-    HashMap<SoccerTeam, Integer> standings)
-    /*  HashMap<SoccerTeam, Integer> wins, HashMap<SoccerTeam,
-    Integer> losses, HashMap<SoccerTeam, Integer> draws, HashMap<SoccerTeam, Integer> goalsScored,
-    HashMap<SoccerTeam, Integer> goalsSuffered) */ {
+    public SoccerLeague(String name, ArrayList<SoccerTeam> teams/* , ArrayList<SoccerMatch> matches,
+    HashMap<SoccerTeam, Integer> standings */) {
         this.name = name;
         this.teams = teams;
         generateStandings();
-        /* this.matches = matches;
-        this.standings = standings;
-        this.wins = wins;
-        this.losses = losses;
-        this.draws = draws;
-        this.goalsScored = goalsScored;
-        this.goalsSuffered = goalsSuffered; */
     }
 
     public void setMatches(ArrayList<SoccerMatch> matches) {
@@ -41,70 +26,56 @@ public class SoccerLeague {
     }
 
     public void playMatches() {
-        // generate result of all league matches
-        // assignPoints(match);
+        // Generate a random number of goals and add it to the match
+        for(int i = 0; i < matches.size(); i++) {
+            // Number of goals in a game
+            int numGoals = (int) Math.floor((Math.random() * MAX_NUMBER_GOALS) + 1);
+            int goalsHomeTeam = (int) Math.floor((Math.random() * numGoals));
+            int goalsAwayTeam = numGoals- goalsHomeTeam;
+            
+            HashMap<SoccerTeam,Integer> result = matches.get(i).getResult();
+
+            result.put(matches.get(i).getTeams().get(0), goalsHomeTeam);
+            result.put(matches.get(i).getTeams().get(1), goalsAwayTeam);
+
+            assignPoints(matches.get(i));
+        }
     }
 
     private void assignPoints(SoccerMatch match){
         HashMap<SoccerTeam,Integer> result = match.getResult();
-        
+        // Assign points when it's a draw
         if(match.isADraw()){
             int previousPoints = standings.get(result.get(0));
             int newPoints = previousPoints += POINTS_DRAW;
-            standings.put(result.get(0), newPoints);
-            standings.put(result.get(1), newPoints);
+            standings.put(match.getTeams().get(0), newPoints);
+            standings.put(match.getTeams().get(1), newPoints);
         }
 
-        //assign points to the winner        
+        // Assign points to the winner        
         SoccerTeam winner = match.getWinner();
 
         int previousPoints = standings.get(winner);
         int newPoints = previousPoints += POINTS_WIN;
         standings.put(winner, newPoints);
-
-
-
-
-
-        // assign points to the teams based on match result 
     }
 
     private void generateStandings(){
-        //TODO update the hashmap based on the teams
         // use alphabetical sorting
 
+        for (int i = 0; i < teams.size(); i++) {
+            standings.put(teams.get(i), 0);
+        }
     }
 
-    /**
-     * @return the standings
-     */
-    public HashMap<FootballTeam, Integer> getStandings() {
+    public HashMap<SoccerTeam, Integer> getStandings() {
 
         //TODO sort the standings based on value
+        // see https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
         return standings;
     }
 
-    public HashMap<SoccerTeam, Integer> getPoints() {
-        return points;
-    }
-
-    public HashMap<SoccerTeam, Integer> getWins() {
-        return wins;
-    }
-
-    public HashMap<SoccerTeam, Integer> getLosses() {
-        return losses;
-    }
-
-    public HashMap<SoccerTeam, Integer> getDraws() {
-        return draws;
-    }
-
-    public HashMap<SoccerTeam, Integer> getGoalsScored() {
-        return goalsScored;
-    }
-
-    public HashMap<SoccerTeam, Integer> getGoalsSuffered() {
-        return goalsSuffered;
+    public void assignGoals() {
+        // check who scored and create and create an HashMap<SoccerPlayer, Integer>
     }
 }

@@ -8,12 +8,12 @@ public class SoccerPlayer {
     private int goalsScored;
     private int gamesPlayed;
 
-    public SoccerPlayer(String name, int number, String nationality, int goalsScored, int gamesPlayed) {
+    public SoccerPlayer(String name, int number, String nationality/* , int goalsScored, int gamesPlayed */) {
         this.name = name;
         this.number = number;
         this.nationality = nationality;
-        this.goalsScored = goalsScored;
-        this.gamesPlayed = gamesPlayed;
+        /* this.goalsScored = goalsScored;
+        this.gamesPlayed = gamesPlayed; */
     }
 
     public String getPlayerName() {
