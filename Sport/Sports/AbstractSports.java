@@ -10,7 +10,7 @@ import Sport.Teams.Players.AbstractPlayer;
 public abstract class AbstractSports {
 
     protected ArrayList<Teams> teamList;
-    protected HashMap<Teams, Score> scoreMap;
+    protected HashMap<Teams, ArrayList<Score>> scoreMap;
     protected int duration;
     protected String location;
     protected Teams winner;
@@ -81,7 +81,7 @@ public abstract class AbstractSports {
     public ArrayList<Teams> getTeamsList() {
         return teamList;
     }
-    public HashMap<Teams, Score> getScoreMap() {
+    public HashMap<Teams, ArrayList<Score>> getScoreMap() {
         return scoreMap;
     }
     public int getDuration() {

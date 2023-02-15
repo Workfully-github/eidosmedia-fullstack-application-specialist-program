@@ -13,7 +13,7 @@ public class TennisMatch extends AbstractSports {
     /* Constructor */
     public TennisMatch(
         ArrayList<Teams> teamList, 
-        HashMap<Teams, Score> scoreMap, 
+        HashMap<Teams, ArrayList<Score>> scoreMap, 
         int duration, 
         String location
         ){

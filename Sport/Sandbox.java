@@ -1,6 +1,7 @@
 package Sport;
 
 import Sport.Championships.League;
+import Sport.Teams.Teams;
 
 public class Sandbox {
 
@@ -16,6 +17,17 @@ public class Sandbox {
 
         /* LEAGUE STANDING */
         nationalLeague.presentStandingTable();
+
+        /* @see #generateAllFootballMatchesForThisLeague() */
+        //nationalLeague.generateAllFootballMatchesForThisLeague();
+
+        nationalLeague.populateGoalsLogMap();
+
+        nationalLeague.presentStandingTable();
+
+
+
+
 
 
     }

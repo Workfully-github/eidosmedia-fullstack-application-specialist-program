@@ -1,7 +1,6 @@
 package Sport;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import Sport.Championships.League;
@@ -17,8 +16,9 @@ public class Bootstrap {
        return bootstrapNewLeagueWithInput();
     }
 
+    /* Generates 11 Players named Stub_+n for each team */
     private ArrayList<Teams> bootstrapTeamsWithInput(){
-        
+    
         Scanner scNumberOfTeamsInLeague = new Scanner(System.in);
         System.out.println("How many teams will play in this league?");
 
@@ -45,12 +45,16 @@ public class Bootstrap {
         return teamList;
     }
     
+    /* Presents Avaliable Leagues for Selection */
     private League bootstrapNewLeagueWithInput(){
         
         int leagueTypeCounter = 0;
+
         System.out.println("What League do you want to play?");
+
         Scanner scLeagueSelection = new Scanner(System.in);
 
+        
         for (LeagueType leagueType : LeagueType.values()) {
             leagueTypeCounter++;
             System.out.println(leagueTypeCounter + " - " + LeagueType.NATIONALLEAGUE.getLeagueType());

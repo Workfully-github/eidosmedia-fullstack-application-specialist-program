@@ -2,7 +2,7 @@ package Sport.Championships;
 
 import java.util.ArrayList;
 
-import Sport.Scores.Goal;
+import Sport.Scores.Score;
 
 public class StringPresentation {
 
@@ -11,7 +11,7 @@ public class StringPresentation {
         return string.length() > 8 ? string.substring(0, 8) : string + " ".repeat(8 - string.length());
     }
 
-    public static String goalMapFormatter(ArrayList<Goal> goalList){
+    public static String goalMapFormatter(ArrayList<Score> goalList){
         return goalList.size() > 9 ? " ".repeat(3) + goalList.size() + " ".repeat(3) : " ".repeat(3) + goalList.size() + " ".repeat(3);
     }
     
