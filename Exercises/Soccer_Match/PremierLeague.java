@@ -11,12 +11,13 @@ public class PremierLeague {
 
         premierLeague.playMatches();
 
-        HashMap<SoccerTeam, Integer> table = premierLeague.getStandings();
+        HashMap<SoccerTeam, Integer> standings = premierLeague.getStandings();
 
-        for (int i = 0; i < table.size(); i++) {
+        premierLeague.getTopScorer();
+
+        /* for (int i = 0; i < table.size(); i++) {
             System.out.println(table.get(i));
-        }
-        
+        } */
     }
 
     // Create array with all the teams in the league

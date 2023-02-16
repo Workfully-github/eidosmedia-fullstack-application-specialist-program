@@ -138,12 +138,12 @@ public class SoccerFinalGame {
     }
 
     private static SoccerPlayer getHomeTeamPlayers(String name, int number, String nationality, int goalsScored, int gamesPlayed) {
-        SoccerPlayer player = new SoccerPlayer(name, number, nationality, goalsScored, gamesPlayed);
+        SoccerPlayer player = new SoccerPlayer(name, number, nationality);
         return player;
     }
 
     private static SoccerPlayer getAwayTeamPlayers(String name, int number, String nationality, int goalsScored, int gamesPlayed) {
-        SoccerPlayer player = new SoccerPlayer(name, number, nationality, goalsScored, gamesPlayed);
+        SoccerPlayer player = new SoccerPlayer(name, number, nationality);
         return player;
     }
 
