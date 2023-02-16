@@ -1,5 +1,7 @@
 package org.workfully.content;
 
+import java.util.ArrayList;
+
 import org.workfully.users.Author;
 
 public abstract class AbstractContent {
@@ -7,6 +9,7 @@ public abstract class AbstractContent {
     /* PROPERTIES */
     private Author contentAuthor;
     private String textBody;
+    private ArrayList<UserComment> commentLogMap;
 
     /* GETTERS */
     public Author getContentAuthor() {
@@ -15,5 +18,4 @@ public abstract class AbstractContent {
     public String getTextBody() {
         return textBody;
     }
-    
 }
