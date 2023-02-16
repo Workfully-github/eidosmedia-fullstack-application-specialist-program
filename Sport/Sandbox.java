@@ -26,7 +26,7 @@ public class Sandbox {
 
         //nationalLeague.topScorersUnsorted();
 
-        //nationalLeague.topScorerSorted();
+        nationalLeague.topScorerSorted();
 
 
 

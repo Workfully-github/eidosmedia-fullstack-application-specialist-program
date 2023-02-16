@@ -3,9 +3,12 @@ package Sport.Championships;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
 import Sport.Scores.Score;
 import Sport.Sports.FootballMatch;
 import Sport.Teams.Teams;
@@ -67,38 +70,73 @@ public abstract class League {
     public void topScorersUnsorted() {
 
         HashMap<AbstractPlayer, ArrayList<Score>> topScorerLog = generateTopScorerLog();
-        
 
-        System.out.println("PLAYER | TEAM | GOALS |");
-        for (Map.Entry<AbstractPlayer, ArrayList<Score>> entry : topScorerLog.entrySet()){
-            if(entry.getValue().size() != 0)
-            System.out.println(entry.getKey().getName() + " " + entry.getValue().size());
+        System.out.println("PLAYER | GOALS |");
+        for (Map.Entry<AbstractPlayer, ArrayList<Score>> entry : topScorerLog.entrySet()) {
+            if (entry.getValue().size() != 0)
+                System.out.println(entry.getKey().getName() + " - " + entry.getValue().size());
         }
-
 
     }
 
     public void topScorerSorted(){
         HashMap<AbstractPlayer, ArrayList<Score>> topScorerLog = generateTopScorerLog();
 
-        System.out.println(sortPlayer(topScorerLog));
-        System.out.println("\n");
-
         
-        for (AbstractPlayer player : sortPlayer(topScorerLog)) {
-            System.out.println(player.getName() + " " + topScorerLog.get(player).size());
+
+        //ArrayList<AbstractPlayer> sortedTopScorerLog = sortPlayer(topScorerLog);
+        HashMap<AbstractPlayer, Integer> sortedTopScorerLog = sortByValue(topScorerLog);
+        //System.out.println(sortedTopScorerLog.size());
+        //System.out.println("\n");
+
+        System.out.println("PLAYER | GOALS |");
+        int counter = 0;
+        for (Map.Entry<AbstractPlayer, Integer> key : sortedTopScorerLog.entrySet()) {
+            AbstractPlayer player = key.getKey();
+            Integer goal = key.getValue();
+            if(goal != 0){
+            counter++;
+            System.out.println(counter + " " + player.getName() + " " + goal + " " + getTeamBtPlayerReference(player).getName());
+            }
         }
+/*         for (AbstractPlayer player : sortedTopScorerLog) {
+            if(topScorerLog.get(player).size() != 0)
+            counter++;
+            System.out.println(counter + " " + player.getName() + " " + topScorerLog.get(player).size() + " " + getTeamBtPlayerReference(player).getName());
+        } */
     }
-    
+
+    public Teams getTeamBtPlayerReference(AbstractPlayer player) {
+        Teams teamFound = null;
+
+        for (Teams team : teamList) {
+            if (team.getListOfPlayers().contains(player))
+                teamFound = team;
+        }
+
+        return teamFound;
+    }
+
     private ArrayList<AbstractPlayer> sortPlayer(HashMap<AbstractPlayer, ArrayList<Score>> topScorerLog) {
 
-        System.out.println("size: " + topScorerLog.values().size());
-        List<Integer> topScorerByPts = new ArrayList<>(topScorerLog.values().size());
+        // System.out.println("size: " + topScorerLog);
+        /*
+         * for (Map.Entry<AbstractPlayer, ArrayList<Score>> key :
+         * topScorerLog.entrySet()) {
+         * 
+         * }
+         */
+        List<Integer> topScorerByPts = new ArrayList<>() {
+            {
+                for (Map.Entry<AbstractPlayer, ArrayList<Score>> key : topScorerLog.entrySet()) {
+                    add(key.getValue().size());
+                }
+            }
+        };
 
         System.out.println("list: " + topScorerByPts);
         Collections.sort(topScorerByPts, Collections.reverseOrder());
-
-        // System.out.println(teamsByPts);
+        System.out.println("list: " + topScorerByPts);
 
         return new ArrayList<AbstractPlayer>() {
             {
@@ -106,6 +144,7 @@ public abstract class League {
                     for (Map.Entry<AbstractPlayer, ArrayList<Score>> key : topScorerLog.entrySet()) {
                         if (Objects.equals(topScorerByPts.get(i), key.getValue().size())) {
                             add(key.getKey());
+                            break;
 
                         }
                     }
@@ -113,6 +152,31 @@ public abstract class League {
             }
         };
     }
+
+    public HashMap<AbstractPlayer, Integer> sortByValue(HashMap<AbstractPlayer, ArrayList<Score>> topScorerLog){
+
+        HashMap<AbstractPlayer, Integer> th= new HashMap<>(){
+            {
+                for (Map.Entry<AbstractPlayer, ArrayList<Score>> key : topScorerLog.entrySet()) {
+                    put(key.getKey(), key.getValue().size());
+                }
+            }
+        };
+
+       
+      HashMap<AbstractPlayer, Integer> temp
+            = th.entrySet()
+                  .stream()
+                  .sorted((i1, i2)
+                              -> i1.getValue().compareTo(
+                                  i2.getValue()))
+                  .collect(Collectors.toMap(
+                      Map.Entry::getKey,
+                      Map.Entry::getValue,
+                      (e1, e2) -> e1, LinkedHashMap::new));
+ 
+        return temp;
+    } 
 
     private HashMap<AbstractPlayer, ArrayList<Score>> generateTopScorerLog() {
         return new HashMap<AbstractPlayer, ArrayList<Score>>() {
@@ -205,7 +269,7 @@ public abstract class League {
             }
         }
 
-        populateStandingTable();
+        populateLogMaps();
     }
 
     /* RETURNS ARRAYLIST WITH ALL GOALS PER TEAM */
@@ -230,6 +294,7 @@ public abstract class League {
         }
     }
 
+    /* DOES THE MATH OF THE OUTCOMES TO ASSIGN POINTS */
     private void verifyOutcomes(Teams team) {
         for (FootballMatch footballMatch : footballMatchesLogMap) {
 
@@ -250,7 +315,7 @@ public abstract class League {
         }
     }
 
-    private void populateStandingTable() {
+    private void populateLogMaps() {
 
         countGoals();
 
