@@ -63,18 +63,22 @@ public class Ligue {
                 iterator++;
             }
         }
+        int numPoint1 = 0;
+        int numPoint2 = 0;
         if(goalTeam1 == goalTeam2){
-            updatePointForByTeam(team1, 1);
-            updatePointForByTeam(team2, 1);
+            numPoint1 = 1;
+            numPoint2 = 1;
         }
         else if(goalTeam1 > goalTeam2){
-            updatePointForByTeam(team1, 3);
-            updatePointForByTeam(team2, 0);
+            numPoint1 = 3;
+            numPoint2 = 0;
         }
         else{
-            updatePointForByTeam(team1, 0);
-            updatePointForByTeam(team2, 3);
+            numPoint1 = 0;
+            numPoint2 = 3;
         }
+        updatePointForByTeam(team1, numPoint1);
+        updatePointForByTeam(team2, numPoint2);
     }
 
     public void showStanding(){

@@ -18,7 +18,7 @@ public class FootBallTeam {
         return "FootBallTeam [teamPlayers=" + teamPlayers + ", name=" + name + "]";
     }
 
-    public ArrayList<Player> getBestPlayer(){
+    public ArrayList<Player> getBestPlayerByPerf(){
         int perfmax = this.teamPlayers.get(0).getPerf();
         ArrayList<Player> bestPlayers = new ArrayList<>();
 
@@ -31,10 +31,51 @@ public class FootBallTeam {
         return bestPlayers;
     }
 
+    public ArrayList<Player> getBestPlayerByGoals(){
+        if(this.teamPlayers.size()==0){
+            return null;
+        }
+
+        int currentValue = this.teamPlayers.get(0).getNumberGoals();
+        ArrayList<Player> bestPlayers = new ArrayList<>();
+
+        int flag = 0;
+        for(int i=0; i<this.teamPlayers.size(); i++){
+            flag = 0;
+            for(int k=0; k<bestPlayers.size(); k++){
+                if(currentValue > bestPlayers.get(k).getNumberGoals() ){
+                    currentValue = this.teamPlayers.get(i).getNumberGoals();
+                    bestPlayers.add(k, this.teamPlayers.get(i));
+                    flag = 1;
+                    k = bestPlayers.size();
+                }
+            }
+            if(flag==0){
+                bestPlayers.add(this.teamPlayers.get(i));
+            }
+            
+        }
+        return bestPlayers;
+    }
+
     public ArrayList<Player> getTeamPlayers() {
         return teamPlayers;
     }
-    
+
+
+    public void showBestPlayerBy(String refBy){
+        System.out.print(this.name + " team :Best player by " + refBy + "\n");
+        if(refBy=="gaol"){
+            ArrayList<Player> sortedPlayers = this.getBestPlayerByGoals();
+            for(int i=0; i<sortedPlayers.size();i++){
+                System.out.print(i+1 + "-) " + sortedPlayers.get(i).toString());
+            }
+        }
+        ArrayList<Player> sortedPlayers = this.getBestPlayerByGoals();
+        for(int i=0; i<sortedPlayers.size();i++){
+            System.out.print(i+1 + "-) " + sortedPlayers.get(i).toString());
+        }
+    }
 
     
     

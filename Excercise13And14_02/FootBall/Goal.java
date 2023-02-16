@@ -11,6 +11,7 @@ public class Goal {
         this.scorer = scorer;
         this.minute = minute;
         this.assistant = assistant;
+        scorer.addGoal();
     }
 
     @Override

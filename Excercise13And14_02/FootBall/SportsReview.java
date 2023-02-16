@@ -62,6 +62,9 @@ public class SportsReview {
         championLigue.addMatch(footMatch);
         championLigue.showStanding();
         championLigue.showScorePlayer();
+
+        team1.showBestPlayerBy("goal");
+    
     }
 
     private static Goal scoredGoal(Player player, int minute){
