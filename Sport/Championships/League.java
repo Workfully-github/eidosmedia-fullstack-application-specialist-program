@@ -82,13 +82,8 @@ public abstract class League {
     public void topScorerSorted(){
         HashMap<AbstractPlayer, ArrayList<Score>> topScorerLog = generateTopScorerLog();
 
-        
-
-        //ArrayList<AbstractPlayer> sortedTopScorerLog = sortPlayer(topScorerLog);
         HashMap<AbstractPlayer, Integer> sortedTopScorerLog = sortByValue(topScorerLog);
-        //System.out.println(sortedTopScorerLog.size());
-        //System.out.println("\n");
-
+   
         System.out.println("PLAYER | GOALS |");
         int counter = 0;
         for (Map.Entry<AbstractPlayer, Integer> key : sortedTopScorerLog.entrySet()) {
@@ -99,11 +94,7 @@ public abstract class League {
             System.out.println(counter + " " + player.getName() + " " + goal + " " + getTeamBtPlayerReference(player).getName());
             }
         }
-/*         for (AbstractPlayer player : sortedTopScorerLog) {
-            if(topScorerLog.get(player).size() != 0)
-            counter++;
-            System.out.println(counter + " " + player.getName() + " " + topScorerLog.get(player).size() + " " + getTeamBtPlayerReference(player).getName());
-        } */
+
     }
 
     public Teams getTeamBtPlayerReference(AbstractPlayer player) {
@@ -119,13 +110,6 @@ public abstract class League {
 
     private ArrayList<AbstractPlayer> sortPlayer(HashMap<AbstractPlayer, ArrayList<Score>> topScorerLog) {
 
-        // System.out.println("size: " + topScorerLog);
-        /*
-         * for (Map.Entry<AbstractPlayer, ArrayList<Score>> key :
-         * topScorerLog.entrySet()) {
-         * 
-         * }
-         */
         List<Integer> topScorerByPts = new ArrayList<>() {
             {
                 for (Map.Entry<AbstractPlayer, ArrayList<Score>> key : topScorerLog.entrySet()) {
@@ -162,7 +146,6 @@ public abstract class League {
                 }
             }
         };
-
        
       HashMap<AbstractPlayer, Integer> temp
             = th.entrySet()

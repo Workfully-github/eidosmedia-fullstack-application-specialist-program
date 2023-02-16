@@ -24,9 +24,9 @@ public class Sandbox {
 
         nationalLeague.presentStandingTableSorted();
 
-        //nationalLeague.topScorersUnsorted();
+        nationalLeague.topScorersUnsorted();
 
-        nationalLeague.topScorerSorted();
+        //nationalLeague.topScorerSorted();
 
 
 
