@@ -2,6 +2,9 @@ package Soccer_Match;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Comparator;
 
 public class SoccerLeague {
     
@@ -69,10 +72,23 @@ public class SoccerLeague {
     }
 
     public HashMap<SoccerTeam, Integer> getStandings() {
+        ArrayList<HashMap.Entry<SoccerTeam, Integer> > list =
+               new ArrayList<HashMap.Entry<SoccerTeam, Integer> >(standings.entrySet());
 
-        //TODO sort the standings based on value
-        // see https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
-        return standings;
+        Collections.sort(list, new Comparator<HashMap.Entry<SoccerTeam, Integer> >() {
+            public int compare(HashMap.Entry<SoccerTeam, Integer> o1,
+            HashMap.Entry<SoccerTeam, Integer> o2)
+            {
+                return (o2.getValue()).compareTo(o1.getValue());
+            }
+        });
+        
+        HashMap<SoccerTeam, Integer> temp = new LinkedHashMap<SoccerTeam, Integer>();
+        for (HashMap.Entry<SoccerTeam, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+
+        return temp;
     }
 
     public void assignGoals() {
