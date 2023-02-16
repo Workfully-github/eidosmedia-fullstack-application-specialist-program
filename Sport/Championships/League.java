@@ -167,7 +167,7 @@ public abstract class League {
                     for (Map.Entry<Teams, Integer> key : ptsLogMap.entrySet()) {
                         if (Objects.equals(teamsByPts.get(i), key.getValue())) {
                             add(key.getKey());
-
+                            continue;
                         }
                     }
                 }
