@@ -1,7 +1,9 @@
 package org.workfully.users.userInterfaces;
 
+import org.workfully.content.AbstractContent;
+
 public interface CreateContent {
 
-    void createContent();
+    AbstractContent createContent();
     
 }
