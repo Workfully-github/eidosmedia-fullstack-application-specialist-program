@@ -26,6 +26,10 @@ public class SoccerMatch {
         return teams;
     }
 
+    public ArrayList<SoccerGoal> getGoals() {
+        return goals;
+    }
+
     public void scoreAGoal(SoccerGoal goal) {
         goals.add(goal);
 

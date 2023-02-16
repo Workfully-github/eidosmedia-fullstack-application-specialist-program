@@ -12,13 +12,13 @@ public class SoccerLeague {
     private ArrayList<SoccerTeam> teams;
     private ArrayList<SoccerMatch> matches;
     private HashMap<SoccerTeam, Integer> standings = new HashMap<SoccerTeam,Integer>();
+    private HashMap<SoccerPlayer, Integer> scorers = new HashMap<SoccerPlayer,Integer>();
 
     private static int POINTS_WIN = 3;
     private static int POINTS_DRAW = 1;
-    private static int MAX_NUMBER_GOALS = 5;
+    
 
-    public SoccerLeague(String name, ArrayList<SoccerTeam> teams/* , ArrayList<SoccerMatch> matches,
-    HashMap<SoccerTeam, Integer> standings */) {
+    public SoccerLeague(String name, ArrayList<SoccerTeam> teams) {
         this.name = name;
         this.teams = teams;
         generateStandings();
@@ -29,6 +29,7 @@ public class SoccerLeague {
     }
 
     public void playMatches() {
+        int MAX_NUMBER_GOALS = 5;
         // Generate a random number of goals and add it to the match
         for(int i = 0; i < matches.size(); i++) {
             // Number of goals in a game
@@ -91,7 +92,59 @@ public class SoccerLeague {
         return temp;
     }
 
-    public void assignGoals() {
-        // check who scored and create and create an HashMap<SoccerPlayer, Integer>
+    private void assignGoals(SoccerMatch match) {
+        HashMap<SoccerTeam,Integer> result = match.getResult();
+        int numGoalsHomeTeam = result.get(0);
+        int numGoalsAwayTeam = result.get(1);
+
+        // Assign goals to home team
+        for (int i = 0; i < numGoalsHomeTeam; i++) {
+            int playerIndex = (int) Math.floor((Math.random() * 11));
+            int assistantIndex = (int) Math.floor((Math.random() * 11));
+            int minuteGoal = (int) Math.floor((Math.random() * 90) + 1);
+
+            SoccerGoal goal = new SoccerGoal(teams.get(0).getPlayers().get(playerIndex), minuteGoal, teams.get(0).getPlayers().get(assistantIndex), teams.get(0));
+            match.scoreAGoal(goal);
+            scorers.put(teams.get(0).getPlayers().get(playerIndex), 1);
+            // update player Top scorers
+            teams.get(0).setTeamScorers(teams.get(0).getPlayers().get(playerIndex));
+        }
+
+        // Assign goals to away team
+        for (int i = 0; i < numGoalsAwayTeam; i++) {
+            int playerIndex = (int) Math.floor((Math.random() * 11));
+            int assistantIndex = (int) Math.floor((Math.random() * 11));
+            int minuteGoal = (int) Math.floor((Math.random() * 90) + 1);
+            
+            SoccerGoal goal = new SoccerGoal(teams.get(1).getPlayers().get(playerIndex), minuteGoal, teams.get(1).getPlayers().get(assistantIndex), teams.get(1));
+            match.scoreAGoal(goal);
+            scorers.put(teams.get(1).getPlayers().get(playerIndex), 1);
+            // update player Top scorers
+            teams.get(1).setTeamScorers(teams.get(1).getPlayers().get(playerIndex));
+        }
+    }
+
+    private void assignGoal() {
+
+    }
+
+    public HashMap<SoccerPlayer, Integer> getTopScorer() {
+        ArrayList<HashMap.Entry<SoccerPlayer, Integer> > list =
+               new ArrayList<HashMap.Entry<SoccerPlayer, Integer> >(scorers.entrySet());
+
+        Collections.sort(list, new Comparator<HashMap.Entry<SoccerPlayer, Integer> >() {
+            public int compare(HashMap.Entry<SoccerPlayer, Integer> o1,
+            HashMap.Entry<SoccerPlayer, Integer> o2)
+            {
+                return (o2.getValue()).compareTo(o1.getValue());
+            }
+        });
+        
+        HashMap<SoccerPlayer, Integer> temp = new LinkedHashMap<SoccerPlayer, Integer>();
+        for (HashMap.Entry<SoccerPlayer, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+
+        return temp;
     }
 }

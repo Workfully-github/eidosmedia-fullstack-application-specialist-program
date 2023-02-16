@@ -4,21 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PremierLeague {
-
-
-    /*
-    Premier League is a league with 4 teams,
-    every team should play one match against all the partecipants:
-     - Every win is 3 points
-     - Every draw is 1 point
-     - Every defait is 0 points 
-    Total matches is: 6  
-    */
-
-
     public static void main(String[] args) {
-
-
 
         SoccerLeague premierLeague = new SoccerLeague("Premier League 2022-2023", getPremierLeagueTeams());
         premierLeague.setMatches(getMatchesCalendar());
@@ -27,18 +13,9 @@ public class PremierLeague {
 
         HashMap<SoccerTeam, Integer> table = premierLeague.getStandings();
 
-        // print the standings
-
-        // do assignGoals method
-
-        // do topScorers
-        
-
-
-
-
-
-
+        for (int i = 0; i < table.size(); i++) {
+            System.out.println(table.get(i));
+        }
         
     }
 
@@ -80,20 +57,18 @@ public class PremierLeague {
     private static ArrayList<SoccerMatch> getMatchesCalendar(){
         ArrayList<SoccerMatch> allMatches = new ArrayList<SoccerMatch>() {
             {
-                for (int i = 0; i < getPremierLeagueTeams().size(); i++) {
-                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(i),
-                    getPremierLeagueTeams().get(i+1)), "Somewhere", "Someone"));
-                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(i+2),
-                    getPremierLeagueTeams().get(i+3)), "Somewhere", "Someone"));
-                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(i),
-                    getPremierLeagueTeams().get(i+3)), "Somewhere", "Someone"));
-                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(i+2),
-                    getPremierLeagueTeams().get(i+1)), "Somewhere", "Someone"));
-                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(i),
-                    getPremierLeagueTeams().get(i+2)), "Somewhere", "Someone"));
-                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(i+1),
-                    getPremierLeagueTeams().get(i+3)), "Somewhere", "Someone"));
-                }
+                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(0),
+                    getPremierLeagueTeams().get(1)), "Somewhere", "Someone"));
+                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(2),
+                    getPremierLeagueTeams().get(3)), "Somewhere", "Someone"));
+                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(0),
+                    getPremierLeagueTeams().get(3)), "Somewhere", "Someone"));
+                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(2),
+                    getPremierLeagueTeams().get(1)), "Somewhere", "Someone"));
+                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(0),
+                    getPremierLeagueTeams().get(2)), "Somewhere", "Someone"));
+                    add(new SoccerMatch(getTeamsForMatch(getPremierLeagueTeams().get(1),
+                    getPremierLeagueTeams().get(3)), "Somewhere", "Someone"));
             }
         };
 
