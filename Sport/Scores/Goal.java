@@ -4,9 +4,9 @@ import Sport.Teams.Players.*;
 
 public class Goal extends Score{
 
-    private FootballPlayer scorer;
+   /*  private FootballPlayer scorer;
     private FootballPlayer assitant;
-    private int minute;
+    private int minute; */
 
     /* EMPTY CONSTRUCTOR */
     public Goal(){
@@ -23,18 +23,6 @@ public class Goal extends Score{
     public Goal(FootballPlayer scorer, int minute) {
         this.scorer = scorer;
         this.minute = minute;
-    }
-
-    /* GETTERS */
-    public FootballPlayer getScorer() {
-        return scorer;
-    }
-
-    public FootballPlayer getAssitant() {
-        return assitant;
-    }
-    public int getMinute() {
-        return minute;
     }
     
 }

@@ -9,6 +9,7 @@ import java.util.Objects;
 import Sport.Scores.Score;
 import Sport.Sports.FootballMatch;
 import Sport.Teams.Teams;
+import Sport.Teams.Players.AbstractPlayer;
 
 public abstract class League {
 
@@ -43,7 +44,7 @@ public abstract class League {
                                     stalemateLogMap.get(team)));
         }
 
-        //System.out.println(sort(generatePtsLogMap()));
+        // System.out.println(sort(generatePtsLogMap()));
     }
 
     public void presentStandingTableSorted() {
@@ -60,10 +61,85 @@ public abstract class League {
                                     stalemateLogMap.get(team)));
         }
 
-        //System.out.println(sort(generatePtsLogMap()));
+        // System.out.println(sort(generatePtsLogMap()));
     }
 
-    /* GENERATES A POINTS MAP BASED ON VICTORIES AND STALEMATES
+    public void topScorersUnsorted() {
+
+        HashMap<AbstractPlayer, ArrayList<Score>> topScorerLog = generateTopScorerLog();
+        
+
+        System.out.println("PLAYER | TEAM | GOALS |");
+        for (Map.Entry<AbstractPlayer, ArrayList<Score>> entry : topScorerLog.entrySet()){
+            if(entry.getValue().size() != 0)
+            System.out.println(entry.getKey().getName() + " " + entry.getValue().size());
+        }
+
+
+    }
+
+    public void topScorerSorted(){
+        HashMap<AbstractPlayer, ArrayList<Score>> topScorerLog = generateTopScorerLog();
+
+        System.out.println(sortPlayer(topScorerLog));
+        System.out.println("\n");
+
+        
+        for (AbstractPlayer player : sortPlayer(topScorerLog)) {
+            System.out.println(player.getName() + " " + topScorerLog.get(player).size());
+        }
+    }
+    
+    private ArrayList<AbstractPlayer> sortPlayer(HashMap<AbstractPlayer, ArrayList<Score>> topScorerLog) {
+
+        System.out.println("size: " + topScorerLog.values().size());
+        List<Integer> topScorerByPts = new ArrayList<>(topScorerLog.values().size());
+
+        System.out.println("list: " + topScorerByPts);
+        Collections.sort(topScorerByPts, Collections.reverseOrder());
+
+        // System.out.println(teamsByPts);
+
+        return new ArrayList<AbstractPlayer>() {
+            {
+                for (int i = 0; i < topScorerByPts.size(); i++) {
+                    for (Map.Entry<AbstractPlayer, ArrayList<Score>> key : topScorerLog.entrySet()) {
+                        if (Objects.equals(topScorerByPts.get(i), key.getValue().size())) {
+                            add(key.getKey());
+
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+    private HashMap<AbstractPlayer, ArrayList<Score>> generateTopScorerLog() {
+        return new HashMap<AbstractPlayer, ArrayList<Score>>() {
+            {
+                for (int i = 0; i < getTeamList().size(); i++) {
+                    for (AbstractPlayer player : teamList.get(i).getListOfPlayers()) {
+                        put(player, new ArrayList<Score>() {
+                            {
+                                for (int i = 0; i < getTeamList().size(); i++) {
+                                    for (int j = 0; j < goalsLogMap.size(); j++) {
+                                        for (Score goal : goalsLogMap.get(getTeamList().get(i))) {
+                                            if (goal.getScorer() == player) {
+                                                add(goal);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        };
+    }
+
+    /*
+     * GENERATES A POINTS MAP BASED ON VICTORIES AND STALEMATES
      * THIS MAP IS LATER USED TO SORT OTHER MAPS BY POINTS
      */
     private HashMap<Teams, Integer> generatePtsLogMap() {
@@ -83,7 +159,7 @@ public abstract class League {
 
         Collections.sort(teamsByPts, Collections.reverseOrder());
 
-        //System.out.println(teamsByPts);
+        // System.out.println(teamsByPts);
 
         return new ArrayList<Teams>() {
             {
@@ -91,7 +167,7 @@ public abstract class League {
                     for (Map.Entry<Teams, Integer> key : ptsLogMap.entrySet()) {
                         if (Objects.equals(teamsByPts.get(i), key.getValue())) {
                             add(key.getKey());
-                           
+
                         }
                     }
                 }
@@ -110,7 +186,6 @@ public abstract class League {
         });
     }
 
-    
     /*
      * GENERATE EVERY POSSIBLE FOOTBALL MATCH FOR WHOLE LEAGUE
      * MATCHES WILL BE AUTOMATICALLY PLAYED
@@ -133,6 +208,7 @@ public abstract class League {
         populateStandingTable();
     }
 
+    /* RETURNS ARRAYLIST WITH ALL GOALS PER TEAM */
     private ArrayList<Score> collectAllGoals(Teams team) {
         return new ArrayList<Score>() {
             {
@@ -144,6 +220,10 @@ public abstract class League {
         };
     }
 
+    /*
+     * WE PROVIDE ARRAYLIST OF ALL THE GOALS PER TEAM TO AN HASHMAP
+     * TO BUILD A TABLE
+     */
     private void countGoals() {
         for (Teams team : teamList) {
             goalsLogMap.put(team, collectAllGoals(team));
