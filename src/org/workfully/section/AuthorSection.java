@@ -11,6 +11,12 @@ public class AuthorSection extends AbstractSection {
     private Author sectionOwner;
     private ArrayList<AbstractContent> contentCreatedLogMap;
 
+    /* CONSTRUCTOR */
+    public AuthorSection(Author sectionOwner) {
+        this.sectionOwner = sectionOwner;
+        this.contentCreatedLogMap = new ArrayList<>();
+    }
+
     /* GETTERS */
     public Author getSectionOwner() {
         return sectionOwner;
@@ -19,7 +25,4 @@ public class AuthorSection extends AbstractSection {
     public ArrayList<AbstractContent> getContentCreatedLogMap() {
         return contentCreatedLogMap;
     }
-
-    
-
 }

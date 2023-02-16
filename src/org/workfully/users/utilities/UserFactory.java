@@ -7,13 +7,16 @@ import org.workfully.users.PremiumUser;
 
 public class UserFactory {
 
-    public static <T extends AbstractUser> T createAbstractUser(UserType userType, String userName) {
-
+    public static <T extends AbstractUser> T createAbstractUser(
+            UserType userType,
+            String userName) {
         switch (userType) {
-            case AUTHOR: return (T)new Author(userName);
-            case BASICUSER: return (T)new BasicUser(userName);
-            default: return (T)new PremiumUser(userName);
+            case AUTHOR:
+                return (T) new Author(userName);
+            case BASICUSER:
+                return (T) new BasicUser(userName);
+            default:
+                return (T) new PremiumUser(userName);
         }
-            
     }
 }
