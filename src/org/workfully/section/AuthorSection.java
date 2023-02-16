@@ -7,7 +7,19 @@ import org.workfully.users.Author;
 
 public class AuthorSection extends AbstractSection {
 
+    /* PROPERTIES */
     private Author sectionOwner;
-    private ArrayList<AbstractContent> sectionOwnerContentLogMap;
+    private ArrayList<AbstractContent> contentCreatedLogMap;
+
+    /* GETTERS */
+    public Author getSectionOwner() {
+        return sectionOwner;
+    }
+
+    public ArrayList<AbstractContent> getContentCreatedLogMap() {
+        return contentCreatedLogMap;
+    }
+
+    
 
 }
