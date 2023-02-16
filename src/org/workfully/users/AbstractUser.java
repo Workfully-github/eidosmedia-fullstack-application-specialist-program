@@ -12,8 +12,16 @@ public abstract class AbstractUser implements ReadContent, CommentContent, LikeC
     /* PROPERTIES */
     private static int idCounter = 0;
     private final Integer userId = idCounter++;
-    private String name;
+    private String userName;
     private ArrayList<AbstractContent> userCommentsLogMap;
+
+    /* CONSTRUCTORS */
+    public AbstractUser() {}
+    
+    public AbstractUser(String userName) {
+        this.userName = userName;
+    }
+    
 
     /* GETTERS */
     public static int getIdCounter() {
@@ -24,8 +32,8 @@ public abstract class AbstractUser implements ReadContent, CommentContent, LikeC
         return userId;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
     public ArrayList<AbstractContent> getUserCommentsLogMap() {

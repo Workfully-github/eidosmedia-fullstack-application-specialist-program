@@ -2,24 +2,33 @@ package org.workfully.users;
 
 import org.workfully.content.AbstractContent;
 
-public class BasicUser extends AbstractUser{
+public class BasicUser extends AbstractUser {
 
+    /* CONSTRUCTORS */
+    public BasicUser() {
+    }
+
+    public BasicUser(String userName) {
+        super(userName);
+    }
+
+    /* BEHAVIOUR */
     @Override
     public void read(AbstractContent content) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void comment(String comment, AbstractContent content) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void like(AbstractContent content) {
         // TODO Auto-generated method stub
-        
+
     }
-    
+
 }
