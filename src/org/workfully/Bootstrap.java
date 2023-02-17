@@ -1,14 +1,18 @@
 package org.workfully;
 
-import org.workfully.users.AbstractUser;
-import org.workfully.users.utilities.UserFactory;
-import static org.workfully.users.utilities.UserType.*;
+import static org.workfully.utilities.UserType.*;
 
 import java.util.ArrayList;
 
+import org.workfully.controllers.users.AuthorController;
+import org.workfully.factories.UserFactory;
+import org.workfully.models.users.AbstractUser;
+import org.workfully.models.users.Author;
+import org.workfully.view.section.AbstractSection;
+
 public class Bootstrap {
 
-    public ArrayList<AbstractUser> bootstrapUserMocks() {
+    public ArrayList<AbstractUser> userMocks() {
         return new ArrayList<AbstractUser>() {
             {
                 add(UserFactory.createAbstractUser(PREMIUMUSER, "Ricardo"));
@@ -16,5 +20,9 @@ public class Bootstrap {
                 add(UserFactory.createAbstractUser(AUTHOR, "Amine"));
             }
         };
+    }
+
+    public AuthorController mockController(Author model){
+        return new AuthorController(model);
     }
 }
