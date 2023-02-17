@@ -53,13 +53,12 @@ public class AuthorController extends AbstractUserController implements CreateCo
     public Tweet createTweet(String message) throws Exception {
         Tweet tweet = new Tweet(authorModel, ValidateUserInput.validateTweet(message));
         authorModel.getContentLog().add(tweet);
-        // TODO needs more validation
         return tweet;
     }
 
     @Override
     public TextPost createTextPost(String message, String coverImgURL) throws Exception {
-        TextPost textPost = new TextPost(authorModel, ValidateUserInput.validateMessage(message), coverImgURL);
+        TextPost textPost = new TextPost(authorModel, ValidateUserInput.validateMessage(message), ValidateUserInput.validateURL(coverImgURL));
         authorModel.getContentLog().add(textPost);
         // TODO needs more validation
         return textPost;

@@ -4,13 +4,13 @@ public class Sandbox {
 
     public static void main(String[] args) {
 
-        Bootstrap bootstrap = new Bootstrap();
+        Bootstrap view = new Bootstrap();
 
         /* TEST */
-        bootstrap.writeTweet();
+        //view.writeTweet();
 
-        bootstrap.showAuthorSection();
-
-
+        view.writePostArticle();
+        
+        view.showAuthorSection();
     }
 }

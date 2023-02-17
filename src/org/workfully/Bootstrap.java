@@ -39,9 +39,26 @@ public class Bootstrap {
             String scanInput = scCreateTweet.nextLine();
             mockController((Author) userMocks.get(2)).createTweet(scanInput);
         } catch (Exception e) {
-            log.warning("Invalid Input Message");
+            log.warning(e.getMessage());
         } finally {
             scCreateTweet.close();
+        }
+    }
+
+    public void writePostArticle(){
+        Scanner scMessage = new Scanner(System.in);
+        try {
+            System.out.print("Insert Cover Image URL: ");
+            String URL = scMessage.nextLine();
+
+            System.out.print("Write Post Article: ");
+            String message = scMessage.nextLine();
+
+            mockController((Author) userMocks.get(2)).createTextPost(message, URL);
+        } catch (Exception e) {
+            log.warning(e.getMessage());
+        } finally {
+            scMessage.close();
         }
     }
 
