@@ -7,12 +7,12 @@ import org.workfully.models.content.VideoPost;
 
 public interface CreateContent {
 
-    Tweet createTweet(String message);
+    Tweet createTweet(String message) throws Exception;
 
-    TextPost creaTextPost(String message);
+    TextPost createTextPost(String message, String coverImgURL) throws Exception;
 
-    VideoPost createVideoPost(String message, String URL);
+    VideoPost createVideoPost(String message, String URL) throws Exception;
 
-    ImageGalleryPost createImageGalleryPost(String message, String URL);
+    ImageGalleryPost createImageGalleryPost(String message, String URL) throws Exception;
     
 }

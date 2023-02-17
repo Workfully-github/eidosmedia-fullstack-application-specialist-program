@@ -1,5 +1,7 @@
 package org.workfully.view.section;
 
+import static org.workfully.utilities.strategyDP.ValidateUserInput.*;
+
 import java.util.ArrayList;
 
 import org.workfully.controllers.users.AuthorController;
@@ -8,7 +10,6 @@ import org.workfully.models.content.ImageGalleryPost;
 import org.workfully.models.content.TextPost;
 import org.workfully.models.content.Tweet;
 import org.workfully.models.content.VideoPost;
-import static org.workfully.utilities.StrategyDP.ValidateUserInput.*;
 
 public class AuthorSection extends AbstractSection {
 
@@ -34,14 +35,16 @@ public class AuthorSection extends AbstractSection {
 
     /* BEHAVIOUR */
 
-    public void updateView() {
+    public void displayView() {
+        
+        System.out.println("########## AUTHOR SECTION ##########");
         for (AbstractContent abstractContent : contentCreatedLogMap) {
             if (abstractContent instanceof Tweet) {
-                presentTweet(abstractContent);
+                presentTweet((Tweet)abstractContent);
             }
 
             if (abstractContent instanceof TextPost) {
-                presentTextPost(abstractContent);
+                presentTextPost((TextPost)abstractContent);
             }
 
             if (abstractContent instanceof ImageGalleryPost) {

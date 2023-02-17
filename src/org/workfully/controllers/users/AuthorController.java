@@ -9,7 +9,7 @@ import org.workfully.models.content.Tweet;
 import org.workfully.models.content.VideoPost;
 import org.workfully.models.users.Author;
 import org.workfully.models.users.userInterfaces.CreateContent;
-import org.workfully.utilities.StrategyDP.ValidateUserInput;
+import org.workfully.utilities.strategyDP.ValidateUserInput;
 import org.workfully.view.section.AuthorSection;
 
 public class AuthorController extends AbstractUserController implements CreateContent{
@@ -50,16 +50,19 @@ public class AuthorController extends AbstractUserController implements CreateCo
     }
 
     @Override
-    public Tweet createTweet(String message) {
-        Tweet tweet = new Tweet(authorModel, ValidateUserInput.isValidMessage(message));
+    public Tweet createTweet(String message) throws Exception {
+        Tweet tweet = new Tweet(authorModel, ValidateUserInput.validateTweet(message));
         authorModel.getContentLog().add(tweet);
+        // TODO needs more validation
         return tweet;
     }
 
     @Override
-    public TextPost creaTextPost(String message) {
-        // TODO Auto-generated method stub
-        return null;
+    public TextPost createTextPost(String message, String coverImgURL) throws Exception {
+        TextPost textPost = new TextPost(authorModel, ValidateUserInput.validateMessage(message), coverImgURL);
+        authorModel.getContentLog().add(textPost);
+        // TODO needs more validation
+        return textPost;
     }
 
     @Override

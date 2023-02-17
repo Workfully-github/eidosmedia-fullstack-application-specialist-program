@@ -4,11 +4,19 @@ import org.workfully.models.users.Author;
 
 public class TextPost extends AbstractContent {
 
+    private String coverImgURL;
+
      /* CONSTRUCTOR */
-    public TextPost(Author contentAuthor, String textBody) {
+    public TextPost(Author contentAuthor, String textBody, String coverImgURL) {
         super(contentAuthor, textBody);
-        //TODO Auto-generated constructor stub
+        this.coverImgURL = coverImgURL;
     }
+
+    public String getCoverImgURL() {
+        return coverImgURL;
+    }
+
+    
 
     
 

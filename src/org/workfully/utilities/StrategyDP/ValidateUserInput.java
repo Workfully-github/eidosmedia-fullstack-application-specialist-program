@@ -1,32 +1,49 @@
-package org.workfully.utilities.StrategyDP;
+package org.workfully.utilities.strategyDP;
 
 import static org.workfully.factories.StringFactory.*;
 
 import java.util.logging.Logger;
 
-import org.workfully.models.content.AbstractContent;
+import org.workfully.models.content.TextPost;
+import org.workfully.models.content.Tweet;
+import org.workfully.utilities.exceptions.InvalidUserInputException;
 
 public class ValidateUserInput {
 
+    /* PROPERTIES */
     private static Logger log = Logger.getGlobal();
 
-    public static String isValidMessage(String message) {
-        if (message == null)
-            message = emptyString;
+    /* METHODS */
+    public static String validateMessage(String message) throws Exception {
+        return checkIfEmptyOrNull(message);
+    }
+
+    public static String validateTweet(String message) throws Exception {
+        checkIfEmptyOrNull(message);
+        if (message.length() > 280)
+            throw new InvalidUserInputException();
 
         return message;
     }
 
-    public static void presentTweet(AbstractContent abstractContent) {
-        if (abstractContent.getTextBody().length() < 280) {
-            System.out.println("Tweet: " + abstractContent.getTextBody());
-            return;
-        }
+    private static String checkIfEmptyOrNull(String message) throws Exception {
+        if (message == null)
+            throw new NullPointerException();
 
-        log.warning(toManyCharacters);
+        if (message.isEmpty())
+            throw new InvalidUserInputException();
+
+        return message;
     }
 
-    public static void presentTextPost(AbstractContent abstractContent) {
-        System.out.println(abstractContent.getClass().getTypeName() + ": " + abstractContent.getTextBody());
+    public static void presentTweet(Tweet tweet) {
+            System.out.println("Tweet: " + tweet.getTextBody());
+            System.out.print("\n");
+    }
+
+    public static void presentTextPost(TextPost textPost) {
+        System.out.println("Header: " + textPost.getCoverImgURL());
+        System.out.println("Text Post: " + textPost.getTextBody());
+        System.out.print("\n");
     }
 }
