@@ -7,10 +7,10 @@ public class Sandbox {
         Bootstrap view = new Bootstrap();
 
         /* TEST */
-        //view.writeTweet();
+        view.writeTweet();
 
         view.writePostArticle();
-        
+
         view.showAuthorSection();
     }
 }

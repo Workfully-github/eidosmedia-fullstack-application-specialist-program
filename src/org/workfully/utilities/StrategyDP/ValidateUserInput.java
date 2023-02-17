@@ -1,11 +1,9 @@
 package org.workfully.utilities.strategyDP;
 
-import static org.workfully.factories.StringFactory.*;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.logging.Logger;
 
 import org.workfully.models.content.TextPost;
 import org.workfully.models.content.Tweet;
@@ -14,7 +12,7 @@ import org.workfully.utilities.exceptions.InvalidUserInputException;
 public class ValidateUserInput {
 
     /* PROPERTIES */
-    private static Logger log = Logger.getGlobal();
+
 
     /* METHODS */
     public static String validateMessage(String message) throws Exception {
@@ -23,7 +21,7 @@ public class ValidateUserInput {
 
     public static String validateURL(String message) throws Exception {
         checkIfEmptyOrNull(message);
-        if(isValidURL(message)){
+        if (isValidURL(message)) {
             return message;
         }
 
@@ -59,9 +57,10 @@ public class ValidateUserInput {
         return message;
     }
 
+    // TODO move to different strategy Class
     public static void presentTweet(Tweet tweet) {
-            System.out.println("Tweet: " + tweet.getTextBody());
-            System.out.print("\n");
+        System.out.println("Tweet: " + tweet.getTextBody());
+        System.out.print("\n");
     }
 
     public static void presentTextPost(TextPost textPost) {

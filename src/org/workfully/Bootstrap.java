@@ -7,7 +7,9 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 import org.workfully.controllers.users.AuthorController;
+import org.workfully.controllers.users.GlobalContentMapController;
 import org.workfully.factories.UserFactory;
+import org.workfully.models.content.GlobalContentMap;
 import org.workfully.models.users.AbstractUser;
 import org.workfully.models.users.Author;
 
@@ -15,7 +17,16 @@ public class Bootstrap {
 
     /* PROPERTIES */
     private Logger log = Logger.getGlobal();
-    private ArrayList<AbstractUser> userMocks = userMocks();
+    private ArrayList<AbstractUser> userMocks;
+    private GlobalContentMapController globalContentMapController;
+    private AuthorController authorController;
+
+    public Bootstrap() {
+        this.userMocks = userMocks();
+        this.globalContentMapController = bootstrapGlobalContentMapController();
+        this.authorController = mockController((Author) userMocks.get(2));
+        bootstrapGlobalMapToOtherControllers();
+    }
 
     /* METHODS */
     private ArrayList<AbstractUser> userMocks() {
@@ -28,7 +39,10 @@ public class Bootstrap {
         };
     }
 
-    public AuthorController mockController(Author model) {
+    /*
+     * Change mockController in constructor @see #Bootstrap()
+     */
+    private AuthorController mockController(Author model) {
         return new AuthorController(model);
     }
 
@@ -37,15 +51,13 @@ public class Bootstrap {
         try {
             System.out.print("Write your Tweet: ");
             String scanInput = scCreateTweet.nextLine();
-            mockController((Author) userMocks.get(2)).createTweet(scanInput);
+            authorController.createTweet(scanInput);
         } catch (Exception e) {
             log.warning(e.getMessage());
-        } finally {
-            scCreateTweet.close();
         }
     }
 
-    public void writePostArticle(){
+    public void writePostArticle() {
         Scanner scMessage = new Scanner(System.in);
         try {
             System.out.print("Insert Cover Image URL: ");
@@ -54,12 +66,18 @@ public class Bootstrap {
             System.out.print("Write Post Article: ");
             String message = scMessage.nextLine();
 
-            mockController((Author) userMocks.get(2)).createTextPost(message, URL);
+            authorController.createTextPost(message, URL);
         } catch (Exception e) {
             log.warning(e.getMessage());
-        } finally {
-            scMessage.close();
         }
+    }
+
+    private void bootstrapGlobalMapToOtherControllers() {
+        authorController.setGlobalContentMapController(globalContentMapController);
+    }
+
+    private GlobalContentMapController bootstrapGlobalContentMapController() {
+        return new GlobalContentMapController(new GlobalContentMap());
     }
 
     public void showAuthorSection() {

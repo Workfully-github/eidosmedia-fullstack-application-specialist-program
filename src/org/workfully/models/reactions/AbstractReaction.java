@@ -6,5 +6,9 @@ public abstract class AbstractReaction {
 
     /* PROPERTIES */
     private Author contentAuthor;
-    
+
+    /* GETTERS */
+    public Author getContentAuthor() {
+        return contentAuthor;
+    }
 }

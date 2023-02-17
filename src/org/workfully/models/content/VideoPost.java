@@ -12,4 +12,8 @@ public class VideoPost extends AbstractContent {
         this.URL = URL;
     }
 
+    /* GETTERS */
+    public String getURL() {
+        return URL;
+    }
 }

@@ -17,7 +17,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
     /* PROPERTIES */
     private Author authorModel;
     private AuthorSection authorSectionView;
-    
+    private GlobalContentMapController globalContentMapController;
 
     /* CONSTRUCTOR */
     public AuthorController(Author authorModel) {
@@ -53,6 +53,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
     public Tweet createTweet(String message) throws Exception {
         Tweet tweet = new Tweet(authorModel, ValidateUserInput.validateTweet(message));
         authorModel.getContentLog().add(tweet);
+        globalContentMapController.addAuthorContentToGlobalContentMap(authorModel, tweet);
         return tweet;
     }
 
@@ -60,7 +61,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
     public TextPost createTextPost(String message, String coverImgURL) throws Exception {
         TextPost textPost = new TextPost(authorModel, ValidateUserInput.validateMessage(message), ValidateUserInput.validateURL(coverImgURL));
         authorModel.getContentLog().add(textPost);
-        // TODO needs more validation
+        globalContentMapController.addAuthorContentToGlobalContentMap(authorModel, textPost);
         return textPost;
     }
 
@@ -82,7 +83,10 @@ public class AuthorController extends AbstractUserController implements CreateCo
         return authorSectionView;
     }
 
-
+    /* SETTERS */
+    public void setGlobalContentMapController(GlobalContentMapController globalContentMapController) {
+        this.globalContentMapController = globalContentMapController;
+    }
     
     
 

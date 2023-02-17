@@ -2,11 +2,7 @@ package org.workfully.models.users;
 
 import java.util.ArrayList;
 
-import org.workfully.models.content.AbstractContent;
 import org.workfully.models.content.UserComment;
-import org.workfully.models.users.userInterfaces.CommentContent;
-import org.workfully.models.users.userInterfaces.LikeContent;
-import org.workfully.models.users.userInterfaces.ReadContent;
 
 public abstract class AbstractUser {
 

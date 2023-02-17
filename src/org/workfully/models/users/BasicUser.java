@@ -1,7 +1,5 @@
 package org.workfully.models.users;
 
-import org.workfully.models.content.AbstractContent;
-
 public class BasicUser extends AbstractUser {
 
     /* CONSTRUCTORS */
