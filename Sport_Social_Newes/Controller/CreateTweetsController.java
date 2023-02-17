@@ -6,11 +6,10 @@ import Model.Tweet;
 public class CreateTweetsController  {
     public static Tweet createTweet(Author author, String tweetBody) throws NullPointerException {
 
-        if(tweetBody.isEmpty()) return null;
+        if(tweetBody.isEmpty() || tweetBody.length() > 280) return null;
         Tweet newTweet = new Tweet(author, tweetBody);
         author.addContent(newTweet);
         return newTweet;
-        
     }
 
     public void displayTweet(Tweet tweet){
