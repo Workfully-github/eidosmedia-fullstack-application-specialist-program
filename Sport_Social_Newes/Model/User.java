@@ -1,3 +1,5 @@
+
+package Model;
 import java.util.ArrayList;
 
 public class User{
@@ -20,20 +22,15 @@ public class User{
     }
 
     //Methods
-    public void read(Content post){
-        //TODO
-        //Reading the content maybe can be described by outputing the post to the console
-    }
-    public void like(Content post){
-        //LIKE
+    public Boolean getIsPremuim() {
+        return isPremuim;
     }
 
-    public void comment(Content post){
-        //COMMENT
+    public String getName() {
+        return name;
     }
 
-    public void save(Content post){
-        //SAVE
-        //add a peice of content to the savedContent List
+    public ArrayList<Content> getSavedContent() {
+        return savedContent;
     }
 } 
