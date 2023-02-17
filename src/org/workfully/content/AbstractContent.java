@@ -13,6 +13,11 @@ public abstract class AbstractContent {
     private ArrayList<UserComment> commentLogMap;
     private ArrayList<AbstractReaction> reactionLogMap;
 
+    public AbstractContent(Author contentAuthor, String textBody) {
+        this.contentAuthor = contentAuthor;
+        this.textBody = textBody;
+    }
+
     /* GETTERS */
     public Author getContentAuthor() {
         return contentAuthor;

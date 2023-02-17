@@ -1,5 +1,6 @@
 package org.workfully.users;
 
+
 import org.workfully.content.AbstractContent;
 import org.workfully.content.ImageGalleryPost;
 import org.workfully.content.TextPost;
@@ -7,11 +8,14 @@ import org.workfully.content.Tweet;
 import org.workfully.content.VideoPost;
 import org.workfully.section.AuthorSection;
 import org.workfully.users.userInterfaces.CreateContent;
+import org.workfully.users.utilities.StrategyDP.ValidateUserInput;
+
+import static org.workfully.users.utilities.StringFactory.*;
 
 public class Author extends AbstractUser implements CreateContent {
 
     /* PROPERTIES */
-    AuthorSection authorSection;
+    private AuthorSection authorSection;
 
     /* CONSTRUCTOR */
     public Author() {
@@ -44,8 +48,7 @@ public class Author extends AbstractUser implements CreateContent {
 
     @Override
     public Tweet createTweet(String message) {
-        // TODO Auto-generated method stub
-        return null;
+        return new Tweet(this, ValidateUserInput.isValidMessage(message));
     }
 
     @Override
@@ -65,7 +68,5 @@ public class Author extends AbstractUser implements CreateContent {
         // TODO Auto-generated method stub
         return null;
     }
-
-
 
 }
