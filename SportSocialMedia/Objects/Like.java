@@ -1,5 +1,7 @@
 package SportSocialMedia.Objects;
 
+import SportSocialMedia.Objects.Abstract.User;
+
 public class Like {
     protected String date;
     protected User user;

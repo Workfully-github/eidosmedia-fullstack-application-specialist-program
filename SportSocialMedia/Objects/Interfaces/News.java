@@ -8,5 +8,4 @@ public interface News {
     public void comment();
     public void like();
 
-
 }

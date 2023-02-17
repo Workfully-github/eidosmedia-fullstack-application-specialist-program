@@ -1,27 +1,24 @@
-package SportSocialMedia.Objects;
+package SportSocialMedia.Objects.Content;
 
 import java.util.ArrayList;
 
 import SportSocialMedia.Interfaces.News;
+import SportSocialMedia.Objects.Comment;
+import SportSocialMedia.Objects.Like;
+import SportSocialMedia.Objects.User.Author;
 
-public class SportNew implements News {
+public class Content implements News {
 
     public String postName;
-    public ArrayList<Content> contents; 
-    public ArrayList<Like> likes; 
-    public ArrayList<Comment> comments; 
+    public ArrayList<Like> likes = new ArrayList<>(); 
+    public ArrayList<Comment> comments = new ArrayList<>(); 
     public Author author;
     public boolean isPosted = false;
 
-    
-
-    public SportNew(String postName, ArrayList<Content> contents, Author author) {
+    public Content(String postName, Author author) {
         this.postName = postName;
-        this.contents = contents;
         this.author = author;
     }
-
-    
 
     @Override
     public void read() {
@@ -45,43 +42,22 @@ public class SportNew implements News {
         return postName;
     }
 
-
-
     public void setPostName(String postName) {
         this.postName = postName;
     }
-
-
-
-    public ArrayList<Content> getContents() {
-        return contents;
-    }
-
-
-
-    public void setContents(ArrayList<Content> contents) {
-        this.contents = contents;
-    }
-
 
 
     public Author getAuthor() {
         return author;
     }
 
-
-
     public void setAuthor(Author author) {
         this.author = author;
     }
 
-
-
     public boolean isPosted() {
         return isPosted;
     }
-
-
 
     public void setPosted(boolean isPosted) {
         this.isPosted = isPosted;
@@ -102,11 +78,16 @@ public class SportNew implements News {
     public String toStringComments() {
         String str =" ";
         for(int i=0; i<comments.size();i++){
-            str += comments.get(i).toString();
+            str +=i +". " + comments.get(i).toString() + "\n";
         }
         return str;
     }
 
+    public String toStringContent() {
+        return "PostName=" + postName + "]\n" +
+         toStringLikes() + ",\n comments=" + toStringComments() + ", \n Author=" + author.toString()
+                + ", isPosted=" + isPosted + "]";
+    }
 
     
 }
