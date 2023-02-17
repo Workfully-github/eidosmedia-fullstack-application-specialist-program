@@ -1,9 +1,9 @@
-package Projects.Sports_Social_News;
+package Projects.Sports_Social_News.models.posts;
+
+import Projects.Sports_Social_News.models.users.AuthorUser;
 
 public class TweetPost extends Post {
     
-    // how to define maxlenght de 280?
-    // private static int POINTS_WIN = 3;
     private String post;
 
     public TweetPost(String publicationDate, String sport, AuthorUser author, String post) {
@@ -14,5 +14,17 @@ public class TweetPost extends Post {
     public TweetPost(String publicationDate, AuthorUser author, String post) {
         super(publicationDate, author);
         this.post = post;
+    }
+
+    public String getPost() {
+        return post;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
+    }
+
+    public AuthorUser getTweetAuthor() {
+        return getAuthor();
     }
 }
