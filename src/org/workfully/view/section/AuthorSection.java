@@ -1,6 +1,6 @@
 package org.workfully.view.section;
 
-import static org.workfully.utilities.strategyDP.ValidateUserInput.*;
+import static org.workfully.utilities.facadeDP.ValidateUserInput.*;
 
 import java.util.ArrayList;
 

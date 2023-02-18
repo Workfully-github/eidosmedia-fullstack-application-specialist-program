@@ -19,19 +19,20 @@ public class GlobalContentMapController {
         this.globalMap = globalContentMapModel.getGlobalContentLogMap();
     }
 
+    /* GETTERS */
     public GlobalContentMap getGlobalContentMap() {
         return globalContentMapModel;
     }
 
-    public void getAllContent() {
-
-        for (Map.Entry<AbstractUser, ArrayList<AbstractContent>> user : globalMap.entrySet()) {
-
-        }
-
+    public HashMap<AbstractUser, ArrayList<AbstractContent>> getGlobalMap() {
+        return globalMap;
     }
 
+    /* METHODS */
     public void addAuthorContentToGlobalContentMap(AbstractUser author, AbstractContent content) {
+        if(globalMap.get(author) == null)
+            globalMap.put(author, new ArrayList<>());
+            
         globalMap.get(author).add(content);
     }
 

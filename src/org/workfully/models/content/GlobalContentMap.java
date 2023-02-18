@@ -18,3 +18,4 @@ public class GlobalContentMap {
         return globalContentLogMap;
     }
 }
+ 

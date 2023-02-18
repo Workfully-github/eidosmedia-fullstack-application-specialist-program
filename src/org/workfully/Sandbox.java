@@ -1,16 +1,20 @@
 package org.workfully;
 
+import org.workfully.view.ClientSideView;
+
 public class Sandbox {
 
     public static void main(String[] args) {
 
-        Bootstrap view = new Bootstrap();
+        ClientSideView view = new ClientSideView();
 
         /* TEST */
         view.writeTweet();
 
         view.writePostArticle();
 
-        view.showAuthorSection();
+        //view.showAuthorSection();
+
+        view.showHomeFeed();
     }
 }

@@ -1,4 +1,4 @@
-package org.workfully.factories;
+package org.workfully.utilities.factories;
 
 import org.workfully.models.users.AbstractUser;
 import org.workfully.models.users.Author;

@@ -9,7 +9,7 @@ import org.workfully.models.content.Tweet;
 import org.workfully.models.content.VideoPost;
 import org.workfully.models.users.Author;
 import org.workfully.models.users.userInterfaces.CreateContent;
-import org.workfully.utilities.strategyDP.ValidateUserInput;
+import org.workfully.utilities.facadeDP.ValidateUserInput;
 import org.workfully.view.section.AuthorSection;
 
 public class AuthorController extends AbstractUserController implements CreateContent{
@@ -53,7 +53,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
     public Tweet createTweet(String message) throws Exception {
         Tweet tweet = new Tweet(authorModel, ValidateUserInput.validateTweet(message));
         authorModel.getContentLog().add(tweet);
-        //globalContentMapController.addAuthorContentToGlobalContentMap(authorModel, tweet);
+        globalContentMapController.addAuthorContentToGlobalContentMap(authorModel, tweet);
         return tweet;
     }
 
@@ -61,7 +61,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
     public TextPost createTextPost(String message, String coverImgURL) throws Exception {
         TextPost textPost = new TextPost(authorModel, ValidateUserInput.validateMessage(message), ValidateUserInput.validateURL(coverImgURL));
         authorModel.getContentLog().add(textPost);
-        //globalContentMapController.addAuthorContentToGlobalContentMap(authorModel, textPost);
+        globalContentMapController.addAuthorContentToGlobalContentMap(authorModel, textPost);
         return textPost;
     }
 

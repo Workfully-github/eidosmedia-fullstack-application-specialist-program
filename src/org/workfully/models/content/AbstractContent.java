@@ -38,4 +38,8 @@ public abstract class AbstractContent {
         return reactionLogMap;
     }
 
+    public String getAuthorName(){
+        return getContentAuthor().getUserName();
+    }
+
 }
