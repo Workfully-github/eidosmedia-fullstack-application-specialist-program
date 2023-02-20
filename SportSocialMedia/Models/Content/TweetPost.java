@@ -11,7 +11,7 @@ public class TweetPost extends Content {
         super(postName, author);
     }
     
-    public void updateTweetPost(String text){
+    public void updateTweetPostText(String text){
         if(text == null || text.length() > MAX_CHARACTERS){
             throw new IllegalArgumentException("Invalid tweet text");
         }
@@ -19,7 +19,8 @@ public class TweetPost extends Content {
     }
     @Override
     public String toString() {
-        return "TextPost [text=" + text + "]\n" +
+        return "Title: " + postName + "\n" +
+        "Content: " + text + ".\n" +
         this.toStringContent();
     }
 }

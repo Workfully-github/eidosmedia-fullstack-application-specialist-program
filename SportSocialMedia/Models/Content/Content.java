@@ -72,7 +72,7 @@ public class Content implements News {
     }
 
     public String toStringLikes() {
-        return "the number of likes is : " + likes.size();
+        return "the post have: " + likes.size() + " likes";
     }
 
     public String toStringComments() {
@@ -84,9 +84,8 @@ public class Content implements News {
     }
 
     public String toStringContent() {
-        return "PostName=" + postName + "\n" +
-         toStringLikes() + ",\n comments=" + toStringComments() + ", \n Author=" + author.toString()
-                + ", isPosted=" + isPosted + "]";
+        return toStringLikes() + ",\nComments=" + toStringComments() + "; \nAuthor=" + author.toString()
+                + "; \nIs Posted: " + isPosted + ";";
     }
 
     

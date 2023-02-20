@@ -11,14 +11,16 @@ public class TextPost extends Content {
         super(postName, author);
     }
 
-    public void updateTextPost(String coverImage, String text){
+    public void updateCoverImageAndText(String coverImage, String text){
         this.coverImage = coverImage;
         this.text = text;
     }
 
     @Override
     public String toString() {
-        return "Post \n- coverImage=" + coverImage + ", \ntext=" + text + "\n" +
+        return "Title: " + postName + "\n" +
+        "Content: " + text + ".\n" +
+        "Cover Image: " + coverImage + ".\n" +
         this.toStringContent();
     }
 

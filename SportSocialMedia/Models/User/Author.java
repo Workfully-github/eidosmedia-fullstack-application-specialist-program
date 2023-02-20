@@ -17,7 +17,7 @@ public class Author extends User {
     
     @Override
     public String toString() {
-        return "User [name=" + name + ", id=" + id + "]";
+        return " Name=" + name + ", id=" + id;
     }
 
 }

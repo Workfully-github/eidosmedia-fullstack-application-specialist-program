@@ -12,7 +12,7 @@ public class VideoPost extends Content {
         super(postName, author);
     }
 
-    public void updateVideoPost(String video, String descriptionText){
+    public void updateVideoAndDescription(String video, String descriptionText){
         this.video = video;
         if(descriptionText == null || descriptionText.length() > MAX_CHARACTERS){
             throw new IllegalArgumentException("Invalid tweet text");
@@ -22,7 +22,9 @@ public class VideoPost extends Content {
 
     @Override
     public String toString() {
-        return "VideoPost [video=" + video + ", descriptionText=" + descriptionText + "]" + 
+        return "Title: " + postName + "\n" +
+        "Video content: " + video + ".\n" +
+        ", descriptionText=" + descriptionText + ";" +
         this.toStringContent();
     }
 

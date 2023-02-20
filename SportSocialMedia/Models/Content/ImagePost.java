@@ -12,10 +12,10 @@ public class ImagePost extends Content {
 
     public ImagePost(ArrayList<String> images,String descriptionText, String postName, Author author) {
         super(postName, author);
-        updateImagePost(images, descriptionText);
+        updateImageAndDescription(images, descriptionText);
     }
 
-    public void updateImagePost(ArrayList<String> images,String descriptionText){
+    public void updateImageAndDescription(ArrayList<String> images,String descriptionText){
         if(images.size() < 2){
             throw new IllegalArgumentException("Invalid number of images: it should be > 2");
         }
@@ -32,7 +32,9 @@ public class ImagePost extends Content {
 
     @Override
     public String toString() {
-        return "ImagePost [images=" + images + ", descriptionText=" + descriptionText + "]" + 
+        return "Title: " + postName + "\n" +
+        "Image content: " + images + ".\n" +
+        ", descriptionText=" + descriptionText + ";" +
         this.toStringContent();
     }
 
