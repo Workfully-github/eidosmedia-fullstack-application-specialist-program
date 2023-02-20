@@ -5,9 +5,12 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import org.workfully.controllers.users.AuthorController;
 import org.workfully.models.content.TextPost;
 import org.workfully.models.content.Tweet;
+import org.workfully.utilities.UserType;
 import org.workfully.utilities.exceptions.InvalidUserInputException;
+import org.workfully.utilities.factories.AuthorType;
 
 public class ValidateUserInput {
 
@@ -68,4 +71,17 @@ public class ValidateUserInput {
         System.out.println("Text Post: " + textPost.getTextBody());
         System.out.print("\n");
     }
+
+/*     public static AuthorController selectAuthor(AuthorType author){
+        switch (author) {
+            case AMINE:
+                
+            case ABDU:
+                
+            case AMINE:
+        
+            default:
+                break;
+        }
+    } */
 }

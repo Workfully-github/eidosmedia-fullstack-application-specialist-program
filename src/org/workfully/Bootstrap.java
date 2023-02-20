@@ -16,27 +16,43 @@ public class Bootstrap {
     /* PROPERTIES */
     private ArrayList<AbstractUser> userMocks;
     private GlobalContentMapController globalContentMapController;
-    private AuthorController authorController;
+    private AuthorController authorControllerAmine;
+    private AuthorController authorControllerSidi;
+    private AuthorController authorControllerAbdu;
 
     public Bootstrap() {
         this.userMocks = userMocks();
         this.globalContentMapController = bootstrapGlobalContentMapController();
-        this.authorController = mockController((Author) userMocks.get(2));
+        this.authorControllerAmine = mockController((Author) userMocks.get(2));
+        this.authorControllerSidi = mockController((Author) userMocks.get(3));
+        this.authorControllerAbdu = mockController((Author) userMocks.get(4));
+        
+        
         bootstrapGlobalMapToOtherControllers();
     }
 
     /* GETTERS */
-    public AuthorController getAuthorController() {
-        return authorController;
+    public AuthorController getAuthorController(int key) {
+        switch (key) {
+            case 1:
+            return authorControllerAmine;
+            case 2:
+            return authorControllerSidi;
+            default:
+            return authorControllerAbdu;
+        }
     }
 
+
     /* METHODS */
-    private ArrayList<AbstractUser> userMocks() {
+    public ArrayList<AbstractUser> userMocks() {
         return new ArrayList<AbstractUser>() {
             {
                 add(UserFactory.createAbstractUser(PREMIUMUSER, "Ricardo"));
                 add(UserFactory.createAbstractUser(BASICUSER, "Hugo"));
                 add(UserFactory.createAbstractUser(AUTHOR, "Amine"));
+                add(UserFactory.createAbstractUser(AUTHOR, "Sidi"));
+                add(UserFactory.createAbstractUser(AUTHOR, "Abdu"));
             }
         };
     }
@@ -49,7 +65,9 @@ public class Bootstrap {
     }
 
     private void bootstrapGlobalMapToOtherControllers() {
-        authorController.setGlobalContentMapController(globalContentMapController);
+        authorControllerAmine.setGlobalContentMapController(globalContentMapController);
+        authorControllerSidi.setGlobalContentMapController(globalContentMapController);
+        authorControllerAbdu.setGlobalContentMapController(globalContentMapController);
     }
 
     private GlobalContentMapController bootstrapGlobalContentMapController() {

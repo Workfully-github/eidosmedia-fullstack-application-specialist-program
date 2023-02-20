@@ -1,8 +1,9 @@
 package org.workfully.models.users.userInterfaces;
 
 import org.workfully.models.content.AbstractContent;
+import org.workfully.models.content.UserComment;
 
 public interface CommentContent {
     
-    void comment(String comment, AbstractContent content);
+    UserComment comment(String comment, AbstractContent content) throws Exception;
 }

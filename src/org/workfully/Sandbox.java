@@ -11,10 +11,22 @@ public class Sandbox {
         /* TEST */
         view.writeTweet();
 
-        view.writePostArticle();
+        //view.writePostArticle();
 
         //view.showAuthorSection();
+        //view.showHomeFeed();
 
-        view.showHomeFeed();
+
+        //System.out.println(view.getBootstrap().getGlobalContentMapController().getGlobalMap().get(view.getAuthorControllerAmine().getAuthorModel()));
+
+        /* WRITE COMMENT */
+        view.writeComment(view.getBootstrap().getGlobalContentMapController().getGlobalMap().get(view.getAuthorControllerAmine().getAuthorModel()).get(0));
+
+        /* READ COMMENT */
+        //System.out.println(view.getBootstrap().getGlobalContentMapController().getGlobalMap().get(view.getAuthorControllerAmine().getAuthorModel()).get(0).getCommentLogMap().get(0).getTextBody());
+
+        /* SHOW POST DETAIL */
+        view.getBootstrap().getGlobalContentMapController().getGlobalMap().get(view.getAuthorControllerAmine().getAuthorModel()).get(0).getPostDetail().showPostDetail();
+        
     }
 }

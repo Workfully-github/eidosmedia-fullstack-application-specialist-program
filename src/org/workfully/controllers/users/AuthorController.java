@@ -6,13 +6,14 @@ import org.workfully.models.content.AbstractContent;
 import org.workfully.models.content.ImageGalleryPost;
 import org.workfully.models.content.TextPost;
 import org.workfully.models.content.Tweet;
+import org.workfully.models.content.UserComment;
 import org.workfully.models.content.VideoPost;
 import org.workfully.models.users.Author;
 import org.workfully.models.users.userInterfaces.CreateContent;
 import org.workfully.utilities.facadeDP.ValidateUserInput;
 import org.workfully.view.section.AuthorSection;
 
-public class AuthorController extends AbstractUserController implements CreateContent{
+public class AuthorController extends AbstractUserController implements CreateContent {
 
     /* PROPERTIES */
     private Author authorModel;
@@ -27,26 +28,27 @@ public class AuthorController extends AbstractUserController implements CreateCo
 
     /* CONTROLLERS */
 
-    public ArrayList<AbstractContent> getContentLog(){
+    public ArrayList<AbstractContent> getContentLog() {
         return authorModel.getContentLog();
     }
 
     @Override
     public void read(AbstractContent content) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
-    public void comment(String comment, AbstractContent content) {
-        // TODO Auto-generated method stub
-        
+    public UserComment comment(String comment, AbstractContent content) throws Exception {
+        UserComment userComment = new UserComment(authorModel, ValidateUserInput.validateMessage(comment));
+        content.getCommentLogMap().add(userComment);
+        return userComment;
     }
 
     @Override
     public void like(AbstractContent content) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
@@ -59,7 +61,8 @@ public class AuthorController extends AbstractUserController implements CreateCo
 
     @Override
     public TextPost createTextPost(String message, String coverImgURL) throws Exception {
-        TextPost textPost = new TextPost(authorModel, ValidateUserInput.validateMessage(message), ValidateUserInput.validateURL(coverImgURL));
+        TextPost textPost = new TextPost(authorModel, ValidateUserInput.validateMessage(message),
+        ValidateUserInput.validateURL(coverImgURL));
         authorModel.getContentLog().add(textPost);
         globalContentMapController.addAuthorContentToGlobalContentMap(authorModel, textPost);
         return textPost;
@@ -78,7 +81,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
     }
 
     /* GETTERS */
-    
+
     public AuthorSection getAuthorSectionView() {
         return authorSectionView;
     }
@@ -87,8 +90,13 @@ public class AuthorController extends AbstractUserController implements CreateCo
     public void setGlobalContentMapController(GlobalContentMapController globalContentMapController) {
         this.globalContentMapController = globalContentMapController;
     }
-    
-    
 
+    public Author getAuthorModel() {
+        return authorModel;
+    }
+
+    public GlobalContentMapController getGlobalContentMapController() {
+        return globalContentMapController;
+    }
 
 }
