@@ -3,6 +3,9 @@ package org.workfully.view.section;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.naming.ContextNotEmptyException;
+
 import org.workfully.models.content.AbstractContent;
 import org.workfully.models.users.AbstractUser;
 import static org.workfully.utilities.factories.StringFactory.*;
@@ -14,7 +17,7 @@ public class HomeFeed extends AbstractSection {
 
     /* METHODS */
 
-    /* 
+    /*
      * Presents every content, for each author in the Global Map
      */
     public void showHomeFeed() {
@@ -31,8 +34,27 @@ public class HomeFeed extends AbstractSection {
         }
     }
 
+    public void showFreeHomeFeed() {
+
+        System.out.println(homeFeedHeader + "\n");
+
+        for (Map.Entry<AbstractUser, ArrayList<AbstractContent>> author : globalMap.entrySet()) {
+
+            for (AbstractContent content : author.getValue()) {
+
+                System.out.println("Created by: " + content.getAuthorName());
+                if (content.isPremium()) {
+                    content.getPostDetail().showPostDetail();
+                    continue;
+                }
+
+                content.getPostDetail().showPostDetailFree();
+            }
+        }
+    }
+
     /* SETTERS */
-    /* 
+    /*
      * @see org.workfully.view.ClientSideView#showHomeFeed()
      */
     public void setGlobalMap(HashMap<AbstractUser, ArrayList<AbstractContent>> globalMap) {

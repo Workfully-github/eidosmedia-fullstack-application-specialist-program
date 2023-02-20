@@ -1,7 +1,6 @@
 package org.workfully.models.content;
 
 import org.workfully.models.users.AbstractUser;
-import org.workfully.models.users.Author;
 
 public class UserComment extends AbstractContent {
 

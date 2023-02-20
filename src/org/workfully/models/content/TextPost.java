@@ -19,20 +19,11 @@ public class TextPost extends AbstractContent {
         return coverImgURL;
     }
 
-    public boolean isPremium() {
-        return premium;
-    }
-
     /* SETTERS */
     public void setCoverImgURL(String coverImgURL) {
         this.coverImgURL = coverImgURL;
     }
 
-
-
-    public void setPremium(boolean premium) {
-        this.premium = premium;
-    }
 
     
 

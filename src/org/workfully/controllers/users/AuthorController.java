@@ -56,7 +56,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
     @Override
     public TextPost createTextPost(String message, String coverImgURL) throws Exception {
         TextPost textPost = new TextPost(authorModel, ValidateUserInput.validateMessage(message),
-                ValidateUserInput.validateURL(coverImgURL));
+        ValidateUserInput.validateURL(coverImgURL));
         authorModel.getContentLog().add(textPost);
         Bootstrap.getGlobalContentMapController().addAuthorContentToGlobalContentMap(authorModel, textPost);
         return textPost;

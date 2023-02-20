@@ -1,10 +1,12 @@
 package org.workfully;
 
 import org.workfully.controllers.users.AuthorController;
+import org.workfully.controllers.users.BasicUserController;
 import org.workfully.models.users.BasicUser;
 import org.workfully.utilities.UserType;
 import org.workfully.utilities.factories.UserFactory;
-import org.workfully.view.ClientSideView;
+import org.workfully.view.BasicUserClientSideView;
+import org.workfully.view.AuthorClientSideView;
 
 public class Sandbox {
 
@@ -17,23 +19,31 @@ public class Sandbox {
         AuthorController authorAmine = new AuthorController(UserFactory.createAbstractUser(UserType.AUTHOR, "Amine"));
         AuthorController authorHugo = new AuthorController(UserFactory.createAbstractUser(UserType.AUTHOR, "Hugo"));
 
-        //BasicUser buRicardo = new 
+        BasicUserController buRicardo = new BasicUserController(UserFactory.createAbstractUser(UserType.BASICUSER, "Ricardo")); 
 
 
         /* Pass controller @param authorAmine to view */
-        ClientSideView amineView = new ClientSideView(authorAmine);
+        AuthorClientSideView amineView = new AuthorClientSideView(authorAmine);
 
-        ClientSideView hugoView = new ClientSideView(authorHugo);
+        AuthorClientSideView hugoView = new AuthorClientSideView(authorHugo);
 
-        amineView.writeTweet();
-        hugoView.writeTweet();
-
-        amineView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
+        BasicUserClientSideView ricardoView = new BasicUserClientSideView(buRicardo);
 
 
-        amineView.showHomeFeed();
+        amineView.writePostArticle();
+        hugoView.writePostArticle();
 
-        hugoView.showAuthorSection();
+        //amineView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
+
+        //ricardoView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
+
+
+
+        //amineView.showHomeFeed();
+
+        //hugoView.showAuthorSection();
+
+        ricardoView.showHomeFeed();
 
 
     }

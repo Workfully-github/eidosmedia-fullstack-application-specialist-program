@@ -23,6 +23,18 @@ public class PostDetail extends AbstractSection {
         presentIfTweet();
     }
 
+    public void showPostDetailFree(){
+        presentIfComment();
+        presentIfTweet();
+        
+        if(content.isPremium() && content.getTextBody().length() > 280){
+            presentIfPremiumTextPost();
+            return;
+        }
+
+        presentIfTextPost();
+    }
+
     private void presentIfComment() {
         if (content instanceof UserComment) {
 
@@ -30,7 +42,7 @@ public class PostDetail extends AbstractSection {
             for (UserComment comment : content.getCommentLogMap()) {
                 System.out.println("Created by: " + comment.getAuthorName());
                 System.out.println(comment.getTextBody());
-                // System.out.println(comment.getReactionLogMap().size() + " likes");
+                System.out.println(comment.getReactionLogMap().size() + " likes");
 
             }
         }
@@ -39,6 +51,7 @@ public class PostDetail extends AbstractSection {
     private void presentIfTweet() {
         if (content instanceof Tweet) {
             System.out.println("Tweet: " + content.getTextBody());
+            System.out.println(content.getReactionLogMap().size() + " likes");
             System.out.print("\n");
         }
     }
@@ -47,6 +60,17 @@ public class PostDetail extends AbstractSection {
         if (content instanceof TextPost) {
             System.out.println("Header: " + ((TextPost) content).getCoverImgURL());
             System.out.println("Text Post: " + content.getTextBody());
+            System.out.println(content.getReactionLogMap().size() + " likes");
+            System.out.print("\n");
+        }
+    }
+
+    private void presentIfPremiumTextPost(){
+        if (content instanceof TextPost) {
+            System.out.println("You are viewing a Premium Post as a Basic User");
+            System.out.println("Header: " + ((TextPost) content).getCoverImgURL());
+            System.out.println("Text Post: " + content.getTextBody().substring(0, 280));
+            System.out.println(content.getReactionLogMap().size() + " likes");
             System.out.print("\n");
         }
     }
