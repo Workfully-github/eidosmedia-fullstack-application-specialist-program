@@ -2,8 +2,10 @@ package org.workfully.view;
 
 import java.util.logging.Logger;
 
+import org.workfully.Bootstrap;
 import org.workfully.controllers.users.BasicUserController;
 import org.workfully.models.content.AbstractContent;
+import org.workfully.view.section.HomeFeed;
 
 public class BasicUserClientSideView extends AbstractClientSideView {
 
@@ -16,11 +18,15 @@ public class BasicUserClientSideView extends AbstractClientSideView {
         content.getPostDetail().showPostDetailFree();
     }
 
+    /* 
+     * @see AbstractClientSideView#showHomeFeed()
+     */
     @Override
     public void showHomeFeed() {
-        super.showFreeHomeFeed();
+        HomeFeed homeFeed = new HomeFeed();
+        homeFeed.setGlobalMap(Bootstrap.getGlobalContentMapController().getGlobalMap());
+
+        homeFeed.showFreeHomeFeed();
     }
 
-    
-    
 }

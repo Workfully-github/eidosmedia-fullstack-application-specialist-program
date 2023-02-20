@@ -3,10 +3,8 @@ package org.workfully.view;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-import org.workfully.Bootstrap;
 import org.workfully.controllers.users.AbstractUserController;
 import org.workfully.models.content.AbstractContent;
-import org.workfully.view.section.HomeFeed;
 
 public abstract class AbstractClientSideView {
 
@@ -18,23 +16,11 @@ public abstract class AbstractClientSideView {
     /* METHODS */
     
     /* 
-     * When HomeFeed() is called, 
+     * When HomeFeed#Constructor() is called, 
      * Sets HomeFeed's global map with the existing global map
      * and then shows the feed fully updated
      */
-    public void showHomeFeed(){
-        HomeFeed homeFeed = new HomeFeed();
-        homeFeed.setGlobalMap(Bootstrap.getGlobalContentMapController().getGlobalMap());
-
-        homeFeed.showHomeFeed();
-    }
-
-    public void showFreeHomeFeed(){
-        HomeFeed homeFeed = new HomeFeed();
-        homeFeed.setGlobalMap(Bootstrap.getGlobalContentMapController().getGlobalMap());
-
-        homeFeed.showFreeHomeFeed();
-    }
+    public abstract void showHomeFeed();
 
     
     // TODO this needs to be finished

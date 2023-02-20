@@ -36,7 +36,7 @@ public class Sandbox {
         //amineView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
 
         //ricardoView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
-
+    
 
 
         //amineView.showHomeFeed();
@@ -44,7 +44,6 @@ public class Sandbox {
         //hugoView.showAuthorSection();
 
         ricardoView.showHomeFeed();
-
 
     }
 }
