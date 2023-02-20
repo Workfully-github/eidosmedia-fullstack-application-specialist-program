@@ -17,12 +17,23 @@ public class TweetController {
         return tweet;
     }
 
-    public void updateTweetPost() {
+    public TweetPost updateTweetPost(TweetPost tweet, String post) throws NullPointerException {
 
+        if(post.isEmpty()) return null;
+        if(post.length() > 280) return null;
+
+        int index = tweet.getTweetAuthor().getPosts().indexOf(tweet);
+        tweet.setPost(post);
+        
+        tweet.getTweetAuthor().updatePost(tweet, index);
+
+        return tweet;
     }
 
-    public void deleteTweetPost() {
-
+    public void deleteTweetPost(TweetPost tweet) {
+        int index = tweet.getTweetAuthor().getPosts().indexOf(tweet);
+        
+        tweet.getTweetAuthor().removePost(index);
     }
 
     public void display(TweetPost tweet) {

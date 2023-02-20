@@ -32,6 +32,10 @@ public class Post {
         return author;
     }
 
+    public String getDate() {
+        return publicationDate;
+    }
+
     // list comments
     public void addComment(String comment) {}
 

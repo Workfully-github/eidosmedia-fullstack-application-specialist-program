@@ -2,11 +2,7 @@ package Projects.Sports_Social_News.models.users;
 
 import java.util.ArrayList;
 
-import Projects.Sports_Social_News.models.posts.ImagePost;
 import Projects.Sports_Social_News.models.posts.Post;
-import Projects.Sports_Social_News.models.posts.TextPost;
-import Projects.Sports_Social_News.models.posts.TweetPost;
-import Projects.Sports_Social_News.models.posts.VideoPost;
 
 public class AuthorUser extends User {
 
@@ -42,5 +38,9 @@ public class AuthorUser extends User {
 
     public void updatePost(Post post, int index) {
         posts.add(index, post);
+    }
+
+    public void removePost(int index) {
+        posts.remove(index);
     }
 }
