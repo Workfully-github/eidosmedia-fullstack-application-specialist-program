@@ -2,7 +2,6 @@ package org.workfully.controllers.users;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.workfully.models.content.AbstractContent;
 import org.workfully.models.content.GlobalContentMap;
