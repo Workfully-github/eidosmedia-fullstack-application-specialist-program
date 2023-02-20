@@ -1,11 +1,13 @@
 
-package Model;
+package Model.Users;
 import java.util.ArrayList;
+
+import Model.Interactions.Save;
 
 public class User{
     private String name, userName ,emailAdress ;
     private Boolean isPremuim;
-    private ArrayList<Content> savedContent;
+    private ArrayList<Save> savedContent;
 
     public User(String name ,String userName, String emailAdress, Boolean isPremuim){
         this.name = name;
@@ -30,7 +32,23 @@ public class User{
         return name;
     }
 
-    public ArrayList<Content> getSavedContent() {
+    public String getUserName() {
+        return userName;
+    }
+
+    public ArrayList<Save> getSavedContent() {
         return savedContent;
+    }
+
+    public int getSaveIndex(Save save) {
+        return savedContent.indexOf(save);
+    }
+
+    public void removeSave(Save save) {
+        savedContent.remove(save);
+    }
+
+    public void addSave(Save save){
+        savedContent.add(save);
     }
 } 

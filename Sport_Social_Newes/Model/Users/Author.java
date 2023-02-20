@@ -1,5 +1,7 @@
-package Model;
+package Model.Users;
 import java.util.ArrayList;
+
+import Model.Content.Content;
 
 public class Author extends User {
     private ArrayList<Content> myContent;
@@ -14,6 +16,8 @@ public class Author extends User {
         myContent.add(content);
     }
 
+    public void removeContent(int contentIndex) {
 
+    }
 
 }

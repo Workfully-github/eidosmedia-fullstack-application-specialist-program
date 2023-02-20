@@ -2,9 +2,11 @@ package View;
 
 import java.util.Scanner;
 
-import Controller.CreateTweetsController;
-import Model.Author;
-import Model.Tweet;
+import Controller.ContentControllers.CreateTweetsController;
+import Controller.InteractionControllers.HandleComments;
+import Controller.InteractionControllers.InteractionController;
+import Model.Content.Tweet;
+import Model.Users.Author;
 
 public class CreateTweetView {
     Author author;
@@ -18,13 +20,14 @@ public class CreateTweetView {
         System.out.println("Insert Tweet Body:");
         String body = in.nextLine();
 
+        System.out.println("is this piece of content Premium?");
+        Boolean isContentPremium = in.nextBoolean();
         CreateTweetsController createTweetsController = new CreateTweetsController();
         try {
-            Tweet newTweet = createTweetsController.createTweet(author, body);
-            createTweetsController.displayTweet(newTweet);
+            Tweet newTweet = createTweetsController.createTweet(author, body, isContentPremium);
+            createTweetsController.displayTweet(newTweet, author);
         } catch (NullPointerException e) {
             System.out.println("Invalid Tweet Body!");
         } 
-      
     }
 }

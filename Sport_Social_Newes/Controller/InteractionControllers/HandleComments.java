@@ -1,8 +1,10 @@
-package Controller;
+package Controller.InteractionControllers;
 
-import Model.Content;
-import Model.User;
+import java.util.ArrayList;
+
+import Model.Content.Content;
 import Model.Interactions.Comment;
+import Model.Users.User;
 
 public class HandleComments {
     public Boolean postAComment(Content content, User user, String commentBody) throws NullPointerException {
@@ -13,5 +15,11 @@ public class HandleComments {
         content.addComment(newComment);
         
         return true;
+    }
+
+    public void displayComments(Content content){
+        for(Comment comment : content.getComments()){
+            System.out.println(comment.getCommentBody() + " By: " + comment.getCommenter().getUserName());
+        }
     }
 }

@@ -2,6 +2,8 @@ package Model;
 
 import java.util.ArrayList;
 
+import Model.Content.Content;
+
 public class Feed {
     ArrayList<Content> feed;
     public Feed () {

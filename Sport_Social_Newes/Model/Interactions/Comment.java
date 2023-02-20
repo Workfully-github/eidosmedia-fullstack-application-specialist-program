@@ -1,6 +1,6 @@
 package Model.Interactions;
 
-import Model.User;
+import Model.Users.User;
 
 public class Comment {
     User commenter;
@@ -9,6 +9,14 @@ public class Comment {
      public Comment(User commenter, String commentBody) {
         this.commenter = commenter;
         this.commentBody = commentBody;
+     }
+
+     public String getCommentBody() {
+         return commentBody;
+     }
+
+     public User getCommenter() {
+         return commenter;
      }
 
 }

@@ -2,7 +2,7 @@ package Model.Storage;
 
 import java.util.ArrayList;
 
-import Model.Content;
+import Model.Content.Content;
 
 public class ContentTable {
     ArrayList<Content>contentTable;
