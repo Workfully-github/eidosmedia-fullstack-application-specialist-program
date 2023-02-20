@@ -19,25 +19,17 @@ public class AuthorController extends AbstractUserController implements CreateCo
     /* PROPERTIES */
     private Author authorModel;
     private AuthorSection authorSectionView;
-    private GlobalContentMapController globalContentMapController;
 
     /* CONSTRUCTOR */
     public AuthorController(Author authorModel) {
         this.authorModel = authorModel;
         this.authorSectionView = new AuthorSection(this);
-        this.globalContentMapController = Bootstrap.getGlobalContentMapController();
     }
 
     /* CONTROLLERS */
 
     public ArrayList<AbstractContent> getContentLog() {
         return authorModel.getContentLog();
-    }
-
-    @Override
-    public void read(AbstractContent content) {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -57,7 +49,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
     public Tweet createTweet(String message) throws Exception {
         Tweet tweet = new Tweet(authorModel, ValidateUserInput.validateTweet(message));
         authorModel.getContentLog().add(tweet);
-        globalContentMapController.addAuthorContentToGlobalContentMap(authorModel, tweet);
+        Bootstrap.getGlobalContentMapController().addAuthorContentToGlobalContentMap(authorModel, tweet);
         return tweet;
     }
 
@@ -66,7 +58,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
         TextPost textPost = new TextPost(authorModel, ValidateUserInput.validateMessage(message),
                 ValidateUserInput.validateURL(coverImgURL));
         authorModel.getContentLog().add(textPost);
-        globalContentMapController.addAuthorContentToGlobalContentMap(authorModel, textPost);
+        Bootstrap.getGlobalContentMapController().addAuthorContentToGlobalContentMap(authorModel, textPost);
         return textPost;
     }
 
@@ -86,15 +78,6 @@ public class AuthorController extends AbstractUserController implements CreateCo
 
     public AuthorSection getAuthorSectionView() {
         return authorSectionView;
-    }
-
-    public GlobalContentMapController getGlobalContentMapController() {
-        return globalContentMapController;
-    }
-
-    /* SETTERS */
-    public void setGlobalContentMapController(GlobalContentMapController globalContentMapController) {
-        this.globalContentMapController = globalContentMapController;
     }
 
     public Author getAuthorModel() {

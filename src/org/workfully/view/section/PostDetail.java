@@ -4,7 +4,6 @@ import org.workfully.models.content.AbstractContent;
 import org.workfully.models.content.TextPost;
 import org.workfully.models.content.Tweet;
 import org.workfully.models.content.UserComment;
-import org.workfully.utilities.facadeDP.ValidateUserInput;
 
 public class PostDetail extends AbstractSection {
 
@@ -19,6 +18,12 @@ public class PostDetail extends AbstractSection {
     /* METHODS */
     public void showPostDetail() {
 
+        presentIfComment();
+        presentIfTextPost();
+        presentIfTweet();
+    }
+
+    private void presentIfComment() {
         if (content instanceof UserComment) {
 
             System.out.println("### COMMENT VIEW ###");
@@ -29,12 +34,16 @@ public class PostDetail extends AbstractSection {
 
             }
         }
+    }
 
+    private void presentIfTweet() {
         if (content instanceof Tweet) {
             System.out.println("Tweet: " + content.getTextBody());
             System.out.print("\n");
         }
+    }
 
+    private void presentIfTextPost() {
         if (content instanceof TextPost) {
             System.out.println("Header: " + ((TextPost) content).getCoverImgURL());
             System.out.println("Text Post: " + content.getTextBody());

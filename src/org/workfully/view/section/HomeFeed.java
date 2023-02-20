@@ -3,12 +3,8 @@ package org.workfully.view.section;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.workfully.models.content.AbstractContent;
-import org.workfully.models.content.TextPost;
-import org.workfully.models.content.Tweet;
 import org.workfully.models.users.AbstractUser;
-import org.workfully.utilities.facadeDP.ValidateUserInput;
 import static org.workfully.utilities.factories.StringFactory.*;
 
 public class HomeFeed extends AbstractSection {
@@ -17,6 +13,10 @@ public class HomeFeed extends AbstractSection {
     private HashMap<AbstractUser, ArrayList<AbstractContent>> globalMap;
 
     /* METHODS */
+
+    /* 
+     * Presents every content, for each author in the Global Map
+     */
     public void showHomeFeed() {
 
         System.out.println(homeFeedHeader + "\n");
@@ -32,8 +32,10 @@ public class HomeFeed extends AbstractSection {
     }
 
     /* SETTERS */
+    /* 
+     * @see org.workfully.view.ClientSideView#showHomeFeed()
+     */
     public void setGlobalMap(HashMap<AbstractUser, ArrayList<AbstractContent>> globalMap) {
         this.globalMap = globalMap;
     }
-
 }

@@ -24,14 +24,6 @@ public class ClientSideView {
         this.log = Logger.getLogger(ClientSideView.class.getName());
     }
 
-
-
-    /* GETTERS */
-    //FIXME Just for tests
-    public AuthorController getAuthorController() {
-        return authorController;
-    }
-
     /* METHODS */
     public void writeTweet() {
         Scanner scCreateTweet = new Scanner(System.in);
@@ -43,8 +35,6 @@ public class ClientSideView {
             log.warning(e.getMessage());
         }
     }
-
-
 
     public void writePostArticle() {
         Scanner scMessage = new Scanner(System.in);
@@ -78,9 +68,14 @@ public class ClientSideView {
         authorController.getAuthorSectionView().displayView();
     }
 
+    /* 
+     * When HomeFeed() is called, 
+     * Sets HomeFeed's global map with the existing global map
+     * and then shows the feed fully updated
+     */
     public void showHomeFeed(){
         HomeFeed homeFeed = new HomeFeed();
-        homeFeed.setGlobalMap(authorController.getGlobalContentMapController().getGlobalMap());
+        homeFeed.setGlobalMap(Bootstrap.getGlobalContentMapController().getGlobalMap());
 
         homeFeed.showHomeFeed();
     }

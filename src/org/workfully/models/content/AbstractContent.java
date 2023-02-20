@@ -1,15 +1,15 @@
 package org.workfully.models.content;
 
 import java.util.ArrayList;
-
 import org.workfully.models.reactions.AbstractReaction;
+import org.workfully.models.users.AbstractUser;
 import org.workfully.models.users.Author;
 import org.workfully.view.section.PostDetail;
 
 public abstract class AbstractContent {
 
     /* PROPERTIES */
-    private Author contentAuthor;
+    private AbstractUser contentAuthor;
     private String textBody;
     private ArrayList<UserComment> commentLogMap;
     private ArrayList<AbstractReaction> reactionLogMap;
@@ -17,7 +17,7 @@ public abstract class AbstractContent {
     private PostDetail postDetail;
 
     /* CONSTRUCTOR */
-    public AbstractContent(Author contentAuthor, String textBody) {
+    public AbstractContent(AbstractUser contentAuthor, String textBody) {
         this.contentAuthor = contentAuthor;
         this.textBody = textBody;
         this.commentLogMap = new ArrayList<>();
@@ -25,8 +25,9 @@ public abstract class AbstractContent {
         this.postDetail = new PostDetail(this);
     }
 
+    
     /* GETTERS */
-    public Author getContentAuthor() {
+    public AbstractUser getContentAuthor() {
         return contentAuthor;
     }
 

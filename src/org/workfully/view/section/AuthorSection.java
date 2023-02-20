@@ -1,15 +1,8 @@
 package org.workfully.view.section;
 
-import static org.workfully.utilities.facadeDP.ValidateUserInput.*;
-
 import java.util.ArrayList;
-
 import org.workfully.controllers.users.AuthorController;
 import org.workfully.models.content.AbstractContent;
-import org.workfully.models.content.ImageGalleryPost;
-import org.workfully.models.content.TextPost;
-import org.workfully.models.content.Tweet;
-import org.workfully.models.content.VideoPost;
 
 public class AuthorSection extends AbstractSection {
 
@@ -33,27 +26,13 @@ public class AuthorSection extends AbstractSection {
         return authorController;
     }
 
-    /* BEHAVIOUR */
+    /* METHODS */
 
     public void displayView() {
-        
-        System.out.println("########## AUTHOR SECTION ##########");
+
+        System.out.println("########## " + authorController.getAuthorModel().getUserName() + " : AUTHOR SECTION ########## \n");
         for (AbstractContent abstractContent : contentCreatedByAuthorLogMap) {
-           /*  if (abstractContent instanceof Tweet) {
-                presentTweet((Tweet)abstractContent);
-            }
 
-            if (abstractContent instanceof TextPost) {
-                presentTextPost((TextPost)abstractContent);
-            }
-
-            if (abstractContent instanceof ImageGalleryPost) {
-
-            }
-
-            if (abstractContent instanceof VideoPost) {
-
-            } */
             abstractContent.getPostDetail().showPostDetail();
         }
     }
