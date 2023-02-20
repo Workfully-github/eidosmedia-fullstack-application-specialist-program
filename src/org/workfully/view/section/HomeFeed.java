@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.workfully.models.content.AbstractContent;
 import org.workfully.models.users.AbstractUser;
+import org.workfully.models.users.Author;
+
 import static org.workfully.utilities.factories.StringFactory.*;
 
 public class HomeFeed extends AbstractSection {
@@ -32,21 +34,20 @@ public class HomeFeed extends AbstractSection {
         }
     }
 
+    //FIXME fix the if condition is printing homefeed twice
     public void showFreeHomeFeed() {
 
         System.out.println(homeFeedHeader + "\n");
 
+
         for (Map.Entry<AbstractUser, ArrayList<AbstractContent>> author : globalMap.entrySet()) {
 
             for (AbstractContent content : author.getValue()) {
-
+                
                 System.out.println("Created by: " + content.getAuthorName());
-                if (content.isPremium()) {
-                    content.getPostDetail().showPostDetail();
-                    continue;
-                }
-
+                
                 content.getPostDetail().showPostDetailFree();
+                
             }
         }
     }

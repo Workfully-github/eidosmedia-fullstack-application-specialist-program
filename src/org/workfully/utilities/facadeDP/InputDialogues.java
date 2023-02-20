@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 import org.workfully.controllers.users.AuthorController;
 import org.workfully.models.content.TextPost;
-import org.workfully.utilities.exceptions.InvalidUserInputException;
 import static org.workfully.utilities.factories.StringFactory.*;
 
 public class InputDialogues {
@@ -35,14 +34,6 @@ public class InputDialogues {
                 case default:
                     log.info(inputLogInfo);
                     break;
-            }
-
-            if (selection == 1)
-                ((AuthorController) userController).createTextPost(message, URL);
-
-            if (selection == 2) {
-                TextPost text = ((AuthorController) userController).createTextPost(message, URL);
-                text.setPremium();
             }
 
         } catch (Exception e) {

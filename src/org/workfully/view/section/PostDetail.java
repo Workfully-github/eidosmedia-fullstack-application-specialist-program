@@ -31,7 +31,7 @@ public class PostDetail extends AbstractSection {
             presentIfPremiumTextPost();
             return;
         }
-
+        
         presentIfTextPost();
     }
 

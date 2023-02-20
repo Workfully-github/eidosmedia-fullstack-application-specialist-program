@@ -2,6 +2,8 @@ package org.workfully;
 
 import org.workfully.controllers.users.AuthorController;
 import org.workfully.controllers.users.BasicUserController;
+import org.workfully.controllers.users.GlobalContentMapController;
+import org.workfully.models.content.GlobalContentMap;
 import org.workfully.models.users.BasicUser;
 import org.workfully.utilities.UserType;
 import org.workfully.utilities.factories.UserFactory;
@@ -36,7 +38,6 @@ public class Sandbox {
         //amineView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
 
         //ricardoView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
-    
 
 
         //amineView.showHomeFeed();
