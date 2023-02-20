@@ -17,34 +17,23 @@ public class HomeFeed extends AbstractSection {
     private HashMap<AbstractUser, ArrayList<AbstractContent>> globalMap;
 
     /* METHODS */
-    public void showHomeFeed(){
+    public void showHomeFeed() {
 
-        System.out.println(homeFeedHeader +"\n");
+        System.out.println(homeFeedHeader + "\n");
 
         for (Map.Entry<AbstractUser, ArrayList<AbstractContent>> author : globalMap.entrySet()) {
-                
-            for (AbstractContent content : author.getValue()) {
-                if(content instanceof TextPost){
-                   TextPost textPost = TextPost.class.cast(content);
-                   System.out.println("Created by: " + textPost.getAuthorName()); 
-                   ValidateUserInput.presentTextPost(textPost);
-                }
 
-                if(content instanceof Tweet){
-                    Tweet tweet = Tweet.class.cast(content);
-                    System.out.println("Created by: " + tweet.getAuthorName()); 
-                    ValidateUserInput.presentTweet(tweet);
-                 }
+            for (AbstractContent content : author.getValue()) {
+
+                System.out.println("Created by: " + content.getAuthorName());
+                content.getPostDetail().showPostDetail();
             }
         }
     }
 
-    
     /* SETTERS */
     public void setGlobalMap(HashMap<AbstractUser, ArrayList<AbstractContent>> globalMap) {
         this.globalMap = globalMap;
     }
-    
-    
-    
+
 }

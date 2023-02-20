@@ -18,22 +18,18 @@ public class ClientSideView {
     private Logger log;
 
     /* CONSTRUCTOR */
-    public ClientSideView() {
+    public ClientSideView(AuthorController authorController) {
         this.bootstrap = new Bootstrap();
-        this.authorController = bootstrap.getAuthorController(1);
-
+        this.authorController = authorController;
         this.log = Logger.getLogger(ClientSideView.class.getName());
     }
+
+
 
     /* GETTERS */
     //FIXME Just for tests
     public AuthorController getAuthorController() {
         return authorController;
-    }
-    
-
-    public Bootstrap getBootstrap() {
-        return bootstrap;
     }
 
     /* METHODS */
@@ -84,7 +80,7 @@ public class ClientSideView {
 
     public void showHomeFeed(){
         HomeFeed homeFeed = new HomeFeed();
-        homeFeed.setGlobalMap(bootstrap.getGlobalContentMapController().getGlobalMap());
+        homeFeed.setGlobalMap(authorController.getGlobalContentMapController().getGlobalMap());
 
         homeFeed.showHomeFeed();
     }

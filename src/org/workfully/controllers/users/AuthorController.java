@@ -2,6 +2,7 @@ package org.workfully.controllers.users;
 
 import java.util.ArrayList;
 
+import org.workfully.Bootstrap;
 import org.workfully.models.content.AbstractContent;
 import org.workfully.models.content.ImageGalleryPost;
 import org.workfully.models.content.TextPost;
@@ -24,6 +25,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
     public AuthorController(Author authorModel) {
         this.authorModel = authorModel;
         this.authorSectionView = new AuthorSection(this);
+        this.globalContentMapController = Bootstrap.getGlobalContentMapController();
     }
 
     /* CONTROLLERS */
@@ -62,7 +64,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
     @Override
     public TextPost createTextPost(String message, String coverImgURL) throws Exception {
         TextPost textPost = new TextPost(authorModel, ValidateUserInput.validateMessage(message),
-        ValidateUserInput.validateURL(coverImgURL));
+                ValidateUserInput.validateURL(coverImgURL));
         authorModel.getContentLog().add(textPost);
         globalContentMapController.addAuthorContentToGlobalContentMap(authorModel, textPost);
         return textPost;
@@ -86,6 +88,10 @@ public class AuthorController extends AbstractUserController implements CreateCo
         return authorSectionView;
     }
 
+    public GlobalContentMapController getGlobalContentMapController() {
+        return globalContentMapController;
+    }
+
     /* SETTERS */
     public void setGlobalContentMapController(GlobalContentMapController globalContentMapController) {
         this.globalContentMapController = globalContentMapController;
@@ -93,10 +99,6 @@ public class AuthorController extends AbstractUserController implements CreateCo
 
     public Author getAuthorModel() {
         return authorModel;
-    }
-
-    public GlobalContentMapController getGlobalContentMapController() {
-        return globalContentMapController;
     }
 
 }

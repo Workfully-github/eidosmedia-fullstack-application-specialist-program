@@ -17,17 +17,29 @@ public class PostDetail extends AbstractSection {
     }
 
     /* METHODS */
-    public void showPostDetail(){
+    public void showPostDetail() {
 
-        ValidateUserInput.presentTweet(((Tweet) content));
+        if (content instanceof UserComment) {
 
-        System.out.println("### COMMENT VIEW ###");
-        for (UserComment comment : content.getCommentLogMap()) {
-            System.out.println("Created by: " + comment.getAuthorName());
-            System.out.println(comment.getTextBody());
-            //System.out.println(comment.getReactionLogMap().size() + " likes");
+            System.out.println("### COMMENT VIEW ###");
+            for (UserComment comment : content.getCommentLogMap()) {
+                System.out.println("Created by: " + comment.getAuthorName());
+                System.out.println(comment.getTextBody());
+                // System.out.println(comment.getReactionLogMap().size() + " likes");
+
+            }
+        }
+
+        if (content instanceof Tweet) {
+            System.out.println("Tweet: " + content.getTextBody());
+            System.out.print("\n");
+        }
+
+        if (content instanceof TextPost) {
+            System.out.println("Header: " + ((TextPost) content).getCoverImgURL());
+            System.out.println("Text Post: " + content.getTextBody());
+            System.out.print("\n");
         }
     }
 
-    
 }

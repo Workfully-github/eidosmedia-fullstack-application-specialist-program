@@ -1,21 +1,16 @@
 package org.workfully.utilities.facadeDP;
 
-
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import org.workfully.controllers.users.AuthorController;
 import org.workfully.models.content.TextPost;
 import org.workfully.models.content.Tweet;
-import org.workfully.utilities.UserType;
 import org.workfully.utilities.exceptions.InvalidUserInputException;
-import org.workfully.utilities.factories.AuthorType;
 
 public class ValidateUserInput {
 
     /* PROPERTIES */
-
 
     /* METHODS */
     public static String validateMessage(String message) throws Exception {
@@ -60,28 +55,17 @@ public class ValidateUserInput {
         return message;
     }
 
-    // TODO move to different strategy Class
+/*     // TODO move to different facade Class
     public static void presentTweet(Tweet tweet) {
         System.out.println("Tweet: " + tweet.getTextBody());
         System.out.print("\n");
     }
 
+    // TODO move to different face class
     public static void presentTextPost(TextPost textPost) {
         System.out.println("Header: " + textPost.getCoverImgURL());
         System.out.println("Text Post: " + textPost.getTextBody());
         System.out.print("\n");
-    }
-
-/*     public static AuthorController selectAuthor(AuthorType author){
-        switch (author) {
-            case AMINE:
-                
-            case ABDU:
-                
-            case AMINE:
-        
-            default:
-                break;
-        }
     } */
+
 }

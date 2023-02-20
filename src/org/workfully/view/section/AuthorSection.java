@@ -14,23 +14,23 @@ import org.workfully.models.content.VideoPost;
 public class AuthorSection extends AbstractSection {
 
     /* PROPERTIES */
-    private AuthorController sectionOwnerController;
-    private ArrayList<AbstractContent> contentCreatedLogMap;
+    private AuthorController authorController;
+    private ArrayList<AbstractContent> contentCreatedByAuthorLogMap;
 
     /* CONSTRUCTOR */
-    public AuthorSection(AuthorController sectionOwnerController) {
-        this.sectionOwnerController = sectionOwnerController;
-        this.contentCreatedLogMap = sectionOwnerController.getContentLog();
+    public AuthorSection(AuthorController authorController) {
+        this.authorController = authorController;
+        this.contentCreatedByAuthorLogMap = authorController.getContentLog();
     }
 
     /* GETTERS */
 
     public ArrayList<AbstractContent> getContentCreatedLogMap() {
-        return contentCreatedLogMap;
+        return contentCreatedByAuthorLogMap;
     }
 
     public AuthorController getSectionOwnerController() {
-        return sectionOwnerController;
+        return authorController;
     }
 
     /* BEHAVIOUR */
@@ -38,8 +38,8 @@ public class AuthorSection extends AbstractSection {
     public void displayView() {
         
         System.out.println("########## AUTHOR SECTION ##########");
-        for (AbstractContent abstractContent : contentCreatedLogMap) {
-            if (abstractContent instanceof Tweet) {
+        for (AbstractContent abstractContent : contentCreatedByAuthorLogMap) {
+           /*  if (abstractContent instanceof Tweet) {
                 presentTweet((Tweet)abstractContent);
             }
 
@@ -53,7 +53,8 @@ public class AuthorSection extends AbstractSection {
 
             if (abstractContent instanceof VideoPost) {
 
-            }
+            } */
+            abstractContent.getPostDetail().showPostDetail();
         }
     }
 
