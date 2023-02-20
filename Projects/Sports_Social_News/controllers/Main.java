@@ -23,9 +23,9 @@ public class Main {
             tweetController.display(tweet);
             tweetController.display(tweet2);
 
-            /* for (int i = 0; i<hugo.getPosts().size(); i++) {
+            for (int i = 0; i<hugo.getPosts().size(); i++) {
                 System.out.println(hugo.getPost(i).getDate());
-            } */
+            }
             
         } catch (NullPointerException e) {
             System.out.println("Please enter a valid tweet");
