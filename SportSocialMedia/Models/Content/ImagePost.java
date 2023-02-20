@@ -1,8 +1,8 @@
-package SportSocialMedia.Objects.Content;
+package SportSocialMedia.Models.Content;
 
 import java.util.ArrayList;
 
-import SportSocialMedia.Objects.User.Author;
+import SportSocialMedia.Models.User.Author;
 
 public class ImagePost extends Content {
 

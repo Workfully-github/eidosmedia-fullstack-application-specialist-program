@@ -1,6 +1,6 @@
-package SportSocialMedia.Objects;
+package SportSocialMedia.Models;
 
-import SportSocialMedia.Objects.Abstract.User;
+import SportSocialMedia.Models.Abstract.User;
 
 public class Comment {
     protected String text;

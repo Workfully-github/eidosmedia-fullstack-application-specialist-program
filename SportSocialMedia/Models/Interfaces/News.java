@@ -1,4 +1,4 @@
-package SportSocialMedia.Interfaces;
+package SportSocialMedia.Models.Interfaces;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
-package SportSocialMedia.Objects.Abstract;
+package SportSocialMedia.Models.Abstract;
 
 import java.util.ArrayList;
 
-import SportSocialMedia.Objects.Content.Content;
+import SportSocialMedia.Models.Content.Content;
 
 public abstract class User {
     protected String name;

@@ -1,7 +1,7 @@
-package SportSocialMedia.Objects.User;
+package SportSocialMedia.Models.User;
 
-import SportSocialMedia.Objects.Abstract.User;
-import SportSocialMedia.Objects.Content.Content;
+import SportSocialMedia.Models.Abstract.User;
+import SportSocialMedia.Models.Content.Content;
 
 public class PremuimUser extends User {
     

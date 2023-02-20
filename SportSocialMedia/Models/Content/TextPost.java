@@ -1,6 +1,6 @@
-package SportSocialMedia.Objects.Content;
+package SportSocialMedia.Models.Content;
 
-import SportSocialMedia.Objects.User.Author;
+import SportSocialMedia.Models.User.Author;
 
 public class TextPost extends Content {
     
@@ -18,7 +18,7 @@ public class TextPost extends Content {
 
     @Override
     public String toString() {
-        return "TextPost [coverImage=" + coverImage + ", \ntext=" + text + "]\n" +
+        return "Post \n- coverImage=" + coverImage + ", \ntext=" + text + "\n" +
         this.toStringContent();
     }
 

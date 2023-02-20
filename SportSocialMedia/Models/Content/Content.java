@@ -1,11 +1,11 @@
-package SportSocialMedia.Objects.Content;
+package SportSocialMedia.Models.Content;
 
 import java.util.ArrayList;
 
-import SportSocialMedia.Interfaces.News;
-import SportSocialMedia.Objects.Comment;
-import SportSocialMedia.Objects.Like;
-import SportSocialMedia.Objects.User.Author;
+import SportSocialMedia.Models.Comment;
+import SportSocialMedia.Models.Like;
+import SportSocialMedia.Models.Interfaces.News;
+import SportSocialMedia.Models.User.Author;
 
 public class Content implements News {
 
@@ -84,7 +84,7 @@ public class Content implements News {
     }
 
     public String toStringContent() {
-        return "PostName=" + postName + "]\n" +
+        return "PostName=" + postName + "\n" +
          toStringLikes() + ",\n comments=" + toStringComments() + ", \n Author=" + author.toString()
                 + ", isPosted=" + isPosted + "]";
     }

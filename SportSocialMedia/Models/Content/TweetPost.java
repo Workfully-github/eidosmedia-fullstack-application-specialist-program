@@ -1,6 +1,6 @@
-package SportSocialMedia.Objects.Content;
+package SportSocialMedia.Models.Content;
 
-import SportSocialMedia.Objects.User.Author;
+import SportSocialMedia.Models.User.Author;
 
 public class TweetPost extends Content {
 
