@@ -20,13 +20,13 @@ public class Sandbox {
         //System.out.println(view.getBootstrap().getGlobalContentMapController().getGlobalMap().get(view.getAuthorControllerAmine().getAuthorModel()));
 
         /* WRITE COMMENT */
-        view.writeComment(view.getBootstrap().getGlobalContentMapController().getGlobalMap().get(view.getAuthorControllerAmine().getAuthorModel()).get(0));
+        view.writeComment(view.getBootstrap().getGlobalContentMapController().getGlobalMap().get(view.getAuthorController().getAuthorModel()).get(0));
 
         /* READ COMMENT */
         //System.out.println(view.getBootstrap().getGlobalContentMapController().getGlobalMap().get(view.getAuthorControllerAmine().getAuthorModel()).get(0).getCommentLogMap().get(0).getTextBody());
 
         /* SHOW POST DETAIL */
-        view.getBootstrap().getGlobalContentMapController().getGlobalMap().get(view.getAuthorControllerAmine().getAuthorModel()).get(0).getPostDetail().showPostDetail();
+        view.getBootstrap().getGlobalContentMapController().getGlobalMap().get(view.getAuthorController().getAuthorModel()).get(0).getPostDetail().showPostDetail();
         
     }
 }
