@@ -1,6 +1,6 @@
 package org.workfully;
 
-import org.workfully.controllers.users.GlobalContentMapController;
+import org.workfully.controllers.content.GlobalContentMapController;
 import org.workfully.models.content.GlobalContentMap;
 
 

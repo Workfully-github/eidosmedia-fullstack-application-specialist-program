@@ -22,8 +22,6 @@ public abstract class AbstractClientSideView {
      */
     public abstract void showHomeFeed();
 
-    
-    // TODO this needs to be finished
     public void writeComment(AbstractContent content){
         Scanner scMessage = new Scanner(System.in);
         try {

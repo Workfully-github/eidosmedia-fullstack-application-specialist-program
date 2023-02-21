@@ -12,7 +12,7 @@ public abstract class AbstractContent {
     private String textBody;
     private ArrayList<UserComment> commentLogMap;
     private ArrayList<AbstractReaction> reactionLogMap;
-    private boolean premium;
+    protected boolean premium;
 
     private PostDetail postDetail;
 
@@ -23,6 +23,7 @@ public abstract class AbstractContent {
         this.commentLogMap = new ArrayList<>();
         this.reactionLogMap = new ArrayList<>();
         this.postDetail = new PostDetail(this);
+        
     }
 
     

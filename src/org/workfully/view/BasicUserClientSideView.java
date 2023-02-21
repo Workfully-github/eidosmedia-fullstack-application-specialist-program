@@ -18,6 +18,10 @@ public class BasicUserClientSideView extends AbstractClientSideView {
         content.getPostDetail().showPostDetailFree();
     }
 
+    public void like(AbstractContent content){
+        userController.like(content);
+    }
+
     /* 
      * @see AbstractClientSideView#showHomeFeed()
      */

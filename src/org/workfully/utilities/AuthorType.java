@@ -1,4 +1,4 @@
-package org.workfully.utilities.factories;
+package org.workfully.utilities;
 
 public enum AuthorType {
 

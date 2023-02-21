@@ -5,7 +5,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import org.workfully.utilities.exceptions.InvalidUserInputException;
 
-public class ValidateUserInput {
+public class ValidateUserInputUtils {
 
     /* PROPERTIES */
 

@@ -1,20 +1,17 @@
 package org.workfully.controllers.users;
 
-import java.util.ArrayList;
-
 import org.workfully.models.content.AbstractContent;
 import org.workfully.models.content.UserComment;
 import org.workfully.models.reactions.LikeReaction;
-import org.workfully.models.users.BasicUser;
+import org.workfully.models.users.PremiumUser;
 import org.workfully.utilities.facadeDP.ValidateUserInputUtils;
 
-public class BasicUserController extends AbstractUserController {
-
-    /* PROPERTIES */
-    private BasicUser basicModel;
+public class PremiumUserController extends AbstractUserController{
+    
+    private PremiumUser basicModel;
 
     /* CONSTRUCTOR */
-    public BasicUserController(BasicUser basicModel) {
+    public PremiumUserController (PremiumUser basicModel) {
         this.basicModel = basicModel;
     }
     
@@ -31,5 +28,4 @@ public class BasicUserController extends AbstractUserController {
         content.getReactionLogMap().add(new LikeReaction(basicModel));
 
     }
-
 }

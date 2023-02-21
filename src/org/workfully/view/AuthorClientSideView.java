@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 import org.workfully.Bootstrap;
 import org.workfully.controllers.users.AuthorController;
-import org.workfully.utilities.facadeDP.InputDialogues;
+import org.workfully.utilities.facadeDP.InputDialoguesUtils;
 import org.workfully.view.section.HomeFeed;
 
 public class AuthorClientSideView extends AbstractClientSideView {
@@ -30,7 +30,7 @@ public class AuthorClientSideView extends AbstractClientSideView {
     }
 
     public void writePostArticle() {
-        InputDialogues.writePostDialogue(((AuthorController)userController), log);
+        InputDialoguesUtils.writePostDialogue(((AuthorController)userController), log);
     }
 
 

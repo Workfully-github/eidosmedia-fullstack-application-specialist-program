@@ -1,4 +1,4 @@
-package org.workfully.controllers.users;
+package org.workfully.controllers.content;
 
 import java.util.ArrayList;
 import java.util.HashMap;

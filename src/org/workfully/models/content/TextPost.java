@@ -5,12 +5,12 @@ import org.workfully.models.users.Author;
 public class TextPost extends AbstractContent {
 
     private String coverImgURL;
-    private boolean premium;
 
      /* CONSTRUCTOR */
-    public TextPost(Author contentAuthor, String textBody, String coverImgURL) {
+    public TextPost(Author contentAuthor, String textBody, String coverImgURL, boolean premium) {
         super(contentAuthor, textBody);
         this.coverImgURL = coverImgURL;
+        this.premium = premium;
     }
 
 
