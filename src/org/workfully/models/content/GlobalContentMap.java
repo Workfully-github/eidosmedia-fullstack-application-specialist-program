@@ -9,7 +9,7 @@ public class GlobalContentMap {
 
     private HashMap<AbstractUser, ArrayList<AbstractContent>> globalContentLogMap;
 
-    //FIXME fix null in hashmap
+   
     public GlobalContentMap() {
         this.globalContentLogMap = new HashMap<>(){};
     }

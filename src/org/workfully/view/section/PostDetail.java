@@ -17,34 +17,33 @@ public class PostDetail extends AbstractSection {
 
     /* METHODS */
     public void showPostDetail() {
-
-        presentIfComment();
+        
         presentIfTextPost();
+        presentIfComment();
         presentIfTweet();
     }
 
     public void showPostDetailFree(){
-        presentIfComment();
+        
         presentIfTweet();
         
         if(content.isPremium() && content.getTextBody().length() > 280){
             presentIfPremiumTextPost();
+            presentIfComment();
             return;
         }
         
         presentIfTextPost();
+        presentIfComment();
     }
 
     private void presentIfComment() {
-        if (content instanceof UserComment) {
-
+       
             System.out.println("### COMMENT VIEW ###");
             for (UserComment comment : content.getCommentLogMap()) {
                 System.out.println("Created by: " + comment.getAuthorName());
                 System.out.println(comment.getTextBody());
-                System.out.println(comment.getReactionLogMap().size() + " likes");
-
-            }
+                System.out.println(comment.getReactionLogMap().size() + " likes \n");
         }
     }
 
@@ -73,6 +72,13 @@ public class PostDetail extends AbstractSection {
             System.out.println(content.getReactionLogMap().size() + " likes");
             System.out.print("\n");
         }
+    }
+
+
+
+    /* GETTERS */
+    public AbstractContent getContent() {
+        return content;
     }
 
 }

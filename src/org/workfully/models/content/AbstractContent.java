@@ -3,7 +3,6 @@ package org.workfully.models.content;
 import java.util.ArrayList;
 import org.workfully.models.reactions.AbstractReaction;
 import org.workfully.models.users.AbstractUser;
-import org.workfully.models.users.Author;
 import org.workfully.view.section.PostDetail;
 
 public abstract class AbstractContent {

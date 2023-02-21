@@ -32,7 +32,7 @@ public class Sandbox {
         BasicUserClientSideView ricardoView = new BasicUserClientSideView(buRicardo);
 
         amineView.writePostArticle();
-        //hugoView.writePostArticle();
+        hugoView.writeTweet();
 
         //amineView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
 
