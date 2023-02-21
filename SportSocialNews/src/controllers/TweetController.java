@@ -1,24 +1,30 @@
 package controllers;
 
+import models.contents.Content;
 import models.contents.TweetContent;
 import models.users.AuthorUser;
 
-public class TweetController {
+import java.util.concurrent.*;
 
+public class TweetController extends ContentController {
 
-    public TweetContent createTweetPost(AuthorUser author,String title,String body) throws NullPointerException{
-        if(body.isEmpty()) return null;
-        if(body.length() > 280) return null;
+    @Override
+    public void create(Content content,SportNewsAsyncListener response){
+        TweetContent tweetContent = (TweetContent) content;
+         if(tweetContent.getBody().isEmpty()){
+            response.onError("Error : empty body");
+            return;
+        }
+        if(tweetContent.getBody().length() > 280){
+            response.onError("Error : a tweet has max 280 characters");
+            return;
+        }
 
-        TweetContent tweet = new TweetContent(
-            author,title,body
+        /*TweetContent tweet = new TweetContent(
+                author,tweetContent.getTitle(),tweetContent.getBody()
         );
-
-        author.addContent(tweet);
-
-        return tweet;
-
-
+        author.addContent(tweet);*/
+        response.onSuccess(tweetContent);
     }
 
 
@@ -37,12 +43,18 @@ public class TweetController {
 
     }
 
-    public void displayTweet(TweetContent tweet){
-        System.out.println(tweet.getTitle());
-        System.out.println(tweet.getBody());
-        System.out.println("By: " + tweet.getAuthorUser().getDisplayName());
+    public void display(TweetContent tweet){
 
 
     }
 
+    @Override
+    public void display(Content content) {
+        super.display(content);
+        TweetContent tweet = (TweetContent) content;
+        System.out.println(tweet.getTitle());
+        System.out.println(tweet.getBody());
+        System.out.println("By: " + tweet.getAuthorUser().getDisplayName());
+
+    }
 }
