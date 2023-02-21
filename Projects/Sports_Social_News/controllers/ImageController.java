@@ -13,6 +13,7 @@ public class ImageController {
         if(description.isEmpty()) return null;
         if(description.length() > 280) return null;
         if(images.isEmpty()) return null;
+        if(images.size() < 2) return null;
 
         ImagePost image = new ImagePost(publicationDate, author, images, description);
 

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import Projects.Sports_Social_News.models.GlobalPosts;
 import Projects.Sports_Social_News.models.posts.Post;
+import Projects.Sports_Social_News.models.posts.TweetPost;
 import Projects.Sports_Social_News.models.users.AuthorUser;
 import Projects.Sports_Social_News.models.users.NormalUser;
 
@@ -20,7 +21,10 @@ public class HomeFeedView {
         // show all posts created
         for (HashMap.Entry<AuthorUser,ArrayList<Post>> set : GlobalPosts.getGlobalPosts().entrySet()) {
             for (int i = 0; i < set.getValue().size(); i++) {
-                System.out.println(set.getValue().get(i));
+
+                // create more types
+                TweetPost tweet = (TweetPost) set.getValue().get(i);
+                System.out.println(tweet.getPost());
                 System.out.println("This was posted by: " + set.getKey().getDisplayName());
             }
         }
