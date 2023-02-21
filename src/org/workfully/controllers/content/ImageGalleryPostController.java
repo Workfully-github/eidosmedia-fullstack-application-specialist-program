@@ -24,11 +24,13 @@ public class ImageGalleryPostController {
      * 2 - Saves it in Author Content Log to be used in Author Section
      * 3 - Saves it to Global Content Map Controller
      */
-    public void createImageGalleryPost(Author authorModel, String message, String imageUrls) throws Exception {
+    public ImageGalleryPost createImageGalleryPost(Author authorModel, String message, String imageUrls)
+            throws Exception {
         imageGalleryPostModel = new ImageGalleryPost(authorModel, ValidateUserInputUtils.validateMessage(message),
                 ValidateUserInputUtils.validateURL(imageUrls));
         authorModel.getContentLog().add(imageGalleryPostModel);
         Bootstrap.getGlobalContentMapController().addAuthorContentToGlobalContentMap(authorModel,
                 imageGalleryPostModel);
+        return imageGalleryPostModel;
     }
 }

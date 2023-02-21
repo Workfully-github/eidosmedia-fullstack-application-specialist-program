@@ -1,12 +1,17 @@
 package org.workfully.models.users.userInterfaces;
 
+import org.workfully.models.content.ImageGalleryPost;
+import org.workfully.models.content.TextPost;
+import org.workfully.models.content.Tweet;
+import org.workfully.models.content.VideoPost;
+
 public interface CreateContent {
 
-    void createTweet(String message) throws Exception;
+    Tweet createTweet(String message) throws Exception;
 
-    void createTextPost(String message, String coverImgURL, boolean premium) throws Exception;
+    TextPost createTextPost(String message, String coverImgURL, boolean premium) throws Exception;
 
-    void createVideoPost(String message, String URL) throws Exception;
+    VideoPost createVideoPost(String message, String URL) throws Exception;
 
-    void createImageGalleryPost(String message, String URL) throws Exception;
+    ImageGalleryPost createImageGalleryPost(String message, String URL) throws Exception;
 }

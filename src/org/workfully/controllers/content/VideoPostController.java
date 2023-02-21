@@ -24,11 +24,12 @@ public class VideoPostController {
      * Saves it in Author Content Log to be used in Author Section
      * Saves it to Global Content Map Controller
      */
-    public void createVideoPost(Author authorModel, String message, String videoURL)
+    public VideoPost createVideoPost(Author authorModel, String message, String videoURL)
             throws Exception {
         videoPostModel = new VideoPost(authorModel, ValidateUserInputUtils.validateMessage(message),
                 ValidateUserInputUtils.validateURL(videoURL));
         authorModel.getContentLog().add(videoPostModel);
         Bootstrap.getGlobalContentMapController().addAuthorContentToGlobalContentMap(authorModel, videoPostModel);
+        return videoPostModel;
     }
 }

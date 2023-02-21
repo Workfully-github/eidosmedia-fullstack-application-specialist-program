@@ -7,6 +7,10 @@ import org.workfully.controllers.content.TextPostController;
 import org.workfully.controllers.content.TweetController;
 import org.workfully.controllers.content.VideoPostController;
 import org.workfully.models.content.AbstractContent;
+import org.workfully.models.content.ImageGalleryPost;
+import org.workfully.models.content.TextPost;
+import org.workfully.models.content.Tweet;
+import org.workfully.models.content.VideoPost;
 import org.workfully.models.users.Author;
 import org.workfully.models.users.userInterfaces.CreateContent;
 import org.workfully.view.section.AuthorSection;
@@ -31,23 +35,23 @@ public class AuthorController extends AbstractUserController implements CreateCo
     /* CONTROLLERS */
 
     @Override
-    public void createTweet(String message) throws Exception {
-        tweetController.createTweet(((Author) this.userModel), message);
+    public Tweet createTweet(String message) throws Exception {
+        return tweetController.createTweet(((Author) this.userModel), message);
     }
 
     @Override
-    public void createTextPost(String message, String coverImgURL, boolean premium) throws Exception {
-        textPostController.createTextPost(((Author) this.userModel), message, coverImgURL, premium);
+    public TextPost createTextPost(String message, String coverImgURL, boolean premium) throws Exception {
+       return textPostController.createTextPost(((Author) this.userModel), message, coverImgURL, premium);
     }
 
     @Override
-    public void createVideoPost(String message, String URL) throws Exception {
-        videoPostController.createVideoPost(((Author) this.userModel), message, URL);
+    public VideoPost createVideoPost(String message, String URL) throws Exception {
+       return videoPostController.createVideoPost(((Author) this.userModel), message, URL);
     }
 
     @Override
-    public void createImageGalleryPost(String message, String URL) throws Exception {
-        imageGalleryPostController.createImageGalleryPost(((Author) this.userModel), message, URL);
+    public ImageGalleryPost createImageGalleryPost(String message, String URL) throws Exception {
+        return imageGalleryPostController.createImageGalleryPost(((Author) this.userModel), message, URL);
     }
 
     /* GETTERS */

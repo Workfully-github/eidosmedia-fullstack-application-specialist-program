@@ -9,6 +9,7 @@ import org.workfully.utilities.exceptions.InvalidUserInputException;
 public class ExistingUserMenu {
 
     private MainMenu mainMenu;
+    private int counter = 2;
 
     public ExistingUserMenu() {
     }
@@ -35,13 +36,13 @@ public class ExistingUserMenu {
 
         } catch (InvalidUserInputException e) {
             printLn("Error: " + e.getMessage());
-            init();
+            start();
         }
     }
 
     private void selectionDialogue() {
 
-        int counter = 2;
+        counter = 2;
         printLn("Welcome To Sport Social News");
         printLn("This view is only for TEST purposes.");
         printMultiLn("[0]" + " -> " + "Exit");
@@ -51,12 +52,13 @@ public class ExistingUserMenu {
             counter++;
         }
         print("Navigate to: ");
+        System.out.println(counter);
     }
 
     private void selectMenu(int option) throws InvalidUserInputException {
 
-        final boolean USER_SELECTED = option > 1 && option <= Bootstrap.userMocks().size();
-        final boolean OUT_OF_BOUNDS = option > Bootstrap.userMocks().size();
+        final boolean USER_SELECTED = option > 1 && option <= counter;
+        final boolean OUT_OF_BOUNDS = option > counter;
         final int EXIT = 0;
         final int RETURN = 1;
 
@@ -71,7 +73,7 @@ public class ExistingUserMenu {
             mainMenu.init();
         }
         if (USER_SELECTED) {
-            new WelcomeView(Bootstrap.userMocks().get(option - 1), this).init();
+            new WelcomeView(Bootstrap.userMocks().get(option - 2), this).init();
             return;
         }
     }

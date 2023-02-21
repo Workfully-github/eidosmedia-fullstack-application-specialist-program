@@ -24,11 +24,12 @@ public class TextPostController {
      * Saves it in Author Content Log to be used in Author Section
      * Saves it to Global Content Map Controller
      */
-    public void createTextPost(Author authorModel, String message, String coverImgURL, boolean premium) throws Exception {
+    public TextPost createTextPost(Author authorModel, String message, String coverImgURL, boolean premium) throws Exception {
         textPostModel = new TextPost(authorModel, ValidateUserInputUtils.validateMessage(message),
                 ValidateUserInputUtils.validateURL(coverImgURL), premium);
         authorModel.getContentLog().add(textPostModel);
         Bootstrap.getGlobalContentMapController().addAuthorContentToGlobalContentMap(authorModel, textPostModel);
+        return textPostModel;
     }
 
 }

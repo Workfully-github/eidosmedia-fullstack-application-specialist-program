@@ -12,7 +12,7 @@ public class MainMenu {
 
         try {
             flushConsole();
-            
+
             Scanner in = new Scanner(System.in);
 
             selectionDialogue();
@@ -40,7 +40,7 @@ public class MainMenu {
     private void selectMenu(int option) throws InvalidUserInputException {
         switch (option) {
             case 1:
-                System.out.println("Option 1");
+                System.out.println("404 not found, maybe we're still working on this");
                 break;
             case 2:
                 print("\033[H\033[2J");

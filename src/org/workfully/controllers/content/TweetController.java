@@ -24,9 +24,10 @@ public class TweetController {
      * Saves it in Author Content Log to be used in Author Section
      * Saves it to Global Content Map Controller
      */
-    public void createTweet(Author authorModel, String message) throws Exception {
+    public Tweet createTweet(Author authorModel, String message) throws Exception {
         tweetModel = new Tweet(authorModel, ValidateUserInputUtils.validateTweet(message));
         authorModel.getContentLog().add(tweetModel);
         Bootstrap.getGlobalContentMapController().addAuthorContentToGlobalContentMap(authorModel, tweetModel);
+        return tweetModel;
     }
 }
