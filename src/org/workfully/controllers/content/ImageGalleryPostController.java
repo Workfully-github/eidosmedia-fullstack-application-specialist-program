@@ -20,9 +20,9 @@ public class ImageGalleryPostController {
     }
 
     /*
-     * Creates ImageGalleryPost
-     * Saves it in Author Content Log to be used in Author Section
-     * Saves it to Global Content Map Controller
+     * 1- Creates ImageGalleryPost
+     * 2 - Saves it in Author Content Log to be used in Author Section
+     * 3 - Saves it to Global Content Map Controller
      */
     public void createImageGalleryPost(Author authorModel, String message, String imageUrls) throws Exception {
         imageGalleryPostModel = new ImageGalleryPost(authorModel, ValidateUserInputUtils.validateMessage(message),

@@ -1,21 +1,21 @@
-package org.workfully.view;
+package org.workfully.view.userSection;
 
 import java.util.logging.Logger;
 
 import org.workfully.Bootstrap;
-import org.workfully.controllers.users.PremiumUserController;
+import org.workfully.controllers.users.BasicUserController;
 import org.workfully.models.content.AbstractContent;
 import org.workfully.view.section.HomeFeed;
 
-public class PremiumUserClientSideView extends AbstractClientSideView {
+public class BasicUserClientSideView extends AbstractClientSideView {
 
-    public PremiumUserClientSideView(PremiumUserController userController) {
+    public BasicUserClientSideView(BasicUserController userController) {
         this.userController = userController;
         this.log = Logger.getLogger(AuthorClientSideView.class.getName());
     }
 
     public void read(AbstractContent content){
-        content.getPostDetail().showPostDetail();
+        content.getPostDetail().showPostDetailFree();
     }
 
     public void like(AbstractContent content){
@@ -32,4 +32,5 @@ public class PremiumUserClientSideView extends AbstractClientSideView {
 
         homeFeed.showFreeHomeFeed();
     }
+
 }

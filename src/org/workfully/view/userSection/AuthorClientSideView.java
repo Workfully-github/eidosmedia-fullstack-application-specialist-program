@@ -1,4 +1,4 @@
-package org.workfully.view;
+package org.workfully.view.userSection;
 
 
 import java.util.Scanner;

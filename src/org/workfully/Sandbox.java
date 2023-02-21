@@ -4,8 +4,8 @@ import org.workfully.controllers.users.AuthorController;
 import org.workfully.controllers.users.BasicUserController;
 import org.workfully.utilities.UserType;
 import org.workfully.utilities.factories.UserFactory;
-import org.workfully.view.BasicUserClientSideView;
-import org.workfully.view.AuthorClientSideView;
+import org.workfully.view.userSection.AuthorClientSideView;
+import org.workfully.view.userSection.BasicUserClientSideView;
 
 public class Sandbox {
 
