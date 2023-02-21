@@ -15,7 +15,7 @@ public class CreateImageView {
         this.author = author;
     }
 
-    public void createTextDialog() {
+    public void createImageDialog() {
 
         ArrayList<String> images = new ArrayList<>();
 
@@ -29,7 +29,7 @@ public class CreateImageView {
         
         for (int i = 0; i < numImages; i++) {
             System.out.println("Insert the link for image " + i + ":");
-            String image = authorInput.nextLine();
+            String image = authorInput.next();
             if(!image.isEmpty()) {images.add(image);}
             //images.add(image);
         }

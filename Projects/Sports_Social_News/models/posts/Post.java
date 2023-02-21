@@ -83,4 +83,12 @@ public class Post {
         // remove the reaction on the user who did it
         user.deleteReaction(reaction);
     }
+
+    public int numberComments() {
+        return comments.size();
+    }
+
+    public int numberReactions() {
+        return reactions.size();
+    }
 }
