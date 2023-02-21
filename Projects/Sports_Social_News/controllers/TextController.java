@@ -8,8 +8,8 @@ public class TextController {
     public TextPost createTextPost(String publicationDate, AuthorUser author, String post, String coverImage, boolean isFree) throws NullPointerException {
 
         if(post.isEmpty()) return null;
-        if(post.length() > 280) return null;
         if(coverImage.isEmpty()) return null;
+        if(post.length() > 280) post.substring(0, 281);
 
         TextPost text = new TextPost(publicationDate, author, post, coverImage, isFree);
 
@@ -22,7 +22,7 @@ public class TextController {
     public TextPost updateTextPost(TextPost text, String post) throws NullPointerException {
 
         if(post.isEmpty()) return null;
-        if(post.length() > 280) return null;
+        if(post.length() > 280) post.substring(0, 281);
 
         int index = text.getTextAuthor().getPosts().indexOf(text);
         text.setPost(post);
@@ -65,8 +65,8 @@ public class TextController {
     }
 
     public void display(TextPost text) {
-        System.out.println(text.getCoverImage());
         System.out.println(text.getPost());
+        System.out.println(text.getCoverImage());
         System.out.println("By: " + text.getAuthor().getDisplayName());
     }
 }

@@ -2,7 +2,6 @@ package Projects.Sports_Social_News.controllers;
 
 import java.util.Scanner;
 
-import Projects.Sports_Social_News.models.posts.Post;
 import Projects.Sports_Social_News.models.users.AuthorUser;
 import Projects.Sports_Social_News.models.users.NormalUser;
 import Projects.Sports_Social_News.views.AuthorSectionView;
@@ -11,7 +10,6 @@ import Projects.Sports_Social_News.views.CreatePostsHelper;
 import Projects.Sports_Social_News.views.CreateTextView;
 import Projects.Sports_Social_News.views.CreateTweetView;
 import Projects.Sports_Social_News.views.CreateVideoView;
-import Projects.Sports_Social_News.views.DetailsSectionView;
 import Projects.Sports_Social_News.views.HomeFeedView;
 
 public class Main {
@@ -46,7 +44,7 @@ public class Main {
 
         Scanner userInput = new Scanner(System.in);
         System.out.println("-----------------------------------------------");
-        System.out.println("Please select where you want to go");
+        System.out.println("Please select where you want to go?");
         System.out.println("[H] --> Home");
         System.out.println("[A] --> Authors");
         System.out.println("[C] --> Create Post");
@@ -90,16 +88,15 @@ public class Main {
         switch (userChoice) {
             case BASIC:
                 NormalUser basicUser = new NormalUser("medhi", "Medhi", "Taremi", false);
-                new HomeFeedView().showAllPosts();
+                new HomeFeedView(basicUser).showAllPosts();
                 break;
             case AUTHOR:
                 AuthorUser authorUser = new AuthorUser("mateus", "Mateus", "Uribe");
-                // option to go to hoem
                 openChoice(authorUser);
                 break;
             case PREMIUM:
                 NormalUser premiumUser = new NormalUser("sergio", "Sergio", "Conceicao", true);
-                new HomeFeedView().showAllPosts();
+                new HomeFeedView(premiumUser).showAllPosts();
                 break;
         }
     }
@@ -122,57 +119,20 @@ public class Main {
         switch (userChoice) {
             case TWEET:
                 new CreateTweetView(author).createTweetDialog();
+                openChoice(author);
                 break;
             case TEXT:
                 new CreateTextView(author).createTextDialog();
+                openChoice(author);
                 break;
             case IMAGE:
                 new CreateImageView(author).createImageDialog();
+                openChoice(author);
                 break;
             case VIDEO:
                 new CreateVideoView(author).createVideoDialog();
+                openChoice(author);
                 break;
         }
     }
 }
-
-/*      AuthorUser hugo = new AuthorUser("hugo", "Hugo", "Esteves");
-        AuthorUser ze = new AuthorUser("ze", "Jose", "Veiga");
-
-        HomeFeedView homeFeedView = new HomeFeedView();
-        AuthorSectionView authorSectionView = new AuthorSectionView();
-        //DetailsSectionView detailsSectionView = new DetailsSectionView();
-
-        // Initialize Tweet View
-        CreateTweetView createTweetView1 = new CreateTweetView(ze);
-        CreateTweetView createTweetView2 = new CreateTweetView(hugo);
-        // Initialize Video View
-        CreateVideoView createVideoView1 = new CreateVideoView(ze);
-        CreateVideoView createVideoView2 = new CreateVideoView(hugo);
-        // Initialize Text View
-        CreateTextView createTextView1 = new CreateTextView(ze);
-        CreateTextView createTextView2 = new CreateTextView(hugo);
-        // Initialize Image View
-        CreateImageView createImageView1 = new CreateImageView(ze);
-        CreateImageView createImageView2 = new CreateImageView(hugo);
- */
-       /*  try {
-            //createTweetView1.createTweetDialog();
-            //createTweetView1.createTweetDialog();
-            //createTweetView2.createTweetDialog();
-            
-            //createVideoView1.createVideoDialog();
-            //createVideoView2.createVideoDialog();
-
-            //createTextView1.createTextDialog();
-            //createTextView2.createTextDialog();
-            //createImageView1.createImageDialog();
-            //createImageView2.createImageDialog();
-
-            //homeFeedView.showAllPosts();
-            //authorSectionView.showAllAuthorPosts(ze);
-
-            
-        } catch (NullPointerException e) {
-            System.out.println("Please enter a valid post");
-        } */
