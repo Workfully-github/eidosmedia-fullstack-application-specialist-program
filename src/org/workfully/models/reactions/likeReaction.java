@@ -1,5 +1,11 @@
 package org.workfully.models.reactions;
 
-public class likeReaction {
-    
+import org.workfully.models.users.AbstractUser;
+
+public class LikeReaction extends AbstractReaction {
+
+    public LikeReaction(AbstractUser user) {
+        super(user);
+    }
+
 }

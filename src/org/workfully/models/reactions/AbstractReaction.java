@@ -1,14 +1,19 @@
 package org.workfully.models.reactions;
 
-import org.workfully.models.users.Author;
+import org.workfully.models.users.AbstractUser;
 
 public abstract class AbstractReaction {
 
     /* PROPERTIES */
-    private Author contentAuthor;
+    private AbstractUser user;
+    
+    /* CONSTRUCTOR */
+    public AbstractReaction(AbstractUser user) {
+        this.user = user;
+    }
 
     /* GETTERS */
-    public Author getContentAuthor() {
-        return contentAuthor;
+    public AbstractUser getUser() {
+        return user;
     }
 }

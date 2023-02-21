@@ -2,7 +2,6 @@ package org.workfully.utilities.facadeDP;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
-
 import org.workfully.controllers.users.AuthorController;
 import org.workfully.models.content.TextPost;
 import static org.workfully.utilities.factories.StringFactory.*;

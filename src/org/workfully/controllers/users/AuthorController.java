@@ -9,6 +9,7 @@ import org.workfully.models.content.TextPost;
 import org.workfully.models.content.Tweet;
 import org.workfully.models.content.UserComment;
 import org.workfully.models.content.VideoPost;
+import org.workfully.models.reactions.LikeReaction;
 import org.workfully.models.users.Author;
 import org.workfully.models.users.userInterfaces.CreateContent;
 import org.workfully.utilities.facadeDP.ValidateUserInput;
@@ -41,7 +42,7 @@ public class AuthorController extends AbstractUserController implements CreateCo
 
     @Override
     public void like(AbstractContent content) {
-        // TODO Auto-generated method stub
+        content.getReactionLogMap().add(new LikeReaction(authorModel));
 
     }
 

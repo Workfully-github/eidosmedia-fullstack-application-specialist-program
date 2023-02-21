@@ -16,13 +16,13 @@ public class Sandbox {
 
         Bootstrap bootstrap = new Bootstrap();
         /* TEST */
-        
+
         /* Mock model passed to controller for testing */
         AuthorController authorAmine = new AuthorController(UserFactory.createAbstractUser(UserType.AUTHOR, "Amine"));
         AuthorController authorHugo = new AuthorController(UserFactory.createAbstractUser(UserType.AUTHOR, "Hugo"));
 
-        BasicUserController buRicardo = new BasicUserController(UserFactory.createAbstractUser(UserType.BASICUSER, "Ricardo")); 
-
+        BasicUserController buRicardo = new BasicUserController(
+                UserFactory.createAbstractUser(UserType.BASICUSER, "Ricardo"));
 
         /* Pass controller @param authorAmine to view */
         AuthorClientSideView amineView = new AuthorClientSideView(authorAmine);
@@ -31,18 +31,17 @@ public class Sandbox {
 
         BasicUserClientSideView ricardoView = new BasicUserClientSideView(buRicardo);
 
-
         amineView.writePostArticle();
-        hugoView.writePostArticle();
+        //hugoView.writePostArticle();
 
         //amineView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
 
-        //ricardoView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
+        
+        ricardoView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
+        
+        // amineView.showHomeFeed();
 
-
-        //amineView.showHomeFeed();
-
-        //hugoView.showAuthorSection();
+        // hugoView.showAuthorSection();
 
         ricardoView.showHomeFeed();
 

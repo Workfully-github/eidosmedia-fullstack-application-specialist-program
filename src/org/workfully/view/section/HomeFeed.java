@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.workfully.Bootstrap;
 import org.workfully.models.content.AbstractContent;
+import org.workfully.models.content.UserComment;
 import org.workfully.models.users.AbstractUser;
 import org.workfully.models.users.Author;
 
@@ -34,19 +36,25 @@ public class HomeFeed extends AbstractSection {
         }
     }
 
-    //FIXME fix the if condition is printing homefeed twice
+   
     public void showFreeHomeFeed() {
 
+        
         System.out.println(homeFeedHeader + "\n");
 
 
         for (Map.Entry<AbstractUser, ArrayList<AbstractContent>> author : globalMap.entrySet()) {
-
+            //System.out.println(globalMap.get(author.getKey()).get(0).getCommentLogMap());
             for (AbstractContent content : author.getValue()) {
                 
                 System.out.println("Created by: " + content.getAuthorName());
                 
                 content.getPostDetail().showPostDetailFree();
+
+                //TODO present COMMENTS
+                    
+        
+                
                 
             }
         }

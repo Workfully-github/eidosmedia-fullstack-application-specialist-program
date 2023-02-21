@@ -1,7 +1,10 @@
 package org.workfully.controllers.users;
 
+import java.util.ArrayList;
+
 import org.workfully.models.content.AbstractContent;
 import org.workfully.models.content.UserComment;
+import org.workfully.models.reactions.LikeReaction;
 import org.workfully.models.users.BasicUser;
 import org.workfully.utilities.facadeDP.ValidateUserInput;
 
@@ -25,7 +28,7 @@ public class BasicUserController extends AbstractUserController {
 
     @Override
     public void like(AbstractContent content) {
-        // TODO Auto-generated method stub
+        content.getReactionLogMap().add(new LikeReaction(basicModel));
 
     }
 
