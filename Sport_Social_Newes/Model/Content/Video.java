@@ -3,17 +3,18 @@ package Model.Content;
 import Model.Users.Author;
 
 public class Video extends Content {
-    private String video;
-    private int textContentLimit;
-    public Video (Author author, Boolean isContentPremium, String textContent, String video){
+    private String videoSrc;
+    public Video (Author author, Boolean isContentPremium, String textContent, String videoSrc){
         super(author, textContent, isContentPremium);
-        this.textContentLimit = 280;
-        this.video = video;
+        this.videoSrc = videoSrc;
     }
 
     public void setVideo(String video) {
-        this.video = video;
+        this.videoSrc = videoSrc;
     }
 
+    public String getVideoSrc() {
+        return videoSrc;
+    }
     
 }

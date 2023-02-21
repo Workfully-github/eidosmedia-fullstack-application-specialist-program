@@ -1,34 +1,34 @@
 package Controller.ContentControllers;
-
 import Controller.InteractionControllers.HandleComments;
+import Controller.Utils.Printer;
 import Model.Content.Content;
 import Model.Content.Tweet;
-import Model.Users.Author;
 import Model.Users.User;
 import View.InteractinsView.CreateInteractionsView;
 
-public class CreateTweetsController  {
-    public Tweet createTweet(Author author, String tweetBody, Boolean isContentPremium) throws NullPointerException {
-        
-        if(tweetBody.isEmpty() || tweetBody.length() > 280) return null;
-        Tweet newTweet = new Tweet(author, tweetBody, isContentPremium);
-        author.addContent(newTweet);
-        return newTweet;
+public class CreateTweetsController extends CreateContentController  {
+    @Override
+    public Tweet create(Content content) throws NullPointerException {
+        Tweet tweetContent = (Tweet) content;
+        if(tweetContent.getBody().isEmpty() || tweetContent.getBody().length() > 280) return null;
+        pushContent(tweetContent);
+        return tweetContent;
     }
     
-    public void displayTweet(Content tweet, User user){
+    @Override
+    public void display(Content tweet, User user, Boolean isFeedDisplay, int index){
+         
         CreateInteractionsView createInteractionsView = new CreateInteractionsView();
-        HandleComments handleComments = new HandleComments();
-
-        System.out.println("\n" + tweet.getBody());
-        System.out.println("By: " + tweet.getAuthor().getName());
-        System.out.println("------------------------------------------");
-        System.out.println("Likes: " + tweet.getLikes().size() + "  |   Comments: " + tweet.getComments().size() + "    |   Saves: " + tweet.getSaves().size());
-        System.out.println("------------------------------------------");
-        handleComments.displayComments(tweet);
+        Printer.printMultiLines("\n" + index, tweet.getBody(), "By: " + tweet.getAuthor().getName());
+        Printer.devider();
+        Printer.printMultiLines("Likes: " + tweet.getLikes() + "  |   Comments: " + tweet.getComments().size() + "    |   Saves: " + tweet.getSavesCount());
+        Printer.devider();
+        HandleComments.displayComments(tweet);
+        if(isFeedDisplay) return;
         createInteractionsView.displayInteractionOptions(tweet, user);
+    
     }
-
+    
     
 
     public Tweet updateTweet(Tweet tweet, String body){

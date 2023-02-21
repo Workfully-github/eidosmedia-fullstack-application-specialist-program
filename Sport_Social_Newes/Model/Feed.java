@@ -5,16 +5,18 @@ import java.util.ArrayList;
 import Model.Content.Content;
 
 public class Feed {
-    ArrayList<Content> feed;
-    public Feed () {
-        feed = new ArrayList<>();
-    }
+    private static ArrayList<Content> feed = new ArrayList<Content>();
+    
 
-    public void setFeed(Content post) {
+    public static void addContenttoFeed(Content post) {
         feed.add(post);
     }
 
-    public ArrayList<Content> getFeed() {
+    public static void setFeed(ArrayList<Content> newFeed) {
+        feed = newFeed;
+    }
+    
+    public static ArrayList<Content> getFeed() {
         //DISPLAY ALL FEED ONE BY ONE
         return feed;
     }

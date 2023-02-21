@@ -6,17 +6,18 @@ import Controller.ContentControllers.CreateTweetsController;
 import Controller.InteractionControllers.HandleComments;
 import Controller.InteractionControllers.HandleLikes;
 import Controller.InteractionControllers.HandleSaves;
-import Controller.InteractionControllers.InteractionController;
+import Controller.Utils.HandleAuth;
 import Model.Content.Content;
-import Model.Interactions.Like;
-import Model.Interactions.Save;
 import Model.Users.User;
-import View.CreateTweetView;
 import View.HandleCommentView;
 
 public class CreateInteractionsView {
     public void displayInteractionOptions(Content content, User user) {
-
+        HandleAuth handleAuth = new HandleAuth();
+        if(!handleAuth.checkUserContentRelationship(user, content)) {
+            System.out.println("You can not Interact with a premium content as a basic user");
+            return;
+        }
         HandleCommentView handleCommentView = new HandleCommentView();
         CreateTweetsController createTweetsController = new CreateTweetsController();
         
@@ -33,44 +34,19 @@ public class CreateInteractionsView {
         int option = in.nextInt();
         
         if(option < 0 || option > 2) {System.out.print("\nInvalid option\n"); displayInteractionOptions(content, user); return;};
-
         if (option == 0) {
-            handleLikes.like(new Like(user, content));
+            handleLikes.like(content, user);
         }
 
         if (option == 1) {
-            handleSaves.save(new Save(user, content));
+            handleSaves.save(content, user);
         }
         
         if(option == 2) {
             handleCommentView.creatCommentView(content, user);
         }
         
-        createTweetsController.displayTweet(content, user);
+        createTweetsController.display(content, user, false, 0);
       
-
-
-
-        // switch (option) {
-        //     case 0:
-        //         handleLikes.like(new Like(user, content));
-        //         break;
-            
-        //     case 1:
-        //     handleSaves.save(new Save(user, content));
-        //     break;
-
-        //     case 2:
-        //     handleCommentView.creatCommentView(content, user);
-        //     displayInteractionOptions(content, user);
-        //     break;
-
-        //     case 3:
-        //     handleComments.displayComments(content);
-        //     break;
-            
-        //     default:
-        //         break;
-        // }
     }
 }

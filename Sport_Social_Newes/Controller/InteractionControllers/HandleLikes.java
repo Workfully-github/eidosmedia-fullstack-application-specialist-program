@@ -2,18 +2,22 @@ package Controller.InteractionControllers;
 
 
 import Model.Content.Content;
-import Model.Interactions.Like;
+import Model.Users.User;
 
 public class HandleLikes {
-    public void like(Like like){
-        //Check user/content status
-        if(like.getUser().getIsPremuim() == false && like.getContent().getIsContentPremium() == true) System.out.println("you can't Interact with this post");
+    public void like(Content content, User user){
 
-        //check if the user already liked the post
-        int likeIndex = like.getContent().getLikeIndex(like); 
-        if(likeIndex > -1) {like.getContent().removeLike(like);  System.out.println("You Disliked " + like.getContent().getAuthor().getUserName() + "'s post"); return;}
-
-        like.getContent().addLike(like);
-         System.out.println("You Liked " + like.getContent().getAuthor().getUserName() + "'s post");
+        if(user.getLikeIndex(content) > -1){
+            content.removeLike();
+            user.removeLikedContent(content);
+            System.out.println("You Disliked " + content.getAuthor().getUserName() + "'s post");
+            return;
+        }
+            content.addLike();
+            user.addLikedContent(content);
+            System.out.println("You Liked " + content.getAuthor().getUserName() + "'s post");
     }
+
+
+    
 }

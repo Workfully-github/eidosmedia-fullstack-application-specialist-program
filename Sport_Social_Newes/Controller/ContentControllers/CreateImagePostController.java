@@ -1,15 +1,31 @@
 package Controller.ContentControllers;
-
-import java.util.ArrayList;
-
+import Controller.InteractionControllers.HandleComments;
+import Controller.Utils.Printer;
+import Model.Content.Content;
 import Model.Content.ImageGallery;
-import Model.Users.Author;
+import Model.Users.User;
+import View.InteractinsView.CreateInteractionsView;
 
-public class CreateImagePostController {
-    public static ImageGallery createImageGalleryPost(Author author, String description, ArrayList<String> images, Boolean isPremiumContent) throws NullPointerException {
-        if(description.isEmpty() || description.length() > 280 || images.size() < 2) return null;
-        ImageGallery newImageGallery = new ImageGallery(author, isPremiumContent, description, images);
-        author.addContent(newImageGallery);
-        return newImageGallery;
+public class CreateImagePostController extends CreateContentController{
+    @Override
+    public ImageGallery create(Content content) throws NullPointerException {
+        ImageGallery imageContent = (ImageGallery) content;
+
+        if(imageContent.getBody().isEmpty() || imageContent.getBody().length() > 280) return null;
+        pushContent(imageContent);
+        return imageContent;
+    }
+
+    @Override
+    public void display(Content content, User user, Boolean isFeedDisplay, int index){
+        ImageGallery imageContent = (ImageGallery) content;
+        CreateInteractionsView createInteractionsView = new CreateInteractionsView();
+        Printer.printMultiLines("\n" + index, "Gallery Description: " + imageContent.getBody(), "Images Sourve: " + imageContent.getImagesLinks(), "By: " + imageContent.getAuthor().getName());
+        Printer.devider();
+        Printer.printMultiLines("Likes: " + imageContent.getLikes() + "  |   Comments: " + imageContent.getComments().size() + "    |   Saves: " + imageContent.getSavesCount());
+        Printer.devider();
+        HandleComments.displayComments(imageContent);
+        if(isFeedDisplay) return;
+        createInteractionsView.displayInteractionOptions(imageContent, user);
     }
 }

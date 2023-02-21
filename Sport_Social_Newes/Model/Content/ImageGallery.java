@@ -11,4 +11,12 @@ public class ImageGallery extends Content {
         super(author, body, isContentPremium);
         this.images = images;
     }
+
+    public String getImagesLinks() {
+        String imagesLinks = "";
+        for(String imageLink : images){
+            imagesLinks = imagesLinks.concat("\n" +imageLink);
+        }
+        return imagesLinks;
+    }
 }

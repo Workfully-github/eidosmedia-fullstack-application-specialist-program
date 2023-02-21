@@ -20,4 +20,8 @@ public class Author extends User {
 
     }
 
+    public ArrayList<Content> getMyContent() {
+        return myContent;
+    }
+
 }

@@ -1,18 +1,22 @@
 package Controller.InteractionControllers;
 
-import Model.Interactions.Save;
+import Model.Content.Content;
+import Model.Users.User;
 
 public class HandleSaves {
    
-    public void save(Save save){
-        //Check user/content status
-        if(save.getUser().getIsPremuim() == false && save.getContent().getIsContentPremium() == true) System.out.println("you can't Interact on this post");
+    public void save(Content content, User user){
         
-        //check if the user already saved the post
-        int SaveIndex = save.getUser().getSaveIndex(save); 
-        if(SaveIndex > -1) {save.getUser().removeSave(save); System.out.println("You Unsaved " + save.getContent().getAuthor().getUserName() + "'s post");}
+        int SaveIndex = user.getSaveIndex(content); 
+        if(SaveIndex > -1) {
+            content.removeSave();
+            user.removeSave(content);
+            System.out.println("You Unsaved " + content.getAuthor().getUserName() + "'s post");
+            return;
+        }
 
-        save.getUser().addSave(save);
-        System.out.println("You saved " + save.getContent().getAuthor().getUserName() + "'s post");
+        content.addSave();
+        user.addSavedContent(content);
+        System.out.println("You saved " + content.getAuthor().getUserName() + "'s post");
     }
 }

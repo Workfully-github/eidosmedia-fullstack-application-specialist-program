@@ -13,6 +13,8 @@ public class Text extends Content {
         this.coverImageSrc = coverImageSrc;
     }
 
-    
+    public String getCoverImageSrc() {
+        return coverImageSrc;
+    }
 
 }

@@ -1,8 +1,6 @@
 package Controller.InteractionControllers;
 
 import Model.Content.Content;
-import Model.Interactions.Like;
-import Model.Interactions.Save;
 import Model.Users.User;
 
 public class InteractionController {
