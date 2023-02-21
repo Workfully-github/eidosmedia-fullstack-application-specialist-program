@@ -1,5 +1,6 @@
 package Projects.Sports_Social_News.controllers;
 
+import Projects.Sports_Social_News.models.GlobalPosts;
 import Projects.Sports_Social_News.models.posts.TextPost;
 import Projects.Sports_Social_News.models.users.AuthorUser;
 
@@ -13,6 +14,7 @@ public class TextController {
         TextPost text = new TextPost(publicationDate, author, post, coverImage, isFree);
 
         author.addPost(text);
+        GlobalPosts.addPostToGlobalPosts(author, text);
 
         return text;
     }
@@ -26,6 +28,7 @@ public class TextController {
         text.setPost(post);
         
         text.getTextAuthor().updatePost(text, index);
+        GlobalPosts.updatePostToGlobalPosts(text.getTextAuthor(), text);
 
         return text;
     }
@@ -38,6 +41,7 @@ public class TextController {
         text.setCoverImage(coverImage);
         
         text.getTextAuthor().updatePost(text, index);
+        GlobalPosts.updatePostToGlobalPosts(text.getTextAuthor(), text);
 
         return text;
     }
@@ -48,6 +52,7 @@ public class TextController {
         text.setIsFree(isFree);
         
         text.getTextAuthor().updatePost(text, index);
+        GlobalPosts.updatePostToGlobalPosts(text.getTextAuthor(), text);
 
         return text;
     }
@@ -56,6 +61,7 @@ public class TextController {
         int index = text.getTextAuthor().getPosts().indexOf(text);
         
         text.getTextAuthor().removePost(index);
+        GlobalPosts.deletePostToGlobalPosts(text.getTextAuthor(), text);
     }
 
     public void display(TextPost text) {

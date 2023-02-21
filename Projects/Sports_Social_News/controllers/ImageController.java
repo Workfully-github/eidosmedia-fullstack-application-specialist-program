@@ -2,6 +2,7 @@ package Projects.Sports_Social_News.controllers;
 
 import java.util.ArrayList;
 
+import Projects.Sports_Social_News.models.GlobalPosts;
 import Projects.Sports_Social_News.models.posts.ImagePost;
 import Projects.Sports_Social_News.models.users.AuthorUser;
 
@@ -16,6 +17,7 @@ public class ImageController {
         ImagePost image = new ImagePost(publicationDate, author, images, description);
 
         author.addPost(image);
+        GlobalPosts.addPostToGlobalPosts(author, image);
 
         return image;
     }
@@ -29,6 +31,7 @@ public class ImageController {
         image.setDescription(description);
         
         image.getImageAuthor().updatePost(image, index);
+        GlobalPosts.updatePostToGlobalPosts(image.getImageAuthor(), image);
 
         return image;
     }
@@ -37,6 +40,7 @@ public class ImageController {
         int index = image.getImageAuthor().getPosts().indexOf(image);
         
         image.getImageAuthor().removePost(index);
+        GlobalPosts.deletePostToGlobalPosts(image.getImageAuthor(), image);
     }
 
     public void display(ImagePost image) {

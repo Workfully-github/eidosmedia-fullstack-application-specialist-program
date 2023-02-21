@@ -10,11 +10,10 @@ public class TweetController {
 
         if(post.isEmpty()) return null;
         if(post.length() > 280) return null;
-
+        
         TweetPost tweet = new TweetPost(publicationDate, author, post);
-
+        
         author.addPost(tweet);
-        //GlobalPosts.getGlobalPosts().addPostToGlobalPosts(author, tweet);
         GlobalPosts.addPostToGlobalPosts(author, tweet);
 
         return tweet;

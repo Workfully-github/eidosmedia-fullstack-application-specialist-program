@@ -8,7 +8,7 @@ import Projects.Sports_Social_News.models.users.AuthorUser;
 
 public class GlobalPosts {
     
-    public static HashMap<AuthorUser,ArrayList<Post>> globalPosts;
+    public static HashMap<AuthorUser,ArrayList<Post>> globalPosts = new HashMap<AuthorUser,ArrayList<Post>>();
 
     public static HashMap<AuthorUser, ArrayList<Post>> getGlobalPosts() {
         return globalPosts;

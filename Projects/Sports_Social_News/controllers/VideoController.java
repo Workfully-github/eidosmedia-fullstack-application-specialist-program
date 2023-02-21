@@ -1,5 +1,6 @@
 package Projects.Sports_Social_News.controllers;
 
+import Projects.Sports_Social_News.models.GlobalPosts;
 import Projects.Sports_Social_News.models.posts.VideoPost;
 import Projects.Sports_Social_News.models.users.AuthorUser;
 
@@ -14,6 +15,7 @@ public class VideoController {
         VideoPost video = new VideoPost(publicationDate, author, description, videoUrl);
 
         author.addPost(video);
+        GlobalPosts.addPostToGlobalPosts(author, video);
 
         return video;
     }
@@ -27,6 +29,7 @@ public class VideoController {
         video.setDescription(description);
         
         video.getVideoAuthor().updatePost(video, index);
+        GlobalPosts.updatePostToGlobalPosts(video.getVideoAuthor(), video);
 
         return video;
     }
@@ -39,6 +42,7 @@ public class VideoController {
         video.setVideo(videoUrl);
         
         video.getVideoAuthor().updatePost(video, index);
+        GlobalPosts.updatePostToGlobalPosts(video.getVideoAuthor(), video);
 
         return video;
     }
@@ -47,6 +51,7 @@ public class VideoController {
         int index = video.getVideoAuthor().getPosts().indexOf(video);
         
         video.getVideoAuthor().removePost(index);
+        GlobalPosts.deletePostToGlobalPosts(video.getVideoAuthor(), video);
     }
 
     public void display(VideoPost video) {
