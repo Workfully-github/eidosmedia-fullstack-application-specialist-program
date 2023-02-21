@@ -17,7 +17,6 @@ public class Feed {
     }
     
     public static ArrayList<Content> getFeed() {
-        //DISPLAY ALL FEED ONE BY ONE
         return feed;
     }
 }
