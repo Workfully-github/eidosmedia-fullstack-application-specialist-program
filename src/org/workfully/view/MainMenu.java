@@ -11,7 +11,8 @@ public class MainMenu {
     public void init() {
 
         try {
-
+            flushConsole();
+            
             Scanner in = new Scanner(System.in);
 
             selectionDialogue();
@@ -42,12 +43,13 @@ public class MainMenu {
                 System.out.println("Option 1");
                 break;
             case 2:
-                System.out.println("Option 2");
+                print("\033[H\033[2J");
+                new ExistingUserMenu(this).init();
                 break;
             case 3:
                 System.exit(0);
             case default:
-                System.out.print("\033[H\033[2J");
+                print("\033[H\033[2J");
                 throw new InvalidUserInputException();
         }
     }

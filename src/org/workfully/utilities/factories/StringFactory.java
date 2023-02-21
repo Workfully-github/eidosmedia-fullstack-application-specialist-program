@@ -28,4 +28,8 @@ public class StringFactory {
         }
     }
 
+    public static void flushConsole(){
+        printLn("\033[H\033[2J");
+    }
+
 }

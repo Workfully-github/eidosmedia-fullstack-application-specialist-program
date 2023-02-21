@@ -27,4 +27,8 @@ public abstract class AbstractUserController implements CommentContent, LikeCont
     public void like(AbstractContent content) {
         content.getReactionLogMap().add(new LikeReaction(this.userModel));
     }
+
+    public String getName(){
+        return userModel.getUserName();
+    }
 }

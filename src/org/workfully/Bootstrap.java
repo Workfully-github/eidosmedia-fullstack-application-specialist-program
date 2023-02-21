@@ -26,7 +26,7 @@ public class Bootstrap {
         return new GlobalContentMapController(new GlobalContentMap());
     }
 
-    private ArrayList<AbstractUserController> userMocks() {
+    public static ArrayList<AbstractUserController> userMocks() {
         return new ArrayList<AbstractUserController>() {
             {
                 add(new AuthorController(UserFactory.createAbstractUser(UserType.AUTHOR, "Amine")));
