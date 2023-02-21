@@ -35,7 +35,7 @@ public class Sandbox {
         ricardoView.showHomeFeed();
 
         amineView.writePostArticle();
-        hugoView.writeTweet();
+        hugoView.writeTweetDialogue();
 
         //amineView.writeComment(Bootstrap.getGlobalContentMapController().getGlobalMap().get(authorAmine.getAuthorModel()).get(0));
 

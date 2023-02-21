@@ -3,7 +3,6 @@ package org.workfully.controllers.content;
 import org.workfully.models.content.AbstractContent;
 import org.workfully.models.content.UserComment;
 import org.workfully.models.users.AbstractUser;
-import org.workfully.models.users.BasicUser;
 import org.workfully.utilities.facadeDP.ValidateUserInputUtils;
 
 public class CommentController {

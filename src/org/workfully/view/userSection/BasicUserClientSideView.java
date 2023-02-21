@@ -14,14 +14,11 @@ public class BasicUserClientSideView extends AbstractClientSideView {
         this.log = Logger.getLogger(AuthorClientSideView.class.getName());
     }
 
+    @Override
     public void read(AbstractContent content){
         content.getPostDetail().showPostDetailFree();
     }
-
-    public void like(AbstractContent content){
-        userController.like(content);
-    }
-
+    
     /* 
      * @see AbstractClientSideView#showHomeFeed()
      */

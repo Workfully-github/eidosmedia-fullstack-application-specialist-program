@@ -11,7 +11,6 @@ public class ImageGalleryPost extends AbstractContent {
     public ImageGalleryPost(Author contentAuthor, String textBody, String URL) {
         super(contentAuthor, textBody);
         this.URL = URL;
-        //TODO Auto-generated constructor stub
     }
 
 }

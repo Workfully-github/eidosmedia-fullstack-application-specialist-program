@@ -14,12 +14,9 @@ public class PremiumUserClientSideView extends AbstractClientSideView {
         this.log = Logger.getLogger(AuthorClientSideView.class.getName());
     }
 
+    @Override
     public void read(AbstractContent content){
         content.getPostDetail().showPostDetail();
-    }
-
-    public void like(AbstractContent content){
-        userController.like(content);
     }
 
     /* 

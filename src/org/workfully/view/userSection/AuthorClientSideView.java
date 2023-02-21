@@ -1,11 +1,9 @@
 package org.workfully.view.userSection;
 
-
-import java.util.Scanner;
 import java.util.logging.Logger;
-
 import org.workfully.Bootstrap;
 import org.workfully.controllers.users.AuthorController;
+import org.workfully.models.content.AbstractContent;
 import org.workfully.utilities.facadeDP.InputDialoguesUtils;
 import org.workfully.view.section.HomeFeed;
 
@@ -18,21 +16,13 @@ public class AuthorClientSideView extends AbstractClientSideView {
     }
 
     /* METHODS */
-    public void writeTweet() {
-        Scanner scCreateTweet = new Scanner(System.in);
-        try {
-            System.out.print("Write your Tweet: ");
-            String scanInput = scCreateTweet.nextLine();
-            ((AuthorController) userController).createTweet(scanInput);
-        } catch (Exception e) {
-            log.warning(e.getMessage());
-        }
+    public void writeTweetDialogue() {
+        InputDialoguesUtils.writeTweet(((AuthorController) userController), log);
     }
 
     public void writePostArticle() {
-        InputDialoguesUtils.writePostDialogue(((AuthorController)userController), log);
+        InputDialoguesUtils.writePostDialogue(((AuthorController) userController), log);
     }
-
 
     public void showAuthorSection() {
         ((AuthorController) userController).getAuthorSectionView().displayView();
@@ -42,8 +32,11 @@ public class AuthorClientSideView extends AbstractClientSideView {
     public void showHomeFeed() {
         HomeFeed homeFeed = new HomeFeed();
         homeFeed.setGlobalMap(Bootstrap.getGlobalContentMapController().getGlobalMap());
-
         homeFeed.showHomeFeed();
-        
+    }
+
+    @Override
+    public void read(AbstractContent content) {
+        content.getPostDetail().showPostDetail();
     }
 }

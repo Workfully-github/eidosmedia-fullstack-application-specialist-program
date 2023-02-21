@@ -46,8 +46,7 @@ public class PostDetail extends AbstractSection {
                 System.out.println("Created by: " + comment.getAuthorName());
                 System.out.println(comment.getTextBody());
                 System.out.println(comment.getReactionLogMap().size() + " likes \n");
-            }
-        
+            } 
     }
 
     private void presentIfTweet() {

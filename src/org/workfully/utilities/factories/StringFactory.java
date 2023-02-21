@@ -10,6 +10,13 @@ public class StringFactory {
     public static final int PREMIUM_SELECTION = 1;
     public static final int FREE_SELECTION = 2;
     public static final String[] dialogueSelectionFreeOrPremium = {"Is it Free or Premium?", "1 - Free", "2 - Premium"};
+    public static final int SECTION_HOME = 0;
+    public static final int SECTION_AUTHORS = 1;
+    public static final int SECTION_CREATE = 2;
+
+    public static void print(String message){
+        System.out.print(message);
+    }
 
     public static void printLn(String message){
         System.out.println(message);

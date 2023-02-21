@@ -1,37 +1,34 @@
 package org.workfully.view.userSection;
 
-import java.util.Scanner;
 import java.util.logging.Logger;
 
 import org.workfully.controllers.users.AbstractUserController;
 import org.workfully.models.content.AbstractContent;
+import org.workfully.utilities.facadeDP.InputDialoguesUtils;
 
 public abstract class AbstractClientSideView {
 
-    /* PROPERTIES */
     protected AbstractUserController userController;
     protected Logger log;
 
-
-    /* METHODS */
-    
-    /* 
-     * When HomeFeed#Constructor() is called, 
-     * Sets HomeFeed's global map with the existing global map
+    /*
+     * when HomeFeed#Constructor() is called,
+     * sets HomeFeed's global map with the existing global map
      * and then shows the feed fully updated
+     * is abstract because of free/premium privillege and needs to be defined in sub-class
      */
     public abstract void showHomeFeed();
 
-    public void writeComment(AbstractContent content){
-        Scanner scMessage = new Scanner(System.in);
-        try {
-            System.out.print("Write Comment: ");
-            String comment = scMessage.nextLine();
-
-            userController.comment(comment, content);
-        } catch (Exception e) {
-            log.warning(e.getMessage());
-        }
-    }
+    /*
+     * #BasicUser read differently from #PremiumUser
+     */
+    public abstract void read(AbstractContent content);
     
+    public void writeComment(AbstractContent content) {
+        InputDialoguesUtils.writeComment(this.userController, content, log);
+    }
+
+    public void like(AbstractContent content){
+        userController.like(content);
+    }
 }
