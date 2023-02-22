@@ -10,6 +10,11 @@ public class Author extends User {
         this.name = name;
         this.id = id;
     }
+    public Author(String name,  String id, boolean isPremium) {
+        this.name = name;
+        this.id = id;
+        this.isPremium = isPremium;
+    }
 
     public void postNew(Content news){
         news.setPosted(true);

@@ -10,6 +10,17 @@ public class TweetPost extends Content {
     public TweetPost(String postName, Author author) {
         super(postName, author);
     }
+
+    public TweetPost(String postName, Author author, boolean isPremium) {
+        super(postName, author);
+        this.isPremium = isPremium;
+    }
+
+    public TweetPost(String postName, String body, Author author, boolean isPremium) {
+        super(postName, author);
+        this.isPremium = isPremium;
+        updateTweetPostText(body);
+    }
     
     public void updateTweetPostText(String text){
         if(text == null || text.length() > MAX_CHARACTERS){
@@ -19,6 +30,17 @@ public class TweetPost extends Content {
     }
     @Override
     public String toString() {
+        return "Title: " + postName + "\n" +
+        "Content: " + text + ".\n" +
+        this.toStringContent();
+    }
+
+    public String toStringFor280() {
+        if(text.length() > 280){
+            return "Title: " + postName + "\n" +
+            "Content: " + text.substring(0,280) + ".\n" +
+            this.toStringContent();
+        }
         return "Title: " + postName + "\n" +
         "Content: " + text + ".\n" +
         this.toStringContent();

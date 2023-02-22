@@ -12,6 +12,17 @@ public class VideoPost extends Content {
         super(postName, author);
     }
 
+    public VideoPost(String postName, Author author, boolean isPremium) {
+        super(postName, author);
+        this.isPremium = isPremium;
+    }
+
+    public VideoPost(String postName, String url, String body, Author author, boolean isPremium) {
+        super(postName, author);
+        this.isPremium = isPremium;
+        updateVideoAndDescription(url, body);
+    }
+
     public void updateVideoAndDescription(String video, String descriptionText){
         this.video = video;
         if(descriptionText == null || descriptionText.length() > MAX_CHARACTERS){
@@ -28,6 +39,16 @@ public class VideoPost extends Content {
         this.toStringContent();
     }
 
-    
-    
+    public String toStringFor280() {
+        if(descriptionText.length() > 280){
+            return "Title: " + postName + "\n" +
+            "Video content: " + video + ".\n" +
+            ", descriptionText=" + descriptionText.substring(0,280) + ";" +
+            this.toStringContent();
+        }
+        return "Title: " + postName + "\n" +
+        "Video content: " + video + ".\n" +
+        ", descriptionText=" + descriptionText + ";" +
+        this.toStringContent();
+    }
 }

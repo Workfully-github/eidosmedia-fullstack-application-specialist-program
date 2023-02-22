@@ -8,6 +8,7 @@ public abstract class User {
     protected String name;
     protected String id;
     protected ArrayList<Content> favouritesNews = new ArrayList<>();
+    protected boolean isPremium = false;
 
     public void read(Content news){
         //to do a print here
@@ -32,6 +33,7 @@ public abstract class User {
     public void setId(String id) {
         this.id = id;
     }
+    
     public ArrayList<Content> getFavouritesNews() {
         return favouritesNews;
     }
@@ -40,6 +42,12 @@ public abstract class User {
     }
     public void addFavouritesNews(Content New) {
         this.favouritesNews.add(New);
+    }
+    public boolean isPremium() {
+        return isPremium;
+    }
+    public void setPremium(boolean isPremium) {
+        this.isPremium = isPremium;
     }
 
 }

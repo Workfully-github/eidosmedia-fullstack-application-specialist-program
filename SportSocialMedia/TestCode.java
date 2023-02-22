@@ -19,12 +19,11 @@ public class TestCode {
     public static void main(String[] args) {
         //declare Users
         Author author1 =InitUser.createAuthor();
-        Author author2 =new Author("Bob", (InitUser.id++)+"");
+        Author author2 =new Author("Bob", (InitUser.id++)+"", true);
         BasicUser userBasic = new BasicUser("patrick",(InitUser.id++)+"");
         PremuimUser premuimBasic = new PremuimUser("patrick",(InitUser.id++)+"");
 
         //Declare Contents
-
         List<TweetPost> tweetPostsList = new ArrayList();
         List<VideoPost> videoPostsList = new ArrayList();
         List<TextPost> textPostsList = new ArrayList();
@@ -34,9 +33,10 @@ public class TestCode {
         tweetPost1.updateTweetPostText("we just receive 100 dollars order from our platform");
         TweetPost tweetPost2 = new TweetPost("My Second Post", author1);
         tweetPost2.updateTweetPostText("Goodbye World!");
-        TweetPost tweetPost3 = new TweetPost("a other Post", author2);
+        TweetPost tweetPost3 = new TweetPost("a other Post", author2, true);
         tweetPost3.updateTweetPostText("Hello World!");
-        TweetPostController.displayTweet(tweetPost1);
+        tweetPost3.like(author1);
+        tweetPost3.comment(author1,"best post of the year");
 
         tweetPostsList.add(tweetPost1);
         tweetPostsList.add(tweetPost2);
@@ -45,6 +45,8 @@ public class TestCode {
         TweetPostController.displayAll(tweetPostsList);
 
         TweetPostController.displayAuthorSection(author1, tweetPostsList);
+
+        TweetPostController.userShowTweetPost(author2, tweetPostsList);
 
     }
     

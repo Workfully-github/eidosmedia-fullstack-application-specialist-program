@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import SportSocialMedia.Models.Comment;
 import SportSocialMedia.Models.Like;
+import SportSocialMedia.Models.Abstract.User;
 import SportSocialMedia.Models.Interfaces.News;
 import SportSocialMedia.Models.User.Author;
 
@@ -14,6 +15,7 @@ public class Content implements News {
     public ArrayList<Comment> comments = new ArrayList<>(); 
     public Author author;
     public boolean isPosted = false;
+    public boolean isPremium = false;
 
     public Content(String postName, Author author) {
         this.postName = postName;
@@ -27,15 +29,17 @@ public class Content implements News {
     }
 
     @Override
-    public void comment() {
+    public void comment(User user, String comment) {
         // TODO Auto-generated method stub
+        Comment commentInstance = new Comment(comment,user);
+        this.comments.add(commentInstance);
         
     }
 
     @Override
-    public void like() {
-        // TODO Auto-generated method stub
-        
+    public void like(User user) {
+        Like like = new Like(user);
+        this.likes.add(like);
     }
 
     public String getPostName() {
@@ -71,21 +75,32 @@ public class Content implements News {
         return comments;
     }
 
+    public boolean isPremium() {
+        return isPremium;
+    }
+
+    public void setPremium(boolean isPremium) {
+        this.isPremium = isPremium;
+    }
+
     public String toStringLikes() {
-        return "the post have: " + likes.size() + " likes";
+        return "| "+ likes.size() + " likes";
     }
 
     public String toStringComments() {
-        String str =" ";
+        String str ="\n";
         for(int i=0; i<comments.size();i++){
-            str +=i +". " + comments.get(i).toString() + "\n";
+            str +=i +") ==> " + comments.get(i).toString() + "\n";
         }
         return str;
     }
 
     public String toStringContent() {
-        return toStringLikes() + ",\nComments=" + toStringComments() + "; \nAuthor=" + author.toString()
-                + "; \nIs Posted: " + isPosted + ";";
+        return "-----------------------------\n" +
+         toStringLikes() + ";\n| Comments:" + toStringComments() + ". \n| Author=" + author.toString()
+                + "; \n| Is Posted: " + isPosted + ";" +
+                "\n| Is Premium: " + isPremium + ";" +
+                "\n-----------------------------" ;
     }
 
     

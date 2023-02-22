@@ -8,6 +8,7 @@ public class PremuimUser extends User {
     public PremuimUser(String name,  String id) {
         this.name = name;
         this.id = id;
+        this.isPremium = true;
     }
     public void read(Content news){
         //to do a print here

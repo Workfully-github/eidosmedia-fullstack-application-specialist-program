@@ -5,13 +5,17 @@ import SportSocialMedia.Models.Abstract.User;
 public class Comment {
     protected String text;
     protected User user;
-    protected String date;
+    protected String date = "today";
 
     
     public Comment(String text, User user, String date) {
         this.text = text;
         this.user = user;
         this.date = date;
+    }
+    public Comment(String text, User user) {
+        this.text = text;
+        this.user = user;
     }
     public String getText() {
         return text;
@@ -27,7 +31,7 @@ public class Comment {
     }
     @Override
     public String toString() {
-        return "Comment [text=" + text + ", user=" + user + ", date=" + date + "]\n";
+        return "##" + text + ", By=" + user + ", date=" + date + "]\n";
     }
     
     

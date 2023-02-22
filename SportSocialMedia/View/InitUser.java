@@ -11,17 +11,33 @@ import SportSocialMedia.Models.User.PremuimUser;
 public class InitUser {
 
     public static int id = 0;
+    private static final Scanner sc= new Scanner(System.in); 
 
     public static Author createAuthor(){
 
-        Scanner sc= new Scanner(System.in); 
-        System.out.print("\nCreate Author User ");
+        System.out.print("\nCreating Author ....");
 
-        System.out.print("Enter user name- : ");  
+        System.out.print("Enter author name- : ");  
         String name= sc.next();  
-        Author user =  new Author(name,id+"");
+        System.out.print("Is the author premium? (true/false): ");
+        boolean isPremium = sc.nextBoolean();
+        sc.nextLine();
+        Author user =  new Author(name, id+"", isPremium);
         id +=1;
         return user;
+    }
+
+    public static User createUser(boolean isPremium) {
+        System.out.println("Creating new user...");
+
+        System.out.print("Enter user name: ");
+        String name = sc.nextLine();
+
+        if (isPremium) {
+            return new PremuimUser(name, (id++)+"");
+        } else {
+            return new BasicUser(name, (id++)+"");
+        }
     }
 
     public static BasicUser createBasicUser(){
