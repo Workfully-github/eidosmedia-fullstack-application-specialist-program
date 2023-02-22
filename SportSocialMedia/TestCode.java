@@ -46,7 +46,9 @@ public class TestCode {
 
         TweetPostController.displayAuthorSection(author1, tweetPostsList);
 
-        TweetPostController.userShowTweetPost(author2, tweetPostsList);
+        TweetPostController.userShowTweetPost(author1, tweetPostsList);
+
+        // TweetPostController.displayTweet(tweetPost3);
 
     }
     

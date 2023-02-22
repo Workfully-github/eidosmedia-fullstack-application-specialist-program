@@ -15,7 +15,7 @@ public class InitUser {
 
     public static Author createAuthor(){
 
-        System.out.print("\nCreating Author ....");
+        System.out.print("\nCreating Author ....\n");
 
         System.out.print("Enter author name- : ");  
         String name= sc.next();  
@@ -28,7 +28,10 @@ public class InitUser {
     }
 
     public static User createUser(boolean isPremium) {
-        System.out.println("Creating new user...");
+        System.out.println("\nCreating new user...");
+        if(isPremium){
+            System.out.println("it will be premium!");
+        }
 
         System.out.print("Enter user name: ");
         String name = sc.nextLine();

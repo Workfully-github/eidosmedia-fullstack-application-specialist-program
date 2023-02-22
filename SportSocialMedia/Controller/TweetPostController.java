@@ -39,7 +39,7 @@ public class TweetPostController {
     }
 
     public static void userShowTweetPost(User user, List<TweetPost> tweetList){
-        System.out.println("#################### Feed Section By User #####################");
+        System.out.println("#################### Feed Section By User with limitation #####################");
         for (TweetPost post : tweetList) {
             if(!post.isPremium || user.isPremium()){
                 TweetPostController.displayTweet(post);

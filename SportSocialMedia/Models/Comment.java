@@ -31,7 +31,7 @@ public class Comment {
     }
     @Override
     public String toString() {
-        return "##" + text + ", By=" + user + ", date=" + date + "]\n";
+        return "##" + text + ", By=" + user + ", date=" + date + "\n";
     }
     
     

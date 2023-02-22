@@ -88,7 +88,7 @@ public class Content implements News {
     }
 
     public String toStringComments() {
-        String str ="\n";
+        String str ="\n|  ";
         for(int i=0; i<comments.size();i++){
             str +=i +") ==> " + comments.get(i).toString() + "\n";
         }
