@@ -56,8 +56,5 @@ public class Sandbox {
 
         ricardoView.showHomeFeed();
 
-        // System.out.println(Bootstrap.getGlobalContentMapController().getGlobalMap().keySet());
-        // ricardoView.like(Bootstrap.getGlobalContentMapController().getGlobalMap().get(Bootstrap.userMocks().get(0).getUserModel()).get(0));
-
     }
 }

@@ -20,7 +20,6 @@ public abstract class AbstractUserController implements CommentContent, LikeCont
     /* This Controllers can be used by every AbstractUser */
     @Override
     public void comment(String comment, AbstractContent content) throws Exception {
-        System.out.println("here2: " + this.userModel.getUserName());
         commentController.comment(this.userModel, comment, content);
     }
 
