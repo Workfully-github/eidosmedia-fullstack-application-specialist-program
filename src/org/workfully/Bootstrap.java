@@ -50,7 +50,7 @@ public class Bootstrap {
             
             hugo.createImageGalleryPost("This is a ImageGallery Mock", "https://www.mockurl.com");
             
-            amine.createVideoPost("Good code is its own best documentation. As you're about to add a comment, ask yourself, 'How can I improve the code so that this comment isn't needed? - Steve McConnell", "https://www.epsteindidntkillhimself.com");
+            amine.createVideoPost("Good code is its own best documentation. As you're about to add a comment, ask yourself, 'How can I improve the code so that this comment isn't needed? - Steve McConnell", "https://www.info.cern.ch/hypertext/WWW/TheProject.html");
 
         } catch (Exception e) {
             e.printStackTrace();
