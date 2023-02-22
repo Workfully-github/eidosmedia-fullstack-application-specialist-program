@@ -55,7 +55,7 @@ public class Main {
         switch (userChoice) {
             case HOME_PAGE:
                 // selectUser() calls the create dialog view based on the input of type of user and type of post
-                new HomeFeedView().showAllPosts();
+                new HomeFeedView(author).showAllPosts();
                 break;
             case AUTHORS_PAGE:
                 // see what user it is?

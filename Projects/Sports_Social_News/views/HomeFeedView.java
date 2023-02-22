@@ -16,9 +16,14 @@ import Projects.Sports_Social_News.models.users.NormalUser;
 public class HomeFeedView {
     
     public NormalUser user;
+    public AuthorUser authorUser;
 
     public HomeFeedView(NormalUser user) {
         this.user = user;
+    }
+
+    public HomeFeedView(AuthorUser authorUser) {
+        this.authorUser = authorUser;
     }
 
     public HomeFeedView() {
@@ -82,12 +87,20 @@ public class HomeFeedView {
                 It's not working because I can't acess the User.
                  */
                  
-                if (!user.isPremium()) {
+                if (authorUser instanceof AuthorUser || user.isPremium()) seeDetails(set.getValue().get(i));
+                else {
                     System.out.println("---------------------------------------------------------");
                     System.out.println("Please upgrade to Premium to see the details of the news");
                     System.out.println("---------------------------------------------------------");
                     System.out.println("\n");
-                } else seeDetails(set.getValue().get(i));
+                }
+
+                /* if (!user.isPremium()) {
+                    System.out.println("---------------------------------------------------------");
+                    System.out.println("Please upgrade to Premium to see the details of the news");
+                    System.out.println("---------------------------------------------------------");
+                    System.out.println("\n");
+                } else seeDetails(set.getValue().get(i)); */
             }
         }
     }
