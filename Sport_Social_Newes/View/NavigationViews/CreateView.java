@@ -2,10 +2,13 @@ package View.NavigationViews;
 
 import java.util.Scanner;
 
+import Controller.ContentControllers.CreateTextPostController;
 import Controller.Utils.Printer;
 import Model.Users.Author;
 import View.CreateContentViews.CreateImageGalleryView;
+import View.CreateContentViews.CreateTextView;
 import View.CreateContentViews.CreateTweetView;
+import View.CreateContentViews.CreateVideoView;
 
 public class CreateView  {
     
@@ -18,13 +21,13 @@ public class CreateView  {
                 new CreateTweetView().createContentDialog(author);
                 break;
             case 2:
-                new CreateTweetView().createContentDialog(author);;
+                new CreateTextView().createContentDialog(author);;
                 break;
             case 3:
                 new CreateImageGalleryView().createContentDialog(author);;
                 break;
             case 4:
-                new CreateTweetView().createContentDialog(author);
+                new CreateVideoView().createContentDialog(author);
                 break;
         
             default:

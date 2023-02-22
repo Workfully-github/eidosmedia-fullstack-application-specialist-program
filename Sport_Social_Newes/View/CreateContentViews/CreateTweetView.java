@@ -8,6 +8,7 @@ import Controller.InteractionControllers.InteractionController;
 import Controller.Utils.Printer;
 import Model.Content.Tweet;
 import Model.Users.Author;
+import View.AppStarter;
 
 public class CreateTweetView extends CreateContentViews {
 

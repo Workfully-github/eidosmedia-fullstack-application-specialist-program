@@ -9,7 +9,7 @@ import View.NavigationViews.UserView;
 
 public class AppStarter {
     public static void takeOff(){
-        new Start().generateSomeData();
+        Start.generateSomeData();
         Scanner in = new Scanner(System.in);
 
         Printer.printMultiLines("\n\n**WELCOME TO YOUR FAVORITE SPORT NEWS PUBLISHING PLATFORM**\n\n", "Continue As:\n", "[1] -- Auther", "[2] -- Premium User (you will have access to all of our premium content!!)", "[3] -- Basic User\n");
