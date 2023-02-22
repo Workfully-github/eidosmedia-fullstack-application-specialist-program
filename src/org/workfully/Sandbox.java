@@ -32,7 +32,7 @@ public class Sandbox {
          * 3 - Enjoy
          */
 
-         /* Two Authors */
+         /* Authors */
         AuthorController amine = ((AuthorController) Bootstrap.userMocks.get(0));
 
         /* One Basic User */
