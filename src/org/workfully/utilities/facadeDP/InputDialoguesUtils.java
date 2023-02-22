@@ -20,6 +20,36 @@ public class InputDialoguesUtils {
         }
     }
 
+    public static void writeImageGalleryDialogue(AuthorController userController, Logger log) {
+        Scanner scMessage = new Scanner(System.in);
+        try {
+            printLn("Insert Image URL: ");
+            String URL = scMessage.nextLine();
+
+            printLn("Write Gallery Description: ");
+            String message = scMessage.nextLine();
+
+            userController.createImageGalleryPost(message, URL);
+        } catch (Exception e) {
+            log.warning(e.getMessage());
+        }
+    }
+
+    public static void writeVideoPostDialogue(AuthorController userController, Logger log) {
+        Scanner scMessage = new Scanner(System.in);
+        try {
+            printLn("Insert Video URL: ");
+            String URL = scMessage.nextLine();
+
+            printLn("Write Video Description: ");
+            String message = scMessage.nextLine();
+
+            userController.createVideoPost(message, URL);
+        } catch (Exception e) {
+            log.warning(e.getMessage());
+        }
+    }
+
     public static void writePostDialogue(AuthorController userController, Logger log) {
         Scanner scMessage = new Scanner(System.in);
         try {

@@ -1,9 +1,13 @@
 package org.workfully.view.section;
 
 import org.workfully.models.content.AbstractContent;
+import org.workfully.models.content.ImageGalleryPost;
 import org.workfully.models.content.TextPost;
 import org.workfully.models.content.Tweet;
 import org.workfully.models.content.UserComment;
+import org.workfully.models.content.VideoPost;
+
+import static org.workfully.utilities.factories.StringFactory.*;
 
 public class PostDetail extends AbstractSection {
 
@@ -17,62 +21,90 @@ public class PostDetail extends AbstractSection {
 
     /* METHODS */
     public void showPostDetail() {
-
         presentIfTextPost();
-        presentIfComment();
         presentIfTweet();
-        presentIfComment();
+        presentIfImgGallery();
+        presentIfVideoPost();
     }
 
     public void showPostDetailFree() {
-
         presentIfTweet();
-
         if (content.isPremium() && content.getTextBody().length() > 280) {
             presentIfPremiumTextPost();
             presentIfComment();
             return;
         }
-
         presentIfTextPost();
-        presentIfComment();
+        presentIfImgGallery();
+        presentIfVideoPost();
     }
 
     private void presentIfComment() {
-        if(!content.getCommentLogMap().isEmpty()){
-            System.out.println("### COMMENT VIEW ###");
-        }
-            for (UserComment comment : content.getCommentLogMap()) {
-                System.out.println("Created by: " + comment.getAuthorName());
-                System.out.println(comment.getTextBody());
-                System.out.println(comment.getReactionLogMap().size() + " likes \n");
-            } 
+        if (!content.getCommentLogMap().isEmpty())
+            printLn("### COMMENT VIEW ###");
+
+        for (UserComment comment : content.getCommentLogMap())
+            printMultiLn(
+                    "Created by: " + comment.getAuthorName(),
+                    comment.getTextBody(),
+                    comment.getReactionLogMap().size() + " likes \n");
     }
 
     private void presentIfTweet() {
-        if (content instanceof Tweet) {
-            System.out.println("Tweet: " + content.getTextBody());
-            System.out.println(content.getReactionLogMap().size() + " likes");
-            System.out.print("\n");
-        }
+        if (content instanceof Tweet)
+            printMultiLn(
+                    "Tweet: " + content.getTextBody(),
+                    content.getReactionLogMap().size() + " likes \n");
+
+        presentIfComment();
     }
 
     private void presentIfTextPost() {
         if (content instanceof TextPost) {
-            System.out.println("Header: " + ((TextPost) content).getCoverImgURL());
-            System.out.println("Text Post: " + content.getTextBody());
-            System.out.println(content.getReactionLogMap().size() + " likes");
-            System.out.print("\n");
+            printMultiLn(
+                    "Type: Text Article",
+                    "Header: " + ((TextPost) content).getCoverImgURL(),
+                    "Text Post: " + content.getTextBody(),
+                    content.getReactionLogMap().size() + " likes \n");
+
+            presentIfComment();
+        }
+    }
+
+    private void presentIfVideoPost() {
+        if (content instanceof VideoPost) {
+            printMultiLn(
+                    "Type: Video Post",
+                    "Header: " + ((VideoPost) content).getURL(),
+                    "Text Post: " + content.getTextBody(),
+                    content.getReactionLogMap().size() + " likes \n");
+
+            presentIfComment();
+        }
+    }
+
+    private void presentIfImgGallery() {
+        if (content instanceof ImageGalleryPost) {
+            printMultiLn(
+                    "Type: Image Gallery",
+                    "Header: " + ((ImageGalleryPost) content).getURL(),
+                    "Text Post: " + content.getTextBody(),
+                    content.getReactionLogMap().size() + " likes \n");
+
+            presentIfComment();
         }
     }
 
     private void presentIfPremiumTextPost() {
         if (content instanceof TextPost) {
-            System.out.println("You are viewing a Premium Post as a Basic User");
-            System.out.println("Header: " + ((TextPost) content).getCoverImgURL());
-            System.out.println("Text Post: " + content.getTextBody().substring(0, 280));
-            System.out.println(content.getReactionLogMap().size() + " likes");
-            System.out.print("\n");
+            printMultiLn(
+                    "Type: Text Post",
+                    "You are viewing a Premium Post as a Basic User",
+                    "Header: " + ((TextPost) content).getCoverImgURL(),
+                    "Text Post: " + content.getTextBody().substring(0, 280),
+                    content.getReactionLogMap().size() + " likes \n");
+
+            presentIfComment();
         }
     }
 

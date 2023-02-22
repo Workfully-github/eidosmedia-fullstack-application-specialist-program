@@ -7,7 +7,6 @@ import org.workfully.controllers.users.AbstractUserController;
 import org.workfully.controllers.users.AuthorController;
 import org.workfully.controllers.users.BasicUserController;
 import org.workfully.models.content.GlobalContentMap;
-import org.workfully.models.users.Author;
 import org.workfully.utilities.UserType;
 import org.workfully.utilities.factories.StringFactory;
 import org.workfully.utilities.factories.UserFactory;
@@ -55,9 +54,9 @@ public class Bootstrap {
             amine.createTextPost("Programs must be written for people to read, and only incidentally for machines to execute. - Harold Abelson and Gerald Jay Sussman", "https://www.thisisnotarealwebsite.com", true);
             
             hugo.createTextPost(StringFactory.threeHundredCharacters, "https://www.eidosmedia.com", true);
-            //hugo.createImageGalleryPost("This is a ImageGallery Mock", "https://www.mockurl.com");
+            hugo.createImageGalleryPost("Under no circumstances ... We will not ship shit! - Robert C. Martin (Uncle Bob) Demanding Professionalism in Software Development", "https://www.imgurl.com");
             
-            //amine.createVideoPost("Good code is its own best documentation. As you're about to add a comment, ask yourself, 'How can I improve the code so that this comment isn't needed? - Steve McConnell", "https://www.info.cern.ch/hypertext/WWW/TheProject.html");
+            amine.createVideoPost("Good code is its own best documentation. As you're about to add a comment, ask yourself, 'How can I improve the code so that this comment isn't needed? - Steve McConnell", "https://www.info.cern.ch/hypertext/WWW/TheProject.html");
 
         } catch (Exception e) {
             e.printStackTrace();

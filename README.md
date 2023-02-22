@@ -45,7 +45,7 @@ The workspace contains two folders by default, where:
 - Image Gallery post : has at least 2 images and a short description (280 characters)
 ## Requirements:
 - Create a home feed section with all posts
-- Create and author section with posts created by him
+- Create an author section with posts created by him
 - Create a Post detail that contains:
 - Post content
 - List of comments

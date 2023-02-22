@@ -1,18 +1,10 @@
 package org.workfully;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.workfully.controllers.users.AuthorController;
 import org.workfully.controllers.users.BasicUserController;
 import org.workfully.models.content.AbstractContent;
-import org.workfully.models.users.AbstractUser;
-import org.workfully.models.users.Author;
-import org.workfully.models.users.BasicUser;
 import org.workfully.utilities.UserType;
 import org.workfully.utilities.factories.UserFactory;
-import org.workfully.view.section.HomeFeed;
 import org.workfully.view.userSection.AuthorClientSideView;
 import org.workfully.view.userSection.BasicUserClientSideView;
 
@@ -27,9 +19,6 @@ public class Sandbox {
         /* Do not delete */
         Bootstrap bootstrap = new Bootstrap();
 
-        AuthorController amine = ((AuthorController) Bootstrap.userMocks.get(0));
-        AuthorController hugo = ((AuthorController) Bootstrap.userMocks.get(1));
-
         /*
          * How to create a new user:
          * 1 - Instanciate a new Controller:
@@ -43,18 +32,42 @@ public class Sandbox {
          * 3 - Enjoy
          */
 
+         /* Two Authors */
+        AuthorController amine = ((AuthorController) Bootstrap.userMocks.get(0));
+
+        /* One Basic User */
         BasicUserController basicUserRicardo = new BasicUserController(
                 UserFactory.createAbstractUser(UserType.BASICUSER, "Ricardo"));
 
         BasicUserClientSideView ricardoView = new BasicUserClientSideView(basicUserRicardo);
 
+        /* One Content for quick access and testing */
         AbstractContent content = Bootstrap.getGlobalContentMapController().getGlobalMap().get(amine.getAuthorModel())
                 .get(0);
+
+        /* TESTING
+         * Ability: 
+         *  - to Like
+         *  - to Write Comment
+         *  - to view Home Feed
+         *  - to see Limited/Premium Content;
+         *  - to see Free/Content;
+         * */        
         ricardoView.like(content);
 
         ricardoView.writeComment(content);
 
+        ricardoView.saveFavourite(content);
+
         ricardoView.showHomeFeed();
+
+        ricardoView.showFavouritePostDetail(0); // Will Throw Warning Message if Out of Bounds
+
+        /* TESTING AUTHOR SECTION */
+
+        AuthorClientSideView amineView = new AuthorClientSideView(amine);
+
+        amineView.showAuthorSection();
 
     }
 }

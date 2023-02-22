@@ -13,4 +13,7 @@ public class ImageGalleryPost extends AbstractContent {
         this.URL = URL;
     }
 
+    public String getURL() {
+        return URL;
+    }
 }

@@ -13,6 +13,8 @@ public class StringFactory {
     public static final int SECTION_HOME = 0;
     public static final int SECTION_AUTHORS = 1;
     public static final int SECTION_CREATE = 2;
+    public static final String NO_CONTENT_AVAILIABLE_AT_INDEX = "The content you are trying to access does not exist. \n";
+    public static final String FAVOURITE_HEADER = "### FAVOURITE ###";
 
     public static void print(String message){
         System.out.print(message);
@@ -31,5 +33,4 @@ public class StringFactory {
     public static void flushConsole(){
         printLn("\033[H\033[2J");
     }
-
 }

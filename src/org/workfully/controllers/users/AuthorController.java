@@ -54,8 +54,6 @@ public class AuthorController extends AbstractUserController implements CreateCo
         return imageGalleryPostController.createImageGalleryPost(((Author) this.userModel), message, URL);
     }
 
-    /* GETTERS */
-
     public AuthorSection getAuthorSectionView() {
         return authorSectionView;
     }
@@ -67,5 +65,4 @@ public class AuthorController extends AbstractUserController implements CreateCo
     public ArrayList<AbstractContent> getContentLog() {
         return ((Author) this.userModel).getContentLog();
     }
-
 }

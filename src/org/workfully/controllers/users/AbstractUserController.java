@@ -6,8 +6,11 @@ import org.workfully.models.reactions.LikeReaction;
 import org.workfully.models.users.AbstractUser;
 import org.workfully.models.users.userInterfaces.CommentContent;
 import org.workfully.models.users.userInterfaces.LikeContent;
+import org.workfully.models.users.userInterfaces.SaveFavourites;
 
-public abstract class AbstractUserController implements CommentContent, LikeContent {
+import static org.workfully.utilities.factories.StringFactory.*;
+
+public abstract class AbstractUserController implements CommentContent, LikeContent, SaveFavourites {
 
     protected AbstractUser userModel;
     protected CommentController commentController;
@@ -28,7 +31,23 @@ public abstract class AbstractUserController implements CommentContent, LikeCont
         content.getReactionLogMap().add(new LikeReaction(this.userModel));
     }
 
-    public String getName(){
+    @Override
+    public void saveFavourite(AbstractContent content) {
+        userModel.getFavouriteContentLogMap().add(content);
+    }
+
+    public void showFavouritePostDetail(int index) {
+
+        try {
+            printLn(FAVOURITE_HEADER);
+            userModel.getFavouriteContentLogMap().get(index).getPostDetail().showPostDetail();
+        } catch (Exception e) {
+            printLn(NO_CONTENT_AVAILIABLE_AT_INDEX);
+        }
+
+    }
+
+    public String getName() {
         return userModel.getUserName();
     }
 
@@ -38,6 +57,4 @@ public abstract class AbstractUserController implements CommentContent, LikeCont
     public AbstractUser getUserModel() {
         return userModel;
     }
-
-    
 }

@@ -31,4 +31,12 @@ public abstract class AbstractClientSideView {
     public void like(AbstractContent content){
         userController.like(content);
     }
+
+    public void saveFavourite(AbstractContent content){
+        userController.saveFavourite(content);
+    }
+
+    public void showFavouritePostDetail(int index){
+        userController.showFavouritePostDetail(index);
+    }
 }

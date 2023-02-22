@@ -24,6 +24,14 @@ public class AuthorClientSideView extends AbstractClientSideView {
         InputDialoguesUtils.writePostDialogue(((AuthorController) userController), log);
     }
 
+    public void writeImageGallery() {
+        InputDialoguesUtils.writeImageGalleryDialogue(((AuthorController) userController), log);
+    }
+
+    public void writeVideoPost() {
+        InputDialoguesUtils.writeVideoPostDialogue(((AuthorController) userController), log);
+    }
+
     public void showAuthorSection() {
         ((AuthorController) userController).getAuthorSectionView().displayView();
     }
