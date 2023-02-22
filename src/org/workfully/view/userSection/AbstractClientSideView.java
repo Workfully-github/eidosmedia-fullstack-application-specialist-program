@@ -25,6 +25,7 @@ public abstract class AbstractClientSideView {
     public abstract void read(AbstractContent content);
     
     public void writeComment(AbstractContent content) {
+        // System.out.println("here" + this.userController.getName()); ricardo
         InputDialoguesUtils.writeComment(this.userController, content, log);
     }
 

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.workfully.models.content.AbstractContent;
+import org.workfully.models.content.UserComment;
 import org.workfully.models.users.AbstractUser;
 import static org.workfully.utilities.factories.StringFactory.*;
 
