@@ -12,4 +12,8 @@ public void showPremium() {
         FeedView.show(BasicUser);
     }
 
+    public void show(User user) {
+        FeedView.show(BasicUser);
+    }
+
 }

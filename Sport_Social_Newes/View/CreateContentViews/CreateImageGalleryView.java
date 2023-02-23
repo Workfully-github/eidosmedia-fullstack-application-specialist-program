@@ -38,7 +38,7 @@ public class CreateImageGalleryView extends CreateContentViews {
             ImageGallery newImageGallery = createImagePostController.create(new ImageGallery(author, isContentPremium, imageGalleryDesc, imagesLinks));
             createImagePostController.display(newImageGallery, author, false, 0);
         } catch (NullPointerException e) {
-            Printer.printMultiLines("Invalid Tweet Body!");
+            Printer.printMultiLines("Invalid images gallery Body!");
         } 
     }
 }

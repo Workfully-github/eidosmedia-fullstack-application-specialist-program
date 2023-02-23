@@ -19,4 +19,8 @@ public class ImageGallery extends Content {
         }
         return imagesLinks;
     }
+
+    public int getLinksNum(){
+        return images.size();
+    }
 }

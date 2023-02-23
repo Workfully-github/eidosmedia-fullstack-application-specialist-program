@@ -20,7 +20,7 @@ public class AuthorView extends UserView{
     @Override
     public void show(){
         Printer.printMultiLines("Would you like to:\n", "[1] -- Read Content", "[2] -- Create Content", "[3] -- Go to Profile", "[4] -- Go Back to home page\n");
-        Author newAuthor = new Author("visiter", "visiterUN", "visiter@ssn.net", true); 
+        Author newAuthor = new Author("visiter", "visiterUN", "visiter@ssn.net", false); 
         Tweet newTweet = new Tweet(newAuthor, "I spent too mutch time on this", false);
         CreateContentController.pushContent(newTweet);
         ArrayList<Content> storedContent = new ArrayList<Content>();

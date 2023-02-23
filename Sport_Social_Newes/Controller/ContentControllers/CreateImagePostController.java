@@ -11,7 +11,7 @@ public class CreateImagePostController extends CreateContentController{
     public ImageGallery create(Content content) throws NullPointerException {
         ImageGallery imageContent = (ImageGallery) content;
 
-        if(imageContent.getBody().isEmpty() || imageContent.getBody().length() > 280) return null;
+        if(imageContent.getBody().isEmpty() || imageContent.getBody().length() > 280 || imageContent.getLinksNum() < 2) return null;
         pushContent(imageContent);
         return imageContent;
     }
