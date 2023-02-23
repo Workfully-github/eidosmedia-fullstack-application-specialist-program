@@ -2,11 +2,13 @@ package org.workfully;
 
 import org.workfully.controllers.users.AuthorController;
 import org.workfully.controllers.users.BasicUserController;
+import org.workfully.controllers.users.PremiumUserController;
 import org.workfully.models.content.AbstractContent;
 import org.workfully.utilities.UserType;
 import org.workfully.utilities.factories.UserFactory;
 import org.workfully.view.userSection.AuthorClientSideView;
 import org.workfully.view.userSection.BasicUserClientSideView;
+import org.workfully.view.userSection.PremiumUserClientSideView;
 
 public class Sandbox {
 
@@ -39,7 +41,12 @@ public class Sandbox {
         BasicUserController basicUserRicardo = new BasicUserController(
                 UserFactory.createAbstractUser(UserType.BASICUSER, "Ricardo"));
 
+        PremiumUserController premiumUser = new PremiumUserController(
+            UserFactory.createAbstractUser(UserType.PREMIUMUSER, "Carlos"));
+
         BasicUserClientSideView ricardoView = new BasicUserClientSideView(basicUserRicardo);
+
+        PremiumUserClientSideView carlosView = new PremiumUserClientSideView(premiumUser);
 
         /* One Content for quick access and testing */
         AbstractContent content = Bootstrap.getGlobalContentMapController().getGlobalMap().get(amine.getAuthorModel())
@@ -57,16 +64,22 @@ public class Sandbox {
         ricardoView.like(content);
 
         ricardoView.writeComment(content);
+        ricardoView.writeComment(content);
+        ricardoView.writeComment(content);
 
         ricardoView.saveFavourite(content);
 
         ricardoView.showHomeFeed();
+        
+        carlosView.showHomeFeed();
 
         ricardoView.showFavouritePostDetail(0); // throws warning message if out of bounds
 
         /* TESTING AUTHOR SECTION */
 
         AuthorClientSideView amineView = new AuthorClientSideView(amine);
+
+        amineView.writePostArticle();
 
         amineView.showAuthorSection();
 

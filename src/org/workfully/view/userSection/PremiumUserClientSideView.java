@@ -27,6 +27,6 @@ public class PremiumUserClientSideView extends AbstractClientSideView {
         HomeFeed homeFeed = new HomeFeed();
         homeFeed.setGlobalMap(Bootstrap.getGlobalContentMapController().getGlobalMap());
 
-        homeFeed.showFreeHomeFeed();
+        homeFeed.showHomeFeed();
     }
 }
