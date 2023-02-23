@@ -7,7 +7,6 @@ import org.workfully.models.users.AbstractUser;
 import org.workfully.models.users.userInterfaces.CommentContent;
 import org.workfully.models.users.userInterfaces.LikeContent;
 import org.workfully.models.users.userInterfaces.SaveFavourites;
-
 import static org.workfully.utilities.factories.StringFactory.*;
 
 public abstract class AbstractUserController implements CommentContent, LikeContent, SaveFavourites {

@@ -7,9 +7,6 @@ import org.workfully.utilities.exceptions.InvalidUserInputException;
 
 public class ValidateUserInputUtils {
 
-    /* PROPERTIES */
-
-    /* METHODS */
     public static String validateMessage(String message) throws Exception {
         return checkIfEmptyOrNull(message);
     }

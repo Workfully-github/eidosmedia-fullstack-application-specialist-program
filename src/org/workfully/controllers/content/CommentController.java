@@ -29,6 +29,5 @@ public class CommentController {
         content.getCommentLogMap().add(userCommentModel);
         return userCommentModel;
     }
-    
-    
+
 }

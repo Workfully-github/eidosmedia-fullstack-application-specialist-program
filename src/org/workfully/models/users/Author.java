@@ -6,10 +6,8 @@ import org.workfully.models.content.AbstractContent;
 
 public class Author extends AbstractUser {
 
-    /* PROPERTIES */
     private ArrayList<AbstractContent> contentLog;
 
-    /* CONSTRUCTOR */
     public Author() {
         this.contentLog = new ArrayList<>();
     }
@@ -19,11 +17,8 @@ public class Author extends AbstractUser {
         this.contentLog = new ArrayList<>();
     }
 
-    /* GETTERS */
     public ArrayList<AbstractContent> getContentLog() {
         return contentLog;
     }
 
-    
-    
 }

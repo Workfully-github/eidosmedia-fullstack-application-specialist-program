@@ -32,7 +32,7 @@ public class Sandbox {
          * 3 - Enjoy
          */
 
-         /* Authors */
+        /* Authors */
         AuthorController amine = ((AuthorController) Bootstrap.userMocks.get(0));
 
         /* One Basic User */
@@ -45,14 +45,15 @@ public class Sandbox {
         AbstractContent content = Bootstrap.getGlobalContentMapController().getGlobalMap().get(amine.getAuthorModel())
                 .get(0);
 
-        /* TESTING
-         * Ability: 
-         *  - to Like
-         *  - to Write Comment
-         *  - to view Home Feed
-         *  - to see Limited/Premium Content;
-         *  - to see Free/Content;
-         * */        
+        /*
+         * TESTING
+         * Ability:
+         * - to Like
+         * - to Write Comment
+         * - to view Home Feed
+         * - to see Limited/Premium Content;
+         * - to see Free/Content;
+         */
         ricardoView.like(content);
 
         ricardoView.writeComment(content);
@@ -61,7 +62,7 @@ public class Sandbox {
 
         ricardoView.showHomeFeed();
 
-        ricardoView.showFavouritePostDetail(0); // Will Throw Warning Message if Out of Bounds
+        ricardoView.showFavouritePostDetail(0); // throws warning message if out of bounds
 
         /* TESTING AUTHOR SECTION */
 

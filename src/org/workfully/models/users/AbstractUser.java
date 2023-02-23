@@ -13,14 +13,15 @@ public abstract class AbstractUser {
     private ArrayList<UserComment> userCommentsLogMap;
     private ArrayList<AbstractContent> favouriteContentLogMap;
 
-    public AbstractUser() {}
-    
+    public AbstractUser() {
+    }
+
     public AbstractUser(String userName) {
         this.userName = userName;
         this.userCommentsLogMap = new ArrayList<>();
         this.favouriteContentLogMap = new ArrayList<>();
     }
-    
+
     public static int getIdCounter() {
         return idCounter;
     }

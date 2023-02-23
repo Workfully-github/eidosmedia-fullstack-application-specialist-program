@@ -7,27 +7,21 @@ import org.workfully.view.section.PostDetail;
 
 public abstract class AbstractContent {
 
-    /* PROPERTIES */
     private AbstractUser contentAuthor;
     private String textBody;
     private ArrayList<UserComment> commentLogMap;
     private ArrayList<AbstractReaction> reactionLogMap;
     protected boolean premium;
-
     private PostDetail postDetail;
 
-    /* CONSTRUCTOR */
     public AbstractContent(AbstractUser contentAuthor, String textBody) {
         this.contentAuthor = contentAuthor;
         this.textBody = textBody;
         this.commentLogMap = new ArrayList<>();
         this.reactionLogMap = new ArrayList<>();
         this.postDetail = new PostDetail(this);
-        
     }
 
-    
-    /* GETTERS */
     public AbstractUser getContentAuthor() {
         return contentAuthor;
     }
@@ -44,14 +38,13 @@ public abstract class AbstractContent {
         return reactionLogMap;
     }
 
-    public String getAuthorName(){
+    public String getAuthorName() {
         return getContentAuthor().getUserName();
     }
 
     public PostDetail getPostDetail() {
         return postDetail;
     }
-
 
     public boolean isPremium() {
         return premium;

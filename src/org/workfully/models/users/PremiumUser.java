@@ -2,7 +2,6 @@ package org.workfully.models.users;
 
 public class PremiumUser extends AbstractUser {
 
-    /* CONSTRUCTORS */
     public PremiumUser() {
     }
 

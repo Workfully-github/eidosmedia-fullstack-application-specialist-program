@@ -41,12 +41,12 @@ public class AuthorController extends AbstractUserController implements CreateCo
 
     @Override
     public TextPost createTextPost(String message, String coverImgURL, boolean premium) throws Exception {
-       return textPostController.createTextPost(((Author) this.userModel), message, coverImgURL, premium);
+        return textPostController.createTextPost(((Author) this.userModel), message, coverImgURL, premium);
     }
 
     @Override
     public VideoPost createVideoPost(String message, String URL) throws Exception {
-       return videoPostController.createVideoPost(((Author) this.userModel), message, URL);
+        return videoPostController.createVideoPost(((Author) this.userModel), message, URL);
     }
 
     @Override
