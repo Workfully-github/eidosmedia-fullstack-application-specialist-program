@@ -8,36 +8,44 @@ import java.net.URL;
 public class Request {
     private static final String USER_AGENT = "Mozilla/5.0";
 
-    public void get(URL GET_URL) throws IOException{
+    public void get(URL GET_URL) {
         
 
         // URL obj = new URL(GET_URL);
-        HttpURLConnection httpURLConnection = (HttpURLConnection) GET_URL.openConnection();
-        httpURLConnection.setRequestMethod("GET");
-        httpURLConnection.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = httpURLConnection.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
-        if (responseCode == HttpURLConnection.HTTP_OK) { // success
-            BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+        try {
+            HttpURLConnection httpURLConnection = (HttpURLConnection) GET_URL.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestProperty("User-Agent", USER_AGENT);
+            int responseCode = httpURLConnection.getResponseCode();
+            System.out.println("GET Response Code :: " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) { // success
+                BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+    
+    
+                while ((inputLine = in .readLine()) != null) {
+                    response.append(inputLine);
+                } in .close();
+    
+                // print result
+                System.out.println(response.toString());
+            } else {
+                System.out.println("GET request not worked");
+            }
 
-
-            while ((inputLine = in .readLine()) != null) {
-                response.append(inputLine);
-            } in .close();
-
-            // print result
-            System.out.println(response.toString());
-        } else {
-            System.out.println("GET request not worked");
-        }
-        int headerSize = httpURLConnection.getHeaderFields().size();
+            int headerSize = httpURLConnection.getHeaderFields().size();
         
-
-        for(int i = 0; i < headerSize; i++) {
-            System.out.println(httpURLConnection.getHeaderFieldKey(i) + " = " + httpURLConnection.getHeaderField(i));
+            for(int i = 0; i < headerSize; i++) {
+                System.out.println(httpURLConnection.getHeaderFieldKey(i) + " = " + httpURLConnection.getHeaderField(i));
+            }
+            
+        } catch (IOException e) {
+            System.out.print(e.getMessage());
         }
+
+
+       
     }
 
     public void sendPOST(URL POST_URL) throws IOException {
@@ -48,7 +56,7 @@ public class Request {
         // For POST only - START
         httpURLConnection.setDoOutput(true);
         OutputStream os = httpURLConnection.getOutputStream();
-        os.write("search?q=post".getBytes());
+        // os.write("search?q=post".getBytes());
         os.flush();
         os.close();
         // For POST only - END
@@ -64,6 +72,14 @@ public class Request {
             while ((inputLine = in .readLine()) != null) {
                 response.append(inputLine);
             } in .close();
+
+            //Print headers
+
+            int headerSize = httpURLConnection.getHeaderFields().size();
+        
+            for(int i = 0; i < headerSize; i++) {
+                System.out.println(httpURLConnection.getHeaderFieldKey(i) + " = " + httpURLConnection.getHeaderField(i));
+            }
 
             // print result
             System.out.println(response.toString());
