@@ -17,6 +17,10 @@ public class HttpRequests {
 
     private static final CloseableHttpClient httpClient = HttpClients.createDefault();
 
+    private static void flushConsole() {
+        System.out.println("\033[H\033[2J");
+    }
+
     public static void getHeaders(String url) {
 
         HttpHead httpHead = new HttpHead(url);
@@ -26,13 +30,15 @@ public class HttpRequests {
             CloseableHttpResponse response = httpClient.execute(httpHead);
 
             List<Header> httpHeaders = Arrays.asList(response.getAllHeaders());
+
+            flushConsole();
             for (Header header : httpHeaders) {
-                System.out.println("Headers.. name,value:" + header.getName() + "," + header.getValue());
+                System.out.println(header.getName() + " : " + header.getValue());
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
 
-            e.printStackTrace();
+            System.err.println("HTTP request failed: " + e.getMessage());
         }
     }
 
@@ -71,15 +77,18 @@ public class HttpRequests {
 
                 String contentBody = EntityUtils.toString(entity);
 
+                flushConsole();
                 System.out.println(contentBody);
 
                 return;
             }
 
+            flushConsole();
             System.out.println(response.getStatusLine());
 
         } catch (IOException e) {
 
+            flushConsole();
             System.err.println("HTTP request failed: " + e.getMessage());
         }
     }

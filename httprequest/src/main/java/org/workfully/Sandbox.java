@@ -11,6 +11,6 @@ public class Sandbox {
         
         //HttpRequests.getStatusCode("https://www.google.com");
 
-        HttpRequests.getBody("https://www.workfully.com/test");
+        HttpRequests.getBody("https://www.workfully.com");
     }
 }
