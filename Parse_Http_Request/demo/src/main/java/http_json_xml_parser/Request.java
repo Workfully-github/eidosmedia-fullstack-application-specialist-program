@@ -1,9 +1,13 @@
+package http_json_xml_parser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import com.googlecode.json.simple.JSONValue;
+import com.googlecode.json.simple.JSONbject;
+
 
 public class Request {
     private static final String USER_AGENT = "Mozilla/5.0";
@@ -29,7 +33,12 @@ public class Request {
                 } in .close();
     
                 // print result
-                System.out.println(in.toString());
+                // System.out.println(response.toString());
+                Object obj = JSONValue.parse(response.toString());
+                JSONObject Jobj = (JSONObject) obj;
+                String apiTitle = (String) Jobj.get("author");
+                System.out.println(apiTitle);
+                // String author = (String) Jobj.get("slideshow");
             } else {
                 System.out.println("GET request not worked");
             }
