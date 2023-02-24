@@ -1,16 +1,24 @@
 package org.workfully;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.StatusLine;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpHead;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 public class HttpRequests {
@@ -31,7 +39,6 @@ public class HttpRequests {
 
             List<Header> httpHeaders = Arrays.asList(response.getAllHeaders());
 
-            flushConsole();
             for (Header header : httpHeaders) {
                 System.out.println(header.getName() + " : " + header.getValue());
             }
@@ -77,19 +84,50 @@ public class HttpRequests {
 
                 String contentBody = EntityUtils.toString(entity);
 
-                flushConsole();
                 System.out.println(contentBody);
 
                 return;
             }
 
-            flushConsole();
             System.out.println(response.getStatusLine());
 
         } catch (IOException e) {
 
-            flushConsole();
             System.err.println("HTTP request failed: " + e.getMessage());
         }
     }
+
+    public static void postRequest(String url, String username, String password) {
+
+        HttpPost httpPost = new HttpPost(url);
+
+        final List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("username", username));
+        params.add(new BasicNameValuePair("password", password));
+
+        try {
+
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+
+            CloseableHttpClient client = HttpClients.createDefault();
+
+            CloseableHttpResponse response = (CloseableHttpResponse) client
+                    .execute(httpPost);
+
+            final StatusLine statusCode = response.getStatusLine();
+
+            System.out.println(statusCode);
+
+            HttpRequests.getHeaders(url);
+            HttpRequests.getBody(url);
+
+        } catch (UnsupportedEncodingException e) {
+            System.out.println(e.getMessage());
+        } catch (ClientProtocolException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }
