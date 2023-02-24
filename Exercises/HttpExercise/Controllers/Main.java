@@ -10,7 +10,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
+import HttpExercise.Utilities.FullResponseBuilder;
 import HttpExercise.Utilities.ParameterStringBuilder;
+import HttpExercise.Views.UserActionView;
 import HttpExercise.Views.UserInputView;
 
 public class Main {
@@ -23,14 +25,17 @@ public class Main {
         // Create connection
         
         UserInputView userInputView = new UserInputView();
+        UserActionView userActionView = new UserActionView();
+
         // user view to ask for input for the URL
         try {
             URL url = new URL(userInputView.askUserInput());
+            String method = userActionView.askUserAction();
     
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             
             // setRequestMethod sets the action to do - GET, POST, DELETE, etc.
-            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestMethod(method);
 
             // Setting request headers
             httpURLConnection.setRequestProperty("Content-Type", "application/json");
@@ -40,18 +45,18 @@ public class Main {
             /* httpURLConnection.setConnectTimeout(5000);
             httpURLConnection.setReadTimeout(5000); */
 
+            if (method == "POST") requestParameters(httpURLConnection);
+
             readResponse(httpURLConnection);
+
+            System.out.println(FullResponseBuilder.getFullResponse(httpURLConnection));
 
             respondFailedRequest(httpURLConnection);
 
             
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
-
-
-
-        
+        }    
     }
 
     // Add parameters to a request
@@ -81,18 +86,17 @@ public class Main {
             content.append(inputLine);
         }
 
-        in.close();
+        //in.close();
 
         // close the connection
-        con.disconnect();
+        //con.disconnect();
 
+        System.out.println("\n");
         System.out.println("Status Code: " + status);
         System.out.println("\n");
         System.out.println("Content of the page: ");
         System.out.println(content);
-
-        // Print the response??
-
+        System.out.println("\n");
     }
 
     public static void respondFailedRequest(HttpURLConnection con) throws IOException {
