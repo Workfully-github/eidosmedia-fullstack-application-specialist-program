@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
+import org.json.JSONObject;
 
 import HttpExercise.Utilities.FullResponseBuilder;
 import HttpExercise.Utilities.ParameterStringBuilder;
@@ -21,7 +23,8 @@ public class Main {
     
     public static void main(String[] args) throws IOException {
 
-        
+        // https://httpbin.org/json
+
         // Create connection
         
         UserInputView userInputView = new UserInputView();
@@ -31,8 +34,11 @@ public class Main {
         try {
             URL url = new URL(userInputView.askUserInput());
             String method = userActionView.askUserAction();
+
+            //URL urlPost = new URL("https://httpbin.org/post");
     
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            //HttpURLConnection httpURLConnectionPost = (HttpURLConnection) urlPost.openConnection();
             
             // setRequestMethod sets the action to do - GET, POST, DELETE, etc.
             httpURLConnection.setRequestMethod(method);
@@ -60,18 +66,23 @@ public class Main {
     }
 
     // Add parameters to a request
-    public static void requestParameters(HttpURLConnection con) throws IOException {
+    public static void requestParameters(HttpURLConnection con) {
 
-        // create view to request params!
-
-        requestParams.put("param1", "val");
-
-        // this propertie needs to be true to add parameters to a request
-        con.setDoOutput(true);
-        DataOutputStream out = new DataOutputStream(con.getOutputStream());
-        out.writeBytes(ParameterStringBuilder.getParamsString(requestParams));
-        out.flush();
-        out.close();
+        try {
+            // create view to request params!
+    
+            requestParams.put("param1", "val");
+    
+            // this propertie needs to be true to add parameters to a request
+            con.setDoOutput(true);
+            DataOutputStream out = new DataOutputStream(con.getOutputStream());
+            out.writeBytes(ParameterStringBuilder.getParamsString(requestParams));
+            out.flush();
+            out.close();
+            
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void readResponse(HttpURLConnection con) throws IOException {
@@ -91,12 +102,58 @@ public class Main {
         // close the connection
         //con.disconnect();
 
-        System.out.println("\n");
+        /* System.out.println("\n");
         System.out.println("Status Code: " + status);
         System.out.println("\n");
         System.out.println("Content of the page: ");
         System.out.println(content);
+        System.out.println("\n"); */
+
+        readJsonResponse(content);
+    }
+
+    public static void readJsonResponse(StringBuffer con) {
+
+        String content = con.toString();
+        String[] newContent = content.split(" ");
+        //\"slideshow\":
+        System.out.println(newContent.length);
+
+        Map<String, String> myMap = new HashMap<String, String>();
+        
+        for (int i = 0; i < newContent.length; i++) {
+            System.out.println(newContent[i]);
+        }
         System.out.println("\n");
+        
+        String s = newContent[1];
+        
+        String[] pairs = s.split(",");
+
+        for (int i = 0; i < pairs.length; i++) {
+            System.out.println(pairs[i]);
+        }
+
+        for (int i=0;i<pairs.length;i++) {
+            String pair = pairs[i];
+            String[] keyValue = pair.split(":");
+            myMap.put(keyValue[0], (keyValue[1]));
+        }
+        System.out.println(myMap);
+
+        for (Map.Entry<String, String> set :
+             myMap.entrySet()) {
+ 
+            // Printing all elements of a Map
+            System.out.println(set.getKey() + " = "
+                               + set.getValue());
+        }
+        
+        /* System.out.println("\n");
+        for (int i = 0; i < newContent.length; i++) {
+            System.out.println(newContent[i]);
+        }
+        System.out.println("\n"); */
     }
 
     public static void respondFailedRequest(HttpURLConnection con) throws IOException {
@@ -110,5 +167,6 @@ public class Main {
 
         // read streamReader like in readResponse?
     }
+
     
 }
