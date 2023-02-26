@@ -1,6 +1,5 @@
 package org.workfully;
 
-
 /**
  * Hello world!
  */
@@ -12,7 +11,7 @@ public class Sandbox {
 
         // HttpRequests.getStatusCode("https://www.workfully.com");
 
-        //HttpRequests.getBody("https://httpbin.org/xml");
+        // HttpRequests.getBody("https://httpbin.org/xml");
 
         // HttpRequests.postRequest("https://httpbin.org/post", "UsernameTest",
         // "tHiSiSnOtArEaLpAsSwOrD");
@@ -20,14 +19,10 @@ public class Sandbox {
         // HttpRequests.postRequest("https://www.google.com", "UsernameTest",
         // "tHiSiSnOtArEaLpAsSwOrD");
 
+        // JSONHandler.jsonReader(HttpRequests.getBody("https://httpbin.org/json"));
+
         //Dialogue.init();
 
-        //JSONHandler.jsonReader(HttpRequests.getBody("https://httpbin.org/json"));
-
-        XMLParser.parse(HttpRequests.getBody("https://httpbin.org/xml"));
-
-        
-
-
+        XMLHandler.parse(HttpRequests.getBody("https://httpbin.org/xml"));
     }
 }

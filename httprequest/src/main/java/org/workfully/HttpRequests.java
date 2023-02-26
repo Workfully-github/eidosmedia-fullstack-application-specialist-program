@@ -87,7 +87,7 @@ public class HttpRequests {
                 contentBody = EntityUtils.toString(entity);
 
                 System.out.println(contentBody);
-                
+
             }
 
             return contentBody;

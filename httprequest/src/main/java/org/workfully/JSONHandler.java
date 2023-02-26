@@ -35,6 +35,9 @@ public class JSONHandler {
         }
     }
 
+    /*
+     * Cleans array brackets and html tags;
+     */
     private static String[] cleanItems(JSONArray itemsArr) {
         String[] items = new String[itemsArr.size()];
         for (int i = 0; i < itemsArr.size(); i++) {
