@@ -64,11 +64,11 @@ public class HttpRequests {
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
-            return 0;
+            return -1;
         }
     }
 
-    public static void getBody(String url) {
+    public static String getBody(String url) {
 
         HttpGet request = new HttpGet(url);
 
@@ -78,22 +78,24 @@ public class HttpRequests {
 
             int statusCode = response.getStatusLine().getStatusCode();
 
+            String contentBody = "";
+
             if (statusCode >= 200 && statusCode < 300) {
 
                 HttpEntity entity = response.getEntity();
 
-                String contentBody = EntityUtils.toString(entity);
+                contentBody = EntityUtils.toString(entity);
 
                 System.out.println(contentBody);
-
-                return;
+                
             }
 
-            System.out.println(response.getStatusLine());
+            return contentBody;
 
         } catch (IOException e) {
 
             System.err.println("HTTP request failed: " + e.getMessage());
+            return "";
         }
     }
 
