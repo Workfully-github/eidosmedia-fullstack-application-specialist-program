@@ -8,9 +8,14 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
-import org.json.JSONObject;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import HttpExercise.Utilities.FullResponseBuilder;
 import HttpExercise.Utilities.ParameterStringBuilder;
@@ -21,7 +26,7 @@ public class Main {
 
     public static HashMap<String, String> requestParams = new HashMap<>();
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
 
         // https://httpbin.org/json
 
@@ -85,7 +90,7 @@ public class Main {
         }
     }
 
-    public static void readResponse(HttpURLConnection con) throws IOException {
+    public static void readResponse(HttpURLConnection con) throws IOException, ParseException {
 
         int status = con.getResponseCode();
 
@@ -112,48 +117,40 @@ public class Main {
         readJsonResponse(content);
     }
 
-    public static void readJsonResponse(StringBuffer con) {
+    public static void readJsonResponse(StringBuffer con) throws ParseException {
 
-        String content = con.toString();
-        String[] newContent = content.split(" ");
-        //\"slideshow\":
-        System.out.println(newContent.length);
-
-        Map<String, String> myMap = new HashMap<String, String>();
-        
-        for (int i = 0; i < newContent.length; i++) {
-            System.out.println(newContent[i]);
-        }
         System.out.println("\n");
-        
-        String s = newContent[1];
-        
-        String[] pairs = s.split(",");
+        String content = con.toString();
+        Object obj = JSONValue.parse(content);
 
-        for (int i = 0; i < pairs.length; i++) {
-            System.out.println(pairs[i]);
-        }
+        JSONObject jo = (JSONObject) obj;
 
-        for (int i=0;i<pairs.length;i++) {
-            String pair = pairs[i];
-            String[] keyValue = pair.split(":");
-            myMap.put(keyValue[0], (keyValue[1]));
-        }
-        System.out.println(myMap);
+        // getting slideshow
+        Map slideshow = ((Map)jo.get("slideshow"));
 
-        for (Map.Entry<String, String> set :
-             myMap.entrySet()) {
- 
-            // Printing all elements of a Map
-            System.out.println(set.getKey() + " = "
-                               + set.getValue());
+        JSONObject slides = (JSONObject) jo.get("slideshow");
+          
+        // iterating slideshow Map
+        Iterator<Map.Entry> itr1 = slideshow.entrySet().iterator();
+        Iterator<Map.Entry> itr3 = itr1;
+        // getting slides
+        JSONArray ja = (JSONArray) slides.get("slides");
+        // iterating slides
+        Iterator itr2 = ja.iterator();
+
+        while (itr1.hasNext()) {
+            Map.Entry pair = itr1.next();
+      
+            while (itr2.hasNext()) {
+                itr3 = ((Map) itr2.next()).entrySet().iterator();
+                while (itr3.hasNext()) {
+                    Map.Entry pair2 = itr3.next();
+                    System.out.println(pair2.getKey() + " : " + pair2.getValue());
+                } 
+            }
+            System.out.println(pair.getKey() + " : " + pair.getValue());
+            System.out.println("\n");
         }
-        
-        /* System.out.println("\n");
-        for (int i = 0; i < newContent.length; i++) {
-            System.out.println(newContent[i]);
-        }
-        System.out.println("\n"); */
     }
 
     public static void respondFailedRequest(HttpURLConnection con) throws IOException {
