@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -12,11 +13,18 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import org.w3c.dom.*;
+import org.xml.sax.InputSource;
 
-import org.json.simple.JSONArray;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+/* import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import org.json.simple.JSONValue; */
+import org.json.*;
 
+import HttpExercise.Models.SlideShow;
 import HttpExercise.Utilities.FullResponseBuilder;
 import HttpExercise.Utilities.ParameterStringBuilder;
 import HttpExercise.Views.UserActionView;
@@ -107,49 +115,79 @@ public class Main {
         // close the connection
         //con.disconnect();
 
-        /* System.out.println("\n");
-        System.out.println("Status Code: " + status);
-        System.out.println("\n");
-        System.out.println("Content of the page: ");
-        System.out.println(content);
-        System.out.println("\n"); */
+        //readJsonResponse(content);
 
-        readJsonResponse(content);
+        readXmlResponse(content);
     }
 
-    public static void readJsonResponse(StringBuffer con) throws ParseException {
+    public static void readJsonResponse(StringBuffer con) throws JSONException {
 
-        System.out.println("\n");
-        String content = con.toString();
-        Object obj = JSONValue.parse(content);
+        // https://httpbin.org/json
+        // https://httpbin.org/xml
 
-        JSONObject jo = (JSONObject) obj;
-
-        // getting slideshow
-        Map slideshow = ((Map)jo.get("slideshow"));
-
-        JSONObject slides = (JSONObject) jo.get("slideshow");
-          
-        // iterating slideshow Map
-        Iterator<Map.Entry> itr1 = slideshow.entrySet().iterator();
-        Iterator<Map.Entry> itr3 = itr1;
-        // getting slides
-        JSONArray ja = (JSONArray) slides.get("slides");
-        // iterating slides
-        Iterator itr2 = ja.iterator();
-
-        while (itr1.hasNext()) {
-            Map.Entry pair = itr1.next();
-      
-            while (itr2.hasNext()) {
-                itr3 = ((Map) itr2.next()).entrySet().iterator();
-                while (itr3.hasNext()) {
-                    Map.Entry pair2 = itr3.next();
-                    System.out.println(pair2.getKey() + " : " + pair2.getValue());
-                } 
-            }
-            System.out.println(pair.getKey() + " : " + pair.getValue());
+        try {
             System.out.println("\n");
+            String responseString = con.toString();
+            
+            JSONObject response = new org.json.JSONObject(responseString);
+            JSONObject slideshowJSON = response.getJSONObject("slideshow");
+            
+            SlideShow slideShow = new SlideShow(slideshowJSON);
+            
+            System.out.println("\n");
+            System.out.println("Author: " + slideShow.getAuthor());
+            System.out.println("Date: " + slideShow.getDate());
+            System.out.println("Title: " + slideShow.getTitle());
+            
+            System.out.println("Slides: ");
+            for (int i = 0; i < slideShow.getSlide().size(); i++) {
+                System.out.println("Title: " + slideShow.getSlide().get(i).getTitle());
+                System.out.println("Type: " + slideShow.getSlide().get(i).getType());
+                System.out.println("Items: " + slideShow.getSlide().get(i).getItems());
+            }
+            System.out.println("\n");
+            
+            
+        } catch (Exception e) {
+            e.getStackTrace();
+        } 
+    }
+
+    public static void readXmlResponse(StringBuffer con) throws JSONException {
+
+        // https://httpbin.org/json
+        // https://httpbin.org/xml
+
+        try {
+
+            System.out.println("\n");
+            String responseString = con.toString();
+            
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();  
+            DocumentBuilder builder = factory.newDocumentBuilder();
+           
+            Document doc = builder.parse(new InputSource(new StringReader(responseString)));
+
+            SlideShow slideShow = new SlideShow(doc);
+
+            
+            /* Element slideshow = doc.getDocumentElement(); */
+            //NodeList slide = slideshow.getElementsByTagName("slide");
+            //NamedNodeMap slide = slideshow.getAttributes();
+
+            System.out.println("\n");
+            System.out.println("Title: " + slideShow.getTitle());
+            System.out.println("Date: " + slideShow.getDate());
+            System.out.println("Author: " + slideShow.getAuthor());
+            
+            /* for(int i = 0; i < slide.getLength(); i++) {
+                System.out.println("Slides: " + slide.item(i));
+            }
+            System.out.println("\n"); */
+            
+            
+        } catch (Exception e) {
+            e.getStackTrace();
         }
     }
 
