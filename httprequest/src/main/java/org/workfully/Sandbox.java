@@ -1,5 +1,10 @@
 package org.workfully;
 
+import org.json.JSONObject;
+import org.workfully.controllers.SlideShowController;
+import org.workfully.models.Slideshow;
+import org.workfully.requests.HttpRequests;
+
 /**
  * Hello world!
  */
@@ -7,22 +12,11 @@ public class Sandbox {
 
     public static void main(String[] args) {
 
-        // HttpRequests.getHeaders("https://www.workfully.com");
+        JSONObject mainJson = new JSONObject((HttpRequests.getBody("https://httpbin.org/json")));
 
-        // HttpRequests.getStatusCode("https://www.workfully.com");
+        SlideShowController slideShowController = new SlideShowController(new Slideshow(mainJson.getJSONObject("slideshow")));
 
-        // HttpRequests.getBody("https://httpbin.org/xml");
-
-        // HttpRequests.postRequest("https://httpbin.org/post", "UsernameTest",
-        // "tHiSiSnOtArEaLpAsSwOrD");
-
-        // HttpRequests.postRequest("https://www.google.com", "UsernameTest",
-        // "tHiSiSnOtArEaLpAsSwOrD");
-
-        // JSONHandler.jsonReader(HttpRequests.getBody("https://httpbin.org/json"));
-
-        //Dialogue.init();
-
-        XMLHandler.parse(HttpRequests.getBody("https://httpbin.org/xml"));
+        slideShowController.showSlideShowInfo();
+   
     }
 }
