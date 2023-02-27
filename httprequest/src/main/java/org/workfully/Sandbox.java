@@ -1,5 +1,16 @@
 package org.workfully;
 
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.*;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+import java.io.StringReader;
+import java.io.IOException;
+
 import org.json.JSONObject;
 import org.workfully.controllers.SlideShowController;
 import org.workfully.models.Slideshow;
@@ -12,11 +23,19 @@ public class Sandbox {
 
     public static void main(String[] args) {
 
-        JSONObject mainJson = new JSONObject((HttpRequests.getBody("https://httpbin.org/json")));
+        try {
+            //JSONObject json = new JSONObject((HttpRequests.getBody("https://httpbin.org/json")));
+            Document xml = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(HttpRequests.getBody("https://httpbin.org/xml"))));
 
-        SlideShowController slideShowController = new SlideShowController(new Slideshow(mainJson.getJSONObject("slideshow")));
+            SlideShowController slideShowController = new SlideShowController(new Slideshow(xml)); //json.getJSONObject("slideshow")
 
-        slideShowController.showSlideShowInfo();
-   
+            System.out.println(slideShowController.getSlideshowModelTitle());
+
+            //slideShowController.showSlideShowInfo();
+
+        } catch (SAXException | IOException | ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+
     }
 }

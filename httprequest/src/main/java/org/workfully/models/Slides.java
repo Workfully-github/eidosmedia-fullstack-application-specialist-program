@@ -3,12 +3,21 @@ package org.workfully.models;
 import java.util.ArrayList;
 
 import org.json.JSONObject;
+import org.w3c.dom.Element;
 
 public class Slides {
 
     private String title;
     private String type;
     private ArrayList<String> items;
+
+    public Slides(Element slide) {
+        this.title = slide.getAttribute("title");
+        this.type = slide.getAttribute("type");
+        if(slide.getElementsByTagName("item") != null){
+            
+        }
+    }
 
     public Slides(JSONObject json) {
         this.title = json.getString("title");
