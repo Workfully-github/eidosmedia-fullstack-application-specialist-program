@@ -5,8 +5,16 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import com.googlecode.json.simple.JSONValue;
-import com.googlecode.json.simple.JSONbject;
+// import com.googlecode.json.simple.JSONValue;
+// import com.googlecode.json.simple.JSONbject;
+import java.util.ArrayList;
+
+// import org.json.simple.JSONArray;
+// import org.json.simple.JSONObject;
+// import org.json.simple.JSONValue;
+import org.json.*;
+import org.w3c.dom.*;
+
 
 
 public class Request {
@@ -32,13 +40,68 @@ public class Request {
                     response.append(inputLine);
                 } in .close();
     
-                // print result
-                // System.out.println(response.toString());
-                Object obj = JSONValue.parse(response.toString());
-                JSONObject Jobj = (JSONObject) obj;
-                String apiTitle = (String) Jobj.get("author");
-                System.out.println(apiTitle);
-                // String author = (String) Jobj.get("slideshow");
+                // {
+                //     "slideshow": {
+                //       "author": "Yours Truly",
+                //       "date": "date of publication",
+                //       "slides": [
+                //         {
+                //           "title": "Wake up to WonderWidgets!",
+                //           "type": "all"
+                //         },
+                //         {
+                //           "items": [
+                //             "Why <em>WonderWidgets</em> are great",
+                //             "Who <em>buys</em> WonderWidgets"
+                //           ],
+                //           "title": "Overview",
+                //           "type": "all"
+                //         }
+                //       ],
+                //       "title": "Sample Slide Show"
+                //     }
+                //   }
+
+                /*
+                 <!--   A SAMPLE set of slides   -->
+                    <slideshow title="Sample Slide Show" date="Date of publication" author="Yours Truly">
+                        <!--  TITLE SLIDE  -->
+                        <slides>
+                            <slide type="all">
+                                <title>Wake up to WonderWidgets!</title>
+                            </slide>
+                            <!--  OVERVIEW  -->
+                            <slide type="all">
+                                <title>Overview</title>
+                                <item>
+                                    Why <em>WonderWidgets</em> are great
+                                </item>
+                                <item/>
+                                <item>
+                                    Who<em>buys</em>WonderWidgets
+                                </item>
+                            </slide>
+                        </slides>
+                    </slideshow>
+                 */
+                JSONObject xml__To__Json = XML.toJSONObject(response.toString());
+
+                // System.out.print(xml__To__Json);
+                // JSONObject responseObj = new JSONObject(response.toString());
+                JSONObject slideshowObj = xml__To__Json.getJSONObject("slideshow");
+                Slideshow mySlideshow = new Slideshow(slideshowObj);
+                // System.out.println(mySlideshow.getAuthor());
+
+                System.out.println(mySlideshow.getSlides().get(1).getSlidesItems().get(0));
+
+
+                //Getting the slides content
+                
+
+
+                
+                // System.out.println("A slideshow by: " + slideshowObj.get("author") + " | " + "on: " + slideshowObj.get("date") );
+                // System.out.println(slide1.get("title"));
             } else {
                 System.out.println("GET request not worked");
             }
