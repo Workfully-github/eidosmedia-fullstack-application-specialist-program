@@ -1,6 +1,7 @@
 package org.workfully;
 
 
+import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -25,17 +26,20 @@ public class Sandbox {
 
         try {
             //JSONObject json = new JSONObject((HttpRequests.getBody("https://httpbin.org/json")));
-            Document xml = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(HttpRequests.getBody("https://httpbin.org/xml"))));
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document xml = builder.parse(new InputSource(new StringReader(HttpRequests.getBody("https://httpbin.org/xml"))));
 
             SlideShowController slideShowController = new SlideShowController(new Slideshow(xml)); //json.getJSONObject("slideshow")
 
-            System.out.println(slideShowController.getSlideshowModelSlides());
+            //System.out.println(slideShowController.getSlideshowModelSlides().get(0).getTitle());
+            System.out.println(slideShowController.getSlideshowModelSlides().get(1).getItems());
 
             //slideShowController.showSlideShowInfo();
 
         } catch (SAXException | IOException | ParserConfigurationException e) {
             e.printStackTrace();
         }
-
     }
 }
