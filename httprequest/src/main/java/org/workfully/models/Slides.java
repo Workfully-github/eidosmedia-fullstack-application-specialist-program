@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.json.JSONObject;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.NodeList;
 
 public class Slides {
 
@@ -15,7 +17,13 @@ public class Slides {
         this.title = slide.getAttribute("title");
         this.type = slide.getAttribute("type");
         if(slide.getElementsByTagName("item") != null){
-            
+            this.items = new ArrayList<String>() {
+                {
+                    for (int i = 0; i < slide.getElementsByTagName("item").getLength(); i++) {
+                        add((String) slide.getElementsByTagName("item").item(i).getTextContent());
+                    }
+                }
+            };
         }
     }
 

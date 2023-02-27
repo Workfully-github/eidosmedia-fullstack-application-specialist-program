@@ -29,7 +29,7 @@ public class Sandbox {
 
             SlideShowController slideShowController = new SlideShowController(new Slideshow(xml)); //json.getJSONObject("slideshow")
 
-            System.out.println(slideShowController.getSlideshowModelTitle());
+            System.out.println(slideShowController.getSlideshowModelSlides());
 
             //slideShowController.showSlideShowInfo();
 
