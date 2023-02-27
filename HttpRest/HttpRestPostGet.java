@@ -24,7 +24,7 @@ public class HttpRestPostGet {
         HttpURLConnection connection = conn.createConnection();
     
         // Request response
-        HttpRestView.excecuteRequest(connection);
+        HttpRestView.excecuteRequest(connection,"xml");
     }
     
 }

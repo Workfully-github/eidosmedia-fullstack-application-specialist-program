@@ -17,6 +17,7 @@ public class ConnectionConfig {
 
         HttpURLConnection connection =  (HttpURLConnection) new URL(this.url).openConnection();
         connection.setRequestMethod(this.method.toUpperCase());
+        connection.setDoOutput(true);
 
         return connection;
     }
