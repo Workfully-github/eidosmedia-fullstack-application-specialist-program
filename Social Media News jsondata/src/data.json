@@ -1,33 +1,36 @@
-{"posts": {
+{"feed": {
       "tweets": [
         {
+          "title": "tweet for today",
           "text": "we just receive 100 dollars order from our platform",
           "author": {
             "name": "John Doe",
             "id": "1",
-            "verified": false
+            "type": "basic"
           },
           "likes": [],
           "comments": [],
           "premium": true
         },
         {
+          "title": "My Second Post",
           "text": "Goodbye World!",
           "author": {
             "name": "John Doe",
             "id": "1",
-            "verified": false
+            "type": "basic"
           },
           "likes": [],
           "comments": [],
           "premium": false
         },
         {
+          "title": "a other Post",
           "text": "Hello World!",
           "author": {
             "name": "Bob",
             "id": "2",
-            "verified": true
+            "type": "premium"
           },
           "likes": [{
             "name": "John Doe",
