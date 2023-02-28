@@ -43,9 +43,33 @@ public class HttpRequests {
                 System.out.println(header.getName() + " : " + header.getValue());
             }
 
+            
+
+
+
         } catch (IOException e) {
 
             System.err.println("HTTP request failed: " + e.getMessage());
+           
+        }
+    }
+
+    public static String getContentType(String url){
+
+        HttpHead httpHead = new HttpHead(url);
+
+        try {
+
+            CloseableHttpResponse response = httpClient.execute(httpHead);
+            
+            return response.getHeaders("content-type")[0].getValue();            
+
+
+        } catch (IOException e) {
+
+            System.err.println("HTTP request failed: " + e.getMessage());
+            return "";
+           
         }
     }
 
@@ -86,7 +110,7 @@ public class HttpRequests {
 
                 contentBody = EntityUtils.toString(entity);
 
-                System.out.println(contentBody);
+                //System.out.println(contentBody);
 
             }
 

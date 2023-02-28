@@ -1,6 +1,5 @@
 package org.workfully;
 
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -25,18 +24,17 @@ public class Sandbox {
     public static void main(String[] args) {
 
         try {
-            //JSONObject json = new JSONObject((HttpRequests.getBody("https://httpbin.org/json")));
+            JSONObject json = new JSONObject((HttpRequests.getBody("https://httpbin.org/json"))).getJSONObject("slideshow");
+
+            //HttpRequests.getHeaders("https://httpbin.org/json");
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document xml = builder.parse(new InputSource(new StringReader(HttpRequests.getBody("https://httpbin.org/xml"))));
 
-            SlideShowController slideShowController = new SlideShowController(new Slideshow(xml)); //json.getJSONObject("slideshow")
+            SlideShowController slideShowController = new SlideShowController(new Slideshow(json, HttpRequests.getContentType("https://httpbin.org/json"))); //json.getJSONObject("slideshow")
 
-            //System.out.println(slideShowController.getSlideshowModelSlides().get(0).getTitle());
-            System.out.println(slideShowController.getSlideshowModelSlides().get(1).getItems());
-
-            //slideShowController.showSlideShowInfo();
+            slideShowController.showSlideShowInfo();
 
         } catch (SAXException | IOException | ParserConfigurationException e) {
             e.printStackTrace();

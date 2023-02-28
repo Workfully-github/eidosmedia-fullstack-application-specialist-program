@@ -32,21 +32,26 @@ public class SlideShowController {
     public void showSlideShowInfo() {
         try {
 
-            System.out.println("Main Key: " + slideshowModel.getClass().getSimpleName());
-            System.out.println("author: " + slideshowModel.getAuthor());
-            System.out.println("date: " + slideshowModel.getDate());
-            System.out.println("title: " + slideshowModel.getTitle());
+            present();
 
-            for (Slides slide : slideshowModel.getSlides()) {
-                System.out.println("title: " + slide.getTitle());
-                System.out.println("type: " + slide.getType());
-
-                if (slide.getItems() != null) {
-                    System.out.println("items: " + String.join(", ", cleanItems(slide.getItems())));
-                }
-            }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void present() {
+        System.out.println("Main Key: " + slideshowModel.getClass().getSimpleName());
+        System.out.println("author: " + slideshowModel.getAuthor());
+        System.out.println("date: " + slideshowModel.getDate());
+        System.out.println("title: " + slideshowModel.getTitle());
+
+        for (Slides slide : slideshowModel.getSlides()) {
+            System.out.println("title: " + slide.getTitle());
+            System.out.println("type: " + slide.getType());
+
+            if (slide.getItems() != null) {
+                System.out.println("items: " + String.join(", ", cleanItems(slide.getItems())));
+            }
         }
     }
 
@@ -63,5 +68,4 @@ public class SlideShowController {
             }
         };
     }
-
 }
