@@ -1,8 +1,22 @@
 package Projects.Sports_Social_News.controllers;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.ParseException;
 import java.util.Scanner;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import Projects.Sports_Social_News.models.GlobalPosts;
+import Projects.Sports_Social_News.models.posts.TextPost;
+import Projects.Sports_Social_News.models.posts.TweetPost;
+import Projects.Sports_Social_News.models.posts.VideoPost;
 import Projects.Sports_Social_News.models.users.AuthorUser;
 import Projects.Sports_Social_News.models.users.NormalUser;
 import Projects.Sports_Social_News.views.AuthorSectionView;
@@ -26,10 +40,98 @@ public class Main {
     private static final int IMAGE = 3;
     private static final int VIDEO = 4;
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException {
 
-        new CreatePostsHelper().createInitialPosts();
-        init();
+        try {
+            URL url = new URL("https://mocki.io/v1/f0b807be-1f60-49fb-a7a9-c1aeabdc1e70");
+    
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+            
+            // setRequestMethod sets the action to do - GET, POST, DELETE, etc.
+            httpURLConnection.setRequestMethod("GET");
+
+            // Setting request headers
+            httpURLConnection.setRequestProperty("Content-Type", "application/json");
+            String contentType = httpURLConnection.getHeaderField("Content-Type");
+
+/*             System.out.println(contentType);
+            System.out.println("application/xml");
+            System.out.println(contentType.equals("application/xml"));
+            if (contentType.equals("application/xml")) System.out.println("it's done!"); */
+
+            jsonResponse(httpURLConnection);
+
+            //new CreatePostsHelper().createInitialPosts();
+
+            init();
+            
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void jsonResponse(HttpURLConnection con) throws IOException, ParseException {
+
+        int status = con.getResponseCode();
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+
+        //in.close();
+        // close the connection
+        //con.disconnect();
+
+        readJsonResponse(content);        
+    }
+
+    public static void readJsonResponse(StringBuffer con) throws JSONException {
+
+        try {
+            System.out.println("\n");
+            String responseString = con.toString();
+            
+            JSONObject response = new org.json.JSONObject(responseString);
+            JSONArray homeJSONArray = response.getJSONArray("Home");
+
+            for (int i = 0; i < homeJSONArray.length(); i++) {
+                
+                if (homeJSONArray.getJSONObject(i).getString("type").equals("Tweet")) {
+                    TweetController tweetController = new TweetController();
+                    TweetPost tweet = new TweetPost(homeJSONArray);
+                    tweet = tweetController.createTweetPost(
+                        tweet.getDate(),
+                        tweet.getAuthor(),
+                        tweet.getPost());
+
+                } else if(homeJSONArray.getJSONObject(i).getString("type").equals("Image")) {
+                    TextController textController = new TextController();
+                    TextPost text = new TextPost(homeJSONArray);
+                    text = textController.createTextPost(
+                        text.getDate(),
+                        text.getTextAuthor(),
+                        text.getPost(),
+                        text.getCoverImage(),
+                        text.getIsFree());
+
+                } else if(homeJSONArray.getJSONObject(i).getString("type").equals("Video")) {
+                    VideoController videoController = new VideoController();
+                    VideoPost video = new VideoPost(homeJSONArray);
+                    video = videoController.createVideoPost(
+                        video.getDate(),
+                        video.getAuthor(),
+                        video.getDescription(),
+                        video.getVideo());
+                }
+            }
+
+        } catch (Exception e) {
+            e.getStackTrace();
+        } 
     }
 
     public static void init() {
@@ -37,10 +139,7 @@ public class Main {
         System.out.println("\n");
         System.out.println("Welcome! Let's relax and read some news");
         
-        
-        //selectUser();
-        System.out.println(GlobalPosts.hashMapToString());
-
+        selectUser();
     }
     
     public static void openChoice(AuthorUser author) {

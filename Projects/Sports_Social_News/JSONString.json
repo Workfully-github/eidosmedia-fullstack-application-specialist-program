@@ -1,0 +1,37 @@
+{
+    "Home": [
+        {
+            "publicationDate": "20/02/2023",
+            "author": {
+                "username": "hugo",
+                "firstName": "Hugo",
+                "lastName": "Esteves"
+            },
+            "post": "This post is great!",
+            "type": "Tweet"
+        },
+        {
+            "publicationDate": "13/02/2023",
+            "author": {
+                "username": "amine",
+                "firstName": "Amine",
+                "lastName": "Nokra"
+            },
+            "description": "It's just a simple json file!",
+            "videoUrl": "http://youtube.com",
+            "type": "Video"
+        },
+        {
+            "publicationDate": "20/10/2023",
+            "author": {
+                "username": "hugo",
+                "firstName": "Hugo",
+                "lastName": "Esteves"
+            },
+            "post": "I'm done!",
+            "coverImage": "cxacddvfhgnmbfvbh.png",
+            "isFree": "true",
+            "type": "Image"
+        }
+    ]
+}

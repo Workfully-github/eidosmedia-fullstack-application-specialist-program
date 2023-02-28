@@ -2,6 +2,9 @@ package Projects.Sports_Social_News.models.posts;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import Projects.Sports_Social_News.models.interactions.Comment;
 import Projects.Sports_Social_News.models.interactions.Reaction;
 import Projects.Sports_Social_News.models.users.AuthorUser;
@@ -11,6 +14,7 @@ public class Post {
 
     private String publicationDate, sport;
     private AuthorUser author;
+    private JSONArray jsonArray;
 
     private ArrayList<Comment> comments = new ArrayList<Comment>();
     private ArrayList<Reaction> reactions = new ArrayList<Reaction>(); 
@@ -24,6 +28,28 @@ public class Post {
     public Post(String publicationDate, AuthorUser author) {
         this.publicationDate = publicationDate;
         this.author = author;
+    }
+
+    public Post(JSONArray jsonArray) {
+        this.jsonArray = jsonArray;
+        publicationDate = parsePublicationDate(jsonArray);
+        author = AuthorUser.getJsonUser(parseAuthor(jsonArray));
+    }
+
+    private String parsePublicationDate(JSONArray array) {
+        String date = "";
+        for (int i = 0; i < array.length(); i++) {
+            date = array.getJSONObject(i).getString("publicationDate");
+        }
+        return date;
+    }
+
+    private JSONObject parseAuthor(JSONArray array) {
+        JSONObject obj = new JSONObject();
+        for (int i = 0; i < array.length(); i++) {
+            obj = array.getJSONObject(i).getJSONObject("author");
+        }
+        return obj;
     }
 
     public AuthorUser getAuthor() {return author;}

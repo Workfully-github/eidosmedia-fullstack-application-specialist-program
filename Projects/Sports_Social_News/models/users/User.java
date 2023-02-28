@@ -2,6 +2,9 @@ package Projects.Sports_Social_News.models.users;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import Projects.Sports_Social_News.models.interactions.Comment;
 import Projects.Sports_Social_News.models.interactions.Reaction;
 import Projects.Sports_Social_News.models.posts.Post;
@@ -12,12 +15,28 @@ public class User {
     private ArrayList<Post> favoritePosts = new ArrayList<Post> ();
     private ArrayList<Comment> comments = new ArrayList<Comment> ();
     private ArrayList<Reaction> reactions = new ArrayList<Reaction> ();
+    private JSONObject json;
 
     public User(String username, String firstName, String lastName) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public User(JSONObject json) {
+        this.json = json;
+       /*  username = "";
+        firstName = "";
+        lastName = ""; */
+    }
+
+    /* private String parseUsername(JSONArray array) {
+        String username = "";
+        for (int i = 0; i < array.length(); i++) {
+            author = array.getJSONObject(i).getString("author");
+        }
+        return username;
+    } */
 
     public String getUsername() {
         return username;

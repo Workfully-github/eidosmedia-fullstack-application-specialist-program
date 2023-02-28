@@ -37,7 +37,7 @@ public class GlobalPosts {
         globalPosts.get(author).remove(index);
     }
 
-    public static String hashMapToString() {
+   /*  public static String hashMapToString() {
         String jsonString = "";
         jsonString += "{";
 
@@ -51,7 +51,7 @@ public class GlobalPosts {
         jsonString += "}";
 
         return jsonString;
-    }
+    } */
 
 
 }
