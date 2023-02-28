@@ -24,15 +24,18 @@ public class Sandbox {
     public static void main(String[] args) {
 
         try {
-            JSONObject json = new JSONObject((HttpRequests.getBody("https://httpbin.org/json"))).getJSONObject("slideshow");
+            JSONObject json = new JSONObject((HttpRequests.getBody("https://httpbin.org/json")))
+                    .getJSONObject("slideshow");
 
-            //HttpRequests.getHeaders("https://httpbin.org/json");
+            // HttpRequests.getHeaders("https://httpbin.org/json");
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document xml = builder.parse(new InputSource(new StringReader(HttpRequests.getBody("https://httpbin.org/xml"))));
+            Document xml = builder
+                    .parse(new InputSource(new StringReader(HttpRequests.getBody("https://httpbin.org/xml"))));
 
-            SlideShowController slideShowController = new SlideShowController(new Slideshow(json, HttpRequests.getContentType("https://httpbin.org/json"))); //json.getJSONObject("slideshow")
+            SlideShowController slideShowController = new SlideShowController(
+                    new Slideshow(json, HttpRequests.getContentType("https://httpbin.org/json"))); // json.getJSONObject("slideshow")
 
             slideShowController.showSlideShowInfo();
 

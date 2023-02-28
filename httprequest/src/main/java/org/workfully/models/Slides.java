@@ -2,7 +2,6 @@ package org.workfully.models;
 
 import java.util.ArrayList;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Element;
 
@@ -15,7 +14,7 @@ public class Slides {
     public Slides(Element slide) {
         this.title = slide.getAttribute("title");
         this.type = slide.getAttribute("type");
-        if(slide.getElementsByTagName("item") != null){
+        if (slide.getElementsByTagName("item") != null) {
             this.items = new ArrayList<String>() {
                 {
                     for (int i = 0; i < slide.getElementsByTagName("item").getLength(); i++) {
@@ -60,7 +59,7 @@ public class Slides {
         return items;
     }
 
-    public static ArrayList<Slides> parseSlides(Element root){
+    public static ArrayList<Slides> parseSlides(Element root) {
         return new ArrayList<Slides>() {
             {
                 for (int i = 0; i < root.getElementsByTagName("slide").getLength(); i++) {
@@ -70,7 +69,7 @@ public class Slides {
         };
     }
 
-    public static ArrayList<Slides> parseSlides(JSONObject json){
+    public static ArrayList<Slides> parseSlides(JSONObject json) {
         return new ArrayList<Slides>() {
             {
                 for (Object slide : json.getJSONArray("slides")) {

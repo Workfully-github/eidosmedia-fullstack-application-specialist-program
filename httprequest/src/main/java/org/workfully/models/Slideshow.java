@@ -15,7 +15,7 @@ public class Slideshow {
 
     public Slideshow(Document xml, String contentType) {
         System.out.println(contentType);
-        if (contentType.contains("application/xml")) {
+        if (contentType.equals("application/xml")) {
             Element root = xml.getDocumentElement();
             NamedNodeMap attributes = root.getAttributes();
             this.title = attributes.getNamedItem("title").getNodeName();
@@ -30,7 +30,7 @@ public class Slideshow {
      * @param json refers to the key "Slideshow"
      */
     public Slideshow(JSONObject json, String contentType) {
-        if (contentType.contains("application/json")) {
+        if (contentType.equals("application/json")) {
             this.title = json.getString("title");
             this.author = json.getString("author");
             this.date = json.getString("date");
