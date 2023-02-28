@@ -1,0 +1,30 @@
+[
+  {
+    "contentType": "tweet",
+    "contentAuthor": "Hugo",
+    "textBody": "This is a JSON Tweet"
+  },
+
+  {
+    "contentType": "textPost",
+    "contentAuthor": "Abdu",
+    "textBody": "This is a JSON Text Post ",
+    "coverImgURL": "https://www.thisatesturl.com",
+    "premium": true
+  },
+
+  {
+    "contentType": "videoPost",
+    "contentAuthor": "Amine",
+    "textBody": "This is a JSON Text Post ",
+    "url": "https://www.thisisnotarealurl.com"
+  },
+
+  {
+    "contentType": "textPost",
+    "contentAuthor": "Amine",
+    "textBody": "This is the second JSON Text Post ",
+    "coverImgURL": "https://www.thisatesturl.com",
+    "premium": false
+  }
+]

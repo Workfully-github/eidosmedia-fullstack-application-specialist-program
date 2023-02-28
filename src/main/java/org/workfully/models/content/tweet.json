@@ -1,0 +1,6 @@
+{
+    "contentType": "tweet",
+    "contentAuthor": "Amine",
+    "textBody": "This is a JSON Tweet",
+    "premium": true
+}
