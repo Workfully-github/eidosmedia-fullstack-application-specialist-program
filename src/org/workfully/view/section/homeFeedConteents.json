@@ -1,0 +1,30 @@
+[
+  {
+    "contentType": "tweet",
+    "contentAuthor": "Amine",
+    "textBody": "This is a JSON Tweet",
+    "premium": true
+  },
+
+  {
+    "contentType": "textPost",
+    "contentAuthor": "Amine",
+    "textBody": "This is a JSON Text Post ",
+    ""
+    "premium": true
+  },
+
+  {
+    "contentType": "videeoPost",
+    "contentAuthor": "Amine",
+    "textBody": "This is a JSON Text Post ",
+    "premium": true
+  },
+
+  {
+    "contentType": "textPost",
+    "contentAuthor": "Amine",
+    "textBody": "This is a JSON Text Post ",
+    "premium": true
+  }
+]
