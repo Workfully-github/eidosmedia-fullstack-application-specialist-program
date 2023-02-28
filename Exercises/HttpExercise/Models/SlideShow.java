@@ -28,7 +28,7 @@ public class SlideShow {
         title = doc.getDocumentElement().getAttribute("title");
         date = doc.getDocumentElement().getAttribute("date");
         author = doc.getDocumentElement().getAttribute("author");
-        //slide = Slides.getSlides(json.getJSONArray("slides"));
+        slide = Slides.getSlidesXML(doc.getElementsByTagName("slide"));
     }
 
     public void setAuthor(String author) {

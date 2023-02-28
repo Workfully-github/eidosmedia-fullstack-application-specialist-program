@@ -3,6 +3,9 @@ package Projects.Sports_Social_News.models;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.JSONObject;
+import org.json.JSONString;
+
 import Projects.Sports_Social_News.models.posts.Post;
 import Projects.Sports_Social_News.models.users.AuthorUser;
 
@@ -33,4 +36,23 @@ public class GlobalPosts {
 
         globalPosts.get(author).remove(index);
     }
+
+    public static String hashMapToString() {
+        String jsonString = "";
+        jsonString += "{";
+
+        for (HashMap.Entry<AuthorUser,ArrayList<Post>> set : globalPosts.entrySet()) {
+
+            for (int i = 0; i < set.getValue().size(); i++) {
+                jsonString += set.getKey().getDisplayName() + " : " + set.getValue().get(i) + ", ";
+            }
+        }
+
+        jsonString += "}";
+
+        return jsonString;
+    }
+
+
 }
+ 

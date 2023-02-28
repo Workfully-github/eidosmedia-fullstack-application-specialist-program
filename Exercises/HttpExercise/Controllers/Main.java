@@ -60,11 +60,12 @@ public class Main {
             httpURLConnection.setRequestProperty("Content-Type", "application/json");
             String contentType = httpURLConnection.getHeaderField("Content-Type");
 
-            // If we wish to set connect and read timeouts
-            /* httpURLConnection.setConnectTimeout(5000);
-            httpURLConnection.setReadTimeout(5000); */
-
             if (method == "POST") requestParameters(httpURLConnection);
+
+            System.out.println(contentType);
+            System.out.println("application/xml");
+            System.out.println(contentType.equals("application/xml"));
+            if (contentType.equals("application/xml")) System.out.println("it's done!");
 
             readResponse(httpURLConnection);
 
@@ -115,9 +116,13 @@ public class Main {
         // close the connection
         //con.disconnect();
 
-        //readJsonResponse(content);
+        /* String type = con.getHeaderField("Content-Type");
+        
+        if (type == "application/xml") readXmlResponse(content); */
 
-        readXmlResponse(content);
+        readJsonResponse(content);
+
+        readXmlResponse(content);        
     }
 
     public static void readJsonResponse(StringBuffer con) throws JSONException {
@@ -170,20 +175,19 @@ public class Main {
 
             SlideShow slideShow = new SlideShow(doc);
 
-            
-            /* Element slideshow = doc.getDocumentElement(); */
-            //NodeList slide = slideshow.getElementsByTagName("slide");
-            //NamedNodeMap slide = slideshow.getAttributes();
-
             System.out.println("\n");
             System.out.println("Title: " + slideShow.getTitle());
             System.out.println("Date: " + slideShow.getDate());
             System.out.println("Author: " + slideShow.getAuthor());
             
-            /* for(int i = 0; i < slide.getLength(); i++) {
-                System.out.println("Slides: " + slide.item(i));
+            System.out.println("\n");
+            System.out.println("SLIDES: ");
+            for(int i = 0; i < slideShow.getSlide().size(); i++) {
+                System.out.println("Title: " + slideShow.getSlide().get(i).getTitle());
+                System.out.println("Type: " + slideShow.getSlide().get(i).getType());
+                System.out.println("Items: " + slideShow.getSlide().get(i).getItems());
             }
-            System.out.println("\n"); */
+            System.out.println("\n"); 
             
             
         } catch (Exception e) {

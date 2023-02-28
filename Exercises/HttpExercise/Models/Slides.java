@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.*;
 
 public class Slides {
     
@@ -11,6 +13,8 @@ public class Slides {
     private String type;
     private ArrayList<String> items;
     private JSONObject json;
+    private Document doc;
+    private Node node;
 
     public Slides(JSONObject json) {
         this.json = json;
@@ -21,11 +25,31 @@ public class Slides {
             items = parseSlideItems(json.getJSONArray("items"));
     }
 
+    public Slides(Node node) {
+        this.node = node;
+        Element element = (Element) node;
+        title = element.getElementsByTagName("title").item(0).getTextContent();
+        type = element.getAttribute("type");
+
+        if(element.hasAttribute("items"))
+            items = parseSlideItems(element.getElementsByTagName("item"));
+    }
+
     private ArrayList<String> parseSlideItems(JSONArray jsonArray) {
 
         ArrayList<String> items = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
             items.add(jsonArray.getString(i));
+        }
+
+        return items;
+    }
+
+    private ArrayList<String> parseSlideItems(NodeList list) {
+
+        ArrayList<String> items = new ArrayList<>();
+        for (int i = 0; i < list.getLength(); i++) {
+            items.add(list.item(i).toString());
         }
 
         return items;
@@ -61,6 +85,17 @@ public class Slides {
 
         for (int i = 0; i < jsonArray.length(); i++) {
             slides.add(new Slides(jsonArray.getJSONObject(i)));
+        }
+        
+        return slides;
+    }
+
+    public static ArrayList<Slides> getSlidesXML(NodeList list) {
+        
+        ArrayList<Slides> slides = new ArrayList<>();
+        
+        for (int i = 0; i < list.getLength(); i++) {
+            slides.add(new Slides(list.item(i)));
         }
         
         return slides;

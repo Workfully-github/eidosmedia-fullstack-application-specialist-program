@@ -2,6 +2,7 @@ package Projects.Sports_Social_News.controllers;
 
 import java.util.Scanner;
 
+import Projects.Sports_Social_News.models.GlobalPosts;
 import Projects.Sports_Social_News.models.users.AuthorUser;
 import Projects.Sports_Social_News.models.users.NormalUser;
 import Projects.Sports_Social_News.views.AuthorSectionView;
@@ -36,7 +37,9 @@ public class Main {
         System.out.println("\n");
         System.out.println("Welcome! Let's relax and read some news");
         
-        selectUser();
+        
+        //selectUser();
+        System.out.println(GlobalPosts.hashMapToString());
 
     }
     
