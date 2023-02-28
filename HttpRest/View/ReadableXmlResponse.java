@@ -72,7 +72,7 @@ public class ReadableXmlResponse {
                 System.out.println("---Items : ");
                 if (slide.getItems() != null) {
                     for (String item : slide.getItems()) {
-                        System.out.println("----- "  + item);
+                        System.out.println("------ "  + item);
                     }
                 }
             }

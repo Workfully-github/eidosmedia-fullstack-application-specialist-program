@@ -13,7 +13,7 @@ import java.net.HttpURLConnection;
 public class HttpRestView {
     
 
-    public static void excecuteRequest(HttpURLConnection connection,String bodyType) {
+    public static void excecuteRequest(HttpURLConnection connection) {
         
         
         int responseCode;
@@ -39,19 +39,19 @@ public class HttpRestView {
                 }
                 in.close();
             
-                if(bodyType=="json"){
-                    System.out.println("------------------------Response Body j:-----------------------------------");
+                if(connection.getHeaderFields().toString().contains("json")){
+                    System.out.println("------------------------Response Body json:-----------------------------------");
                     //System.out.println("\nResponse Body: " + responseBody.toString());
                     ReadableJsonResponse.print(responseBody.toString());
                 }
-                else if(bodyType=="xml") {
-                    System.out.println("------------------------Response Body x:-----------------------------------");
+                else if(connection.getHeaderFields().toString().contains("xml")) {
+                    System.out.println("------------------------Response Body xml:-----------------------------------");
                     ReadableXmlResponse.print(responseBody.toString().substring(74));
                 }
                 else{
                         // Print Response Body
                         System.out.println("------------------------------------------------------------------");
-                        System.out.println("\nResponse Body: " + responseBody.toString().substring(74));
+                        System.out.println("\nResponse Body: " + responseBody.toString());
                     }
             } catch (IOException e1) {
                 System.out.println("------------------------------------------------------------------");

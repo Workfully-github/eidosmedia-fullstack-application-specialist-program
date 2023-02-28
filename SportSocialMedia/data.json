@@ -1,0 +1,57 @@
+{"posts": {
+      "tweets": [
+        {
+          "text": "we just receive 100 dollars order from our platform",
+          "author": {
+            "name": "John Doe",
+            "id": "1",
+            "verified": false
+          },
+          "likes": [],
+          "comments": [],
+          "premium": true
+        },
+        {
+          "text": "Goodbye World!",
+          "author": {
+            "name": "John Doe",
+            "id": "1",
+            "verified": false
+          },
+          "likes": [],
+          "comments": [],
+          "premium": false
+        },
+        {
+          "text": "Hello World!",
+          "author": {
+            "name": "Bob",
+            "id": "2",
+            "verified": true
+          },
+          "likes": [{
+            "name": "John Doe",
+            "id": "1",
+            "type": "basic",
+            "author": true
+          }],
+          "comments": [
+            {
+                "user":{
+                    "name": "patrick",
+                    "id": "4",
+                    "type": "premium",
+                    "author": false
+                  },
+              "text": "best post of the year"
+            }
+          ],
+          "premium": false
+        }
+      ],
+      "videos": [],
+      "texts": [],
+      "images": []
+    }
+  }
+  

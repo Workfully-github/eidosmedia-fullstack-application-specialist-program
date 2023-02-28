@@ -22,9 +22,15 @@ public class HttpRestPostGet {
         // Open connection and set method
         ConnectionConfig conn = new ConnectionConfig(url, method);
         HttpURLConnection connection = conn.createConnection();
-    
+        //System.out.println(url.substring(19,23));
         // Request response
-        HttpRestView.excecuteRequest(connection,"xml");
+        if (url.contains("json")){
+            HttpRestView.excecuteRequest(connection);
+        }
+        else if(url.contains("xml")){
+            HttpRestView.excecuteRequest(connection);
+        }
+        else {HttpRestView.excecuteRequest(connection);}
     }
     
 }
