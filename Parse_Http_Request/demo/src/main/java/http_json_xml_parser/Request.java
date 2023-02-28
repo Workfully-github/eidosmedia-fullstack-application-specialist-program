@@ -3,17 +3,22 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 // import com.googlecode.json.simple.JSONValue;
 // import com.googlecode.json.simple.JSONbject;
 import java.util.ArrayList;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 // import org.json.simple.JSONArray;
 // import org.json.simple.JSONObject;
 // import org.json.simple.JSONValue;
 import org.json.*;
 import org.w3c.dom.*;
+import org.xml.sax.InputSource;
 
 
 
@@ -40,59 +45,22 @@ public class Request {
                     response.append(inputLine);
                 } in .close();
     
-                // {
-                //     "slideshow": {
-                //       "author": "Yours Truly",
-                //       "date": "date of publication",
-                //       "slides": [
-                //         {
-                //           "title": "Wake up to WonderWidgets!",
-                //           "type": "all"
-                //         },
-                //         {
-                //           "items": [
-                //             "Why <em>WonderWidgets</em> are great",
-                //             "Who <em>buys</em> WonderWidgets"
-                //           ],
-                //           "title": "Overview",
-                //           "type": "all"
-                //         }
-                //       ],
-                //       "title": "Sample Slide Show"
-                //     }
-                //   }
+                
 
-                /*
-                 <!--   A SAMPLE set of slides   -->
-                    <slideshow title="Sample Slide Show" date="Date of publication" author="Yours Truly">
-                        <!--  TITLE SLIDE  -->
-                        <slides>
-                            <slide type="all">
-                                <title>Wake up to WonderWidgets!</title>
-                            </slide>
-                            <!--  OVERVIEW  -->
-                            <slide type="all">
-                                <title>Overview</title>
-                                <item>
-                                    Why <em>WonderWidgets</em> are great
-                                </item>
-                                <item/>
-                                <item>
-                                    Who<em>buys</em>WonderWidgets
-                                </item>
-                            </slide>
-                        </slides>
-                    </slideshow>
-                 */
-                JSONObject xml__To__Json = XML.toJSONObject(response.toString());
-
-                // System.out.print(xml__To__Json);
                 // JSONObject responseObj = new JSONObject(response.toString());
-                JSONObject slideshowObj = xml__To__Json.getJSONObject("slideshow");
-                Slideshow mySlideshow = new Slideshow(slideshowObj);
-                // System.out.println(mySlideshow.getAuthor());
-
-                System.out.println(mySlideshow.getSlides().get(1).getSlidesItems().get(0));
+                // JSONObject slideshowObj = responseObj.getJSONObject("slideshow");
+                try {
+                    
+                    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();  
+                    DocumentBuilder builder = factory.newDocumentBuilder();
+                    Document doc = builder.parse(new InputSource(new StringReader(response.toString())));
+    
+                    Slideshow mySlideshow = new Slideshow(doc);
+                    // System.out.println("-------------------------\n" + mySlideshow.getAuthor());
+    
+                } catch (Exception e) {
+                    System.out.print(e.getMessage());
+                }
 
 
                 //Getting the slides content
