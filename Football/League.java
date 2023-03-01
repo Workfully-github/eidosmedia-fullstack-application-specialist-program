@@ -1,15 +1,19 @@
 package Football;
 
-public class League {
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class League extends Statistical{
 
     private String name;
     private ArrayList<FootballTeam> teams;
     private ArrayList<FootballMatch> matches;
     private HashMap<FootballTeam,Integer> standings = new HashMap<FootballTeam,Integer>();
+    
 
     private static int POINTS_WIN = 3;
     private static int POINTS_DRAW = 1;
-    private static int POINTS_DEFAIT = 0;
+    private static int POINTS_DEFEAT = 0;
 
 
     
@@ -73,6 +77,8 @@ public class League {
     }
 
 
+    
+    
     
 
 

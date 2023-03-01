@@ -1,5 +1,8 @@
 package Football;
-public class FootballTeam {
+
+import java.util.ArrayList;
+
+public class FootballTeam extends Statistical{
 
 
     private String name;
@@ -13,6 +16,7 @@ public class FootballTeam {
     public ArrayList<FootballPlayer> getPlayers() {
         return players;
     }
+
     
 
 }

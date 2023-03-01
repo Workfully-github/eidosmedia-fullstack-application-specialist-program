@@ -1,3 +1,4 @@
+package Football;
 public class Goal{
 
     private FootballPlayer scorer;

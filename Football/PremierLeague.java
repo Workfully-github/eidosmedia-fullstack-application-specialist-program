@@ -1,5 +1,8 @@
 package Football;
 
+import java.util.ArrayList;
+import Football.FootballTeam;
+import Football.FootballMatch;
 public class PremierLeague {
 
 
@@ -14,7 +17,6 @@ public class PremierLeague {
     Total matches is: 6  
     */
 
-
     public static void main(String[] args) {
 
 
@@ -24,7 +26,17 @@ public class PremierLeague {
 
         premierLeague.playMatches();
 
-        HashMap<FootballTeam, Integer>  = premierLeague.getStandings();
+        HashMap<FootballTeam, Integer> standings  = premierLeague.getStandings();
+        
+        premierLeague.getTopScorers();
+        //Hello
+        
+        FootballTeam arsenal = new FootballTeam();
+        
+        arsenal.getTopScorers();
+        // Bye
+        
+    
 
         // print the standings
         
