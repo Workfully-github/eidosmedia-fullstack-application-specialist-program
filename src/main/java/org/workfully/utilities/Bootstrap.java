@@ -115,7 +115,7 @@ public class Bootstrap {
         };
     }
 
-    private static JSONArray generateJsonArray(String path) {
+    public static JSONArray generateJsonArray(String path) {
         try {
             JSONParser parser = new JSONParser();
             return (JSONArray) parser.parse(new FileReader(path));

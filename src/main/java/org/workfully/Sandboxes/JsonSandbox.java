@@ -8,6 +8,7 @@ import org.json.simple.parser.JSONParser;
 import org.workfully.controllers.users.AbstractUserController;
 import org.workfully.controllers.users.AuthorController;
 import org.workfully.utilities.Bootstrap;
+import org.workfully.utilities.factories.StringFactory;
 import org.workfully.view.userSection.AuthorClientSideView;
 
 public class JsonSandbox {
@@ -18,17 +19,19 @@ public class JsonSandbox {
 
         try {
 
-            JSONParser parser = new JSONParser();
-            JSONArray jsonArray = (JSONArray) parser
-                    .parse(new FileReader("src/main/java/org/workfully/Sandboxes/homeFeedContents.json"));
+            JSONArray jsonArray = Bootstrap.generateJsonArray(StringFactory.JSON_PATH); //"src/main/java/org/workfully/Sandboxes/homeFeedContents.json"
 
             Map<String, AbstractUserController> userMocks = Bootstrap.bootstrapUsersFromJson(jsonArray);
 
             Bootstrap.bootstrapContentFromJson(jsonArray);
 
-            AuthorClientSideView userView = new AuthorClientSideView((AuthorController) userMocks.get("Amine"));
+            AuthorController amine = (AuthorController) userMocks.get("Amine");
+            AuthorClientSideView userView = new AuthorClientSideView(amine);
+
+            amine.createTweet("This tweet was manually written.");
 
             userView.showHomeFeed();
+
 
         } catch (Exception e) {
             e.printStackTrace();
