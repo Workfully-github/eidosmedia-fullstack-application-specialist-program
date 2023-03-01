@@ -52,7 +52,7 @@ public class AuthorUser extends User {
 
     public static AuthorUser getJsonUser(JSONObject obj) {
 
-        AuthorUser author = new AuthorUser(obj.getString("username"), obj.getString("username"),obj.getString("username"));
+        AuthorUser author = new AuthorUser(obj.getString("username"), obj.getString("firstName"),obj.getString("lastName"));
         return author;
     }
 

@@ -44,7 +44,7 @@ public class Post {
         return date;
     }
 
-    private JSONObject parseAuthor(JSONArray array) {
+    private static JSONObject parseAuthor(JSONArray array) {
         JSONObject obj = new JSONObject();
         for (int i = 0; i < array.length(); i++) {
             obj = array.getJSONObject(i).getJSONObject("author");
