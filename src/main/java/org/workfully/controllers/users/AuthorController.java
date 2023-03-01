@@ -2,6 +2,7 @@ package org.workfully.controllers.users;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
 import org.workfully.controllers.content.ImageGalleryPostController;
 import org.workfully.controllers.content.TextPostController;
 import org.workfully.controllers.content.TweetController;
@@ -37,6 +38,10 @@ public class AuthorController extends AbstractUserController implements CreateCo
     @Override
     public Tweet createTweet(String message) throws Exception {
         return tweetController.createTweet(((Author) this.userModel), message);
+    }
+
+    public Tweet createTweetToJson(String message) throws Exception {
+        return tweetController.createTweetToJson(((Author) this.userModel), message);
     }
 
     @Override

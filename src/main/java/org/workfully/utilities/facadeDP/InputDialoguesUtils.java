@@ -1,10 +1,17 @@
 package org.workfully.utilities.facadeDP;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Logger;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.workfully.controllers.users.AbstractUserController;
 import org.workfully.controllers.users.AuthorController;
 import org.workfully.models.content.AbstractContent;
+import org.workfully.utilities.factories.StringFactory;
+
 import static org.workfully.utilities.factories.StringFactory.*;
 
 public class InputDialoguesUtils {

@@ -1,10 +1,8 @@
 package org.workfully.Sandboxes;
 
-import java.io.FileReader;
 import java.util.Map;
 
 import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 import org.workfully.controllers.users.AbstractUserController;
 import org.workfully.controllers.users.AuthorController;
 import org.workfully.utilities.Bootstrap;
@@ -13,24 +11,25 @@ import org.workfully.view.userSection.AuthorClientSideView;
 
 public class JsonSandbox {
 
+    public static JSONArray JSON_ARRAY = Bootstrap.generateJsonArray(StringFactory.JSON_PATH); //"src/main/java/org/workfully/Sandboxes/homeFeedContents.json"
+
     public static void main(String[] args) {
 
         Bootstrap bootstrap = new Bootstrap();
 
         try {
 
-            JSONArray jsonArray = Bootstrap.generateJsonArray(StringFactory.JSON_PATH); //"src/main/java/org/workfully/Sandboxes/homeFeedContents.json"
+            Map<String, AbstractUserController> userMocks = Bootstrap.bootstrapUsersFromJson(JSON_ARRAY);
 
-            Map<String, AbstractUserController> userMocks = Bootstrap.bootstrapUsersFromJson(jsonArray);
-
-            Bootstrap.bootstrapContentFromJson(jsonArray);
+            Bootstrap.bootstrapContentFromJson(JSON_ARRAY);
 
             AuthorController amine = (AuthorController) userMocks.get("Amine");
             AuthorClientSideView userView = new AuthorClientSideView(amine);
 
-            amine.createTweet("This tweet was manually written.");
+            amine.createTweetToJson("This tweet was manually written.");
+            //amine.createTweet("Test");
 
-            userView.showHomeFeed();
+            userView.showHomeFeed();            
 
 
         } catch (Exception e) {
