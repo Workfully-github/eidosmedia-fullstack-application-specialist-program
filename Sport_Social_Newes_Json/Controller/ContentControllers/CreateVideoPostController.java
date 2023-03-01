@@ -27,7 +27,7 @@ public class CreateVideoPostController extends CreateContentController {
         Printer.devider();
         HandleComments.displayComments(video);
         
-        createInteractionsView.displayInteractionOptions(video, user);
+        // createInteractionsView.displayInteractionOptions(video, user);
     }
 
 }

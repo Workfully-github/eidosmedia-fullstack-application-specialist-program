@@ -134,35 +134,35 @@ public class FeedController {
         try {
             switch (feed.getJSONObject(i).getString("type")) {
                 case "tweet":
-                Tweet newTweet = createTweetsController.create(new Tweet(abdu, feedContent.getString("body"), isContentPremium));
-                // Feed.addContenttoFeed(newTweet);
-                break;
+                    Tweet newTweet = createTweetsController.create(new Tweet(abdu, feedContent.getString("body"), isContentPremium));
+                    // Feed.addContenttoFeed(newTweet);
+                    break;
                 
                 case "textPost":
-                Text newText = createTextPostController.create(new Text(abdu, isContentPremium, feedContent.getString("body"), feedContent.getString("coverImage")));
-                // Feed.addContenttoFeed(newText);
-                break;
+                    Text newText = createTextPostController.create(new Text(abdu, isContentPremium, feedContent.getString("body"), feedContent.getString("coverImage")));
+                    // Feed.addContenttoFeed(newText);
+                    break;
                 case "imageGallery":
-                ArrayList<String> images = new ArrayList<>();
-                for (int y = 0; y < feedContent.getJSONArray("images").length(); y++){
-                    images.add(feedContent.getJSONArray("images").getString(y));
-                }
-                ImageGallery newGallery =  createImagePostController.create(new ImageGallery(abdu, isContentPremium, feedContent.getString("body"), images));
-                // Feed.addContenttoFeed(newGallery);
-                
-                break;
+                    ArrayList<String> images = new ArrayList<>();
+                    for (int y = 0; y < feedContent.getJSONArray("images").length(); y++){
+                        images.add(feedContent.getJSONArray("images").getString(y));
+                    }
+                    ImageGallery newGallery =  createImagePostController.create(new ImageGallery(abdu, isContentPremium, feedContent.getString("body"), images));
+                    // Feed.addContenttoFeed(newGallery);
+                    
+                    break;
                 case "video":
-                Video newVideo = createVideoPostController.create(new Video(abdu, isContentPremium, feedContent.getString("body"), feedContent.getString("video")));
-                // Feed.addContenttoFeed(newVideo);
-                
-                break;
+                    Video newVideo = createVideoPostController.create(new Video(abdu, isContentPremium, feedContent.getString("body"), feedContent.getString("video")));
+                    // Feed.addContenttoFeed(newVideo);
+                    
+                    break;
                 
                 default:
                 break;
             }
                 
         } catch (NullPointerException e) {
-            Printer.printMultiLines("Invalid Tweet Body!");
+            Printer.printMultiLines("Invalid Content Body!");
         } 
        }
     }

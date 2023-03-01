@@ -1,5 +1,7 @@
 package View;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Scanner;
 
 import Controller.FeedControllers.FeedController;
@@ -15,8 +17,17 @@ public class AppStarter {
         // Start.generateSomeData();
         User me = new User("Abderraouf", "me", "dsf", true);
         
-        FeedController.createFeedPage(Feed.getFeed());
-        FeedController.displayFeedContent(Feed.getFeed(), me);
+        String url = "http://localhost:4000/";
+        try {
+            URL contentUrl = new URL(url);
+            FeedController.parseContentJson(FeedController.getContentFromJson(contentUrl));
+        } catch (MalformedURLException e) {
+            System.out.print(e.getMessage());
+        }
+
+        
+        // FeedController.createFeedPage(Feed.getFeed());
+        // FeedController.displayFeedContent(Feed.getFeed(), me);
         
         Scanner in = new Scanner(System.in);
         Printer.printMultiLines("\n\n**WELCOME TO YOUR FAVORITE SPORT NEWS PUBLISHING PLATFORM**\n\n", "Continue As:\n", "[1] -- Auther", "[2] -- Premium User (you will have access to all of our premium content!!)", "[3] -- Basic User\n");

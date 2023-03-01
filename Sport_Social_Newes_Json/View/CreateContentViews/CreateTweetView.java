@@ -24,7 +24,8 @@ public class CreateTweetView extends CreateContentViews {
         CreateTweetsController createTweetsController = new CreateTweetsController();
         try {
             Tweet newTweet = createTweetsController.create(new Tweet(author, body, isContentPremium));
-            createTweetsController.display(newTweet, author, false, 0);
+            createTweetsController.display(newTweet, author, true, 0);
+            AppStarter.takeOff();
         } catch (NullPointerException e) {
             Printer.printMultiLines("Invalid Tweet Body!");
         } 

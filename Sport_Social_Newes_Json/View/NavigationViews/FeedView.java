@@ -14,6 +14,7 @@ public class FeedView {
 
     public static void showProfile(Author author){
         FeedController.displayFeedContent(author.getMyContent(), author);
+        
     }
 
 }
