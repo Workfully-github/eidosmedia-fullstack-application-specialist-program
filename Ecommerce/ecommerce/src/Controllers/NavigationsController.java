@@ -1,14 +1,14 @@
 package Controllers;
 
 public class NavigationsController {
-    public static int productsPerPage = 5;
+    public static int productsPerPage = 80;
     public static int skip = 0;
     public static int limit = productsPerPage;
 
 
 
     public static void next() {
-        if(skip + productsPerPage > 100) limit = 0;
+        if(skip + productsPerPage > 100) {limit = 0; return;}
         skip += productsPerPage;
     }
 
