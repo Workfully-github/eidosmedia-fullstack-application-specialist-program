@@ -8,6 +8,7 @@ import Models.User.Author;
 import Models.User.BasicUser;
 import Models.User.PremuimUser;
 import View.InitPost_json;
+import View.InitUser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -50,6 +51,10 @@ public class Main {
             tweetPostsList.add(tweetPostVar);
         }
 
+        Author author2 =new Author("Bob", (InitUser.id++)+"", true);
+        TweetPost tweetPost1 = new TweetPost("tweet for today", author2);
+        tweetPost1.updateTweetPostText("we just receive 100 dollars order from our platform");
+        tweetPostsList.add(tweetPost1);
         TweetPostController.displayAll(tweetPostsList);
     }
 }
