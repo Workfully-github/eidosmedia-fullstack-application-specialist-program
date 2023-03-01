@@ -20,11 +20,8 @@ public class Sandbox {
 
         ProductController productController = new ProductController();
 
-        
-
         ProductList productList = new ProductList(productController.generateProductList(products));
         
-        //System.out.println(productList.getProductList());
         productList.presentAllProducts();
 
     }

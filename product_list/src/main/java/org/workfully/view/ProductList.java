@@ -21,7 +21,6 @@ public class ProductList {
         for (Product product : productList) {
             productListByIndex.put(product.getId(), product);
         }
-
     }
 
     public HashMap<Integer, Product> getProductListByIndex() {
@@ -45,5 +44,4 @@ public class ProductList {
             System.out.println(product.toString());
         }
     }
-
 }
