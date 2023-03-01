@@ -13,7 +13,7 @@ public class ProductList {
     public ProductList(ArrayList<Product> productList) {
         this.productList = productList;
         this.productListByIndex = new HashMap<Integer, Product>();
-
+        
         /*
          * Populates the HashMap with the Product List
          * So we can access products by Index if needed
@@ -39,9 +39,12 @@ public class ProductList {
         this.productList = productList;
     }
 
+
+
     public void presentAllProducts() {
         for (Product product : productList) {
             System.out.println(product.toString());
         }
     }
+
 }

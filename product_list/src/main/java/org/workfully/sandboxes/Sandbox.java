@@ -3,6 +3,7 @@ package org.workfully.sandboxes;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.workfully.controlers.ProductController;
+import org.workfully.utilities.Paginator;
 import org.workfully.utilities.RestController;
 import org.workfully.view.ProductList;
 
@@ -20,9 +21,11 @@ public class Sandbox {
 
         ProductController productController = new ProductController();
 
-        ProductList productList = new ProductList(productController.generateProductList(products));
+        ProductList productList = new ProductList(productController.generateProductList(Paginator.selectPage(1)));
         
         productList.presentAllProducts();
+
+        
 
     }
 }
