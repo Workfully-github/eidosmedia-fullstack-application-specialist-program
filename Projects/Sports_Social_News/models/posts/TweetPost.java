@@ -24,7 +24,7 @@ public class TweetPost extends Post {
     
     public TweetPost(JSONArray jsonArray) {
         super(jsonArray);
-        post = parsePost(array);
+        post = parsePost(jsonArray);
         /* publicationDate = getDate();
         author = getAuthor(); */
     }
@@ -60,7 +60,8 @@ public class TweetPost extends Post {
     private String parsePost(JSONArray array) {
         String post = "";
         for (int i = 0; i < array.length(); i++) {
-            post = array.getJSONObject(i).getString("post");
+            if(array.getJSONObject(i).getString("type").equals("Tweet"))
+                post = array.getJSONObject(i).getString("post");
         }
         return post;
     }

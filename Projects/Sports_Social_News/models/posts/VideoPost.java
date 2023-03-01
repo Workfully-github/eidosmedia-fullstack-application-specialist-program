@@ -24,7 +24,7 @@ public class VideoPost extends Post {
 
     public VideoPost(JSONArray jsonArray) {
         super(jsonArray);
-        description = parseDescription(array);
+        description = parseDescription(jsonArray);
         videoUrl = parseVideoUrl(jsonArray);
     }
 
@@ -51,7 +51,8 @@ public class VideoPost extends Post {
     private String parseDescription(JSONArray array) {
         String description = "";
         for (int i = 0; i < array.length(); i++) {
-            description = array.getJSONObject(i).getString("description");
+            if(array.getJSONObject(i).getString("type").equals("Video"))
+                description = array.getJSONObject(i).getString("description");
         }
         return description;
     }
@@ -59,7 +60,8 @@ public class VideoPost extends Post {
     private String parseVideoUrl(JSONArray array) {
         String videoUrl = "";
         for (int i = 0; i < array.length(); i++) {
-            videoUrl = array.getJSONObject(i).getString("videoUrl");
+            if(array.getJSONObject(i).getString("type").equals("Video"))
+                videoUrl = array.getJSONObject(i).getString("videoUrl");
         }
         return videoUrl;
     }

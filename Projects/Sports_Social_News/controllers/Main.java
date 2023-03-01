@@ -100,18 +100,11 @@ public class Main {
             JSONObject response = new org.json.JSONObject(responseString);
             JSONArray homeJSONArray = response.getJSONArray("Home");
 
-            System.out.println(homeJSONArray);
-
             for (int i = 0; i < homeJSONArray.length(); i++) {
-                System.out.println(homeJSONArray.getJSONObject(i).getString("type").equals("Tweet"));
                 
                 if (homeJSONArray.getJSONObject(i).getString("type").equals("Tweet")) {
-                    System.out.println("I passed if!");
                     TweetController tweetController = new TweetController();
-                    System.out.println("I passed controller!");
                     TweetPost tweet = new TweetPost(homeJSONArray);
-                    System.out.println("I'm inside tweet!");
-                    System.out.println(tweet);
                     tweet = tweetController.createTweetPost(
                         tweet.getDate(),
                         tweet.getAuthor(),

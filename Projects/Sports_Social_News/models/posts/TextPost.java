@@ -26,7 +26,7 @@ public class TextPost extends Post {
 
     public TextPost(JSONArray jsonArray) {
         super(jsonArray);
-        post = parsePost(array);
+        post = parsePost(jsonArray);
         coverImage = parseCoverImage(jsonArray);
         isFree = parseIsFree(jsonArray);
     }
@@ -62,7 +62,8 @@ public class TextPost extends Post {
     private String parsePost(JSONArray array) {
         String post = "";
         for (int i = 0; i < array.length(); i++) {
-            post = array.getJSONObject(i).getString("post");
+            if(array.getJSONObject(i).getString("type").equals("Image"))
+                post = array.getJSONObject(i).getString("post");
         }
         return post;
     }
@@ -70,7 +71,8 @@ public class TextPost extends Post {
     private String parseCoverImage(JSONArray array) {
         String cover = "";
         for (int i = 0; i < array.length(); i++) {
-            cover = array.getJSONObject(i).getString("coverImage");
+            if(array.getJSONObject(i).getString("type").equals("Image"))
+                cover = array.getJSONObject(i).getString("coverImage");
         }
         return cover;
     }
@@ -78,7 +80,8 @@ public class TextPost extends Post {
     private boolean parseIsFree(JSONArray array) {
         String free = "";
         for (int i = 0; i < array.length(); i++) {
-            free = array.getJSONObject(i).getString("isFree");
+            if(array.getJSONObject(i).getString("type").equals("Image"))
+                free = array.getJSONObject(i).getString("isFree");
 
         }
         if(free.equals("true")) return true;
