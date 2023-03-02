@@ -1,11 +1,8 @@
 package org.workfully.sandboxes;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.workfully.controlers.ProductController;
-import org.workfully.utilities.Paginator;
-import org.workfully.utilities.RestController;
+import org.workfully.controllers.ProductController;
 import org.workfully.view.ProductList;
+import org.workfully.view.ProductSelection;
 
 /**
  * Hello world!
@@ -13,19 +10,9 @@ import org.workfully.view.ProductList;
  */
 public class Sandbox {
 
-    public static JSONObject json = new JSONObject((RestController.getBody("https://dummyjson.com/products")));
-    public static JSONArray products = json.getJSONArray("products");
-           
-
     public static void main(String[] args) {
 
-        ProductController productController = new ProductController();
-
-        ProductList productList = new ProductList(productController.generateProductList(Paginator.selectPage(1)));
-        
-        productList.presentAllProducts();
-
-        
-
+        ProductList productList = new ProductList(new ProductController(new ProductSelection().howManyPagesDialogue(), new ProductSelection().pageSelectionDialogue()));
+        productList.init();
     }
 }

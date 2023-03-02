@@ -6,7 +6,7 @@ public class StringPrinter {
         System.out.print(message);
     }
 
-    public static void printLn(String message) {
+    public static void println(String message) {
         System.out.println(message);
     }
 
@@ -17,6 +17,6 @@ public class StringPrinter {
     }
 
     public static void flushConsole() {
-        printLn("\033[H\033[2J");
+        println("\033[H\033[2J");
     }
 }

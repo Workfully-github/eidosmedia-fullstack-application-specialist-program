@@ -31,6 +31,9 @@ public class Product {
         this.thumbnail = product.getString("thumbnail");
         this.images = new ArrayList<String>() {
             {
+                /*
+                 * Adds array of images from Json to ArrayList
+                 */
                 for (Object string : product.getJSONArray("images")) {
                     int counter = 0;
                     add(product.getJSONArray("images").getString(counter));
@@ -38,7 +41,6 @@ public class Product {
                 }
             }
         };
-
     }
 
     public int getId() {
@@ -143,7 +145,4 @@ public class Product {
         "Thumbnail: " + thumbnail + "\n" + 
         "Images: " + images + "\n";
     }
-
-    
-
 }
