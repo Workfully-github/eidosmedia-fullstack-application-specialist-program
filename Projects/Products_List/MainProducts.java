@@ -3,23 +3,34 @@ package Projects.Products_List;
 import java.io.IOException;
 import java.text.ParseException;
 
+import Projects.Products_List.views.ChangePageDialog;
 import Projects.Products_List.views.ProductListView;
 import Projects.Products_List.views.ProductView;
+import Projects.Products_List.views.SeeDetailDialog;
+import Projects.Products_List.views.SingleProductDialog;
 
 public class MainProducts {
     
     public static void main(String[] args) throws IOException, ParseException {
 
-        initialize();
+        initialize(0, 20);
 
     }
 
-    public static void initialize() throws IOException, ParseException  {
+    public static void initialize(int skip, int limit) throws IOException, ParseException  {
         
         ProductListView productListView = new ProductListView();
-        productListView.showList(0, 30);
+        productListView.showList(skip, limit);
+
+        /* SingleProductDialog singleProductDialog = new SingleProductDialog();
 
         ProductView productView = new ProductView();
-        productView.showSingleProduct(20);
+        productView.showSingleProduct(singleProductDialog.chooseSingleProduct());
+
+        ChangePageDialog changePageDialog = new ChangePageDialog();
+        changePageDialog.choosePage(skip); */
+
+        SeeDetailDialog seeDetailDialog = new SeeDetailDialog();
+        seeDetailDialog.seeDetail(skip);;
     }
 }
