@@ -6,6 +6,8 @@ import java.text.ParseException;
 import Projects.Products_List.views.ChangePageDialog;
 import Projects.Products_List.views.ProductListView;
 import Projects.Products_List.views.ProductView;
+import Projects.Products_List.views.SearchBarDialog;
+import Projects.Products_List.views.SearchBarView;
 import Projects.Products_List.views.SeeDetailDialog;
 import Projects.Products_List.views.SingleProductDialog;
 
@@ -21,6 +23,19 @@ public class MainProducts {
         
         ProductListView productListView = new ProductListView();
         productListView.showList(skip, limit);
+        
+        /* SeeDetailDialog seeDetailDialog = new SeeDetailDialog();
+        seeDetailDialog.seeDetail(skip); */
+
+        SearchBarDialog searchBarDialog = new SearchBarDialog();
+        searchBarDialog.doSearch(skip, limit);
+    }
+}
+
+
+
+
+
 
         /* SingleProductDialog singleProductDialog = new SingleProductDialog();
 
@@ -29,8 +44,3 @@ public class MainProducts {
 
         ChangePageDialog changePageDialog = new ChangePageDialog();
         changePageDialog.choosePage(skip); */
-
-        SeeDetailDialog seeDetailDialog = new SeeDetailDialog();
-        seeDetailDialog.seeDetail(skip);;
-    }
-}

@@ -36,4 +36,31 @@ public class JsonController {
         return productJSONArray;  
 
     }
+
+    public JSONArray getQueryJson(int skip, int limit, String query) throws IOException, ParseException {
+
+        URL url = new URL("https://dummyjson.com/products/search?q="+query+"&limit="+limit+"&skip="+skip);
+        
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        
+        httpURLConnection.setRequestMethod("GET");
+        
+        BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+        
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        } in .close();
+        
+        String responseString = content.toString();
+        
+        JSONObject response = new JSONObject(responseString);
+        JSONArray productJSONArray = response.getJSONArray("products");
+        
+        return productJSONArray;  
+
+    }
+
+
 }

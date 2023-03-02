@@ -31,4 +31,11 @@ public class ProductController {
 
         return Product.createSingleProduct(object);
     }
+
+    public ArrayList<Product> getAllSearch(int skip, int limit, String query) throws IOException, ParseException {
+
+        JSONArray response = jsonController.getQueryJson(skip, limit, query);
+
+        return Product.createListProducts(response);
+    }
 }

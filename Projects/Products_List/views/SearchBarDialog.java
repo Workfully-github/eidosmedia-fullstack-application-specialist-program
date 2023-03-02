@@ -4,16 +4,16 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
 
-public class SeeDetailDialog {
-
+public class SearchBarDialog {
+    
     private static final String YES = "Y";
     private static final String NO = "N";
     
-    public void seeDetail(int skip) throws IOException, ParseException {
+    public void doSearch(int skip, int limit) throws IOException, ParseException {
 
         Scanner userInput = new Scanner(System.in);
         System.out.println("-------------------------------------------------------");
-        System.out.println("Do you wish to see the detail of any product?");
+        System.out.println("Do you wish to search for any product?");
         System.out.println("\n");
         System.out.println("[Y] --> Yes");
         System.out.println("[N] --> No");
@@ -21,19 +21,18 @@ public class SeeDetailDialog {
         System.out.print("Your answer: ");
 
         String userChoice = userInput.nextLine();
-        ChangePageDialog changePageDialog = new ChangePageDialog();
 
+        SearchBarView searchBarView = new SearchBarView();
+        SeeDetailDialog seeDetailDialog = new SeeDetailDialog();
         
         switch (userChoice) {
             case YES:
-                SingleProductDialog singleProductDialog = new SingleProductDialog();
-                ProductView productView = new ProductView();
-                productView.showSingleProduct(singleProductDialog.chooseSingleProduct());
+                searchBarView.searchBar(skip, limit);
 
-                changePageDialog.choosePage(skip);
+                seeDetailDialog.seeDetail(skip);
                 break;
             case NO:
-                changePageDialog.choosePage(skip);
+                seeDetailDialog.seeDetail(skip);
                 break;
         }
     }

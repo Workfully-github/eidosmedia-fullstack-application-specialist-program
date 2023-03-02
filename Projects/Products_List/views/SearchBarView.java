@@ -3,23 +3,32 @@ package Projects.Products_List.views;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Projects.Products_List.controllers.ProductController;
 import Projects.Products_List.models.Product;
 
-public class ProductListView {
+public class SearchBarView {
 
     private ArrayList<Product> products;
     private ProductController productController;
     
-    public void showList(int skip, int limit) throws IOException, ParseException {
+    public void searchBar(int skip, int limit) throws IOException, ParseException {
+
+        
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("-------------------------------------------------------");
+        System.out.println("Search:");
+        System.out.println("\n");
+        System.out.print("Your search: ");
+        
+        String userChoice = userInput.nextLine();
+        if (userChoice.equals("")) System.out.println("Invalida search.");
 
         productController = new ProductController();
-        products = productController.getAll(skip, limit);
+        products = productController.getAllSearch(skip, limit, userChoice);
 
-        System.out.println("-------------------------------------------------------");
-        System.out.println("LIST OF PRODUCTS AVAILABLE:");
-        System.out.println("\n");
+        /* if(products.) */
         
         for (int i = 0; i < products.size(); i++) {
             
