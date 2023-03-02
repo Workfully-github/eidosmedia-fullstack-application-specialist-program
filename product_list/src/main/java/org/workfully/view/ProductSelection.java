@@ -4,6 +4,7 @@ import static org.workfully.utilities.StringPrinter.*;
 
 import java.util.Scanner;
 
+@SuppressWarnings("resource")
 public class ProductSelection {
 
     public int howManyPagesDialogue() {

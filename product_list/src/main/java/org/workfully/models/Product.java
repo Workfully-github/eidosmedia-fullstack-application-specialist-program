@@ -18,6 +18,7 @@ public class Product {
     private String thumbnail;
     private ArrayList<String> images;
 
+    @SuppressWarnings("unused")
     public Product(final JSONObject product) {
         this.id = product.getInt("id");
         this.title = product.getString("title");

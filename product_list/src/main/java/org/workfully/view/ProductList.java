@@ -9,6 +9,7 @@ import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;
 
+@SuppressWarnings("resource")
 public class ProductList {
 
     private HashMap<Integer, Product> productListByIndex;
