@@ -2,7 +2,6 @@ package org.workfully.controllers;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.workfully.sandboxes.Bootstrap;
 import org.workfully.utilities.RestController;
 
 public class Paginator {
@@ -21,7 +20,6 @@ public class Paginator {
         this.json = new JSONObject(
                 RestController.getBody("https://dummyjson.com/products?skip=" + skip + "&limit=" + valuesPerPage));
         return json.getJSONArray("products");
-
     }
 
     public JSONArray selectPage(int pageSelection) {
@@ -30,28 +28,27 @@ public class Paginator {
         int valuesPerPage = 30;
         this.skip = pageNumber * valuesPerPage;
         this.json = new JSONObject(
-                RestController.getBody("https://dummyjson.com/products?skip=" + this.skip + "&limit=" + this.valuesPerPage));
+                RestController
+                        .getBody("https://dummyjson.com/products?skip=" + this.skip + "&limit=" + this.valuesPerPage));
         return json.getJSONArray("products");
     }
 
     public int getTotalPages() {
-        return Bootstrap.JSON_MAIN.getInt("total");
+        return this.json.getInt("total");
     }
 
     public int getPagesLeft() {
-
-        int total = this.json.getInt("total");
         int limit = this.json.getInt("limit");
-
-        return total / limit - this.pageSelection;
+        return getTotalPages() / limit - this.pageSelection;
     }
 
-    public JSONArray nextPage(){
+    public JSONArray nextPage() {
         this.pageNumber++;
         this.pageSelection = this.pageNumber + 1;
         this.skip = this.pageNumber * this.valuesPerPage;
         this.json = new JSONObject(
-                RestController.getBody("https://dummyjson.com/products?skip=" + this.skip + "&limit=" + this.valuesPerPage));
+                RestController
+                        .getBody("https://dummyjson.com/products?skip=" + this.skip + "&limit=" + this.valuesPerPage));
         return json.getJSONArray("products");
     }
 
@@ -59,13 +56,13 @@ public class Paginator {
         return pageSelection;
     }
 
-    public JSONArray returnPage(){
+    public JSONArray returnPage() {
         this.pageNumber--;
         this.pageSelection = this.pageNumber + 1;
         this.skip = this.pageNumber * this.valuesPerPage;
         this.json = new JSONObject(
-                RestController.getBody("https://dummyjson.com/products?skip=" + this.skip + "&limit=" + this.valuesPerPage));
+                RestController
+                        .getBody("https://dummyjson.com/products?skip=" + this.skip + "&limit=" + this.valuesPerPage));
         return json.getJSONArray("products");
     }
-
 }

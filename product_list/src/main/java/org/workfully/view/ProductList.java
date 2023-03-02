@@ -59,7 +59,7 @@ public class ProductList {
             StringPrinter.println(product.toString());
         }
 
-       showPageStatus();
+        showPageStatus();
     }
 
     public void nextPage() {
@@ -111,5 +111,4 @@ public class ProductList {
                         "Pages Left: " + this.paginator.getPagesLeft() + "\n" +
                         "Total Pages: " + this.paginator.getTotalPages());
     }
-
 }
