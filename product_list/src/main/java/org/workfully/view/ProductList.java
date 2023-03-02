@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import org.json.JSONArray;
 import org.workfully.controllers.Paginator;
 import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
@@ -115,8 +116,8 @@ public class ProductList {
     private void showProductDetailDialogue() {
         StringPrinter.flushConsole();
         StringPrinter.printMultiLn(
-                // "[1] -> Search by ID " + "\n" +
-                "[1] -> Search by keyword ");
+                "[1] -> Search by keyword",
+                "[2] -> Search by category");
         Scanner sc = new Scanner(System.in);
         try {
             int menuSelection = sc.nextInt();
@@ -130,6 +131,7 @@ public class ProductList {
     private void selectionMenu(int menuSelection) {
         final int SEARCH_BY_ID = 1;
         final int SEARCH_BY_KEYWORD = 1;
+        final int SEARCH_BY_CATEGORY = 2;
 
         switch (menuSelection) {
             /* UNCOMMENT TO ADD SEARCH BY ID */
@@ -152,6 +154,8 @@ public class ProductList {
                 presentAllProducts();
                 pageNavigation();
                 break;
+            case SEARCH_BY_CATEGORY:
+                showCategoryList();
             default:
                 StringPrinter.print("Bad Input, select again. \n");
                 break;
@@ -164,4 +168,28 @@ public class ProductList {
         StringPrinter.print("Type keyword: ");
         return sc.next();
     }
+
+    public void showCategoryList() {
+        int counter = 0;
+        StringPrinter.println("Select Category: ");
+        for (Object category : paginator.getCategoryList()) {
+            counter++;
+            StringPrinter.println("[" + counter + "] -> " + category.toString());
+        }
+        Scanner sc = new Scanner(System.in);
+        int selection = sc.nextInt();
+        categorySelectionMenu(selection);
+        presentAllProducts();
+    }
+
+    public void categorySelectionMenu(int selection) {
+        //setProductList(
+          //      productController.generateProductList(
+            //            paginator.getProductsByCategory(paginator.getCategoryList().getString(selection - 1))));
+                        System.out.println(paginator.getProductsByCategory(paginator.getCategoryList().getString(selection - 1)));
+        if (productList.isEmpty()) {
+            System.out.println("No Results");
+        }
+    }
+
 }

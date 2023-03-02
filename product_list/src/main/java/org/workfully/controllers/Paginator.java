@@ -1,9 +1,11 @@
 package org.workfully.controllers;
 
+import java.util.Locale.Category;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.workfully.models.Product;
-import org.workfully.utilities.RestControllerGeneral;
+import org.workfully.utilities.RestController;
 
 /**
  * Paginator methods can all become static
@@ -12,6 +14,7 @@ import org.workfully.utilities.RestControllerGeneral;
 public class Paginator {
 
     private final String BASE_URL = "https://dummyjson.com/products";
+    private final String CATEGORIES_RESOURCE = "/categories";
     private JSONObject json;
     private int pageSelection;
     private int pageNumber;
@@ -63,8 +66,20 @@ public class Paginator {
 
     public Product getProduct(int id) {
         return new Product(new JSONObject(
-                RestControllerGeneral
+                RestController
                         .getBody(BASE_URL + "/" + id)));
+    }
+
+    public JSONArray getCategoryList() {
+        return new JSONArray(RestController
+                .getBody(this.BASE_URL + CATEGORIES_RESOURCE));
+    }
+
+    public JSONArray getProductsByCategory(String category) {
+        this.json = new JSONObject(RestController
+                .getBody(this.BASE_URL + CATEGORIES_RESOURCE + "/" + category));
+
+        return json.getJSONArray("products");
     }
 
     /**
@@ -72,7 +87,7 @@ public class Paginator {
      *                query not encapsulated since it has unique structure
      */
     public JSONArray getProductsByKeyword(String keyword) {
-        this.json = new JSONObject(RestControllerGeneral
+        this.json = new JSONObject(RestController
                 .getBody(this.BASE_URL + "/" + "search?q=" + keyword + "&limit=" + this.valuesPerPage + "&skip="
                         + this.skip));
 
@@ -81,7 +96,7 @@ public class Paginator {
 
     public JSONArray makeProductsJSONArray() {
         this.json = new JSONObject(
-                RestControllerGeneral.getBody(this.BASE_URL + "?skip=" + this.skip + "&limit=" + this.valuesPerPage));
+                RestController.getBody(this.BASE_URL + "?skip=" + this.skip + "&limit=" + this.valuesPerPage));
         return json.getJSONArray("products");
     }
 }

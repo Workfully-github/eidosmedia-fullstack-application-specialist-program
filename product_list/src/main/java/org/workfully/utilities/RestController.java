@@ -21,7 +21,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-public class RestControllerGeneral {
+public class RestController {
 
     private static final CloseableHttpClient httpClient = HttpClients.createDefault();
 
@@ -134,8 +134,8 @@ public class RestControllerGeneral {
 
             System.out.println(statusCode);
 
-            RestControllerGeneral.getHeaders(url);
-            RestControllerGeneral.getBody(url);
+            RestController.getHeaders(url);
+            RestController.getBody(url);
 
         } catch (UnsupportedEncodingException e) {
             System.out.println(e.getMessage());
