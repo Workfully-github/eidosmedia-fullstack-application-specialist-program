@@ -11,24 +11,25 @@ public class ProductController {
     private Paginator paginator;
     private ArrayList<Product> productList;
 
-    public ProductController() {
-    }
+    public ProductController() {}
 
     public ProductController(int valuesPerPage, int pageSelection) {
         this.paginator = new Paginator();
         this.productList = generateProductList(this.paginator.selectPage(pageSelection, valuesPerPage));
     }
 
+    /**
+     * @param products refers to an array of products from api {@link https://dummyjson.com/products}
+     * @return ArrayList<Product> from @param products
+     */
     public ArrayList<Product> generateProductList(JSONArray products) {
-
-        ArrayList<Product> productArray = new ArrayList<>();
-
-        for (Object product : products) {
-            //System.out.println(product);
-            productArray.add(new Product(((JSONObject) product)));
-        }
-
-        return productArray;
+        return new ArrayList<Product>() {
+            {
+                for (Object product : products) {
+                    add(new Product(((JSONObject) product)));
+                }
+            }
+        };
     }
 
     public Paginator getPaginator() {
@@ -38,7 +39,4 @@ public class ProductController {
     public ArrayList<Product> getProductList() {
         return productList;
     }
-
-    
-    
 }
