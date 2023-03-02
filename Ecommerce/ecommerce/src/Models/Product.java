@@ -85,4 +85,10 @@ public class Product {
         }
         return products;
     }
+
+    public static ArrayList<Product> listOut(JSONObject productObj){
+        ArrayList<Product> products = new ArrayList<>();
+        products.add(new Product(productObj));
+        return products;
+    }
 }

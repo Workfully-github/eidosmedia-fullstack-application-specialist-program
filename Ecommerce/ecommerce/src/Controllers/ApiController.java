@@ -44,4 +44,41 @@ public class ApiController {
 
         }
     }
+
+    public JSONObject call(String url) {
+        try {
+            URL GET_URL = new URL(url + "?skip=");
+    
+            HttpURLConnection httpURLConnection = (HttpURLConnection) GET_URL.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0");
+            int responseCode = httpURLConnection.getResponseCode();
+            System.out.println("GET Response Code :: " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) { // success
+                BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while ((inputLine = in .readLine()) != null) {
+                    response.append(inputLine);
+                } in .close();
+    
+                JSONObject productsObj = new JSONObject(response.toString());
+                return productsObj;
+    
+              
+            } else {
+                System.out.println("GET request not worked");
+                return null;
+            }
+            // int headerSize = httpURLConnection.getHeaderFields().size();
+            // for(int i = 0; i < headerSize; i++) {
+            //     System.out.println(httpURLConnection.getHeaderFieldKey(i) + " = " + httpURLConnection.getHeaderField(i));
+            // }
+        } catch (IOException e) {
+            System.out.print(e.getMessage());
+            return null;
+
+        }
+    }
 }

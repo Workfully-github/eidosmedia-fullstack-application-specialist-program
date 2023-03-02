@@ -11,10 +11,11 @@ public class ProductView {
     
 
     public static void display(ArrayList<Product> products) {
-        int productIndex = 1;
+        // int productIndex = 1;
         for(Product product : products) {
-            System.out.println("\n[" + productIndex + "]~~--------------------------------------------------------------------------------------------------------------------------+\n" + 
-                 "ID:                " + product.getId() + "\n" +
+            // System.out.println("\n[" + productIndex + "]~~--------------------------------------------------------------------------------------------------------------------------+\n" + 
+            System.out.println("\n[" + product.getId() + "]~~--------------------------------------------------------------------------------------------------------------------------+\n" + 
+                //  "ID:                " + product.getId() + "\n" +
                  "Title:                " + product.getTitle() + "\n" +
                  "Description:          " + product.getDescription() + "\n$" +
                  "Price:                " + product.getPrice() +
@@ -24,7 +25,10 @@ public class ProductView {
                  "Brand:                " + product.getBrand() + "\n" +
                  "Category:             " + product.getCategory() + "\n" +
                  "Thumbnail:            " + product.getThumbnail() + "\n");
-                productIndex++;
+                 for(String image : product.getImages()){
+                     System.out.println(image + "\n");
+                 }
+                // productIndex++;
         }
             
     }
