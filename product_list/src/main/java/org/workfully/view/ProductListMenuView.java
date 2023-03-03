@@ -32,6 +32,7 @@ public class ProductListMenuView {
         final char NEXT = 'e';
         final char RETURN = 'q';
         final char PRODUCT_DETAIL_MENU = 'd';
+        final char FILTER = 'f';
 
         switch (selection) {
             case NEXT:
@@ -49,6 +50,8 @@ public class ProductListMenuView {
             case PRODUCT_DETAIL_MENU:
                 StringPrinter.flushConsole();
                 showProductDetailDialogue();
+                break;
+                case FILTER:
                 break;
             default:
                 StringPrinter.print(BAD_INPUT);

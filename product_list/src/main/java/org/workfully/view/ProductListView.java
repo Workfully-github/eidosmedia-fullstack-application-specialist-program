@@ -9,7 +9,7 @@ import org.workfully.utilities.StringPrinter;
 
 public class ProductListView {
 
-    // FIXME
+    // FIXME fix productLists 
     private ArrayList<Product> showAllProductsList;
     private ArrayList<Product> dynamicProductList;
     private APIController apiController;
