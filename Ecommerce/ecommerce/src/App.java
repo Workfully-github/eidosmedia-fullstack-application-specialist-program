@@ -32,8 +32,10 @@ public class App {
         // ProductView.display(results);
 
 
-        ArrayList<Category> results = CategoriesController.getProductCategories();
-        CategoriesView.display(results);
+        // ArrayList<Category> results = CategoriesController.getProductCategories();
+        // CategoriesView.display(results);
+
+        NavigationsView.takeOff();
 
     }
 }

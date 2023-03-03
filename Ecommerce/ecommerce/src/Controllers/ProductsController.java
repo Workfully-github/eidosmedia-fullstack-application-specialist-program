@@ -29,21 +29,21 @@ public class ProductsController {
 
      public static ArrayList<Product> getProducts(String searchQuery) { 
           ApiController apiController = new ApiController();
-          String url = apiController.getUrl(Constants.BASE_URL, Constants.SEARCH_ROUT, Constants.SEARCH_QUERY_STRING, searchQuery); 
+          url = apiController.getUrl(Constants.BASE_URL, Constants.SEARCH_ROUT, Constants.SEARCH_QUERY_STRING, searchQuery); 
           data = apiController.call(url);
           return Product.listOut(data);
      }
 
      public static ArrayList<Product> getProductsByCategory(String category) { 
           ApiController apiController = new ApiController();
-          String url = apiController.getUrl(Constants.BASE_URL, Constants.CATEGORY_ROUT, category); 
+          url = apiController.getUrl(Constants.BASE_URL, Constants.CATEGORY_ROUT, category); 
           data = apiController.call(url);
           return Product.listOut(data);
      }
 
      public static ArrayList<Product> getProduct(int productID) { 
           ApiController apiController = new ApiController();
-          url = apiController.getUrl(Constants.BASE_URL, Integer.toString(productID)); 
+          url = apiController.getUrl(Constants.BASE_URL, Integer.toString(productID));
           dataObj =  apiController.callProduct(url);
           return Product.listOut(dataObj);
      }

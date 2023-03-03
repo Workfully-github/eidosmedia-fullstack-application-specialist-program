@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ApiController {
-    public static final String BASE_URL = "https://dummyjson.com/products/";
 
     public JSONArray call(String url) {
         try {
