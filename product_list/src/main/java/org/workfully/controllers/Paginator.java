@@ -15,6 +15,7 @@ public class Paginator {
 
     private final String BASE_URL = "https://dummyjson.com/products";
     private final String CATEGORIES_RESOURCE = "/categories";
+    private final String CATEGORY_FEATURE = "/category";
     private JSONObject json;
     private int pageSelection;
     private int pageNumber;
@@ -77,7 +78,7 @@ public class Paginator {
 
     public JSONArray getProductsByCategory(String category) {
         this.json = new JSONObject(RestController
-                .getBody(this.BASE_URL + CATEGORIES_RESOURCE + "/" + category));
+                .getBody(this.BASE_URL + CATEGORY_FEATURE + "/" + category));
 
         return json.getJSONArray("products");
     }

@@ -32,18 +32,17 @@ public class ProductList {
     }
 
     public void init() {
-        presentAllProducts();
+        showProductList();
         while (true)
             pageNavigation();
     }
 
-    /*
-     * Maybe useful in the future
-     */
+    /* MAYBE USEFUL IN FUTURE */
     private HashMap<Integer, Product> getProductListByIndex() {
         return productListByIndex;
     }
 
+    /* MAYBE USEFUL IN FUTURE */
     private void setProductListByIndex(HashMap<Integer, Product> productListByIndex) {
         this.productListByIndex = productListByIndex;
     }
@@ -52,8 +51,8 @@ public class ProductList {
         this.productList = productList;
     }
 
-    private void presentAllProducts() {
-        for (Product product : productList) {
+    private void showProductList() {
+        for (Product product : this.productList) {
             StringPrinter.println(product.toString());
         }
 
@@ -62,12 +61,12 @@ public class ProductList {
 
     private void nextPage() {
         setProductList(productController.generateProductList(paginator.nextPage()));
-        presentAllProducts();
+        showProductList();
     }
 
     private void returnPage() {
         setProductList(productController.generateProductList(paginator.returnPage()));
-        presentAllProducts();
+        showProductList();
     }
 
     private void pageNavigation() {
@@ -114,7 +113,7 @@ public class ProductList {
     }
 
     private void showProductDetailDialogue() {
-        StringPrinter.flushConsole();
+        // StringPrinter.flushConsole();
         StringPrinter.printMultiLn(
                 "[1] -> Search by keyword",
                 "[2] -> Search by category");
@@ -123,6 +122,7 @@ public class ProductList {
             int menuSelection = sc.nextInt();
             selectionMenu(menuSelection);
         } catch (Exception e) {
+            e.printStackTrace();
             showProductDetailDialogue();
         }
 
@@ -151,11 +151,14 @@ public class ProductList {
                     System.out.println("No Results");
                     break;
                 }
-                presentAllProducts();
+                showProductList();
                 pageNavigation();
                 break;
             case SEARCH_BY_CATEGORY:
                 showCategoryList();
+                categorySelectionMenu(categorySelection());
+                showProductList();
+                break;
             default:
                 StringPrinter.print("Bad Input, select again. \n");
                 break;
@@ -171,22 +174,24 @@ public class ProductList {
 
     public void showCategoryList() {
         int counter = 0;
-        StringPrinter.println("Select Category: ");
+
         for (Object category : paginator.getCategoryList()) {
             counter++;
             StringPrinter.println("[" + counter + "] -> " + category.toString());
         }
+    }
+
+    public int categorySelection() {
         Scanner sc = new Scanner(System.in);
-        int selection = sc.nextInt();
-        categorySelectionMenu(selection);
-        presentAllProducts();
+        StringPrinter.print("Select Category: ");
+        return sc.nextInt();
     }
 
     public void categorySelectionMenu(int selection) {
-        //setProductList(
-          //      productController.generateProductList(
-            //            paginator.getProductsByCategory(paginator.getCategoryList().getString(selection - 1))));
-                        System.out.println(paginator.getProductsByCategory(paginator.getCategoryList().getString(selection - 1)));
+        System.out.println(paginator.getCategoryList().getString(selection - 1));
+        setProductList(
+                productController.generateProductList(
+                        paginator.getProductsByCategory(paginator.getCategoryList().getString(selection - 1))));
         if (productList.isEmpty()) {
             System.out.println("No Results");
         }

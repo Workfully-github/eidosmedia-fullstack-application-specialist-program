@@ -26,25 +26,35 @@ public class ProductSelection {
         return pageSelection;
     }
 
+    /**
+     * @param paginator used to evaluate page status
+     *                  shows option according to page status
+     */
     public static void paginatorConditions(Paginator paginator) {
         if (paginator.getPageSelection() > 1 && paginator.getPagesLeft() > 0) {
             StringPrinter.printMultiLn(
-                    "[E] -> Next Page " + "\n" +
-                            "[Q] -> Previous Page " + "\n" +
-                            "[D] -> Select Product");
+                    "[E] -> Next Page ",
+                    "[Q] -> Previous Page ",
+                    "[D] -> Select Product");
+            return;
         }
 
-        if (paginator.getPageSelection() <= 1) {
+        if (paginator.getPageSelection() <= 1 && paginator.getPagesLeft() > 0) {
             StringPrinter.printMultiLn(
-                    "[E] -> Next Page " + "\n" +
-                            "[D] -> Select Product");
+                    "[E] -> Next Page ",
+                    "[D] -> Select Product");
+            return;
 
         }
 
         if (paginator.getPageSelection() > 1 && paginator.getPagesLeft() == 0) {
             StringPrinter.printMultiLn(
-                    "[Q] -> Previous Page " + "\n" +
-                            "[D] -> Select Product");
+                    "[Q] -> Previous Page ",
+                    "[D] -> Select Product");
+            return;
         }
+
+        StringPrinter.printMultiLn(
+                "[D] -> Select Product");
     }
 }
