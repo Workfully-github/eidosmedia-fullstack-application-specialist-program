@@ -13,6 +13,9 @@ public class Product {
     private ArrayList<String> images;
     private JSONObject json;
 
+    public static final String ENDPOINT = "/products";
+    public static final String KEY_PRODUCTS = "products";
+
     public Product(JSONObject json) {
         this.json = json;
         id = json.getInt("id");
@@ -29,6 +32,7 @@ public class Product {
     }
 
     public static ArrayList<Product> createListProducts(JSONArray array) {
+        
         ArrayList<Product> productsArray = new ArrayList<>();
         for (int i = 0; i < array.length(); i++) {
             productsArray.add(new Product(array.getJSONObject(i)));

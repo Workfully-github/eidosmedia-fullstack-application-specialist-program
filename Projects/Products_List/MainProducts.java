@@ -3,13 +3,9 @@ package Projects.Products_List;
 import java.io.IOException;
 import java.text.ParseException;
 
-import Projects.Products_List.views.ChangePageDialog;
 import Projects.Products_List.views.ProductListView;
-import Projects.Products_List.views.ProductView;
 import Projects.Products_List.views.SearchBarDialog;
-import Projects.Products_List.views.SearchBarView;
-import Projects.Products_List.views.SeeDetailDialog;
-import Projects.Products_List.views.SingleProductDialog;
+//import Projects.Products_List.views.SeeDetailDialog;
 
 public class MainProducts {
     
@@ -31,16 +27,3 @@ public class MainProducts {
         searchBarDialog.doSearch(skip, limit);
     }
 }
-
-
-
-
-
-
-        /* SingleProductDialog singleProductDialog = new SingleProductDialog();
-
-        ProductView productView = new ProductView();
-        productView.showSingleProduct(singleProductDialog.chooseSingleProduct());
-
-        ChangePageDialog changePageDialog = new ChangePageDialog();
-        changePageDialog.choosePage(skip); */

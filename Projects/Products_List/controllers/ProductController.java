@@ -13,14 +13,52 @@ public class ProductController {
     
     private JsonController jsonController = new JsonController();
     
-    public ArrayList<Product> getAll(int skip, int limit) throws IOException, ParseException {
+    public ArrayList<Product> getAll(int page) {
 
-        JSONArray response = jsonController.getJson(skip, limit);
+        String responseBody = jsonController.get(Product.ENDPOINT, page);
 
-        return Product.createListProducts(response);
+        if(null != responseBody){
+            JSONObject response = new JSONObject(responseBody);
+            return Product.createListProducts(response.getJSONArray(Product.KEY_PRODUCTS));
+        }
+        return new ArrayList<Product>();
     }
 
-    public Product getSingleProduct(int id) throws IOException, ParseException {
+    public ArrayList<Product> getSearch(int page, String query) {
+
+        String responseBody = jsonController.get(Product.ENDPOINT, page, query);
+        
+        if(null == responseBody){
+            JSONObject response = new JSONObject(responseBody);
+            return Product.createListProducts(response.getJSONArray(Product.KEY_PRODUCTS));
+        }
+        return new ArrayList<Product>();
+    }
+
+    public Product getSingleProduct(int id, int page) throws IOException, ParseException {
+
+        String responseBody = jsonController.get(Product.ENDPOINT + id, page);
+        
+        if(null != responseBody) {
+            JSONObject response = new JSONObject(responseBody);
+            JSONArray responseArray = response.getJSONArray(Product.KEY_PRODUCTS);
+            JSONObject object = new JSONObject();
+            
+            for (int i = 0; i < responseArray.length(); i++) {
+                if (responseArray.getJSONObject(i).getInt("id") == id) object = responseArray.getJSONObject(i);
+            }
+            return Product.createSingleProduct(object);
+        }
+
+
+        return new Product(null);
+    }
+
+
+    // DELETE
+
+
+    /* public Product getSingleProduct(int id) throws IOException, ParseException {
 
         JSONArray response = jsonController.getJson(0, 100);
         JSONObject object = new JSONObject(); 
@@ -37,5 +75,5 @@ public class ProductController {
         JSONArray response = jsonController.getQueryJson(skip, limit, query);
 
         return Product.createListProducts(response);
-    }
+    } */
 }

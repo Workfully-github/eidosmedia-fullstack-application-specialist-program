@@ -1,7 +1,5 @@
 package Projects.Products_List.views;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import Projects.Products_List.controllers.ProductController;
@@ -11,11 +9,13 @@ public class ProductListView {
 
     private ArrayList<Product> products;
     private ProductController productController;
+
+    // REVIEW THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
-    public void showList(int skip, int limit) throws IOException, ParseException {
+    public void showList() {
 
         productController = new ProductController();
-        products = productController.getAll(skip, limit);
+        products = productController.getAll(1);
 
         System.out.println("-------------------------------------------------------");
         System.out.println("LIST OF PRODUCTS AVAILABLE:");

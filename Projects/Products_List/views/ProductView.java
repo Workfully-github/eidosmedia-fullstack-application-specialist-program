@@ -14,7 +14,7 @@ public class ProductView {
     public void showSingleProduct(int id) throws IOException, ParseException {
 
         productController = new ProductController();
-        product = productController.getSingleProduct(id);
+        product = productController.getSingleProduct(id, 1);
 
         System.out.println("-------------------------------------------------------");
         System.out.println("PRODUCT DETAIL:");

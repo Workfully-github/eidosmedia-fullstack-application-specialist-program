@@ -1,7 +1,5 @@
 package Projects.Products_List.views;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,8 +10,11 @@ public class SearchBarView {
 
     private ArrayList<Product> products;
     private ProductController productController;
+
+    // REVIEW THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // page to look for
     
-    public void searchBar(int skip, int limit) throws IOException, ParseException {
+    public void searchBar(int skip, int limit) {
 
         
         Scanner userInput = new Scanner(System.in);
@@ -26,7 +27,7 @@ public class SearchBarView {
         if (userChoice.equals("")) System.out.println("Invalida search.");
 
         productController = new ProductController();
-        products = productController.getAllSearch(skip, limit, userChoice);
+        products = productController.getSearch(1, userChoice);
 
         /* if(products.) */
         

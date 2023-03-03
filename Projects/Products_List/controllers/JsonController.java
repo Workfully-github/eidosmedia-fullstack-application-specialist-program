@@ -4,15 +4,61 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.text.ParseException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JsonController {
+
+    private static final String BASE_URL = "https://dummyjson.com";
+    private static final String QUERY_STRING = "/search?q=";
+    public static final int LIMIT = 30;
+
+    public String get(String endpoint, int page, String query) {
+
+        String uri = getUrl(endpoint, query, "");
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(uri))
+                .GET()
+                .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            return response.body();
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String get(String endpoint, int page) {
+        return get(endpoint, page, "");
+    }
+
+    private String getUrl(String endpoint, String query, String page) {
+        return BASE_URL + endpoint + QUERY_STRING + query + page;
+    }
+
+    private String getPage(int page) {
+        // Pages 1, 2, 3, 4, etc
+        // So in page 1 skip is 0 = 1 - 1 * limit
+        // page 2 skip is 30 = 2 - 1 * limit
+        page --;
+        return "?skip=" + page * LIMIT + "&limit=" + LIMIT;
+    }
     
-    public JSONArray getJson(int skip, int limit) throws IOException, ParseException {
+
+
+    // DELETE
+
+    /* public JSONArray getJson(int skip, int limit) throws IOException, ParseException {
 
         URL url = new URL("https://dummyjson.com/products?skip="+skip+"&limit="+limit);
         
@@ -60,7 +106,7 @@ public class JsonController {
         
         return productJSONArray;  
 
-    }
+    } */
 
 
 }
