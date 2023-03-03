@@ -2,23 +2,27 @@ package org.workfully.view;
 
 import org.workfully.controllers.CategoryController;
 import org.workfully.models.Category;
+import org.workfully.utilities.StringPrinter;
 
-import java.util.ArrayList;
+public class CategoriesListView extends BasicView {
 
-public class CategoriesListView extends BaseView {
+    private CategoryController categoryController;
 
-    // Model
-    private ArrayList<Category> categories;
-
-    //Controller
-    private CategoryController controller = new CategoryController();
-
+    public CategoriesListView() {
+        this.categoryController = new CategoryController();
+    }
 
     @Override
     public void display() {
-        super.display();
-        categories = controller.getAll();
-        //use frontend-logic to show your model values.
+        int counter = 0;
 
+        for (Category category : categoryController.getAll()) {
+            counter++;
+            StringPrinter.println("[" + counter + "] -> " + category.getName());
+        }
+    }
+
+    public String getCategory(int id){
+        return categoryController.getOne(id).getName();
     }
 }

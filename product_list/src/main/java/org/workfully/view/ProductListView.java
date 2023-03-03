@@ -7,22 +7,23 @@ import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;
 
-@SuppressWarnings({ "unused" })
 public class ProductListView {
 
     // FIXME
     private ArrayList<Product> showAllProductsList;
     private ArrayList<Product> dynamicProductList;
-    private APIController paginator;
+    private APIController apiController;
     private ProductController productController;
     private ProductListMenuView productListMenuView;
+    private CategoriesListView categoriesListView;
 
     public ProductListView(ProductController productController) {
         this.productController = productController;
         this.showAllProductsList = productController.getAllProductsList();
         this.dynamicProductList = productController.getProductList();
-        this.paginator = productController.getPaginator();
-        this.productListMenuView = new ProductListMenuView(paginator, this);
+        this.apiController = productController.getPaginator();
+        this.categoriesListView = new CategoriesListView();
+        this.productListMenuView = new ProductListMenuView(apiController, categoriesListView, this);
     }
 
     public void init() {
@@ -43,26 +44,26 @@ public class ProductListView {
     }
 
     protected void nextPage() {
-        setProductList(productController.generateProductList(this.paginator.nextPage()));
+        setProductList(productController.generateProductList(this.apiController.nextPage()));
         showProductList(dynamicProductList);
     }
 
     protected void returnPage() {
-        setProductList(productController.generateProductList(this.paginator.returnPage()));
+        setProductList(productController.generateProductList(this.apiController.returnPage()));
         showProductList(dynamicProductList);
     }
 
     private void showPageStatus() {
         StringPrinter.printMultiLn(
-                "Current Page: " + this.paginator.getPageSelection() + "\n" +
-                        "Pages Left: " + this.paginator.getPagesLeft() + "\n" +
-                        "Total Pages: " + (this.paginator.getPagesLeft() + this.paginator.getPageSelection()));
+                "Current Page: " + this.apiController.getPageSelection() + "\n" +
+                        "Pages Left: " + this.apiController.getPagesLeft() + "\n" +
+                        "Total Pages: " + (this.apiController.getPagesLeft() + this.apiController.getPageSelection()));
     }
 
     public void updateProductList() {
         setProductList(
                 productController.generateProductList(
-                        paginator.getProductsByKeyword(this.productListMenuView.keywordSelection())));
+                        apiController.getProductsByKeyword(this.productListMenuView.keywordSelection())));
         if (dynamicProductList.isEmpty()) {
             StringPrinter.println("No Results");
             this.productListMenuView.showProductDetailDialogue();
@@ -72,7 +73,7 @@ public class ProductListView {
     public void updateProductList(int selection) {
         setProductList(
                 productController.generateProductList(
-                        paginator.getProductsByCategory(paginator.getCategoryList().get((selection - 1)))));
+                        apiController.getProductsByCategory(categoriesListView.getCategory((selection - 1)))));
         if (dynamicProductList.isEmpty()) {
             StringPrinter.println("No Results");
         }

@@ -26,7 +26,7 @@ public class RestController {
 
     private static final CloseableHttpClient httpClient = HttpClients.createDefault();
 
-    public static void getHeaders(String url) {
+    public void getHeaders(String url) {
 
         HttpHead httpHead = new HttpHead(url);
 
@@ -47,7 +47,7 @@ public class RestController {
         }
     }
 
-    public static String getContentType(String url) {
+    public String getContentType(String url) {
 
         HttpHead httpHead = new HttpHead(url);
 
@@ -64,7 +64,7 @@ public class RestController {
         }
     }
 
-    public static int getStatusCode(String url) {
+    public int getStatusCode(String url) {
 
         HttpGet request = new HttpGet(url);
 
@@ -81,7 +81,7 @@ public class RestController {
         }
     }
 
-    public static String getStatusLine(String url) {
+    public String getStatusLine(String url) {
 
         HttpGet request = new HttpGet(url);
 
@@ -97,7 +97,7 @@ public class RestController {
         }
     }
 
-    public static String getBody(String url) {
+    public String getBody(String url) {
 
         HttpGet request = new HttpGet(url);
 
@@ -128,7 +128,7 @@ public class RestController {
         }
     }
 
-    public static void postRequest(String url, String param1, String param2) {
+    public void postRequest(String url, String param1, String param2) {
 
         HttpPost httpPost = new HttpPost(url);
 
@@ -149,8 +149,8 @@ public class RestController {
 
             System.out.println(statusCode);
 
-            RestController.getHeaders(url);
-            RestController.getBody(url);
+            getHeaders(url);
+            getBody(url);
 
         } catch (UnsupportedEncodingException e) {
             System.out.println(e.getMessage());

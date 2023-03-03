@@ -1,18 +1,9 @@
 package org.workfully.http;
 
-import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.workfully.controllers.CategoryController;
-import org.workfully.models.Category;
 import org.workfully.models.Product;
-import org.workfully.http.RestController;
 
-/**
- * Paginator methods can all become static
- * they don't depend on external instances
- */
 public class APIController {
 
     private RestController rest;
@@ -26,10 +17,8 @@ public class APIController {
     private int valuesPerPage;
 
     public APIController() {
-        rest = new RestController();
+        this.rest = new RestController();
     }
-
-
 
     public JSONArray selectPage(int pageSelection, int valuesPerPage) {
         this.pageSelection = pageSelection;
@@ -76,17 +65,17 @@ public class APIController {
 
     public Product getProduct(int id) {
         return new Product(new JSONObject(
-                RestController
+                rest
                         .getBody(BASE_URL + "/" + id)));
     }
 
     public JSONArray getCategoryList(String endpoint) {
-        return new JSONArray(RestController
+        return new JSONArray(rest
                 .getBody(this.BASE_URL + endpoint));
     }
 
      public JSONArray getProductsByCategory(String category) {
-        this.json = new JSONObject(RestController
+        this.json = new JSONObject(rest
                 .getBody(this.BASE_URL + CATEGORY_FEATURE + "/" + category));
 
         return json.getJSONArray("products");
@@ -97,7 +86,7 @@ public class APIController {
      *                query not encapsulated since it has unique structure
      */
     public JSONArray getProductsByKeyword(String keyword) {
-        this.json = new JSONObject(RestController
+        this.json = new JSONObject(rest
                 .getBody(this.BASE_URL + SEARCH_FEATURE + keyword + "&limit=" + this.valuesPerPage + "&skip="
                         + this.skip));
 
@@ -113,7 +102,7 @@ public class APIController {
      */
     private JSONArray makeProductsJSONArray() {
         this.json = new JSONObject(
-                RestController.getBody(this.BASE_URL + "?skip=" + this.skip + "&limit=" + this.valuesPerPage));
+                rest.getBody(this.BASE_URL + "?skip=" + this.skip + "&limit=" + this.valuesPerPage));
         return json.getJSONArray("products");
     }
 }

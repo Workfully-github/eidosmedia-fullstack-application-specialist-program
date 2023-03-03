@@ -8,17 +8,19 @@ import org.workfully.utilities.StringPrinter;
 @SuppressWarnings("resource")
 public class ProductListMenuView {
 
-    private APIController paginator;
+    private APIController apiController;
     private ProductListView productListView;
+    private CategoriesListView categoriesListView;
     private final String BAD_INPUT = "Bad Input, select again. \n";
 
-    public ProductListMenuView(APIController paginator, ProductListView productListView) {
-        this.paginator = paginator;
+    public ProductListMenuView(APIController apiController, CategoriesListView categoriesListView, ProductListView productListView) {
+        this.apiController = apiController;
         this.productListView = productListView;
+        this.categoriesListView = categoriesListView;
     }
 
     protected void displayNavigationModule() {
-        ProductSelectionUtils.paginatorConditions(this.paginator);
+        ProductSelectionUtils.paginatorConditions(this.apiController);
 
         Scanner sc = new Scanner(System.in);
         char selection = sc.next().toLowerCase().charAt(0);
@@ -33,12 +35,12 @@ public class ProductListMenuView {
 
         switch (selection) {
             case NEXT:
-                if (this.paginator.getPagesLeft() > 0) {
+                if (this.apiController.getPagesLeft() > 0) {
                     productListView.nextPage();
                 }
                 break;
             case RETURN:
-                if (this.paginator.getPageSelection() > 1) {
+                if (this.apiController.getPageSelection() > 1) {
                     productListView.returnPage();
                     break;
                 }
@@ -82,7 +84,7 @@ public class ProductListMenuView {
              * StringPrinter.flushConsole();
              * StringPrinter.print("Select Product ID: ");
              * int productSelection = sc.nextInt();
-             * System.out.println(paginator.getProduct(productSelection));
+             * System.out.println(apiController.getProduct(productSelection));
              * displayNavigationModule();
              * break;
              */
@@ -91,7 +93,7 @@ public class ProductListMenuView {
                 productListView.showProductList(productListView.getDynamicProductList());
                 break;
             case SEARCH_BY_CATEGORY:
-                showCategoryList();
+                categoriesListView.display();
                 productListView.updateProductList(categorySelection());
                 productListView.showProductList(productListView.getDynamicProductList());
                 break;
@@ -113,15 +115,6 @@ public class ProductListMenuView {
         StringPrinter.flushConsole();
         StringPrinter.print("Type keyword: ");
         return sc.next();
-    }
-
-    public void showCategoryList() {
-        int counter = 0;
-
-        for (Object category : paginator.getCategoryList()) {
-            counter++;
-            StringPrinter.println("[" + counter + "] -> " + category.toString());
-        }
     }
 
     public int categorySelection() {
