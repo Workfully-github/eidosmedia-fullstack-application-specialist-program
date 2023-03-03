@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import org.json.JSONArray;
 import org.workfully.controllers.Paginator;
 import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;
 
-@SuppressWarnings("resource")
+@SuppressWarnings({"resource", "unused"})
 public class ProductList {
 
     private HashMap<Integer, Product> productListByIndex;
@@ -34,7 +33,7 @@ public class ProductList {
     public void init() {
         showProductList();
         while (true)
-            pageNavigation();
+            displayNavigationModule();
     }
 
     /* MAYBE USEFUL IN FUTURE */
@@ -69,10 +68,7 @@ public class ProductList {
         showProductList();
     }
 
-    /*
-     * Provides Navigation
-     */
-    private void pageNavigation() {
+    private void displayNavigationModule() {
         ProductSelection.paginatorConditions(this.paginator);
 
         Scanner sc = new Scanner(System.in);
@@ -143,7 +139,7 @@ public class ProductList {
              * StringPrinter.print("Select Product ID: ");
              * int productSelection = sc.nextInt();
              * System.out.println(paginator.getProduct(productSelection));
-             * pageNavigation();
+             * displayNavigationModule();
              * break;
              */
             case SEARCH_BY_KEYWORD:

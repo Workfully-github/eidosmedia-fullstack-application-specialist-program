@@ -1,7 +1,5 @@
 package org.workfully.controllers;
 
-import java.util.Locale.Category;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.workfully.models.Product;
@@ -16,6 +14,7 @@ public class Paginator {
     private final String BASE_URL = "https://dummyjson.com/products";
     private final String CATEGORIES_RESOURCE = "/categories";
     private final String CATEGORY_FEATURE = "/category";
+    private final String SEARCH_FEATURE = "/search?q=";
     private JSONObject json;
     private int pageSelection;
     private int pageNumber;
@@ -89,13 +88,20 @@ public class Paginator {
      */
     public JSONArray getProductsByKeyword(String keyword) {
         this.json = new JSONObject(RestController
-                .getBody(this.BASE_URL + "/" + "search?q=" + keyword + "&limit=" + this.valuesPerPage + "&skip="
+                .getBody(this.BASE_URL + SEARCH_FEATURE + keyword + "&limit=" + this.valuesPerPage + "&skip="
                         + this.skip));
 
         return json.getJSONArray("products");
     }
 
-    public JSONArray makeProductsJSONArray() {
+    /**
+     * Helper method, used in pagination
+     * {@link #nextPage()}
+     * {@link #returnPage()}
+     * {@link #selectPage(int pageSelection, int valuesPerPage)}
+     * {@link #selectPage(int pageSelection)}
+     */
+    private JSONArray makeProductsJSONArray() {
         this.json = new JSONObject(
                 RestController.getBody(this.BASE_URL + "?skip=" + this.skip + "&limit=" + this.valuesPerPage));
         return json.getJSONArray("products");
