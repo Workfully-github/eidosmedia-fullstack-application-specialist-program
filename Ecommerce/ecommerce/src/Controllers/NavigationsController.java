@@ -1,9 +1,9 @@
 package Controllers;
 
 public class NavigationsController {
-    public static int productsPerPage = 30;
-    public static int skip = 0;
-    public static int limit = productsPerPage;
+    public static int  productsPerPage = 30;
+    public static int  skip = 0;
+    public static int  limit = 30;
 
 
 
@@ -17,4 +17,10 @@ public class NavigationsController {
         skip -= productsPerPage;
         limit = productsPerPage;
     }
+
+    public static String pagetranslator(int pageNum) {
+        pageNum--;
+        return "?skip=" + (limit * pageNum) + "&limit=" + limit ;
+    } 
+    
 }

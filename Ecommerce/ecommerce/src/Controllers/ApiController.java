@@ -8,9 +8,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class ApiController {
-    public JSONArray call(String url, int skip, int limit) {
+    public static final String BASE_URL = "https://dummyjson.com/products/";
+
+    public JSONArray call(String url) {
         try {
-            URL GET_URL = new URL(url + "?skip=" + skip + "&limit=" + limit);
+            URL GET_URL = new URL(url);
     
             HttpURLConnection httpURLConnection = (HttpURLConnection) GET_URL.openConnection();
             httpURLConnection.setRequestMethod("GET");
@@ -45,9 +47,47 @@ public class ApiController {
         }
     }
 
-    public JSONObject call(String url) {
+    public JSONArray callCategories(String url) {
         try {
-            URL GET_URL = new URL(url + "?skip=");
+            URL GET_URL = new URL(url);
+    
+            HttpURLConnection httpURLConnection = (HttpURLConnection) GET_URL.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestProperty("User-Agent", "Mozilla/5.0");
+            int responseCode = httpURLConnection.getResponseCode();
+            System.out.println("GET Response Code :: " + responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) { // success
+                BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while ((inputLine = in .readLine()) != null) {
+                    response.append(inputLine);
+                } in .close();
+    
+                JSONArray productsObj = new JSONArray(response.toString());
+                return productsObj;
+    
+              
+            } else {
+                System.out.println("GET request not worked");
+                return null;
+            }
+            // int headerSize = httpURLConnection.getHeaderFields().size();
+            // for(int i = 0; i < headerSize; i++) {
+            //     System.out.println(httpURLConnection.getHeaderFieldKey(i) + " = " + httpURLConnection.getHeaderField(i));
+            // }
+        } catch (IOException e) {
+            System.out.print(e.getMessage());
+            return null;
+
+        }
+    }
+
+    
+    public JSONObject callProduct(String url) {
+        try {
+            URL GET_URL = new URL(url);
     
             HttpURLConnection httpURLConnection = (HttpURLConnection) GET_URL.openConnection();
             httpURLConnection.setRequestMethod("GET");
@@ -81,4 +121,17 @@ public class ApiController {
 
         }
     }
+
+    
+    public String getUrl(String ... strings ) {
+        String urlTower = "";
+        for(String string : strings){
+            urlTower += string;
+        }
+        return urlTower;
+    }
+
+
+
+    
 }
