@@ -8,7 +8,7 @@ import org.workfully.controllers.Paginator;
 import org.workfully.utilities.StringPrinter;
 
 @SuppressWarnings("resource")
-public class ProductSelection {
+public class ProductSelectionUtils {
 
     public int howManyPagesDialogue() {
         Scanner sc = new Scanner(System.in);
@@ -57,6 +57,4 @@ public class ProductSelection {
         StringPrinter.printMultiLn(
                 "[D] -> Select Product");
     }
-
-    
 }

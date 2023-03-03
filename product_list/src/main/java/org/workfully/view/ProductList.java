@@ -69,7 +69,7 @@ public class ProductList {
     }
 
     private void displayNavigationModule() {
-        ProductSelection.paginatorConditions(this.paginator);
+        ProductSelectionUtils.paginatorConditions(this.paginator);
 
         Scanner sc = new Scanner(System.in);
         char selection = sc.next().toLowerCase().charAt(0);
