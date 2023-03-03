@@ -21,6 +21,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+/* USING APACHE BECAUSE PROJECT IS JAVA 8 */
 public class RestController {
 
     private static final CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -71,14 +72,28 @@ public class RestController {
 
             CloseableHttpResponse response = httpClient.execute(request);
 
-            System.out.println(url + " " + response.getStatusLine());
-
             return response.getStatusLine().getStatusCode();
 
         } catch (Exception e) {
 
             System.out.println(e.getMessage());
             return -1;
+        }
+    }
+
+    public static String getStatusLine(String url) {
+
+        HttpGet request = new HttpGet(url);
+
+        try {
+
+            CloseableHttpResponse response = httpClient.execute(request);
+
+            return response.getStatusLine().toString();
+
+        } catch (Exception e) {
+
+            return e.getMessage();
         }
     }
 
@@ -113,13 +128,13 @@ public class RestController {
         }
     }
 
-    public static void postRequest(String url, String username, String password) {
+    public static void postRequest(String url, String param1, String param2) {
 
         HttpPost httpPost = new HttpPost(url);
 
         final List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("username", username));
-        params.add(new BasicNameValuePair("password", password));
+        params.add(new BasicNameValuePair("param", param1));
+        params.add(new BasicNameValuePair("param", param2));
 
         try {
 
