@@ -60,17 +60,20 @@ public class ProductList {
     }
 
     private void nextPage() {
-        setProductList(productController.generateProductList(paginator.nextPage()));
+        setProductList(productController.generateProductList(this.paginator.nextPage()));
         showProductList();
     }
 
     private void returnPage() {
-        setProductList(productController.generateProductList(paginator.returnPage()));
+        setProductList(productController.generateProductList(this.paginator.returnPage()));
         showProductList();
     }
 
+    /*
+     * Provides Navigation
+     */
     private void pageNavigation() {
-        ProductSelection.paginatorConditions(paginator);
+        ProductSelection.paginatorConditions(this.paginator);
 
         Scanner sc = new Scanner(System.in);
         char selection = sc.next().toLowerCase().charAt(0);
@@ -85,12 +88,12 @@ public class ProductList {
 
         switch (selection) {
             case NEXT:
-                if (paginator.getPagesLeft() > 0) {
+                if (this.paginator.getPagesLeft() > 0) {
                     nextPage();
                 }
                 break;
             case RETURN:
-                if (paginator.getPageSelection() > 1) {
+                if (this.paginator.getPageSelection() > 1) {
                     returnPage();
                     break;
                 }
@@ -122,14 +125,13 @@ public class ProductList {
             int menuSelection = sc.nextInt();
             selectionMenu(menuSelection);
         } catch (Exception e) {
-            e.printStackTrace();
+            StringPrinter.println(e.getMessage());
             showProductDetailDialogue();
         }
-
     }
 
     private void selectionMenu(int menuSelection) {
-        final int SEARCH_BY_ID = 1;
+        // final int SEARCH_BY_ID = ;
         final int SEARCH_BY_KEYWORD = 1;
         final int SEARCH_BY_CATEGORY = 2;
 
@@ -145,18 +147,12 @@ public class ProductList {
              * break;
              */
             case SEARCH_BY_KEYWORD:
-                setProductList(
-                        productController.generateProductList(paginator.getProductsByKeyword(keywordSelection())));
-                if (productList.isEmpty()) {
-                    System.out.println("No Results");
-                    break;
-                }
+                updateProductList();
                 showProductList();
-                pageNavigation();
                 break;
             case SEARCH_BY_CATEGORY:
                 showCategoryList();
-                categorySelectionMenu(categorySelection());
+                updateProductList(categorySelection());
                 showProductList();
                 break;
             default:
@@ -187,8 +183,16 @@ public class ProductList {
         return sc.nextInt();
     }
 
-    public void categorySelectionMenu(int selection) {
-        System.out.println(paginator.getCategoryList().getString(selection - 1));
+    public void updateProductList() {
+        setProductList(
+                productController.generateProductList(paginator.getProductsByKeyword(keywordSelection())));
+        if (productList.isEmpty()) {
+            System.out.println("No Results");
+            showProductDetailDialogue();
+        }
+    }
+
+    public void updateProductList(int selection) {
         setProductList(
                 productController.generateProductList(
                         paginator.getProductsByCategory(paginator.getCategoryList().getString(selection - 1))));
@@ -196,5 +200,4 @@ public class ProductList {
             System.out.println("No Results");
         }
     }
-
 }
