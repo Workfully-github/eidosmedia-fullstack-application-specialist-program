@@ -20,9 +20,9 @@ public class HttpController {
 
             String responseMessage = connection.getResponseMessage();
             System.out.println("------------------------------------------------------------------");
-            System.out.println("\nResponse Code: " + responseCode + " " + responseMessage);
-            System.out.println("------------------------------------------------------------------");
-            System.out.println("\nResponse Headers: " + connection.getHeaderFields());
+            //System.out.println("\nResponse Code: " + responseCode + " " + responseMessage);
+            //System.out.println("------------------------------------------------------------------");
+            //System.out.println("\nResponse Headers: " + connection.getHeaderFields());
 
             // Get Response Body (HTML)
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));

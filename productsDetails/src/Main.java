@@ -14,7 +14,11 @@ public class Main {
         //productView.showProductById(url);
 
         //String listUrl = "https://dummyjson.com/products";
-        //productListView.showAllProduct(listUrl);
+        //productListView.showAllProduct();
+
+        //String listUrl = "https://dummyjson.com/products";
+        //String search = "laptop";
+        //productListView.showSearch(search);
 
         String listUrl0 = "https://dummyjson.com/products";
         productListView.showAllProductWithPagination(listUrl0,30,30);
