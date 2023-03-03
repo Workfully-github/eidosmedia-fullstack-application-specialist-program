@@ -1,4 +1,4 @@
-package org.workfully.utilities;
+package org.workfully.http;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

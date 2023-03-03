@@ -2,7 +2,7 @@ package org.workfully.view;
 
 import java.util.Scanner;
 
-import org.workfully.controllers.APIController;
+import org.workfully.http.APIController;
 import org.workfully.utilities.StringPrinter;
 
 @SuppressWarnings("resource")

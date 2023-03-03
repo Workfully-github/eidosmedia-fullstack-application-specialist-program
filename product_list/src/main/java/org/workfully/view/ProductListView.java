@@ -1,10 +1,8 @@
 package org.workfully.view;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
 
-import org.workfully.controllers.APIController;
+import org.workfully.http.APIController;
 import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;

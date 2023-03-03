@@ -1,11 +1,13 @@
-package org.workfully.controllers;
+package org.workfully.http;
 
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.workfully.controllers.CategoryController;
+import org.workfully.models.Category;
 import org.workfully.models.Product;
-import org.workfully.utilities.RestController;
+import org.workfully.http.RestController;
 
 /**
  * Paginator methods can all become static
@@ -13,7 +15,7 @@ import org.workfully.utilities.RestController;
  */
 public class APIController {
 
-    private CategoriesController categoriesController;
+    private RestController rest;
     private final String BASE_URL = "https://dummyjson.com/products";
     private final String CATEGORY_FEATURE = "/category";
     private final String SEARCH_FEATURE = "/search?q=";
@@ -24,8 +26,10 @@ public class APIController {
     private int valuesPerPage;
 
     public APIController() {
-        this.categoriesController = new CategoriesController();
+        rest = new RestController();
     }
+
+
 
     public JSONArray selectPage(int pageSelection, int valuesPerPage) {
         this.pageSelection = pageSelection;
@@ -76,8 +80,9 @@ public class APIController {
                         .getBody(BASE_URL + "/" + id)));
     }
 
-    public ArrayList<String> getCategoryList() {
-        return categoriesController.getCategoryListFromDB();
+    public JSONArray getCategoryList(String endpoint) {
+        return new JSONArray(RestController
+                .getBody(this.BASE_URL + endpoint));
     }
 
      public JSONArray getProductsByCategory(String category) {

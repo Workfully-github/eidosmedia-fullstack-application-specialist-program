@@ -4,22 +4,15 @@ import java.util.ArrayList;
 
 public class Category {
 
-    ArrayList<String> categoriesList;
+    private String name;
 
-    public ArrayList<String> getCategoriesList() {
-        return categoriesList;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoriesList(ArrayList<String> categoriesList) {
-        this.categoriesList = categoriesList;
+    public void setName(String name) {
+        this.name = name;
     }
-
-
-
-    
-
-
-
 
 
 
