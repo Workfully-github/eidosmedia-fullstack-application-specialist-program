@@ -10,6 +10,7 @@ public class ProductListMenuView {
 
     private Paginator paginator;
     private ProductListView productListView;
+    private final String BAD_INPUT = "Bad Input, select again. \n";
 
     public ProductListMenuView(Paginator paginator, ProductListView productListView) {
         this.paginator = paginator;
@@ -41,19 +42,19 @@ public class ProductListMenuView {
                     productListView.returnPage();
                     break;
                 }
-                StringPrinter.print("Bad Input, select again. \n");
+                StringPrinter.print(BAD_INPUT);
                 break;
             case PRODUCT_DETAIL_MENU:
+                StringPrinter.flushConsole();
                 showProductDetailDialogue();
                 break;
             default:
-                StringPrinter.print("Bad Input, select again. \n");
+                StringPrinter.print(BAD_INPUT);
                 break;
         }
     }
 
     protected void showProductDetailDialogue() {
-        // StringPrinter.flushConsole();
         StringPrinter.printMultiLn(
                 "[1] -> Search by keyword",
                 "[2] -> Search by category",
@@ -63,13 +64,13 @@ public class ProductListMenuView {
             int menuSelection = sc.nextInt();
             selectionMenu(menuSelection);
         } catch (Exception e) {
-            StringPrinter.println(e.getMessage());
+            StringPrinter.print(BAD_INPUT);
             showProductDetailDialogue();
         }
     }
 
     private void selectionMenu(int menuSelection) {
-        // final int SEARCH_BY_ID = ;
+        // final int SEARCH_BY_ID = INSERT NUMBER;
         final int SEARCH_BY_KEYWORD = 1;
         final int SEARCH_BY_CATEGORY = 2;
         final int SHOW_ALL_PRODUCTS = 3;
@@ -96,8 +97,11 @@ public class ProductListMenuView {
                 break;
             case SHOW_ALL_PRODUCTS:
                 productListView.showProductList(productListView.getShowAllProductsList());
+                break;
             default:
-                StringPrinter.print("Bad Input, select again. \n");
+                StringPrinter.flushConsole();
+                StringPrinter.print(BAD_INPUT);
+                showProductDetailDialogue();
                 break;
         }
     }
@@ -123,5 +127,4 @@ public class ProductListMenuView {
         StringPrinter.print("Select Category: ");
         return sc.nextInt();
     }
-
 }

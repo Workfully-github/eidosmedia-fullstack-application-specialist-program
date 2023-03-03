@@ -32,10 +32,9 @@ public class ProductListView {
             this.productListMenuView.displayNavigationModule();
     }
 
-    private void setProductList(ArrayList<Product> dynamicProductList) {
-        this.dynamicProductList = dynamicProductList;
-    } 
-
+    /**
+     * Shows a different Prodcut List based on @param productList
+     */
     protected void showProductList(ArrayList<Product> productList) {
         for (Product product : productList) {
             StringPrinter.println(product.toString());
@@ -66,7 +65,7 @@ public class ProductListView {
                 productController.generateProductList(
                         paginator.getProductsByKeyword(this.productListMenuView.keywordSelection())));
         if (dynamicProductList.isEmpty()) {
-            System.out.println("No Results");
+            StringPrinter.println("No Results");
             this.productListMenuView.showProductDetailDialogue();
         }
     }
@@ -76,7 +75,7 @@ public class ProductListView {
                 productController.generateProductList(
                         paginator.getProductsByCategory(paginator.getCategoryList().getString(selection - 1))));
         if (dynamicProductList.isEmpty()) {
-            System.out.println("No Results");
+            StringPrinter.println("No Results");
         }
     }
 
@@ -88,5 +87,8 @@ public class ProductListView {
         return dynamicProductList;
     }
 
-    
+    private void setProductList(ArrayList<Product> dynamicProductList) {
+        this.dynamicProductList = dynamicProductList;
+    }
+
 }
