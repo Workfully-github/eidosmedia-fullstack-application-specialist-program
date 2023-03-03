@@ -1,5 +1,7 @@
 package org.workfully.controllers;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.workfully.models.Product;
@@ -9,10 +11,10 @@ import org.workfully.utilities.RestController;
  * Paginator methods can all become static
  * they don't depend on external instances
  */
-public class Paginator {
+public class APIController {
 
+    private CategoriesController categoriesController;
     private final String BASE_URL = "https://dummyjson.com/products";
-    private final String CATEGORIES_RESOURCE = "/categories";
     private final String CATEGORY_FEATURE = "/category";
     private final String SEARCH_FEATURE = "/search?q=";
     private JSONObject json;
@@ -20,6 +22,10 @@ public class Paginator {
     private int pageNumber;
     private int skip;
     private int valuesPerPage;
+
+    public APIController() {
+        this.categoriesController = new CategoriesController();
+    }
 
     public JSONArray selectPage(int pageSelection, int valuesPerPage) {
         this.pageSelection = pageSelection;
@@ -70,17 +76,16 @@ public class Paginator {
                         .getBody(BASE_URL + "/" + id)));
     }
 
-    public JSONArray getCategoryList() {
-        return new JSONArray(RestController
-                .getBody(this.BASE_URL + CATEGORIES_RESOURCE));
+    public ArrayList<String> getCategoryList() {
+        return categoriesController.getCategoryListFromDB();
     }
 
-    public JSONArray getProductsByCategory(String category) {
+     public JSONArray getProductsByCategory(String category) {
         this.json = new JSONObject(RestController
                 .getBody(this.BASE_URL + CATEGORY_FEATURE + "/" + category));
 
         return json.getJSONArray("products");
-    }
+    } 
 
     /**
      * @param keyword for searching products by keyword

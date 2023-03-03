@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import org.workfully.controllers.Paginator;
+import org.workfully.controllers.APIController;
 import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;
@@ -12,15 +12,16 @@ import org.workfully.utilities.StringPrinter;
 @SuppressWarnings({ "unused" })
 public class ProductListView {
 
-    private final ArrayList<Product> showAllProductsList;
+    // FIXME
+    private ArrayList<Product> showAllProductsList;
     private ArrayList<Product> dynamicProductList;
-    private Paginator paginator;
+    private APIController paginator;
     private ProductController productController;
     private ProductListMenuView productListMenuView;
 
     public ProductListView(ProductController productController) {
         this.productController = productController;
-        this.showAllProductsList = productController.getProductList();
+        this.showAllProductsList = productController.getAllProductsList();
         this.dynamicProductList = productController.getProductList();
         this.paginator = productController.getPaginator();
         this.productListMenuView = new ProductListMenuView(paginator, this);
@@ -73,7 +74,14 @@ public class ProductListView {
     public void updateProductList(int selection) {
         setProductList(
                 productController.generateProductList(
-                        paginator.getProductsByCategory(paginator.getCategoryList().getString(selection - 1))));
+                        paginator.getProductsByCategory(paginator.getCategoryList().get((selection - 1)))));
+        if (dynamicProductList.isEmpty()) {
+            StringPrinter.println("No Results");
+        }
+    }
+
+    public void updateProductList(ArrayList<Product> productList) {
+        setProductList(productList);
         if (dynamicProductList.isEmpty()) {
             StringPrinter.println("No Results");
         }
@@ -90,5 +98,4 @@ public class ProductListView {
     private void setProductList(ArrayList<Product> dynamicProductList) {
         this.dynamicProductList = dynamicProductList;
     }
-
 }

@@ -8,14 +8,16 @@ import org.workfully.models.Product;
 
 public class ProductController {
 
-    private Paginator paginator;
-    private ArrayList<Product> productList;
+    private APIController apiController;
+    private ArrayList<Product> dynamicProductList;
+    private ArrayList<Product> allProductsList;
 
     public ProductController() {}
 
     public ProductController(int valuesPerPage, int pageSelection) {
-        this.paginator = new Paginator();
-        this.productList = generateProductList(this.paginator.selectPage(pageSelection, valuesPerPage));
+        this.apiController = new APIController();
+        this.allProductsList = generateProductList(this.apiController.selectPage(pageSelection, valuesPerPage));
+        this.dynamicProductList = generateProductList(this.apiController.selectPage(pageSelection, valuesPerPage));
     }
 
     /**
@@ -32,11 +34,21 @@ public class ProductController {
         };
     }
 
-    public Paginator getPaginator() {
-        return paginator;
+    public APIController getPaginator() {
+        return apiController;
     }
 
     public ArrayList<Product> getProductList() {
-        return productList;
+        return dynamicProductList;
     }
+
+    public ArrayList<Product> getDynamicProductList() {
+        return dynamicProductList;
+    }
+
+    public ArrayList<Product> getAllProductsList() {
+        return allProductsList;
+    }
+
+    
 }

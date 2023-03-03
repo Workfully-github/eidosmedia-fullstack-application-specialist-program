@@ -2,17 +2,17 @@ package org.workfully.view;
 
 import java.util.Scanner;
 
-import org.workfully.controllers.Paginator;
+import org.workfully.controllers.APIController;
 import org.workfully.utilities.StringPrinter;
 
 @SuppressWarnings("resource")
 public class ProductListMenuView {
 
-    private Paginator paginator;
+    private APIController paginator;
     private ProductListView productListView;
     private final String BAD_INPUT = "Bad Input, select again. \n";
 
-    public ProductListMenuView(Paginator paginator, ProductListView productListView) {
+    public ProductListMenuView(APIController paginator, ProductListView productListView) {
         this.paginator = paginator;
         this.productListView = productListView;
     }
@@ -96,7 +96,9 @@ public class ProductListMenuView {
                 productListView.showProductList(productListView.getDynamicProductList());
                 break;
             case SHOW_ALL_PRODUCTS:
-                productListView.showProductList(productListView.getShowAllProductsList());
+                productListView.updateProductList(productListView.getShowAllProductsList());
+                productListView.showProductList(productListView.getDynamicProductList());
+                
                 break;
             default:
                 StringPrinter.flushConsole();

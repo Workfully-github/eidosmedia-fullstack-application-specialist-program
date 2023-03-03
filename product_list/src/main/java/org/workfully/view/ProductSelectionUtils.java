@@ -4,7 +4,7 @@ import static org.workfully.utilities.StringPrinter.*;
 
 import java.util.Scanner;
 
-import org.workfully.controllers.Paginator;
+import org.workfully.controllers.APIController;
 import org.workfully.utilities.StringPrinter;
 
 @SuppressWarnings("resource")
@@ -30,7 +30,7 @@ public class ProductSelectionUtils {
      * @param paginator used to evaluate page status
      *                  shows option according to page status
      */
-    public static void paginatorConditions(Paginator paginator) {
+    public static void paginatorConditions(APIController paginator) {
         if (paginator.getPageSelection() > 1 && paginator.getPagesLeft() > 0) {
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
