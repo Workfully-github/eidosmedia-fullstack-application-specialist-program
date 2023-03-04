@@ -4,26 +4,22 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import Projects.Products_List.views.ProductListView;
-import Projects.Products_List.views.SearchBarDialog;
-//import Projects.Products_List.views.SeeDetailDialog;
+import Projects.Products_List.views.StartingDialog;
 
 public class MainProducts {
     
     public static void main(String[] args) throws IOException, ParseException {
 
-        initialize(0, 20);
+        initialize();
 
     }
 
-    public static void initialize(int skip, int limit) throws IOException, ParseException  {
+    public static void initialize() throws IOException, ParseException  {
         
-        ProductListView productListView = new ProductListView();
-        productListView.showList(skip, limit);
+        /* ProductListView productListView = new ProductListView();
+        productListView.showList(1); */
         
-        /* SeeDetailDialog seeDetailDialog = new SeeDetailDialog();
-        seeDetailDialog.seeDetail(skip); */
-
-        SearchBarDialog searchBarDialog = new SearchBarDialog();
-        searchBarDialog.doSearch(skip, limit);
+        StartingDialog start = new StartingDialog();
+        start.initiateDialog();
     }
 }

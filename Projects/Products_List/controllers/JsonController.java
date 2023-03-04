@@ -20,9 +20,9 @@ public class JsonController {
     private static final String QUERY_STRING = "/search?q=";
     public static final int LIMIT = 30;
 
-    public String get(String endpoint, int page, String query) {
+    public static String get(String endpoint, int page, String query) {
 
-        String uri = getUrl(endpoint, query, "");
+        String uri = getUrl(endpoint, query, getPage(page));
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
@@ -38,15 +38,15 @@ public class JsonController {
         }
     }
 
-    public String get(String endpoint, int page) {
+    public static String get(String endpoint, int page) {
         return get(endpoint, page, "");
     }
 
-    private String getUrl(String endpoint, String query, String page) {
-        return BASE_URL + endpoint + QUERY_STRING + query + page;
+    private static String getUrl(String endpoint, String query, String page) {
+        return BASE_URL + endpoint + query + page;
     }
 
-    private String getPage(int page) {
+    private static String getPage(int page) {
         // Pages 1, 2, 3, 4, etc
         // So in page 1 skip is 0 = 1 - 1 * limit
         // page 2 skip is 30 = 2 - 1 * limit

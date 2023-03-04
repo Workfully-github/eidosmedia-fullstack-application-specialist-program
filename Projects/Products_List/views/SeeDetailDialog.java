@@ -11,6 +11,8 @@ public class SeeDetailDialog {
     
     public void seeDetail(int skip) throws IOException, ParseException {
 
+        // DELETE
+
         Scanner userInput = new Scanner(System.in);
         System.out.println("-------------------------------------------------------");
         System.out.println("Do you wish to see the detail of any product?");
@@ -28,7 +30,7 @@ public class SeeDetailDialog {
             case YES:
                 SingleProductDialog singleProductDialog = new SingleProductDialog();
                 ProductView productView = new ProductView();
-                productView.showSingleProduct(singleProductDialog.chooseSingleProduct());
+                //productView.showSingleProduct(singleProductDialog.chooseSingleProduct());
 
                 changePageDialog.choosePage(skip);
                 break;

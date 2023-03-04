@@ -1,8 +1,5 @@
 package Projects.Products_List.views;
 
-import java.io.IOException;
-import java.text.ParseException;
-
 import Projects.Products_List.controllers.ProductController;
 import Projects.Products_List.models.Product;
 
@@ -11,7 +8,7 @@ public class ProductView {
     private Product product;
     private ProductController productController;
     
-    public void showSingleProduct(int id) throws IOException, ParseException {
+    public void showSingleProduct(int id) {
 
         productController = new ProductController();
         product = productController.getSingleProduct(id, 1);

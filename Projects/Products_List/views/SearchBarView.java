@@ -14,9 +14,8 @@ public class SearchBarView {
     // REVIEW THIS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // page to look for
     
-    public void searchBar(int skip, int limit) {
+    public void searchBar() {
 
-        
         Scanner userInput = new Scanner(System.in);
         System.out.println("-------------------------------------------------------");
         System.out.println("Search:");
@@ -24,7 +23,7 @@ public class SearchBarView {
         System.out.print("Your search: ");
         
         String userChoice = userInput.nextLine();
-        if (userChoice.equals("")) System.out.println("Invalida search.");
+        if (userChoice.equals("")) System.out.println("Invalid search.");
 
         productController = new ProductController();
         products = productController.getSearch(1, userChoice);

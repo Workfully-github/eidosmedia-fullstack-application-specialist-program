@@ -1,7 +1,5 @@
 package Projects.Products_List.controllers;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -11,11 +9,11 @@ import Projects.Products_List.models.Product;
 
 public class ProductController {
     
-    private JsonController jsonController = new JsonController();
+    //private JsonController jsonController = new JsonController();
     
-    public ArrayList<Product> getAll(int page) {
+    public static ArrayList<Product> getAll(int page) {
 
-        String responseBody = jsonController.get(Product.ENDPOINT, page);
+        String responseBody = JsonController.get(Product.ENDPOINT, page);
 
         if(null != responseBody){
             JSONObject response = new JSONObject(responseBody);
@@ -26,7 +24,7 @@ public class ProductController {
 
     public ArrayList<Product> getSearch(int page, String query) {
 
-        String responseBody = jsonController.get(Product.ENDPOINT, page, query);
+        String responseBody = JsonController.get(Product.ENDPOINT, page, "/search?q=" + query);
         
         if(null == responseBody){
             JSONObject response = new JSONObject(responseBody);
@@ -35,9 +33,9 @@ public class ProductController {
         return new ArrayList<Product>();
     }
 
-    public Product getSingleProduct(int id, int page) throws IOException, ParseException {
+    public Product getSingleProduct(int id, int page){
 
-        String responseBody = jsonController.get(Product.ENDPOINT + id, page);
+        String responseBody = JsonController.get(Product.ENDPOINT + id, page);
         
         if(null != responseBody) {
             JSONObject response = new JSONObject(responseBody);

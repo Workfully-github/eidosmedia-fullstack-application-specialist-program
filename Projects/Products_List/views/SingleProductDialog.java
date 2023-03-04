@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class SingleProductDialog {
     
-    public int chooseSingleProduct() {
+    public void chooseSingleProduct() {
 
         Scanner userInput = new Scanner(System.in);
         System.out.println("-------------------------------------------------------");
@@ -14,6 +14,7 @@ public class SingleProductDialog {
 
         int userChoice = userInput.nextInt();
 
-        return userChoice;
+        ProductView productView = new ProductView();
+        productView.showSingleProduct(userChoice);
     }
 }

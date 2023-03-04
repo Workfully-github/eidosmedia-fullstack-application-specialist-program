@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 public class SearchBarDialog {
+
+    // DELETE!
     
     private static final String YES = "Y";
     private static final String NO = "N";
@@ -27,7 +29,7 @@ public class SearchBarDialog {
         
         switch (userChoice) {
             case YES:
-                searchBarView.searchBar(skip, limit);
+                //searchBarView.searchBar(skip, limit);
 
                 seeDetailDialog.seeDetail(skip);
                 break;

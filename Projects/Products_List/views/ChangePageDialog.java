@@ -34,7 +34,7 @@ public class ChangePageDialog {
                     System.out.println("\n");
                     break;
                 } else {
-                    MainProducts.initialize(skip - 20, 20);
+                    MainProducts.initialize();
                     break;
                 }
             case MORE:
@@ -44,7 +44,7 @@ public class ChangePageDialog {
                     System.out.println("\n");
                     break;
                 } else {
-                    MainProducts.initialize(skip + 20, 20);
+                    MainProducts.initialize();
                     break;
                 }
         }
