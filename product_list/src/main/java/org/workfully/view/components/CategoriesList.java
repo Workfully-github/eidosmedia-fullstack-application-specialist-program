@@ -1,14 +1,15 @@
-package org.workfully.view;
+package org.workfully.view.components;
 
 import org.workfully.controllers.CategoryController;
 import org.workfully.models.Category;
 import org.workfully.utilities.StringPrinter;
+import org.workfully.view.interfaces.Displays;
 
-public class CategoriesListView extends BasicView {
+public class CategoriesList implements Displays {
 
     private CategoryController categoryController;
 
-    public CategoriesListView() {
+    public CategoriesList() {
         this.categoryController = new CategoryController();
     }
 

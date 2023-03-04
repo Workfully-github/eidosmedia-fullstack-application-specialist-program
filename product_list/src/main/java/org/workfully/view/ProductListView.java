@@ -6,8 +6,9 @@ import org.workfully.http.APIController;
 import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;
+import org.workfully.view.components.CategoriesList;
 
-public class ProductListView {
+public class ProductListView extends BasicView {
 
     // FIXME fix productLists 
     private ArrayList<Product> showAllProductsList;
@@ -15,14 +16,14 @@ public class ProductListView {
     private APIController apiController;
     private ProductController productController;
     private ProductListMenuView productListMenuView;
-    private CategoriesListView categoriesListView;
+    private CategoriesList categoriesListView;
 
     public ProductListView(ProductController productController) {
         this.productController = productController;
         this.showAllProductsList = productController.getAllProductsList();
         this.dynamicProductList = productController.getProductList();
-        this.apiController = productController.getPaginator();
-        this.categoriesListView = new CategoriesListView();
+        this.apiController = productController.getAPIController();
+        this.categoriesListView = new CategoriesList();
         this.productListMenuView = new ProductListMenuView(apiController, categoriesListView, this);
     }
 
@@ -96,5 +97,11 @@ public class ProductListView {
 
     private void setProductList(ArrayList<Product> dynamicProductList) {
         this.dynamicProductList = dynamicProductList;
+    }
+
+    @Override
+    public void display() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'display'");
     }
 }

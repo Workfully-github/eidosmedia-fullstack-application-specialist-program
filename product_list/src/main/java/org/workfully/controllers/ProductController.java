@@ -35,7 +35,7 @@ public class ProductController {
         };
     }
 
-    public APIController getPaginator() {
+    public APIController getAPIController() {
         return apiController;
     }
 

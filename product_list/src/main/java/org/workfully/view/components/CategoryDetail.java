@@ -1,7 +1,8 @@
-package org.workfully.view;
+package org.workfully.view.components;
 
 import org.workfully.controllers.CategoryController;
 import org.workfully.models.Category;
+import org.workfully.view.BasicView;
 
 public class CategoryDetail extends BasicView{
 
@@ -16,6 +17,6 @@ public class CategoryDetail extends BasicView{
 
     @Override
     public void display() {
-        super.display();
+       
     }
 }

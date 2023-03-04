@@ -6,13 +6,13 @@ import org.workfully.models.Product;
 
 public class APIController {
 
-    private RestController rest;
     private final String BASE_URL = "https://dummyjson.com/products";
     private final String CATEGORY_FEATURE = "/category";
     private final String SEARCH_FEATURE = "/search?q=";
+    private RestController rest;
     private JSONObject json;
     private int pageSelection;
-    private int pageNumber;
+    private int pageIndex;
     private int skip;
     private int valuesPerPage;
 
@@ -22,17 +22,17 @@ public class APIController {
 
     public JSONArray selectPage(int pageSelection, int valuesPerPage) {
         this.pageSelection = pageSelection;
-        this.pageNumber = pageSelection - 1;
+        this.pageIndex = pageSelection - 1;
         this.valuesPerPage = valuesPerPage;
-        this.skip = pageNumber * valuesPerPage;
+        this.skip = pageIndex * valuesPerPage;
         return makeProductsJSONArray();
     }
 
     public JSONArray selectPage(int pageSelection) {
         this.pageSelection = pageSelection;
-        this.pageNumber = this.pageSelection - 1;
+        this.pageIndex = this.pageSelection - 1;
         int valuesPerPage = 30;
-        this.skip = pageNumber * valuesPerPage;
+        this.skip = pageIndex * valuesPerPage;
         return makeProductsJSONArray();
     }
 
@@ -46,9 +46,16 @@ public class APIController {
     }
 
     public JSONArray nextPage() {
-        this.pageNumber++;
-        this.pageSelection = this.pageNumber + 1;
-        this.skip = this.pageNumber * this.valuesPerPage;
+        this.pageIndex++;
+        this.pageSelection = this.pageIndex + 1;
+        this.skip = this.pageIndex * this.valuesPerPage;
+        return makeProductsJSONArray();
+    }
+
+    public JSONArray returnPage() {
+        this.pageIndex--;
+        this.pageSelection = this.pageIndex + 1;
+        this.skip = this.pageIndex * this.valuesPerPage;
         return makeProductsJSONArray();
     }
 
@@ -56,17 +63,8 @@ public class APIController {
         return this.pageSelection;
     }
 
-    public JSONArray returnPage() {
-        this.pageNumber--;
-        this.pageSelection = this.pageNumber + 1;
-        this.skip = this.pageNumber * this.valuesPerPage;
-        return makeProductsJSONArray();
-    }
-
     public Product getProduct(int id) {
-        return new Product(new JSONObject(
-                rest
-                        .getBody(BASE_URL + "/" + id)));
+        return new Product(new JSONObject(rest.getBody(BASE_URL + "/" + id)));
     }
 
     public JSONArray getCategoryList(String endpoint) {
@@ -74,12 +72,12 @@ public class APIController {
                 .getBody(this.BASE_URL + endpoint));
     }
 
-     public JSONArray getProductsByCategory(String category) {
+    public JSONArray getProductsByCategory(String category) {
         this.json = new JSONObject(rest
                 .getBody(this.BASE_URL + CATEGORY_FEATURE + "/" + category));
 
         return json.getJSONArray("products");
-    } 
+    }
 
     /**
      * @param keyword for searching products by keyword

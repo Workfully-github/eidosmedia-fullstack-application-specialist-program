@@ -4,16 +4,17 @@ import java.util.Scanner;
 
 import org.workfully.http.APIController;
 import org.workfully.utilities.StringPrinter;
+import org.workfully.view.components.CategoriesList;
 
 @SuppressWarnings("resource")
 public class ProductListMenuView {
 
     private APIController apiController;
     private ProductListView productListView;
-    private CategoriesListView categoriesListView;
+    private CategoriesList categoriesListView;
     private final String BAD_INPUT = "Bad Input, select again. \n";
 
-    public ProductListMenuView(APIController apiController, CategoriesListView categoriesListView, ProductListView productListView) {
+    public ProductListMenuView(APIController apiController, CategoriesList categoriesListView, ProductListView productListView) {
         this.apiController = apiController;
         this.productListView = productListView;
         this.categoriesListView = categoriesListView;

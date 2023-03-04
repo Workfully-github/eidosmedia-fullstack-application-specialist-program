@@ -1,9 +1,12 @@
 package org.workfully.view;
 
-public abstract class BasicView {
+import org.workfully.http.APIController;
+import org.workfully.view.interfaces.Displays;
 
-    public void display(){
+public abstract class BasicView implements Displays {
 
-    }
+    protected APIController apiController;
+
+    
 
 }
