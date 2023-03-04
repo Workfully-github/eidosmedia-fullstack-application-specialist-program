@@ -1,7 +1,8 @@
-package org.workfully.http;
+package org.workfully.controllers;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.workfully.http.RestController;
 import org.workfully.models.Product;
 
 public class APIController {
@@ -20,7 +21,7 @@ public class APIController {
         this.rest = new RestController();
     }
 
-    public JSONArray selectPage(int pageSelection, int valuesPerPage) {
+    public JSONArray getAllProducts(int pageSelection, int valuesPerPage) {
         this.pageSelection = pageSelection;
         this.pageIndex = pageSelection - 1;
         this.valuesPerPage = valuesPerPage;
@@ -28,10 +29,18 @@ public class APIController {
         return makeProductsJSONArray();
     }
 
-    public JSONArray selectPage(int pageSelection) {
+    public JSONArray getAllProducts(int pageSelection) {
         this.pageSelection = pageSelection;
         this.pageIndex = this.pageSelection - 1;
-        int valuesPerPage = 30;
+        this.valuesPerPage = 30;
+        this.skip = pageIndex * valuesPerPage;
+        return makeProductsJSONArray();
+    }
+
+    public JSONArray getAllProducts() {
+        this.pageSelection = 1;
+        this.pageIndex = this.pageSelection - 1;
+        this.valuesPerPage = 30;
         this.skip = pageIndex * valuesPerPage;
         return makeProductsJSONArray();
     }
@@ -90,6 +99,7 @@ public class APIController {
 
         return json.getJSONArray("products");
     }
+
 
     /**
      * Helper method, used in pagination

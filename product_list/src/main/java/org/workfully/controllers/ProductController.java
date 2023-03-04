@@ -4,21 +4,16 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.workfully.http.APIController;
 import org.workfully.models.Product;
 
 public class ProductController {
 
     private APIController apiController;
-    private ArrayList<Product> dynamicProductList;
-    private ArrayList<Product> allProductsList;
 
     public ProductController() {}
 
     public ProductController(int valuesPerPage, int pageSelection) {
         this.apiController = new APIController();
-        this.allProductsList = generateProductList(this.apiController.selectPage(pageSelection, valuesPerPage));
-        this.dynamicProductList = generateProductList(this.apiController.selectPage(pageSelection, valuesPerPage));
     }
 
     /**
@@ -35,21 +30,6 @@ public class ProductController {
         };
     }
 
-    public APIController getAPIController() {
-        return apiController;
-    }
-
-    public ArrayList<Product> getProductList() {
-        return dynamicProductList;
-    }
-
-    public ArrayList<Product> getDynamicProductList() {
-        return dynamicProductList;
-    }
-
-    public ArrayList<Product> getAllProductsList() {
-        return allProductsList;
-    }
 
     
 }

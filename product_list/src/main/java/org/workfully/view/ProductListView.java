@@ -1,8 +1,9 @@
 package org.workfully.view;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
-import org.workfully.http.APIController;
+import org.workfully.controllers.APIController;
 import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;
@@ -10,25 +11,24 @@ import org.workfully.view.components.CategoriesList;
 
 public class ProductListView extends BasicView {
 
-    // FIXME fix productLists 
-    private ArrayList<Product> showAllProductsList;
-    private ArrayList<Product> dynamicProductList;
-    private APIController apiController;
     private ProductController productController;
-    private ProductListMenuView productListMenuView;
-    private CategoriesList categoriesListView;
+    private ProductListMenu productListMenuView;
+    private APIController apiController;
+    private CategoriesList categoriesList;
 
-    public ProductListView(ProductController productController) {
-        this.productController = productController;
-        this.showAllProductsList = productController.getAllProductsList();
-        this.dynamicProductList = productController.getProductList();
-        this.apiController = productController.getAPIController();
-        this.categoriesListView = new CategoriesList();
-        this.productListMenuView = new ProductListMenuView(apiController, categoriesListView, this);
+    private ArrayList<Product> productList;
+
+    public ProductListView() {
+        this.productController = new ProductController();
+        this.categoriesList = new CategoriesList();
+        this.apiController = new APIController();
+        this.productListMenuView = new ProductListMenu(productController, apiController, categoriesList, this);
+        
     }
 
-    public void init() {
-        showProductList(showAllProductsList);
+    @Override
+    public void display() {
+        showProductList(productController.generateProductList(apiController.getAllProducts()));
         while (true)
             this.productListMenuView.displayNavigationModule();
     }
@@ -36,7 +36,7 @@ public class ProductListView extends BasicView {
     /**
      * Shows a different Prodcut List based on @param productList
      */
-    protected void showProductList(ArrayList<Product> productList) {
+    public void showProductList(ArrayList<Product> productList) {
         for (Product product : productList) {
             StringPrinter.println(product.toString());
         }
@@ -46,12 +46,12 @@ public class ProductListView extends BasicView {
 
     protected void nextPage() {
         setProductList(productController.generateProductList(this.apiController.nextPage()));
-        showProductList(dynamicProductList);
+        showProductList(productList);
     }
 
     protected void returnPage() {
         setProductList(productController.generateProductList(this.apiController.returnPage()));
-        showProductList(dynamicProductList);
+        showProductList(productList);
     }
 
     private void showPageStatus() {
@@ -64,44 +64,41 @@ public class ProductListView extends BasicView {
     public void updateProductList() {
         setProductList(
                 productController.generateProductList(
-                        apiController.getProductsByKeyword(this.productListMenuView.keywordSelection())));
-        if (dynamicProductList.isEmpty()) {
+                        apiController.getProductsByKeyword(keywordSelection())));
+        if (productList.isEmpty()) {
             StringPrinter.println("No Results");
-            this.productListMenuView.showProductDetailDialogue();
+            this.productListMenuView.displayProductDetailMenuComponent();
         }
     }
 
     public void updateProductList(int selection) {
         setProductList(
                 productController.generateProductList(
-                        apiController.getProductsByCategory(categoriesListView.getCategory((selection - 1)))));
-        if (dynamicProductList.isEmpty()) {
+                        apiController.getProductsByCategory(categoriesList.getCategory((selection - 1)))));
+        if (productList.isEmpty()) {
             StringPrinter.println("No Results");
         }
     }
 
     public void updateProductList(ArrayList<Product> productList) {
         setProductList(productList);
-        if (dynamicProductList.isEmpty()) {
+        if (productList.isEmpty()) {
             StringPrinter.println("No Results");
         }
     }
 
-    protected ArrayList<Product> getShowAllProductsList() {
-        return showAllProductsList;
+    private void setProductList(ArrayList<Product> productList) {
+        this.productList = productList;
     }
 
-    protected ArrayList<Product> getDynamicProductList() {
-        return dynamicProductList;
+    public ArrayList<Product> getProductList() {
+        return productList;
     }
 
-    private void setProductList(ArrayList<Product> dynamicProductList) {
-        this.dynamicProductList = dynamicProductList;
-    }
-
-    @Override
-    public void display() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'display'");
+    private String keywordSelection() {
+        Scanner sc = new Scanner(System.in);
+        StringPrinter.flushConsole();
+        StringPrinter.print("Type keyword: ");
+        return sc.next();
     }
 }

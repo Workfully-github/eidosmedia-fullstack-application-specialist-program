@@ -2,7 +2,6 @@ package org.workfully.controllers;
 
 import java.util.ArrayList;
 
-import org.workfully.http.APIController;
 import org.workfully.models.Category;
 
 public class CategoryController {

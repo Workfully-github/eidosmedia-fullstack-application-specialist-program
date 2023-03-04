@@ -1,14 +1,13 @@
-package org.workfully.view;
+package org.workfully.utilities;
 
 import static org.workfully.utilities.StringPrinter.*;
 
 import java.util.Scanner;
 
-import org.workfully.http.APIController;
-import org.workfully.utilities.StringPrinter;
+import org.workfully.controllers.APIController;
 
 @SuppressWarnings("resource")
-public class ProductSelectionUtils {
+public class NavigationSelectionUtils {
 
     public int howManyPagesDialogue() {
         Scanner sc = new Scanner(System.in);
@@ -27,11 +26,11 @@ public class ProductSelectionUtils {
     }
 
     /**
-     * @param paginator used to evaluate page status
+     * @param apiController used to evaluate page status
      *                  shows option according to page status
      */
-    public static void paginatorConditions(APIController paginator) {
-        if (paginator.getPageSelection() > 1 && paginator.getPagesLeft() > 0) {
+    public static void apiControllerConditions(APIController apiController) {
+        if (apiController.getPageSelection() > 1 && apiController.getPagesLeft() > 0) {
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
                     "[Q] -> Previous Page ",
@@ -39,7 +38,7 @@ public class ProductSelectionUtils {
             return;
         }
 
-        if (paginator.getPageSelection() <= 1 && paginator.getPagesLeft() > 0) {
+        if (apiController.getPageSelection() <= 1 && apiController.getPagesLeft() > 0) {
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
                     "[D] -> Select Product");
@@ -47,7 +46,7 @@ public class ProductSelectionUtils {
 
         }
 
-        if (paginator.getPageSelection() > 1 && paginator.getPagesLeft() == 0) {
+        if (apiController.getPageSelection() > 1 && apiController.getPagesLeft() == 0) {
             StringPrinter.printMultiLn(
                     "[Q] -> Previous Page ",
                     "[D] -> Select Product");
