@@ -29,7 +29,7 @@ public class ProductView {
         System.out.println("Thumbnail: " + product.getThumbnail());
         System.out.println("Images:");
         for (int j = 0; j < product.getImages().size(); j++) {
-               System.out.println(product.getImages().get(j));
+               System.out.println("  --> " + product.getImages().get(j));
         }
 
         System.out.println("-------------------------------------------------------");

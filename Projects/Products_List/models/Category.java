@@ -7,9 +7,14 @@ import org.json.JSONArray;
 public class Category {
 
     private String name;
-    //private JSONArray array;
     
-    public static final String ENDPOINT = "/product/categories";
+    public static final String ENDPOINT = "/product/category/";
+    public static final String ENDPOINT_LIST = "/product/categories";
+    public static final String KEY_PRODUCTS = "products";
+
+    public Category(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
@@ -19,22 +24,12 @@ public class Category {
         this.name = name;
     }
 
-    /* public Category(JSONArray array) {
-        this.array = array;
-        categories = getAllCaregories(array);
-    }
-
-    private ArrayList<String> getAllCaregories(JSONArray jsonArray) {
-
-        ArrayList<String> allCategories = new ArrayList<>();
-        for (int i = 0; i < jsonArray.length(); i++) {
-            allCategories.add(jsonArray.getString(i));
-        }
+    public static ArrayList<Category> createListCategories(JSONArray array) {
         
-        return allCategories;
+        ArrayList<Category> categoriesArray = new ArrayList<>();
+        for (int i = 0; i < array.length(); i++) {
+            categoriesArray.add(new Category(array.getString(i)));
+        }
+        return categoriesArray;
     }
-
-    public ArrayList<String> getCategories() {
-        return categories;
-    } */
 }

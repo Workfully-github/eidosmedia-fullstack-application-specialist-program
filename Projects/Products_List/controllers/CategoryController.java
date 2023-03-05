@@ -3,46 +3,32 @@ package Projects.Products_List.controllers;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import Projects.Products_List.models.Category;
 import Projects.Products_List.models.Product;
 
-// ASK AMINE IF IS RIGHT TO USE PRODUCT METHOR TO CREATE LIST OF PRODUCTS
-
 public class CategoryController {
-    
-    JsonController jsonController = new JsonController();
 
-    public ArrayList<Category> getAll(int page) {
+    public ArrayList<Product> getAll(String category) {
 
-        ArrayList<Category> categories = new ArrayList<>();
+        String responseBody = JsonController.get(Category.ENDPOINT, 0, category);
 
-        String responseBody = jsonController.get(Category.ENDPOINT, page);
+        if(null != responseBody){
+            JSONObject response = new JSONObject(responseBody);
+            return Product.createListProducts(response.getJSONArray(Category.KEY_PRODUCTS));
+        }
+        return new ArrayList<Product>();
+    }
 
-        if(null != responseBody) {
+    public ArrayList<Category> getCategories() {
+
+        String responseBody = JsonController.get(Category.ENDPOINT_LIST, 0);
+
+        if(null != responseBody){
             JSONArray response = new JSONArray(responseBody);
-            return new ArrayList<Category>();
+            return Category.createListCategories(response);
         }
         return new ArrayList<Category>();
     }
-
-    public Category getOneCategory(int id) {
-
-        Category category = new Category();
-
-        // how to get one
-
-        return category;
-    }
-
-    /* public ArrayList<Product> getAll(int page) {
-
-        String responseBody = jsonController.get(Category.ENDPOINT, page);
-
-        if(null != responseBody) {
-            JSONArray response = new JSONArray(responseBody);
-            return Product.createListProducts(response);
-        }
-        return new ArrayList<Product>();
-    } */
 }

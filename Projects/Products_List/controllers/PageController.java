@@ -8,16 +8,6 @@ public class PageController {
     public PageController() {
         this.json =  new JsonController();
     }
-
-    
-    // Preciso de saber:
-    /*
-     * - se é a primeira pagina
-     * - em que pagina estou
-     * - qual é a proxima
-     * - qual a anterior
-     * - quantas paginas faltam
-     */
     
     public static boolean firstPage() {
         if(getPageNumber() == 1) return true;
@@ -35,12 +25,4 @@ public class PageController {
     public static void previousPage() {
         pageNumber = pageNumber - 1;
     }
-
-    // TODO
-    public int pagesLeft() {
-
-        return 0;
-    }
-
-
 }

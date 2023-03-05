@@ -50,7 +50,6 @@ public class Product {
         for (int i = 0; i < jsonArray.length(); i++) {
             allImages.add(jsonArray.getString(i));
         }
-        
         return allImages;
     }
 

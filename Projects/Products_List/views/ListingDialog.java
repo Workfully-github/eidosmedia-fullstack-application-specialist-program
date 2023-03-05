@@ -17,11 +17,8 @@ public class ListingDialog {
         System.out.println("-------------------------------------------------------");
         System.out.println("What do you want to do next?");
         System.out.println("\n");
-        // Validate if is the first page
         System.out.println("[1] --> Next Page");
-
         if (!PageController.firstPage()) System.out.println("[2] --> Previous Page");
-
         System.out.println("[3] --> Product Detail");
         System.out.println("[4] --> Go Back Home");
         System.out.println("\n");
@@ -34,12 +31,10 @@ public class ListingDialog {
         switch (userChoice) {
             case NEXT_PAGE:
                 PageController.nextPage();
-                //initiateDialog();
                 list.showList();
                 break;
             case PREVIOUS_PAGE:
                 PageController.previousPage();
-                //initiateDialog();
                 list.showList();
                 break;
             case DETAIL:

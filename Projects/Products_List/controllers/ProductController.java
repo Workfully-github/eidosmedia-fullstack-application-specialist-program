@@ -2,14 +2,11 @@ package Projects.Products_List.controllers;
 
 import java.util.ArrayList;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Projects.Products_List.models.Product;
 
 public class ProductController {
-    
-    //private JsonController jsonController = new JsonController();
     
     public static ArrayList<Product> getAll(int page) {
 
@@ -22,11 +19,11 @@ public class ProductController {
         return new ArrayList<Product>();
     }
 
-    public ArrayList<Product> getSearch(int page, String query) {
+    public ArrayList<Product> getSearch(String query) {
 
-        String responseBody = JsonController.get(Product.ENDPOINT, page, "/search?q=" + query);
-        
-        if(null == responseBody){
+        String responseBody = JsonController.get(Product.ENDPOINT, 0, "/search?q=" + query);
+
+        if(null != responseBody){
             JSONObject response = new JSONObject(responseBody);
             return Product.createListProducts(response.getJSONArray(Product.KEY_PRODUCTS));
         }
@@ -43,27 +40,4 @@ public class ProductController {
         }
         return new Product(null);
     }
-
-
-    // DELETE
-
-
-    /* public Product getSingleProduct(int id) throws IOException, ParseException {
-
-        JSONArray response = jsonController.getJson(0, 100);
-        JSONObject object = new JSONObject(); 
-
-        for (int i = 0; i < response.length(); i++) {
-            if (response.getJSONObject(i).getInt("id") == id) object = response.getJSONObject(i);
-        }
-
-        return Product.createSingleProduct(object);
-    }
-
-    public ArrayList<Product> getAllSearch(int skip, int limit, String query) throws IOException, ParseException {
-
-        JSONArray response = jsonController.getQueryJson(skip, limit, query);
-
-        return Product.createListProducts(response);
-    } */
 }
