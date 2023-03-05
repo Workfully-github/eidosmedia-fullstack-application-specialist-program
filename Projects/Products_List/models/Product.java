@@ -41,7 +41,6 @@ public class Product {
     }
 
     public static Product createSingleProduct(JSONObject object) {
-
         return new Product(object);
     }
     

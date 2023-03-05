@@ -19,7 +19,7 @@ public class PageController {
      * - quantas paginas faltam
      */
     
-    public boolean firstPage() {
+    public static boolean firstPage() {
         if(getPageNumber() == 1) return true;
         else return false;
     }

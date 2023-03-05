@@ -33,22 +33,14 @@ public class ProductController {
         return new ArrayList<Product>();
     }
 
-    public Product getSingleProduct(int id, int page){
+    public Product getSingleProduct(int id){
 
-        String responseBody = JsonController.get(Product.ENDPOINT + id, page);
+        String responseBody = JsonController.get(Product.ENDPOINT + "/" + id, 0);
         
         if(null != responseBody) {
             JSONObject response = new JSONObject(responseBody);
-            JSONArray responseArray = response.getJSONArray(Product.KEY_PRODUCTS);
-            JSONObject object = new JSONObject();
-            
-            for (int i = 0; i < responseArray.length(); i++) {
-                if (responseArray.getJSONObject(i).getInt("id") == id) object = responseArray.getJSONObject(i);
-            }
-            return Product.createSingleProduct(object);
+            return Product.createSingleProduct(response);
         }
-
-
         return new Product(null);
     }
 

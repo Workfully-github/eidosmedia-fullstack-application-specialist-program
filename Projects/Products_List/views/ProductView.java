@@ -11,7 +11,7 @@ public class ProductView {
     public void showSingleProduct(int id) {
 
         productController = new ProductController();
-        product = productController.getSingleProduct(id, 1);
+        product = productController.getSingleProduct(id);
 
         System.out.println("-------------------------------------------------------");
         System.out.println("PRODUCT DETAIL:");

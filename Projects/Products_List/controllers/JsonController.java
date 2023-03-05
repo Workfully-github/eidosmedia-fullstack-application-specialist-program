@@ -17,7 +17,6 @@ import org.json.JSONObject;
 public class JsonController {
 
     private static final String BASE_URL = "https://dummyjson.com";
-    private static final String QUERY_STRING = "/search?q=";
     public static final int LIMIT = 30;
 
     public static String get(String endpoint, int page, String query) {
@@ -50,8 +49,11 @@ public class JsonController {
         // Pages 1, 2, 3, 4, etc
         // So in page 1 skip is 0 = 1 - 1 * limit
         // page 2 skip is 30 = 2 - 1 * limit
-        page --;
-        return "?skip=" + page * LIMIT + "&limit=" + LIMIT;
+        if (page == 0) return "";
+        else {
+            page --;
+            return "?skip=" + page * LIMIT + "&limit=" + LIMIT;
+        }
     }
     
 

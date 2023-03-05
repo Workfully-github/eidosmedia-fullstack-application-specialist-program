@@ -19,7 +19,9 @@ public class ListingDialog {
         System.out.println("\n");
         // Validate if is the first page
         System.out.println("[1] --> Next Page");
-        System.out.println("[2] --> Previous Page");
+
+        if (!PageController.firstPage()) System.out.println("[2] --> Previous Page");
+
         System.out.println("[3] --> Product Detail");
         System.out.println("[4] --> Go Back Home");
         System.out.println("\n");
@@ -41,7 +43,8 @@ public class ListingDialog {
                 list.showList();
                 break;
             case DETAIL:
-                
+                SingleProductDialog detail = new SingleProductDialog();
+                detail.chooseSingleProduct();
                 initiateDialog();
                 break;
             case HOME:
