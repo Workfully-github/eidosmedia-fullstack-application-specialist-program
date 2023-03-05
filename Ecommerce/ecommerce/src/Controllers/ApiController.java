@@ -7,7 +7,17 @@ import java.net.URL;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
+
 public class ApiController {
+    private static String url = "";
+
+    public static final String BASE_URL= "https://dummyjson.com/products/";
+
+    public static final String SEARCH_ROUT= "search/";
+    public static final String CATEGORIES_ROUT= "categories/";
+    public static final String CATEGORY_ROUT= "category/";
+    public static final String SEARCH_QUERY_STRING= "?q=";
 
     public JSONArray call(String url) {
         try {
@@ -46,8 +56,10 @@ public class ApiController {
         }
     }
 
-    public JSONArray callCategories(String url) {
+
+    public JSONArray callCategories() {
         try {
+            url = getUrl(CATEGORIES_ROUT);
             URL GET_URL = new URL(url);
     
             HttpURLConnection httpURLConnection = (HttpURLConnection) GET_URL.openConnection();
@@ -84,9 +96,10 @@ public class ApiController {
     }
 
     
-    public JSONObject callProduct(String url) {
+    public JSONObject getProductById(int id) {
         try {
-            URL GET_URL = new URL(url);
+
+            URL GET_URL = new URL(getUrl(BASE_URL, Integer.toString(id)));
     
             HttpURLConnection httpURLConnection = (HttpURLConnection) GET_URL.openConnection();
             httpURLConnection.setRequestMethod("GET");
@@ -122,15 +135,30 @@ public class ApiController {
     }
 
     
+   
+
+
+    public JSONArray fetchProducts(int page) {
+        String pageQueries = NavigationsController.pagetranslator(page);
+        url = getUrl(pageQueries);
+        return call(url);
+    }
+
+    public JSONArray fetchSearchedProducts(String searchQuery) {
+        url = getUrl(SEARCH_ROUT, SEARCH_QUERY_STRING, searchQuery);
+        return call(url);
+    }
+
+    public JSONArray fetchProductsByCategory(String category) {
+        url = getUrl(CATEGORY_ROUT, category);
+        return call(url);
+    }
+    
     public String getUrl(String ... strings ) {
-        String urlTower = "";
+        String urlTower = BASE_URL;
         for(String string : strings){
             urlTower += string;
         }
         return urlTower;
     }
-
-
-
-    
 }

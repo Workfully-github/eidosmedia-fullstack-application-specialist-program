@@ -12,8 +12,7 @@ public class CategoriesController {
      
     public static ArrayList <Category> getProductCategories() { 
         ApiController apiController = new ApiController();
-            url = apiController.getUrl(Constants.BASE_URL, Constants.CATEGORIES_ROUT); 
-            data = apiController.callCategories(url);
+            data = apiController.callCategories();
             return Category.listOutCategories(data);
    }
 }
