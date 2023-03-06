@@ -1,6 +1,5 @@
 package org.workfully.sandboxes;
 
-import org.workfully.controllers.ProductController;
 import org.workfully.view.ProductListView;
 
 public class Sandbox {

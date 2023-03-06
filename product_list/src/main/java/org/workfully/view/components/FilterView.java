@@ -10,12 +10,18 @@ import org.workfully.utilities.StringPrinter;
 import org.workfully.view.BasicView;
 import org.workfully.view.ProductListView;
 
+@SuppressWarnings("resource")
 public class FilterView extends BasicView {
 
     private ArrayList<Product> productList;
     private CategoriesList categoriesList;
     private ProductListView productListView;
 
+    /**
+     * Initialization of {@link #FilterView()} starts with provided @param productList
+     * @param productList is manipulated by {@link #filterByCategory(Category category)} and {@link #filterByStock(int, ArrayList)}
+     * @param productListView is required to return to previous menu by calling {@link ProductListView#display()}
+     */
     public FilterView(ArrayList<Product> productList, CategoriesList categoriesList, APIController apiController,
             ProductListView productListView) {
         this.productList = productList;
@@ -26,18 +32,17 @@ public class FilterView extends BasicView {
         display();
     }
 
-    private void init() {
-        showMenu();
-        menuSelection(selectOption());
-    }
-
-    // TODO Refactor
     @Override
     public void display() {
         init();
     }
 
-    private ArrayList<Product> byCategory(Category category) {
+    private void init() {
+        showMenu();
+        menuSelection(selectOption());
+    }
+
+    private ArrayList<Product> filterByCategory(Category category) {
         return new ArrayList<Product>() {
             {
                 for (Product product : productList) {
@@ -49,23 +54,42 @@ public class FilterView extends BasicView {
         };
     }
 
-    private void hasStock(int amount, ArrayList<Product> list) {
-        int counter = 0;
-
-        ArrayList<Product> stockList = new ArrayList<>();
-
-        for (Product product : list) {
-            if (product.getStock() > amount) {
-                counter++;
-                stockList.add(product);
+    private void filterByStock(int amount, ArrayList<Product> list) {
+        ArrayList<Product> stockList = new ArrayList<Product>() {
+            {
+                for (Product product : list) {
+                    if (product.getStock() > amount) {
+                        add(product);
+                    }
+                }
             }
-        }
+        };
 
         showAllProductsCategoryView(stockList, false);
 
-        int total = list.size() - counter;
+        StringPrinter
+                .println("We have filtered out " + Integer.toString(list.size() - stockList.size()) + " products.");
+    }
 
-        StringPrinter.println("We have filtered out " + total + " products.");
+    private int selectOption() {
+        Scanner sc = new Scanner(System.in);
+        StringPrinter.println("Select Option: ");
+        return sc.nextInt();
+    }
+
+    private int selectStockAmount() {
+        Scanner sc = new Scanner(System.in);
+        StringPrinter.println("Select Amount of Stock you want to filter by:");
+        return sc.nextInt();
+    }
+
+    private ArrayList<Product> getListByCategory() {
+        this.productList = filterByCategory(categoriesList.getCategory(selectOption() - 1));
+        return productList;
+    }
+
+    private ArrayList<Product> getProductList() {
+        return productList;
     }
 
     public static void showMenu() {
@@ -75,19 +99,7 @@ public class FilterView extends BasicView {
                 "[3] -> Toggle Filters Off");
     }
 
-    public int selectOption() {
-        Scanner sc = new Scanner(System.in);
-        StringPrinter.println("Select Option: ");
-        return sc.nextInt();
-    }
-
-    public int selectStockAmount() {
-        Scanner sc = new Scanner(System.in);
-        StringPrinter.println("Select Amount of Stock you want to filter by:");
-        return sc.nextInt();
-    }
-
-    public void menuSelection(int selection) {
+    private void menuSelection(int selection) {
         final int FILTER_BY_CATEGORY = 1;
         final int TOGGLE_STOCK = 2;
         final int TOGGLE_OFF = 3;
@@ -99,7 +111,7 @@ public class FilterView extends BasicView {
                 init();
                 break;
             case TOGGLE_STOCK:
-                hasStock(selectStockAmount(), getProductList());
+                filterByStock(selectStockAmount(), getProductList());
                 init();
                 break;
             case TOGGLE_OFF:
@@ -109,23 +121,4 @@ public class FilterView extends BasicView {
                 break;
         }
     }
-
-    public ArrayList<Product> getListByCategory() {
-        ArrayList<Product> test = byCategory(categoriesList.getCategory(selectOption() - 1));
-        setProductList(test);
-        return productList;
-    }
-
-    public void setProductList(ArrayList<Product> productList) {
-        this.productList = productList;
-    }
-
-    public ArrayList<Product> getProductList() {
-        return productList;
-    }
-
-    public CategoriesList getCategoriesList() {
-        return categoriesList;
-    }
-
 }

@@ -75,13 +75,12 @@ public class SearchMenu extends BasicView {
         return sc.nextInt();
     }
 
-    private void searchById(){
+    private void searchById() {
         Scanner sc = new Scanner(System.in);
-                StringPrinter.flushConsole();
-                StringPrinter.print("Select Product ID: ");
-                int productSelection = sc.nextInt();
-                System.out.println(apiController.getProduct(productSelection));
+        StringPrinter.flushConsole();
+        StringPrinter.print("Select Product ID: ");
+        int productSelection = sc.nextInt();
+        System.out.println(apiController.getProduct(productSelection));
     }
-
 
 }
