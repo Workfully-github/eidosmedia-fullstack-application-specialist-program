@@ -14,7 +14,7 @@ public class FilterView extends BasicView {
 
     private ArrayList<Product> productList;
     private CategoriesList categoriesList;
-    ProductListView productListView;
+    private ProductListView productListView;
 
     public FilterView(ArrayList<Product> productList, CategoriesList categoriesList, APIController apiController,
             ProductListView productListView) {
@@ -23,10 +23,10 @@ public class FilterView extends BasicView {
         this.apiController = apiController;
         this.productListView = productListView;
 
-        init();
+        display();
     }
 
-    public void init() {
+    private void init() {
         showMenu();
         menuSelection(selectOption());
     }
@@ -34,9 +34,10 @@ public class FilterView extends BasicView {
     // TODO Refactor
     @Override
     public void display() {
+        init();
     }
 
-    public ArrayList<Product> byCategory(Category category) {
+    private ArrayList<Product> byCategory(Category category) {
         return new ArrayList<Product>() {
             {
                 for (Product product : productList) {
@@ -49,7 +50,6 @@ public class FilterView extends BasicView {
     }
 
     private void hasStock(int amount, ArrayList<Product> list) {
-        System.out.println(list);
         int counter = 0;
 
         ArrayList<Product> stockList = new ArrayList<>();

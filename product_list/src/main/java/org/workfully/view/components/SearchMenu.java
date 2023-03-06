@@ -27,7 +27,8 @@ public class SearchMenu extends BasicView {
         StringPrinter.printMultiLn(
                 "[1] -> Search by keyword",
                 "[2] -> Search by category",
-                "[3] -> Show All Products");
+                "[3] -> Show All Products",
+                "[4] -> Get Product Detail");
         Scanner sc = new Scanner(System.in);
         try {
             int menuSelection = sc.nextInt();
@@ -39,22 +40,15 @@ public class SearchMenu extends BasicView {
     }
 
     private void selectionMenu(int menuSelection) {
-        // final int SEARCH_BY_ID = INSERT NUMBER;
         final int SEARCH_BY_KEYWORD = 1;
         final int SEARCH_BY_CATEGORY = 2;
         final int SHOW_ALL_PRODUCTS = 3;
+        final int SEARCH_BY_ID = 4;
 
         switch (menuSelection) {
-            /* UNCOMMENT TO ADD SEARCH BY ID */
-            /*
-             * case SEARCH_BY_ID:
-             * StringPrinter.flushConsole();
-             * StringPrinter.print("Select Product ID: ");
-             * int productSelection = sc.nextInt();
-             * System.out.println(apiController.getProduct(productSelection));
-             * displayNavigationModule();
-             * break;
-             */
+            case SEARCH_BY_ID:
+                searchById();
+                break;
             case SEARCH_BY_KEYWORD:
                 productListView.updateProductList();
                 productListView.showDetailedList(productListView.getProductList());
@@ -80,5 +74,14 @@ public class SearchMenu extends BasicView {
         StringPrinter.print("Select Category: ");
         return sc.nextInt();
     }
+
+    private void searchById(){
+        Scanner sc = new Scanner(System.in);
+                StringPrinter.flushConsole();
+                StringPrinter.print("Select Product ID: ");
+                int productSelection = sc.nextInt();
+                System.out.println(apiController.getProduct(productSelection));
+    }
+
 
 }
