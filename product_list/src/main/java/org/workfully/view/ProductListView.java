@@ -46,7 +46,7 @@ public class ProductListView extends BasicView {
     public void updateProductList() {
         setProductList(
                 productController.generateProductList(
-                        this.apiController.getProductsByKeyword(
+                        this.apiController.requestProductList(
                                 navigationSelection.requestProductsByKeyword(keywordSelection()))));
         if (this.productList.isEmpty()) {
             StringPrinter.println("No Results");

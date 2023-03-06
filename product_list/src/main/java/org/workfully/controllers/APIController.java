@@ -17,8 +17,7 @@ public class APIController {
     }
 
     private JSONArray response(String request) {
-        JSONObject json = new JSONObject(
-                rest.getBody(request));
+        JSONObject json = new JSONObject(rest.getBody(request));
         return json.getJSONArray("products");
     }
 
@@ -27,9 +26,7 @@ public class APIController {
     }
 
     public int getTotalPages() {
-        JSONObject json = new JSONObject(rest
-                .getBody(this.BASE_URL));
-
+        JSONObject json = new JSONObject(rest.getBody(this.BASE_URL));
         return json.getInt("total");
     }
 
@@ -38,25 +35,13 @@ public class APIController {
     }
 
     protected JSONArray getCategoryList() {
-        return new JSONArray(rest
-                .getBody(this.BASE_URL + CATEGORIES_RESOURCE));
+        return new JSONArray(rest.getBody(this.BASE_URL + CATEGORIES_RESOURCE));
     }
 
     public JSONArray getProductsByCategory(String category) {
-        JSONObject json = new JSONObject(rest
-                .getBody(this.BASE_URL + CATEGORY_FEATURE + "/" + category));
-
+        JSONObject json = new JSONObject(rest.getBody(this.BASE_URL + CATEGORY_FEATURE + "/" + category));
         return json.getJSONArray("products");
     }
 
-    /**
-     * @param keyword for searching products by keyword
-     *                query not encapsulated since it has unique structure
-     */
-    public JSONArray getProductsByKeyword(String request) {
-        JSONObject json = new JSONObject(rest
-                .getBody(request));
 
-        return json.getJSONArray("products");
-    }
 }
