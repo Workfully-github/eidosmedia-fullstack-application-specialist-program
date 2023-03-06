@@ -1,8 +1,7 @@
-package org.workfully.controllers;
+package org.workfully.http;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.workfully.http.RestController;
 import org.workfully.models.Product;
 
 public class APIController {
@@ -34,7 +33,7 @@ public class APIController {
         return new Product(new JSONObject(rest.getBody(BASE_URL + "/" + id)));
     }
 
-    protected JSONArray getCategoryList() {
+    public JSONArray getCategoryList() {
         return new JSONArray(rest.getBody(this.BASE_URL + CATEGORIES_RESOURCE));
     }
 
@@ -42,6 +41,4 @@ public class APIController {
         JSONObject json = new JSONObject(rest.getBody(this.BASE_URL + CATEGORY_FEATURE + "/" + category));
         return json.getJSONArray("products");
     }
-
-
 }

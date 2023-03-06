@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import org.workfully.controllers.APIController;
+import org.workfully.http.APIController;
 import org.workfully.models.Category;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;

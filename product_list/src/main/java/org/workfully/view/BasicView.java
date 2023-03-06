@@ -2,7 +2,7 @@ package org.workfully.view;
 
 import java.util.ArrayList;
 
-import org.workfully.controllers.APIController;
+import org.workfully.http.APIController;
 import org.workfully.models.Product;
 import org.workfully.utilities.NavigationSelectionUtils;
 import org.workfully.utilities.StringPrinter;

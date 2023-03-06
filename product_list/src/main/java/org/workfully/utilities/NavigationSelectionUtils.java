@@ -4,7 +4,7 @@ import static org.workfully.utilities.StringPrinter.*;
 
 import java.util.Scanner;
 
-import org.workfully.controllers.APIController;
+import org.workfully.http.APIController;
 
 @SuppressWarnings("resource")
 public class NavigationSelectionUtils {
