@@ -53,7 +53,6 @@ public class NavigationSelectionUtils {
         }
 
         if (getPageSelection() <= 1 && getPagesLeft() > 0) {
-            System.out.println(getPagesLeft());
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
                     "[D] -> Search",

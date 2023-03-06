@@ -9,7 +9,4 @@ public class ProductDetail {
     public ProductDetail(Product product) {
         this.product = product;
     }
-
-    
-    
 }

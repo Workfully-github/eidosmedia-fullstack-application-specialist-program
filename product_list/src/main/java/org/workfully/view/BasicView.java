@@ -12,12 +12,10 @@ public abstract class BasicView implements Displays {
 
     protected APIController apiController;
     protected NavigationSelectionUtils navigationSelection;
-    protected CommandLineTable commandLineTable;
 
     public BasicView() {
         this.apiController = new APIController();
         this.navigationSelection = new NavigationSelectionUtils(apiController);
-        this.commandLineTable = new CommandLineTable();
     }
 
     /**
@@ -35,27 +33,57 @@ public abstract class BasicView implements Displays {
         for (Product product : productList) {
             StringPrinter.println(product.toString());
         }
-
-        showPageStatus();
     }
 
     public void showTableViewProductList(ArrayList<Product> productList) {
 
-        StringPrinter.println("########################################");
         for (Product product : productList) {
-            StringPrinter.printMultiLn(
-                    "# Title: " + product.getTitle(),
-                    "# Price: " + product.getPrice() + "\n" +
-                            "# Category: " + product.getCategory());
-            StringPrinter.println("########################################");
-
+            productSimpleDetail(product);
         }
 
         showPageStatus();
     }
 
-    public void name () {
+    public void showAllProducts(ArrayList<Product> productList, Boolean showPageStatus) {
+        CommandLineTable clt = new CommandLineTable();
+
+        StringPrinter.flushConsole();
+        clt.setShowVerticalLines(true);
+        clt.setHeaders("Product Title", "Product Price", "Product Category");
+        for (Product product : productList) {
+            clt.addRow(product.getTitle(), product.getPrice() + " Eur", product.getCategory());
+        }
+        clt.print();
+
+        if(showPageStatus)
+        showPageStatus();
+
+    }
+
+    public void showAllProductsCategoryView(ArrayList<Product> productList, Boolean showPageStatus) {
+        CommandLineTable clt = new CommandLineTable();
+
+        StringPrinter.flushConsole();
+        clt.setShowVerticalLines(true);
+        clt.setHeaders("Product Title", "Brand", "Product Price", "Product Category", "Rating", "Stock");
+        for (Product product : productList) {
+            clt.addRow(product.getTitle(), product.getBrand(), product.getPrice() + " Eur", product.getCategory(), Float.toString(product.getRating()), Integer.toString(product.getStock()));
+        }
+        clt.print();
+
+        if(showPageStatus)
+        showPageStatus();
         
+    }
+
+    public void productSimpleDetail(Product product) {
+        CommandLineTable clt = new CommandLineTable();
+
+        clt.setShowVerticalLines(true);
+        clt.setHeaders("Product", product.getCategory());
+        clt.addRow(product.getTitle(), product.getPrice() + " Eur");
+        clt.print();
+
     }
 
     private void showPageStatus() {
@@ -65,5 +93,4 @@ public abstract class BasicView implements Displays {
                         "Total Pages: "
                         + (this.navigationSelection.getPagesLeft() + this.navigationSelection.getPageSelection()));
     }
-
 }

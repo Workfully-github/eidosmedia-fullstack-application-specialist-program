@@ -27,8 +27,8 @@ public class ProductListView extends BasicView {
     @Override
     public void display() {
 
-        showProductList(productController
-                .generateProductList(apiController.getAllProducts(navigationSelection.requestAllProducts())));
+        showAllProducts(productController
+                .generateProductList(apiController.getAllProducts(navigationSelection.requestAllProducts())), true);
         while (true)
             this.productListMenuView.displayNavigationModule();
     }
@@ -36,13 +36,13 @@ public class ProductListView extends BasicView {
     protected void nextPage() {
         setProductList(productController
                 .generateProductList(this.apiController.nextPage(navigationSelection.requestNextPage())));
-        showProductList(productList);
+        showAllProducts(productList, true);
     }
 
     protected void returnPage() {
         setProductList(productController
                 .generateProductList(this.apiController.returnPage(navigationSelection.requestReturnPage())));
-        showProductList(productList);
+        showAllProducts(productList, true);
     }
 
     public void updateProductList() {

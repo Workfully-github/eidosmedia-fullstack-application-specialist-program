@@ -43,15 +43,19 @@ public class FilterView extends BasicView {
         };
     }
 
-    private void hasStock(ArrayList<Product> productList) {
+    private void hasStock(int amount, ArrayList<Product> productList) {
         int counter = 0;
+
+        ArrayList<Product> stockList = new ArrayList<>();
         
         for (Product product : productList) {
-            if (product.getStock() > 15) {
+            if (product.getStock() > amount) {
                 counter++;
-                StringPrinter.println(product.toString());
+                stockList.add(product);
             }
         }
+
+        showAllProductsCategoryView(stockList, false);
 
         int total = productList.size() - counter;
         
@@ -70,6 +74,12 @@ public class FilterView extends BasicView {
         return sc.nextInt();
     }
 
+    public int selectStockAmount() {
+        Scanner sc = new Scanner(System.in);
+        StringPrinter.println("Select Amount of Stock you want to filter by:");
+        return sc.nextInt();
+    }
+
     public void menuSelection(int selection) {
         final int FILTER_BY_CATEGORY = 1;
         final int TOGGLE_STOCK = 2;
@@ -77,14 +87,19 @@ public class FilterView extends BasicView {
         switch (selection) {
             case FILTER_BY_CATEGORY:
                 categoriesList.display();
-                showProductList(byCategory(categoriesList.getCategory(selectOption() - 1)));
+                showAllProductsCategoryView(getListByCategory(), false);
                 break;
             case TOGGLE_STOCK:
-                hasStock(productList);
+                hasStock(selectStockAmount(), this.productList);
                 break;
             default:
                 break;
         }
+    }
+
+    public ArrayList<Product> getListByCategory() {
+        this.productList = byCategory(categoriesList.getCategory(selectOption() - 1));
+        return productList;
     }
 
 }
