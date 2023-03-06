@@ -4,10 +4,20 @@ import static org.workfully.utilities.StringPrinter.*;
 
 import java.util.Scanner;
 
+import org.json.JSONObject;
 import org.workfully.controllers.APIController;
 
 @SuppressWarnings("resource")
 public class NavigationSelectionUtils {
+
+    private final String BASE_URL = "https://dummyjson.com/products";
+    private final String CATEGORY_FEATURE = "/category";
+    private final String SEARCH_FEATURE = "/search?q=";
+    private JSONObject json;
+    private int pageSelection;
+    private int pageIndex;
+    private int skip;
+    private int valuesPerPage;
 
     public int howManyPagesDialogue() {
         Scanner sc = new Scanner(System.in);
@@ -59,5 +69,30 @@ public class NavigationSelectionUtils {
         StringPrinter.printMultiLn(
                 "[D] -> Search",
                 "[F] -> Filter");
+    }
+
+    public String requestAllProducts() {
+        this.pageSelection = 1;
+        this.pageIndex = this.pageSelection - 1;
+        this.valuesPerPage = 30;
+        this.skip = pageIndex * valuesPerPage;
+        return this.BASE_URL + SEARCH_FEATURE + "&limit=" + this.valuesPerPage + "&skip="
+        + this.skip;
+    }
+
+    public String requestNextPage() {
+        this.pageIndex++;
+        this.pageSelection = this.pageIndex + 1;
+        this.skip = this.pageIndex * this.valuesPerPage;
+        return this.BASE_URL + SEARCH_FEATURE + "&limit=" + this.valuesPerPage + "&skip="
+        + this.skip;
+    }
+
+    public String requestReturnPage() {
+        this.pageIndex--;
+        this.pageSelection = this.pageIndex + 1;
+        this.skip = this.pageIndex * this.valuesPerPage;
+        return this.BASE_URL + SEARCH_FEATURE + "&limit=" + this.valuesPerPage + "&skip="
+        + this.skip;
     }
 }

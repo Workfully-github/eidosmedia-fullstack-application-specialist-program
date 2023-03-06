@@ -21,13 +21,13 @@ public class APIController {
         this.rest = new RestController();
     }
 
-    public JSONArray getAllProducts(int pageSelection, int valuesPerPage) {
+/*     public JSONArray getAllProducts(int pageSelection, int valuesPerPage) {
         this.pageSelection = pageSelection;
         this.pageIndex = pageSelection - 1;
         this.valuesPerPage = valuesPerPage;
         this.skip = pageIndex * valuesPerPage;
         return makeProductsJSONArray();
-    }
+    } */
 
     public JSONArray getEverything() {
         this.json = new JSONObject(rest
@@ -36,20 +36,16 @@ public class APIController {
         return json.getJSONArray("products");
     }
 
-    public JSONArray getAllProducts(int pageSelection) {
+/*     public JSONArray getAllProducts(int pageSelection) {
         this.pageSelection = pageSelection;
         this.pageIndex = this.pageSelection - 1;
         this.valuesPerPage = 30;
         this.skip = pageIndex * valuesPerPage;
         return makeProductsJSONArray();
-    }
+    } */
 
-    public JSONArray getAllProducts() {
-        this.pageSelection = 1;
-        this.pageIndex = this.pageSelection - 1;
-        this.valuesPerPage = 30;
-        this.skip = pageIndex * valuesPerPage;
-        return makeProductsJSONArray();
+    public JSONArray getAllProducts(String request) {
+        return makeProductsJSONArray(request);
     }
 
     public int getTotalPages() {
@@ -60,18 +56,12 @@ public class APIController {
         return (int) Math.ceil(((double) getTotalPages() / valuesPerPage)) - pageSelection;
     }
 
-    public JSONArray nextPage() {
-        this.pageIndex++;
-        this.pageSelection = this.pageIndex + 1;
-        this.skip = this.pageIndex * this.valuesPerPage;
-        return makeProductsJSONArray();
+    public JSONArray nextPage(String request) {
+        return makeProductsJSONArray(request);
     }
 
-    public JSONArray returnPage() {
-        this.pageIndex--;
-        this.pageSelection = this.pageIndex + 1;
-        this.skip = this.pageIndex * this.valuesPerPage;
-        return makeProductsJSONArray();
+    public JSONArray returnPage(String request) {
+        return makeProductsJSONArray(request);
     }
 
     public int getPageSelection() {
@@ -114,9 +104,9 @@ public class APIController {
      * {@link #selectPage(int pageSelection, int valuesPerPage)}
      * {@link #selectPage(int pageSelection)}
      */
-    private JSONArray makeProductsJSONArray() {
+    private JSONArray makeProductsJSONArray(String request) {
         this.json = new JSONObject(
-                rest.getBody(this.BASE_URL + "?skip=" + this.skip + "&limit=" + this.valuesPerPage));
+                rest.getBody(request));
         return json.getJSONArray("products");
     }
 }

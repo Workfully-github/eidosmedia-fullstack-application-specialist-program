@@ -6,6 +6,7 @@ import java.util.Scanner;
 import org.json.JSONObject;
 import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
+import org.workfully.utilities.NavigationSelectionUtils;
 import org.workfully.utilities.StringPrinter;
 import org.workfully.view.components.CategoriesList;
 
@@ -14,30 +15,36 @@ public class ProductListView extends BasicView {
     private ProductController productController;
     private ProductListMenu productListMenuView;
     private CategoriesList categoriesList;
+    private NavigationSelectionUtils navigationSelection;
+
+
+  
 
     private ArrayList<Product> productList;
 
     public ProductListView() {
+        this.navigationSelection = new NavigationSelectionUtils();
         this.productController = new ProductController();
         this.categoriesList = new CategoriesList();
         this.productListMenuView = new ProductListMenu(apiController, categoriesList, this);
-        this.productList = productController.generateProductList(apiController.getAllProducts());
+        this.productList = productController.generateProductList(apiController.getAllProducts(navigationSelection.requestAllProducts()));
     }
-
+    
     @Override
     public void display() {
-        showProductList(productController.generateProductList(apiController.getAllProducts()));
+        
+        showProductList(productController.generateProductList(apiController.getAllProducts(navigationSelection.requestAllProducts())));
         while (true)
             this.productListMenuView.displayNavigationModule();
     }
 
     protected void nextPage() {
-        setProductList(productController.generateProductList(this.apiController.nextPage()));
+        setProductList(productController.generateProductList(this.apiController.nextPage(navigationSelection.requestNextPage())));
         showProductList(productList);
     }
 
     protected void returnPage() {
-        setProductList(productController.generateProductList(this.apiController.returnPage()));
+        setProductList(productController.generateProductList(this.apiController.returnPage(navigationSelection.requestReturnPage())));
         showProductList(productList);
     }
 
