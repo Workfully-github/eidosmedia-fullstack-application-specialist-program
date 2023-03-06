@@ -26,7 +26,7 @@ public class NavigationSelectionUtils {
     }
 
     /**
-     * @param apiController used to evaluate page status
+     * @param apiController used to validate page status
      *                      shows option according to page status
      */
     public static void apiControllerConditions(APIController apiController) {

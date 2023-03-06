@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.workfully.controllers.APIController;
-import org.workfully.controllers.ProductController;
 import org.workfully.models.Category;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;
@@ -15,7 +14,6 @@ public class FilterView extends BasicView {
     private ArrayList<Product> productList;
     private CategoriesList categoriesList;
 
-    // TODO
     public FilterView(ArrayList<Product> productList, CategoriesList categoriesList, APIController apiController) {
         this.productList = productList;
         this.categoriesList = categoriesList;
@@ -28,9 +26,9 @@ public class FilterView extends BasicView {
         menuSelection(selectOption());
     }
 
+    // TODO Refactor
     @Override
     public void display() {
-
     }
 
     public ArrayList<Product> byCategory(Category category) {
@@ -47,13 +45,14 @@ public class FilterView extends BasicView {
 
     private void hasStock(ArrayList<Product> productList) {
         int counter = 0;
+        int total = productList.size() - counter;
         for (Product product : productList) {
             if (product.getStock() > 0) {
                 counter++;
                 StringPrinter.println(product.toString());
             }
         }
-        int total = productList.size() - counter;
+        
         StringPrinter.println("We have filtered out " + total + " products.");
     }
 
@@ -79,7 +78,7 @@ public class FilterView extends BasicView {
                 showProductList(byCategory(categoriesList.getCategory(selectOption() - 1)));
                 break;
             case TOGGLE_STOCK:
-            hasStock(productList);
+                hasStock(productList);
                 break;
             default:
                 break;

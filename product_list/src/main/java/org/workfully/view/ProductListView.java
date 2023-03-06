@@ -3,6 +3,7 @@ package org.workfully.view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.json.JSONObject;
 import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;
