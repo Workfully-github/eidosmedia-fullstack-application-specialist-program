@@ -14,7 +14,7 @@ public class NavigationsView {
     public static void takeOff() {
         System.out.println("WELCOME TO THE STORE");
         Scanner in = new Scanner(System.in);
-        System.out.println("[0] --> Browse Products\n[1] --> Browse Products by Categories\n[2] --> Filter (inStock)\n[3] --> Search Products\n");
+        System.out.println("[0] --> Browse Products\n[1] --> Browse Products by Categories\n[2] --> Filter (inStock - more then 50)\n[3] --> Search Products\n");
         int userDecision = in.nextInt();
         switch (userDecision) {
             case 0:
