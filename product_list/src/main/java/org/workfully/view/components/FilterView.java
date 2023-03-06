@@ -35,7 +35,7 @@ public class FilterView extends BasicView {
         this.categoriesList = categoriesList;
         this.apiController = apiController;
         this.productListView = productListView;
-        this.mainList = productListView.getProductList();
+        this.mainList = productListView.getMainList();
 
         display();
     }
