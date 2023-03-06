@@ -8,12 +8,12 @@ import org.workfully.view.ProductListMenu;
 import org.workfully.view.ProductListView;
 
 @SuppressWarnings("resource")
-public class ProductDetailMenuComponent extends BasicView {
+public class SearchMenu extends BasicView {
 
     private ProductListView productListView;
     private CategoriesList categoriesListComponent;
 
-    public ProductDetailMenuComponent(ProductListView productListView, CategoriesList categoriesListComponent) {
+    public SearchMenu(ProductListView productListView, CategoriesList categoriesListComponent) {
         this.productListView = productListView;
         this.categoriesListComponent = categoriesListComponent;
     }

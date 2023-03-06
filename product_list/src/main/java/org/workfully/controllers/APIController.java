@@ -53,12 +53,11 @@ public class APIController {
     }
 
     public int getTotalPages() {
-        return this.json.getInt("total") + 1;
+        return this.json.getInt("total");
     }
 
     public int getPagesLeft() {
-        int limit = this.json.getInt("limit");
-        return (getTotalPages() / limit);
+        return (int) Math.ceil(((double) getTotalPages() / valuesPerPage)) - pageSelection;
     }
 
     public JSONArray nextPage() {

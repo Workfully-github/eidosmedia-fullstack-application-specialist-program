@@ -27,14 +27,14 @@ public class NavigationSelectionUtils {
 
     /**
      * @param apiController used to evaluate page status
-     *                  shows option according to page status
+     *                      shows option according to page status
      */
     public static void apiControllerConditions(APIController apiController) {
         if (apiController.getPageSelection() > 1 && apiController.getPagesLeft() > 0) {
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
                     "[Q] -> Previous Page ",
-                    "[D] -> Select Product",
+                    "[D] -> Search",
                     "[F] -> Filter");
             return;
         }
@@ -42,7 +42,7 @@ public class NavigationSelectionUtils {
         if (apiController.getPageSelection() <= 1 && apiController.getPagesLeft() > 0) {
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
-                    "[D] -> Select Product",
+                    "[D] -> Search",
                     "[F] -> Filter");
             return;
 
@@ -51,13 +51,13 @@ public class NavigationSelectionUtils {
         if (apiController.getPageSelection() > 1 && apiController.getPagesLeft() == 0) {
             StringPrinter.printMultiLn(
                     "[Q] -> Previous Page ",
-                    "[D] -> Select Product",
+                    "[D] -> Search",
                     "[F] -> Filter");
             return;
         }
 
         StringPrinter.printMultiLn(
-                "[D] -> Select Product",
+                "[D] -> Search",
                 "[F] -> Filter");
     }
 }

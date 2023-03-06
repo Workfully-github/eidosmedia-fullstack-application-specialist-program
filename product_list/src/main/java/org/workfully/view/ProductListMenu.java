@@ -3,19 +3,18 @@ package org.workfully.view;
 import java.util.Scanner;
 
 import org.workfully.controllers.APIController;
-import org.workfully.controllers.ProductController;
 import org.workfully.utilities.NavigationSelectionUtils;
 import org.workfully.utilities.StringPrinter;
 import org.workfully.view.components.CategoriesList;
 import org.workfully.view.components.FilterView;
-import org.workfully.view.components.ProductDetailMenuComponent;
+import org.workfully.view.components.SearchMenu;
 
 @SuppressWarnings("resource")
 public class ProductListMenu {
 
     private APIController apiController;
     private ProductListView productListView;
-    private ProductDetailMenuComponent productDetailMenuComponent;
+    private SearchMenu productDetailMenuComponent;
     private CategoriesList categoriesList;
     public static final String BAD_INPUT = "Bad Input, select again. \n";
 
@@ -24,7 +23,7 @@ public class ProductListMenu {
         this.apiController = apiController;
         this.productListView = productListView;
         this.categoriesList = categoriesListView;
-        this.productDetailMenuComponent = new ProductDetailMenuComponent(productListView, categoriesListView);
+        this.productDetailMenuComponent = new SearchMenu(productListView, categoriesListView);
     }
 
     protected void displayNavigationModule() {
@@ -44,17 +43,10 @@ public class ProductListMenu {
 
         switch (selection) {
             case NEXT:
-                if (this.apiController.getPagesLeft() > 0) {
-                    productListView.nextPage();
-                }
-                
+                next();
                 break;
             case RETURN:
-                if (this.apiController.getPageSelection() > 1) {
-                    productListView.returnPage();
-                    break;
-                }
-                StringPrinter.print(BAD_INPUT);
+                back();
                 break;
             case PRODUCT_DETAIL_MENU:
                 StringPrinter.flushConsole();
@@ -68,6 +60,20 @@ public class ProductListMenu {
                 StringPrinter.print(BAD_INPUT);
                 break;
         }
+    }
+
+    private void next(){
+        if (this.apiController.getPagesLeft() > 0) {
+            productListView.nextPage();
+        }
+    }
+
+    private void back() {
+        if (this.apiController.getPageSelection() > 1) {
+            productListView.returnPage();
+            return;
+        }
+        StringPrinter.print(BAD_INPUT);
     }
 
     protected void displayProductDetailMenuComponent() {
