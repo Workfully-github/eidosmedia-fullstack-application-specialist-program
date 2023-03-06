@@ -1,6 +1,7 @@
 package org.workfully.view.components;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.workfully.controllers.APIController;
@@ -13,21 +14,28 @@ import org.workfully.view.ProductListView;
 @SuppressWarnings("resource")
 public class FilterView extends BasicView {
 
-    private ArrayList<Product> productList;
+    private ArrayList<Product> dynamicProductList;
+    private ArrayList<Product> mainList;
     private CategoriesList categoriesList;
     private ProductListView productListView;
 
     /**
-     * Initialization of {@link #FilterView()} starts with provided @param productList
-     * @param productList is manipulated by {@link #filterByCategory(Category category)} and {@link #filterByStock(int, ArrayList)}
-     * @param productListView is required to return to previous menu by calling {@link ProductListView#display()}
+     * Initialization of {@link #FilterView()} starts with provided @param
+     * dynamicProductList
+     * 
+     * @param dynamicProductList is manipulated by
+     *                           {@link #filterByCategory(Category category)} and
+     *                           {@link #filterByStock(int, ArrayList)}
+     * @param productListView    is required to return to previous menu by calling
+     *                           {@link ProductListView#display()}
      */
-    public FilterView(ArrayList<Product> productList, CategoriesList categoriesList, APIController apiController,
+    public FilterView(ArrayList<Product> dynamicProductList, CategoriesList categoriesList, APIController apiController,
             ProductListView productListView) {
-        this.productList = productList;
+        this.dynamicProductList = dynamicProductList;
         this.categoriesList = categoriesList;
         this.apiController = apiController;
         this.productListView = productListView;
+        this.mainList = productListView.getProductList();
 
         display();
     }
@@ -39,13 +47,19 @@ public class FilterView extends BasicView {
 
     private void init() {
         showMenu();
-        menuSelection(selectOption());
+        try {
+            menuSelection(selectOption());
+        } catch (Exception e) {
+            System.out.println("Bad Input");
+            init();
+        }
+
     }
 
     private ArrayList<Product> filterByCategory(Category category) {
         return new ArrayList<Product>() {
             {
-                for (Product product : productList) {
+                for (Product product : mainList) {
                     if (product.getCategory().equals(category.getName())) {
                         add(product);
                     }
@@ -68,10 +82,11 @@ public class FilterView extends BasicView {
         showAllProductsCategoryView(stockList, false);
 
         StringPrinter
-                .println("We have filtered out " + Integer.toString(list.size() - stockList.size()) + " products.");
+                .println("Filtered out " + Integer.toString(list.size() - stockList.size()) + " products.");
     }
 
-    private int selectOption() {
+    private int selectOption() throws InputMismatchException {
+
         Scanner sc = new Scanner(System.in);
         StringPrinter.println("Select Option: ");
         return sc.nextInt();
@@ -84,12 +99,12 @@ public class FilterView extends BasicView {
     }
 
     private ArrayList<Product> getListByCategory() {
-        this.productList = filterByCategory(categoriesList.getCategory(selectOption() - 1));
-        return productList;
+        this.dynamicProductList = filterByCategory(categoriesList.getCategory(selectOption() - 1));
+        return dynamicProductList;
     }
 
     private ArrayList<Product> getProductList() {
-        return productList;
+        return dynamicProductList;
     }
 
     public static void showMenu() {
@@ -118,6 +133,7 @@ public class FilterView extends BasicView {
                 productListView.display();
                 break;
             default:
+                System.out.println("Bad Input");
                 break;
         }
     }
