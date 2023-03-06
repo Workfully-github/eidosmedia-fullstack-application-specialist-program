@@ -11,7 +11,7 @@ public class Product {
     private String title, description, brand, category, thumbnail;
     private ArrayList<String> images = new ArrayList<>();
 
-    public Product( JSONObject product ){
+    public Product(JSONObject product) {
         this.id = product.getInt("id");
         this.title = product.getString("title");
         this.description = product.getString("description");
@@ -69,26 +69,23 @@ public class Product {
         return images;
     }
 
-
     private ArrayList<String> setImages(JSONArray images) {
         ArrayList<String> temp = new ArrayList<>();
-        for(int i = 0; i < images.length(); i++){
+        for (int i = 0; i < images.length(); i++) {
             temp.add(images.getString(i));
         }
         return temp;
     }
 
-    public static ArrayList<Product> listOut(JSONArray productsJsonArr){
+    public static ArrayList<Product> listOut(JSONArray productsJsonArr) {
         ArrayList<Product> products = new ArrayList<>();
-        for(int i = 0; i < productsJsonArr.length(); i++){
+        for (int i = 0; i < productsJsonArr.length(); i++) {
             products.add(new Product(productsJsonArr.getJSONObject(i)));
         }
         return products;
     }
 
-    public static ArrayList<Product> listOut(JSONObject productObj){
-        ArrayList<Product> products = new ArrayList<>();
-        products.add(new Product(productObj));
-        return products;
+    public static Product listOut(JSONObject productObj) {
+        return new Product(productObj);
     }
 }

@@ -9,7 +9,7 @@ import Controllers.ProductsController;
 import Models.Category;
 
 public class CategoriesView {
-    
+
     private static ArrayList<Category> categories = new ArrayList<>();
 
     public static void navigate() {
@@ -18,7 +18,6 @@ public class CategoriesView {
         System.out.println("※------------------------~~ CATEGORIES ~~------------------------+※\n");
         categories = CategoriesController.getProductCategories();
         display(categories);
-        
 
         System.out.println("[0] Choose a category");
         System.out.println("[1] Go back");
@@ -29,28 +28,35 @@ public class CategoriesView {
             case 0:
                 System.out.println("Which category you want to see: (put category index)");
                 userDecision = in.nextInt();
-                ProductView.display(ProductsController.getProductsByCategory(categories.get(userDecision - 1).getCategory()));
+                ProductView.display(
+                        ProductsController.getProductsByCategory(categories.get(userDecision - 1).getCategory()));
                 System.out.println("[0] --> Go back");
                 userDecision = in.nextInt();
                 navigate();
                 break;
 
             case 1:
-                    NavigationsView.takeOff();
-                    break;
+                NavigationsView.takeOff();
+                break;
             default:
                 break;
         }
 
-        
     }
 
     public static void display(ArrayList<Category> categories) {
         int categoryIndex = 1;
-        for(Category category : categories) {
-            System.out.println(categoryIndex + "  -->  " + category.getCategory());
+        System.out.printf("+----------------------------------+%n");
+        System.out.printf("|%-10s   %-20s |%n", "Categories", "");
+        System.out.printf("+----------------------------------+%n");
+
+        for (Category category : categories) {
+            // System.out.println(categoryIndex + " --> " + category.getCategory());
+            System.out.printf("|%-10s   %-20s |%n", categoryIndex, category.getCategory());
+
             categoryIndex++;
         }
-            
+        System.out.printf("+----------------------------------+%n");
+
     }
 }
