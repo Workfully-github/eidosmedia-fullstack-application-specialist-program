@@ -56,8 +56,7 @@ public class ProductListMenu {
                 productDetailMenuComponent.display();
                 break;
             case FILTER:
-                FilterView.showMenu();
-                new FilterView(productListView.getProductList(), this.categoriesList, this.apiController);
+                new FilterView(productListView.getProductList(), this.categoriesList, this.apiController, productListView);
                 break;
             default:
                 StringPrinter.print(BAD_INPUT);
