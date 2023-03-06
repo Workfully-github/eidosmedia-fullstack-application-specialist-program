@@ -23,7 +23,11 @@ public class CategoriesList implements Displays {
         }
     }
 
-    public String getCategory(int id){
+    public String getCategoryName(int id) {
         return categoryController.getOne(id).getName();
+    }
+
+    public Category getCategory(int id) {
+        return categoryController.getOne(id);
     }
 }

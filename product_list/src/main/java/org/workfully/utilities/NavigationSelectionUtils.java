@@ -34,14 +34,16 @@ public class NavigationSelectionUtils {
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
                     "[Q] -> Previous Page ",
-                    "[D] -> Select Product");
+                    "[D] -> Select Product",
+                    "[F] -> Filter");
             return;
         }
 
         if (apiController.getPageSelection() <= 1 && apiController.getPagesLeft() > 0) {
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
-                    "[D] -> Select Product");
+                    "[D] -> Select Product",
+                    "[F] -> Filter");
             return;
 
         }
@@ -49,11 +51,13 @@ public class NavigationSelectionUtils {
         if (apiController.getPageSelection() > 1 && apiController.getPagesLeft() == 0) {
             StringPrinter.printMultiLn(
                     "[Q] -> Previous Page ",
-                    "[D] -> Select Product");
+                    "[D] -> Select Product",
+                    "[F] -> Filter");
             return;
         }
 
         StringPrinter.printMultiLn(
-                "[D] -> Select Product");
+                "[D] -> Select Product",
+                "[F] -> Filter");
     }
 }

@@ -3,7 +3,6 @@ package org.workfully.view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.workfully.controllers.APIController;
 import org.workfully.controllers.ProductController;
 import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;
@@ -13,7 +12,6 @@ public class ProductListView extends BasicView {
 
     private ProductController productController;
     private ProductListMenu productListMenuView;
-    private APIController apiController;
     private CategoriesList categoriesList;
 
     private ArrayList<Product> productList;
@@ -21,9 +19,8 @@ public class ProductListView extends BasicView {
     public ProductListView() {
         this.productController = new ProductController();
         this.categoriesList = new CategoriesList();
-        this.apiController = new APIController();
-        this.productListMenuView = new ProductListMenu(productController, apiController, categoriesList, this);
-        
+        this.productListMenuView = new ProductListMenu(apiController, categoriesList, this);
+        this.productList = productController.generateProductList(apiController.getAllProducts());
     }
 
     @Override
@@ -31,17 +28,6 @@ public class ProductListView extends BasicView {
         showProductList(productController.generateProductList(apiController.getAllProducts()));
         while (true)
             this.productListMenuView.displayNavigationModule();
-    }
-
-    /**
-     * Shows a different Prodcut List based on @param productList
-     */
-    public void showProductList(ArrayList<Product> productList) {
-        for (Product product : productList) {
-            StringPrinter.println(product.toString());
-        }
-
-        showPageStatus();
     }
 
     protected void nextPage() {
@@ -52,13 +38,6 @@ public class ProductListView extends BasicView {
     protected void returnPage() {
         setProductList(productController.generateProductList(this.apiController.returnPage()));
         showProductList(productList);
-    }
-
-    private void showPageStatus() {
-        StringPrinter.printMultiLn(
-                "Current Page: " + this.apiController.getPageSelection() + "\n" +
-                        "Pages Left: " + this.apiController.getPagesLeft() + "\n" +
-                        "Total Pages: " + (this.apiController.getPagesLeft() + this.apiController.getPageSelection()));
     }
 
     public void updateProductList() {
@@ -74,7 +53,7 @@ public class ProductListView extends BasicView {
     public void updateProductList(int selection) {
         setProductList(
                 productController.generateProductList(
-                        apiController.getProductsByCategory(categoriesList.getCategory((selection - 1)))));
+                        apiController.getProductsByCategory(categoriesList.getCategoryName((selection - 1)))));
         if (productList.isEmpty()) {
             StringPrinter.println("No Results");
         }

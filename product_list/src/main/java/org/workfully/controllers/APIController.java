@@ -29,6 +29,13 @@ public class APIController {
         return makeProductsJSONArray();
     }
 
+    public JSONArray getEverything() {
+        this.json = new JSONObject(rest
+                .getBody(this.BASE_URL));
+
+        return json.getJSONArray("products");
+    }
+
     public JSONArray getAllProducts(int pageSelection) {
         this.pageSelection = pageSelection;
         this.pageIndex = this.pageSelection - 1;
@@ -46,12 +53,12 @@ public class APIController {
     }
 
     public int getTotalPages() {
-        return this.json.getInt("total");
+        return this.json.getInt("total") + 1;
     }
 
     public int getPagesLeft() {
         int limit = this.json.getInt("limit");
-        return (getTotalPages() / limit) - this.pageSelection;
+        return (getTotalPages() / limit);
     }
 
     public JSONArray nextPage() {

@@ -7,6 +7,7 @@ import org.workfully.controllers.ProductController;
 import org.workfully.utilities.NavigationSelectionUtils;
 import org.workfully.utilities.StringPrinter;
 import org.workfully.view.components.CategoriesList;
+import org.workfully.view.components.FilterView;
 import org.workfully.view.components.ProductDetailMenuComponent;
 
 @SuppressWarnings("resource")
@@ -15,12 +16,14 @@ public class ProductListMenu {
     private APIController apiController;
     private ProductListView productListView;
     private ProductDetailMenuComponent productDetailMenuComponent;
+    private CategoriesList categoriesList;
     public static final String BAD_INPUT = "Bad Input, select again. \n";
 
-    public ProductListMenu(ProductController productController, APIController apiController,
+    public ProductListMenu(APIController apiController,
             CategoriesList categoriesListView, ProductListView productListView) {
         this.apiController = apiController;
         this.productListView = productListView;
+        this.categoriesList = categoriesListView;
         this.productDetailMenuComponent = new ProductDetailMenuComponent(productListView, categoriesListView);
     }
 
@@ -44,6 +47,7 @@ public class ProductListMenu {
                 if (this.apiController.getPagesLeft() > 0) {
                     productListView.nextPage();
                 }
+                
                 break;
             case RETURN:
                 if (this.apiController.getPageSelection() > 1) {
@@ -57,6 +61,8 @@ public class ProductListMenu {
                 productDetailMenuComponent.display();
                 break;
             case FILTER:
+                FilterView.showMenu();
+                new FilterView(productListView.getProductList(), this.categoriesList, this.apiController);
                 break;
             default:
                 StringPrinter.print(BAD_INPUT);
