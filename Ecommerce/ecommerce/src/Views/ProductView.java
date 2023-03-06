@@ -78,6 +78,18 @@ public class ProductView {
         }
     }
 
+    public static void filter() {
+        ArrayList<Product> filteredProducts = new ArrayList<>();
+        ArrayList<Product> unFilteredProducts = ProductsController.getProducts(NavigationsController.currentPage);
+        for (int i = 0 ; i < unFilteredProducts.size() ; i++){
+            if(unFilteredProducts.get(i).getStock() > 50) {
+                filteredProducts.add(unFilteredProducts.get(i));
+            }
+        }
+        display(filteredProducts);
+        System.out.println("We've filtered out: " + filteredProducts.size() + " products.");
+    }
+
     public static void display(ArrayList<Product> products) {
         for(Product product : products) {
             System.out.println("\n[" + product.getId() + "]~~--------------------------------------------------------------------------------------------------------------------------+\n" + 

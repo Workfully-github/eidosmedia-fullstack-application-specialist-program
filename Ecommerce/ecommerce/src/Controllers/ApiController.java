@@ -99,7 +99,7 @@ public class ApiController {
     public JSONObject getProductById(int id) {
         try {
 
-            URL GET_URL = new URL(getUrl(BASE_URL, Integer.toString(id)));
+            URL GET_URL = new URL(getUrl(Integer.toString(id)));
     
             HttpURLConnection httpURLConnection = (HttpURLConnection) GET_URL.openConnection();
             httpURLConnection.setRequestMethod("GET");
