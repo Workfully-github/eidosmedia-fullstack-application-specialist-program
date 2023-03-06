@@ -6,8 +6,6 @@ import org.workfully.models.Category;
 
 public class CategoryController {
 
-    private final String CATEGORIES_RESOURCE = "/categories";
-
     private APIController apiController;
 
     public CategoryController() {
@@ -17,7 +15,7 @@ public class CategoryController {
     public ArrayList<Category> getAll() {
         return new ArrayList<Category>() {
             {
-                for (Object category : apiController.getCategoryList(CATEGORIES_RESOURCE)) {
+                for (Object category : apiController.getCategoryList()) {
                     add(new Category(category.toString()));
                 }
             }
@@ -25,6 +23,6 @@ public class CategoryController {
     }
 
     public Category getOne(int id) {
-        return new Category(apiController.getCategoryList(CATEGORIES_RESOURCE).getString(id));
+        return new Category(apiController.getCategoryList().getString(id));
     }
 }

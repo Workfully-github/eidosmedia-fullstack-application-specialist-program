@@ -8,6 +8,7 @@ import org.workfully.models.Product;
 import org.workfully.utilities.StringPrinter;
 import org.workfully.view.components.CategoriesList;
 
+@SuppressWarnings("resource")
 public class ProductListView extends BasicView {
 
     private ProductController productController;
@@ -21,27 +22,27 @@ public class ProductListView extends BasicView {
         this.categoriesList = new CategoriesList();
         this.productListMenuView = new ProductListMenu(apiController, categoriesList, this, navigationSelection);
         this.productList = productController
-                .generateProductList(apiController.getAllProducts(navigationSelection.requestAllProducts()));
+                .generateProductList(apiController.requestProductList(navigationSelection.requestAllProducts()));
     }
 
     @Override
     public void display() {
 
         showAllProducts(productController
-                .generateProductList(apiController.getAllProducts(navigationSelection.requestAllProducts())), true);
+                .generateProductList(apiController.requestProductList(navigationSelection.requestAllProducts())), true);
         while (true)
             this.productListMenuView.displayNavigationModule();
     }
 
     protected void nextPage() {
         setProductList(productController
-                .generateProductList(this.apiController.nextPage(navigationSelection.requestNextPage())));
+                .generateProductList(this.apiController.requestProductList(navigationSelection.requestNextPage())));
         showAllProducts(productList, true);
     }
 
     protected void returnPage() {
         setProductList(productController
-                .generateProductList(this.apiController.returnPage(navigationSelection.requestReturnPage())));
+                .generateProductList(this.apiController.requestProductList(navigationSelection.requestReturnPage())));
         showAllProducts(productList, true);
     }
 

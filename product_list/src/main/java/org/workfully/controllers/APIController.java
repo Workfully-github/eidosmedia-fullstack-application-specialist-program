@@ -9,62 +9,37 @@ public class APIController {
 
     private final String BASE_URL = "https://dummyjson.com/products";
     private final String CATEGORY_FEATURE = "/category";
+    private final String CATEGORIES_RESOURCE = "/categories";
     private RestController rest;
-
 
     public APIController() {
         this.rest = new RestController();
     }
 
-/*     public JSONArray getAllProducts(int pageSelection, int valuesPerPage) {
-        this.pageSelection = pageSelection;
-        this.pageIndex = pageSelection - 1;
-        this.valuesPerPage = valuesPerPage;
-        this.skip = pageIndex * valuesPerPage;
-        return makeProductsJSONArray();
-    } */
-
-    public JSONArray getEverything() {
-        JSONObject json = new JSONObject(rest
-                .getBody(this.BASE_URL));
-
+    private JSONArray response(String request) {
+        JSONObject json = new JSONObject(
+                rest.getBody(request));
         return json.getJSONArray("products");
     }
 
-/*     public JSONArray getAllProducts(int pageSelection) {
-        this.pageSelection = pageSelection;
-        this.pageIndex = this.pageSelection - 1;
-        this.valuesPerPage = 30;
-        this.skip = pageIndex * valuesPerPage;
-        return makeProductsJSONArray();
-    } */
-
-    public JSONArray getAllProducts(String request) {
-        return makeProductsJSONArray(request);
+    public JSONArray requestProductList(String request) {
+        return response(request);
     }
 
     public int getTotalPages() {
         JSONObject json = new JSONObject(rest
-        .getBody(this.BASE_URL));
+                .getBody(this.BASE_URL));
 
         return json.getInt("total");
-    }
-
-    public JSONArray nextPage(String request) {
-        return makeProductsJSONArray(request);
-    }
-
-    public JSONArray returnPage(String request) {
-        return makeProductsJSONArray(request);
     }
 
     public Product getProduct(int id) {
         return new Product(new JSONObject(rest.getBody(BASE_URL + "/" + id)));
     }
 
-    public JSONArray getCategoryList(String endpoint) {
+    protected JSONArray getCategoryList() {
         return new JSONArray(rest
-                .getBody(this.BASE_URL + endpoint));
+                .getBody(this.BASE_URL + CATEGORIES_RESOURCE));
     }
 
     public JSONArray getProductsByCategory(String category) {
@@ -82,20 +57,6 @@ public class APIController {
         JSONObject json = new JSONObject(rest
                 .getBody(request));
 
-        return json.getJSONArray("products");
-    }
-
-
-    /**
-     * Helper method, used in pagination
-     * {@link #nextPage()}
-     * {@link #returnPage()}
-     * {@link #selectPage(int pageSelection, int valuesPerPage)}
-     * {@link #selectPage(int pageSelection)}
-     */
-    private JSONArray makeProductsJSONArray(String request) {
-        JSONObject json = new JSONObject(
-                rest.getBody(request));
         return json.getJSONArray("products");
     }
 }

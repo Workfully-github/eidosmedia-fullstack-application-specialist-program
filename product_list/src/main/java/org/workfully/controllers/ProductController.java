@@ -8,16 +8,9 @@ import org.workfully.models.Product;
 
 public class ProductController {
 
-    private APIController apiController;
-
-    public ProductController() {}
-
-    public ProductController(int valuesPerPage, int pageSelection) {
-        this.apiController = new APIController();
-    }
-
     /**
-     * @param products refers to an array of products from api {@link https://dummyjson.com/products}
+     * @param products refers to an array of products from api
+     *                 {@link https://dummyjson.com/products}
      * @return ArrayList<Product> from @param products
      */
     public ArrayList<Product> generateProductList(JSONArray products) {
@@ -30,6 +23,4 @@ public class ProductController {
         };
     }
 
-
-    
 }
