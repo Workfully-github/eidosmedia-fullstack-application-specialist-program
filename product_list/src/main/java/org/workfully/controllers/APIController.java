@@ -9,9 +9,7 @@ public class APIController {
 
     private final String BASE_URL = "https://dummyjson.com/products";
     private final String CATEGORY_FEATURE = "/category";
-    private final String SEARCH_FEATURE = "/search?q=";
     private RestController rest;
-    private JSONObject json;
 
 
     public APIController() {
@@ -27,7 +25,7 @@ public class APIController {
     } */
 
     public JSONArray getEverything() {
-        this.json = new JSONObject(rest
+        JSONObject json = new JSONObject(rest
                 .getBody(this.BASE_URL));
 
         return json.getJSONArray("products");
@@ -46,7 +44,10 @@ public class APIController {
     }
 
     public int getTotalPages() {
-        return this.json.getInt("total");
+        JSONObject json = new JSONObject(rest
+        .getBody(this.BASE_URL));
+
+        return json.getInt("total");
     }
 
     public JSONArray nextPage(String request) {
@@ -67,7 +68,7 @@ public class APIController {
     }
 
     public JSONArray getProductsByCategory(String category) {
-        this.json = new JSONObject(rest
+        JSONObject json = new JSONObject(rest
                 .getBody(this.BASE_URL + CATEGORY_FEATURE + "/" + category));
 
         return json.getJSONArray("products");
@@ -78,7 +79,7 @@ public class APIController {
      *                query not encapsulated since it has unique structure
      */
     public JSONArray getProductsByKeyword(String request) {
-        this.json = new JSONObject(rest
+        JSONObject json = new JSONObject(rest
                 .getBody(request));
 
         return json.getJSONArray("products");
@@ -93,7 +94,7 @@ public class APIController {
      * {@link #selectPage(int pageSelection)}
      */
     private JSONArray makeProductsJSONArray(String request) {
-        this.json = new JSONObject(
+        JSONObject json = new JSONObject(
                 rest.getBody(request));
         return json.getJSONArray("products");
     }

@@ -45,13 +45,15 @@ public class FilterView extends BasicView {
 
     private void hasStock(ArrayList<Product> productList) {
         int counter = 0;
-        int total = productList.size() - counter;
+        
         for (Product product : productList) {
-            if (product.getStock() > 0) {
+            if (product.getStock() > 15) {
                 counter++;
                 StringPrinter.println(product.toString());
             }
         }
+
+        int total = productList.size() - counter;
         
         StringPrinter.println("We have filtered out " + total + " products.");
     }

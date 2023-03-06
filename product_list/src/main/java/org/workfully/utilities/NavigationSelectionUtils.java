@@ -4,7 +4,6 @@ import static org.workfully.utilities.StringPrinter.*;
 
 import java.util.Scanner;
 
-import org.json.JSONObject;
 import org.workfully.controllers.APIController;
 
 @SuppressWarnings("resource")
@@ -12,12 +11,12 @@ public class NavigationSelectionUtils {
 
     private APIController apiController;
     private final String BASE_URL = "https://dummyjson.com/products";
-    private final String CATEGORY_FEATURE = "/category";
     private final String SEARCH_FEATURE = "/search?q=";
     private int pageSelection;
     private int pageIndex;
     private int skip;
     private int valuesPerPage;
+    private int totalPages;
 
     public NavigationSelectionUtils(APIController apiController) {
         this.apiController = apiController;
@@ -54,6 +53,7 @@ public class NavigationSelectionUtils {
         }
 
         if (getPageSelection() <= 1 && getPagesLeft() > 0) {
+            System.out.println(getPagesLeft());
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
                     "[D] -> Search",
@@ -101,14 +101,21 @@ public class NavigationSelectionUtils {
     }
 
     public int getPagesLeft() {
+        if (valuesPerPage < 30) {
+            return 0;
+        }
         return (int) Math.ceil(((double) getTotalPages() / valuesPerPage)) - pageSelection;
     }
 
     public int getTotalPages() {
-        return apiController.getTotalPages();
+        totalPages = apiController.getTotalPages();
+        return totalPages;
     }
 
     public int getPageSelection() {
+        if (this.pageSelection == 0) {
+            return 1;
+        }
         return this.pageSelection;
     }
 

@@ -146,4 +146,12 @@ public class Product {
         "Thumbnail: " + thumbnail + "\n" + 
         "Images: " + images + "\n";
     }
+
+    public String toSimpleString() {
+        return "Product: \n" + 
+        "Id: " + id + "\n" +
+        "Title: " + title + "\n" +
+        "Price: " + price + "\n" +
+        "Category: " + category + "\n";
+    }
 }
