@@ -1,6 +1,12 @@
 package Projects.Products_List.views;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.management.Descriptor;
+
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterators;
 
 import Projects.Products_List.controllers.PageController;
 import Projects.Products_List.controllers.ProductController;
@@ -22,13 +28,29 @@ public class ProductListView {
     
     public void displayList(ArrayList<Product> products) {
 
-        System.out.println("-------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------------------------------");
         System.out.println("LIST OF PRODUCTS AVAILABLE:");
         System.out.println("\n");
         
         for (int i = 0; i < products.size(); i++) {
+
+            System.out.println("______________________________________________________________________");
+            System.out.println("|                                                                     |");
+            System.out.printf("%10.70s|%n", "|  ID: " + products.get(i).getId() + "                                                              ");
+            System.out.printf("%10.70s|%n", "|                      Title: " + products.get(i).getTitle() + "                                                              ");
+            System.out.println("|                                                                     |");
+            System.out.printf("%10.70s|%n", "|      Price: " + products.get(i).getPrice() + "$" + "   Discount: " + products.get(i).getDiscountPercentage()
+            + "%  " + "   Rating: " + products.get(i).getRating() + "   Stock: " + products.get(i).getStock() + "      |");
+            System.out.println("|                                                                     |");
+            System.out.printf("%10.60s...       |%n", "|      " + products.get(i).getDescription());
+            System.out.println("|                                                                     |");
+            System.out.println("______________________________________________________________________");
             
-            System.out.println("ID: " + products.get(i).getId());
+
+
+
+            
+            /* System.out.println("ID: " + products.get(i).getId());
             System.out.println("Title: " + products.get(i).getTitle());
             System.out.println("Description: " + products.get(i).getDescription());
             System.out.println("Price: " + products.get(i).getPrice());
@@ -43,7 +65,7 @@ public class ProductListView {
                 System.out.println("  --> " + products.get(i).getImages().get(j));
             }
             System.out.println("\n");
-            System.out.println("-------------------------------------------------------");
+            System.out.println("-------------------------------------------------------");*/
         }
     }
 }
