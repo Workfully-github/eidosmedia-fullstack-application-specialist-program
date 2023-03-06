@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 import org.workfully.controllers.APIController;
 import org.workfully.models.Product;
+import org.workfully.utilities.NavigationSelectionUtils;
 import org.workfully.utilities.StringPrinter;
 import org.workfully.view.interfaces.Displays;
 
 public abstract class BasicView implements Displays {
 
     protected APIController apiController;
+    protected NavigationSelectionUtils navigationSelection;
 
     public BasicView() {
         this.apiController = new APIController();
+        this.navigationSelection = new NavigationSelectionUtils(apiController);
     }
 
     /**
@@ -28,9 +31,9 @@ public abstract class BasicView implements Displays {
 
     private void showPageStatus() {
         StringPrinter.printMultiLn(
-                "Current Page: " + this.apiController.getPageSelection() + "\n" +
-                        "Pages Left: " + this.apiController.getPagesLeft() + "\n" +
-                        "Total Pages: " + (this.apiController.getPagesLeft() + this.apiController.getPageSelection()));
+                "Current Page: " + this.navigationSelection.getPageSelection() + "\n" +
+                        "Pages Left: " + this.navigationSelection.getPagesLeft() + "\n" +
+                        "Total Pages: " + (this.navigationSelection.getPagesLeft() + this.navigationSelection.getPageSelection()));
     }
 
 }

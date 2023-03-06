@@ -10,14 +10,18 @@ import org.workfully.controllers.APIController;
 @SuppressWarnings("resource")
 public class NavigationSelectionUtils {
 
+    private APIController apiController;
     private final String BASE_URL = "https://dummyjson.com/products";
     private final String CATEGORY_FEATURE = "/category";
     private final String SEARCH_FEATURE = "/search?q=";
-    private JSONObject json;
     private int pageSelection;
     private int pageIndex;
     private int skip;
     private int valuesPerPage;
+
+    public NavigationSelectionUtils(APIController apiController) {
+        this.apiController = apiController;
+    }
 
     public int howManyPagesDialogue() {
         Scanner sc = new Scanner(System.in);
@@ -39,8 +43,8 @@ public class NavigationSelectionUtils {
      * @param apiController used to validate page status
      *                      shows option according to page status
      */
-    public static void apiControllerConditions(APIController apiController) {
-        if (apiController.getPageSelection() > 1 && apiController.getPagesLeft() > 0) {
+    public void apiControllerConditions(APIController apiController) {
+        if (getPageSelection() > 1 && getPagesLeft() > 0) {
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
                     "[Q] -> Previous Page ",
@@ -49,7 +53,7 @@ public class NavigationSelectionUtils {
             return;
         }
 
-        if (apiController.getPageSelection() <= 1 && apiController.getPagesLeft() > 0) {
+        if (getPageSelection() <= 1 && getPagesLeft() > 0) {
             StringPrinter.printMultiLn(
                     "[E] -> Next Page ",
                     "[D] -> Search",
@@ -58,7 +62,7 @@ public class NavigationSelectionUtils {
 
         }
 
-        if (apiController.getPageSelection() > 1 && apiController.getPagesLeft() == 0) {
+        if (getPageSelection() > 1 && getPagesLeft() == 0) {
             StringPrinter.printMultiLn(
                     "[Q] -> Previous Page ",
                     "[D] -> Search",
@@ -77,7 +81,7 @@ public class NavigationSelectionUtils {
         this.valuesPerPage = 30;
         this.skip = pageIndex * valuesPerPage;
         return this.BASE_URL + SEARCH_FEATURE + "&limit=" + this.valuesPerPage + "&skip="
-        + this.skip;
+                + this.skip;
     }
 
     public String requestNextPage() {
@@ -85,7 +89,7 @@ public class NavigationSelectionUtils {
         this.pageSelection = this.pageIndex + 1;
         this.skip = this.pageIndex * this.valuesPerPage;
         return this.BASE_URL + SEARCH_FEATURE + "&limit=" + this.valuesPerPage + "&skip="
-        + this.skip;
+                + this.skip;
     }
 
     public String requestReturnPage() {
@@ -93,6 +97,23 @@ public class NavigationSelectionUtils {
         this.pageSelection = this.pageIndex + 1;
         this.skip = this.pageIndex * this.valuesPerPage;
         return this.BASE_URL + SEARCH_FEATURE + "&limit=" + this.valuesPerPage + "&skip="
-        + this.skip;
+                + this.skip;
+    }
+
+    public int getPagesLeft() {
+        return (int) Math.ceil(((double) getTotalPages() / valuesPerPage)) - pageSelection;
+    }
+
+    public int getTotalPages() {
+        return apiController.getTotalPages();
+    }
+
+    public int getPageSelection() {
+        return this.pageSelection;
+    }
+
+    public String requestProductsByKeyword(String keyword) {
+        return this.BASE_URL + SEARCH_FEATURE + keyword + "&limit=" + this.valuesPerPage + "&skip="
+                + this.skip;
     }
 }

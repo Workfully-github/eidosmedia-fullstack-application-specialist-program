@@ -13,21 +13,24 @@ import org.workfully.view.components.SearchMenu;
 public class ProductListMenu {
 
     private APIController apiController;
+    private NavigationSelectionUtils navigationSelectionUtils;
     private ProductListView productListView;
     private SearchMenu productDetailMenuComponent;
     private CategoriesList categoriesList;
     public static final String BAD_INPUT = "Bad Input, select again. \n";
 
     public ProductListMenu(APIController apiController,
-            CategoriesList categoriesListView, ProductListView productListView) {
+            CategoriesList categoriesListView, ProductListView productListView,
+            NavigationSelectionUtils navigationSelectionUtils) {
         this.apiController = apiController;
         this.productListView = productListView;
         this.categoriesList = categoriesListView;
+        this.navigationSelectionUtils = navigationSelectionUtils;
         this.productDetailMenuComponent = new SearchMenu(productListView, categoriesListView);
     }
 
     protected void displayNavigationModule() {
-        NavigationSelectionUtils.apiControllerConditions(this.apiController);
+        navigationSelectionUtils.apiControllerConditions(this.apiController);
 
         Scanner sc = new Scanner(System.in);
         char selection = sc.next().toLowerCase().charAt(0);
@@ -62,14 +65,14 @@ public class ProductListMenu {
         }
     }
 
-    private void next(){
-        if (this.apiController.getPagesLeft() > 0) {
+    private void next() {
+        if (this.navigationSelectionUtils.getPagesLeft() > 0) {
             productListView.nextPage();
         }
     }
 
     private void back() {
-        if (this.apiController.getPageSelection() > 1) {
+        if (this.navigationSelectionUtils.getPageSelection() > 1) {
             productListView.returnPage();
             return;
         }

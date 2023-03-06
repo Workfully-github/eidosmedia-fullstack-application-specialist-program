@@ -12,10 +12,7 @@ public class APIController {
     private final String SEARCH_FEATURE = "/search?q=";
     private RestController rest;
     private JSONObject json;
-    private int pageSelection;
-    private int pageIndex;
-    private int skip;
-    private int valuesPerPage;
+
 
     public APIController() {
         this.rest = new RestController();
@@ -52,20 +49,12 @@ public class APIController {
         return this.json.getInt("total");
     }
 
-    public int getPagesLeft() {
-        return (int) Math.ceil(((double) getTotalPages() / valuesPerPage)) - pageSelection;
-    }
-
     public JSONArray nextPage(String request) {
         return makeProductsJSONArray(request);
     }
 
     public JSONArray returnPage(String request) {
         return makeProductsJSONArray(request);
-    }
-
-    public int getPageSelection() {
-        return this.pageSelection;
     }
 
     public Product getProduct(int id) {
@@ -88,10 +77,9 @@ public class APIController {
      * @param keyword for searching products by keyword
      *                query not encapsulated since it has unique structure
      */
-    public JSONArray getProductsByKeyword(String keyword) {
+    public JSONArray getProductsByKeyword(String request) {
         this.json = new JSONObject(rest
-                .getBody(this.BASE_URL + SEARCH_FEATURE + keyword + "&limit=" + this.valuesPerPage + "&skip="
-                        + this.skip));
+                .getBody(request));
 
         return json.getJSONArray("products");
     }
