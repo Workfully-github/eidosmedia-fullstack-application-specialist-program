@@ -82,5 +82,4 @@ public class ProductListMenu {
     protected void displayProductDetailMenuComponent() {
         productDetailMenuComponent.display();
     }
-
 }

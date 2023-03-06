@@ -15,6 +15,7 @@ public class ProductListView extends BasicView {
     private ProductListMenu productListMenuView;
     private CategoriesList categoriesList;
     private ArrayList<Product> productList;
+    private ArrayList<Product> mainList;
 
     public ProductListView() {
         this.productController = new ProductController();
@@ -22,6 +23,9 @@ public class ProductListView extends BasicView {
         this.productListMenuView = new ProductListMenu(this.apiController, this.categoriesList, this,
                 this.navigationSelection);
         this.productList = productController
+                .generateProductList(
+                        this.apiController.requestProductList(this.navigationSelection.requestAllProducts()));
+        this.mainList = productController
                 .generateProductList(
                         this.apiController.requestProductList(this.navigationSelection.requestAllProducts()));
     }
@@ -63,6 +67,10 @@ public class ProductListView extends BasicView {
         }
     }
 
+    public void resetProductList(ArrayList<Product> list) {
+        setProductList(list);
+    }
+
     private void setProductList(ArrayList<Product> productList) {
         this.productList = productList;
     }
@@ -86,4 +94,9 @@ public class ProductListView extends BasicView {
         while (true)
             this.productListMenuView.displayNavigationModule();
     }
+
+    public ArrayList<Product> getMainList() {
+        return mainList;
+    }
+
 }

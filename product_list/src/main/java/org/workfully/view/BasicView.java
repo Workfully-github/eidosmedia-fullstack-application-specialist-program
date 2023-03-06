@@ -1,7 +1,6 @@
 package org.workfully.view;
 
 import java.util.ArrayList;
-
 import org.workfully.http.APIController;
 import org.workfully.models.Product;
 import org.workfully.utilities.NavigationSelectionUtils;
@@ -63,9 +62,9 @@ public abstract class BasicView implements Displays {
 
         StringPrinter.flushConsole();
         clt.setShowVerticalLines(true);
-        clt.setHeaders("Product Title", "Brand", "Product Price", "Product Category", "Rating", "Stock");
+        clt.setHeaders("ID", "Product Title", "Brand", "Product Price", "Product Category", "Rating", "Stock");
         for (Product product : productList) {
-            clt.addRow(product.getTitle(), product.getBrand(), product.getPrice() + " Eur", product.getCategory(),
+            clt.addRow(Integer.toString(product.getId()), product.getTitle(), product.getBrand(), product.getPrice() + " Eur", product.getCategory(),
                     Float.toString(product.getRating()), Integer.toString(product.getStock()));
         }
         clt.print();
