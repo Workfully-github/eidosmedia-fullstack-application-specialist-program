@@ -53,7 +53,6 @@ public class FilterView extends BasicView {
             System.out.println("Bad Input");
             init();
         }
-
     }
 
     private ArrayList<Product> filterByCategory(Category category) {

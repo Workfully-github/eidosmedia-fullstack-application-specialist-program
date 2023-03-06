@@ -36,7 +36,6 @@ public abstract class BasicView implements Displays {
     }
 
     public void showTableViewProductList(ArrayList<Product> productList) {
-
         for (Product product : productList) {
             productSimpleDetail(product);
         }
@@ -55,9 +54,8 @@ public abstract class BasicView implements Displays {
         }
         clt.print();
 
-        if(showPageStatus)
-        showPageStatus();
-
+        if (showPageStatus)
+            showPageStatus();
     }
 
     public void showAllProductsCategoryView(ArrayList<Product> productList, Boolean showPageStatus) {
@@ -67,13 +65,14 @@ public abstract class BasicView implements Displays {
         clt.setShowVerticalLines(true);
         clt.setHeaders("Product Title", "Brand", "Product Price", "Product Category", "Rating", "Stock");
         for (Product product : productList) {
-            clt.addRow(product.getTitle(), product.getBrand(), product.getPrice() + " Eur", product.getCategory(), Float.toString(product.getRating()), Integer.toString(product.getStock()));
+            clt.addRow(product.getTitle(), product.getBrand(), product.getPrice() + " Eur", product.getCategory(),
+                    Float.toString(product.getRating()), Integer.toString(product.getStock()));
         }
         clt.print();
 
-        if(showPageStatus)
-        showPageStatus();
-        
+        if (showPageStatus)
+            showPageStatus();
+
     }
 
     public void productSimpleDetail(Product product) {

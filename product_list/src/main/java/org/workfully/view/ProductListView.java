@@ -14,44 +14,41 @@ public class ProductListView extends BasicView {
     private ProductController productController;
     private ProductListMenu productListMenuView;
     private CategoriesList categoriesList;
-
     private ArrayList<Product> productList;
 
     public ProductListView() {
         this.productController = new ProductController();
         this.categoriesList = new CategoriesList();
-        this.productListMenuView = new ProductListMenu(apiController, categoriesList, this, navigationSelection);
+        this.productListMenuView = new ProductListMenu(this.apiController, this.categoriesList, this,
+                this.navigationSelection);
         this.productList = productController
-                .generateProductList(apiController.requestProductList(navigationSelection.requestAllProducts()));
+                .generateProductList(
+                        this.apiController.requestProductList(this.navigationSelection.requestAllProducts()));
     }
 
     @Override
     public void display() {
-
-        showAllProducts(productController
-                .generateProductList(apiController.requestProductList(navigationSelection.requestAllProducts())), true);
-        while (true)
-            this.productListMenuView.displayNavigationModule();
+        displayProductList();
     }
 
     protected void nextPage() {
-        setProductList(productController
+        setProductList(this.productController
                 .generateProductList(this.apiController.requestProductList(navigationSelection.requestNextPage())));
-        showAllProducts(productList, true);
+        showAllProducts(this.productList, true);
     }
 
     protected void returnPage() {
         setProductList(productController
                 .generateProductList(this.apiController.requestProductList(navigationSelection.requestReturnPage())));
-        showAllProducts(productList, true);
+        showAllProducts(this.productList, true);
     }
 
     public void updateProductList() {
         setProductList(
                 productController.generateProductList(
-                        apiController.getProductsByKeyword(
+                        this.apiController.getProductsByKeyword(
                                 navigationSelection.requestProductsByKeyword(keywordSelection()))));
-        if (productList.isEmpty()) {
+        if (this.productList.isEmpty()) {
             StringPrinter.println("No Results");
             this.productListMenuView.displayProductDetailMenuComponent();
         }
@@ -61,13 +58,6 @@ public class ProductListView extends BasicView {
         setProductList(
                 productController.generateProductList(
                         apiController.getProductsByCategory(categoriesList.getCategoryName((selection - 1)))));
-        if (productList.isEmpty()) {
-            StringPrinter.println("No Results");
-        }
-    }
-
-    public void updateProductList(ArrayList<Product> productList) {
-        setProductList(productList);
         if (productList.isEmpty()) {
             StringPrinter.println("No Results");
         }
@@ -86,5 +76,14 @@ public class ProductListView extends BasicView {
         StringPrinter.flushConsole();
         StringPrinter.print("Type keyword: ");
         return sc.next();
+    }
+
+    private void displayProductList() {
+        showAllProducts(this.productController
+                .generateProductList(
+                        this.apiController.requestProductList(this.navigationSelection.requestAllProducts())),
+                true);
+        while (true)
+            this.productListMenuView.displayNavigationModule();
     }
 }
