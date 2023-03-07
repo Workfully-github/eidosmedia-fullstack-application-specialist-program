@@ -22,12 +22,8 @@ public class ProductListView extends BasicView {
         this.categoriesList = new CategoriesList();
         this.productListMenuView = new ProductListMenu(this.apiController, this.categoriesList, this,
                 this.navigationSelection);
-        this.productList = productController
-                .generateProductList(
-                        this.apiController.requestProductList(this.navigationSelection.requestAllProducts()));
-        this.mainList = productController
-                .generateProductList(
-                        this.apiController.requestProductList(this.navigationSelection.requestAllProducts()));
+        this.productList = requestProductList(this.navigationSelection.requestAllProducts());
+        this.mainList = requestProductList(this.navigationSelection.requestEverything());
     }
 
     @Override
@@ -36,18 +32,16 @@ public class ProductListView extends BasicView {
     }
 
     protected void nextPage() {
-        setProductList(this.productController
-                .generateProductList(this.apiController.requestProductList(navigationSelection.requestNextPage())));
+        setProductList(requestProductList(navigationSelection.requestNextPage()));
         showAllProducts(this.productList, true);
     }
 
     protected void returnPage() {
-        setProductList(productController
-                .generateProductList(this.apiController.requestProductList(navigationSelection.requestReturnPage())));
+        setProductList(requestProductList(navigationSelection.requestReturnPage()));
         showAllProducts(this.productList, true);
     }
 
-    public void updateProductList() {
+    public void requestProductsByKeyword() {
         setProductList(
                 productController.generateProductList(
                         this.apiController.requestProductList(
@@ -67,8 +61,8 @@ public class ProductListView extends BasicView {
         }
     }
 
-    public void resetProductList(ArrayList<Product> list) {
-        setProductList(list);
+    public void resetProductList() {
+        setProductList(mainList);
     }
 
     private void setProductList(ArrayList<Product> productList) {
@@ -97,6 +91,10 @@ public class ProductListView extends BasicView {
 
     public ArrayList<Product> getMainList() {
         return mainList;
+    }
+
+    private ArrayList<Product> requestProductList(String request) {
+        return productController.generateProductList(this.apiController.requestProductList(request));
     }
 
 }

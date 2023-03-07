@@ -64,7 +64,8 @@ public abstract class BasicView implements Displays {
         clt.setShowVerticalLines(true);
         clt.setHeaders("ID", "Product Title", "Brand", "Product Price", "Product Category", "Rating", "Stock");
         for (Product product : productList) {
-            clt.addRow(Integer.toString(product.getId()), product.getTitle(), product.getBrand(), product.getPrice() + " Eur", product.getCategory(),
+            clt.addRow(Integer.toString(product.getId()), product.getTitle(), product.getBrand(),
+                    product.getPrice() + " Eur", product.getCategory(),
                     Float.toString(product.getRating()), Integer.toString(product.getStock()));
         }
         clt.print();

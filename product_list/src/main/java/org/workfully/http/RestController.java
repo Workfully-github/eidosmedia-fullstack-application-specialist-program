@@ -128,6 +128,7 @@ public class RestController {
         }
     }
 
+    // EXAMPLE POST REQUEST
     public void postRequest(String url, String param1, String param2) {
 
         HttpPost httpPost = new HttpPost(url);

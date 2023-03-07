@@ -83,6 +83,11 @@ public class NavigationSelectionUtils {
                 + this.skip;
     }
 
+    public String requestEverything() {
+        this.valuesPerPage = 100;
+        return this.BASE_URL + "?" + "&limit=" + this.valuesPerPage;
+    }
+
     public String requestNextPage() {
         this.pageIndex++;
         this.pageSelection = this.pageIndex + 1;

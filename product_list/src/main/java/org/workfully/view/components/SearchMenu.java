@@ -50,9 +50,9 @@ public class SearchMenu extends BasicView {
                 searchById();
                 break;
             case SEARCH_BY_KEYWORD:
-                productListView.updateProductList();
+                productListView.requestProductsByKeyword();
                 productListView.showAllProductsCategoryView(productListView.getProductList(), false);
-                productListView.resetProductList(productListView.getMainList());
+                productListView.resetProductList();
                 break;
             case SEARCH_BY_CATEGORY:
                 categoriesListComponent.display();
