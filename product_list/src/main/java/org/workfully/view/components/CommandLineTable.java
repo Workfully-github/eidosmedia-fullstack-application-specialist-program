@@ -1,4 +1,4 @@
-package org.workfully.view;
+package org.workfully.view.components;
 
 import java.util.ArrayList;
 import java.util.Arrays;

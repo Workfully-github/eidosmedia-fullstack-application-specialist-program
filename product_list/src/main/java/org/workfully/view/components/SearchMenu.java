@@ -52,7 +52,6 @@ public class SearchMenu extends BasicView {
             case SEARCH_BY_KEYWORD:
                 productListView.requestProductsByKeyword();
                 productListView.showAllProductsCategoryView(productListView.getProductList(), false);
-                productListView.resetProductList();
                 break;
             case SEARCH_BY_CATEGORY:
                 categoriesListComponent.display();
@@ -83,5 +82,4 @@ public class SearchMenu extends BasicView {
         int productSelection = sc.nextInt();
         System.out.println(apiController.getProduct(productSelection));
     }
-
 }

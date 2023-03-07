@@ -81,10 +81,7 @@ public class ProductListView extends BasicView {
     }
 
     private void displayProductList() {
-        showAllProducts(this.productController
-                .generateProductList(
-                        this.apiController.requestProductList(this.navigationSelection.requestAllProducts())),
-                true);
+        showAllProducts(requestProductList(this.navigationSelection.requestAllProducts()), true);
         while (true)
             this.productListMenuView.displayNavigationModule();
     }

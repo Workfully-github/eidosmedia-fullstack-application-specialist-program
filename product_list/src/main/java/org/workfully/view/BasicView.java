@@ -5,6 +5,7 @@ import org.workfully.http.APIController;
 import org.workfully.models.Product;
 import org.workfully.utilities.NavigationSelectionUtils;
 import org.workfully.utilities.StringPrinter;
+import org.workfully.view.components.CommandLineTable;
 import org.workfully.view.interfaces.Displays;
 
 public abstract class BasicView implements Displays {
