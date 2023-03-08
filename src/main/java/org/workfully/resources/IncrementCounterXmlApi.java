@@ -1,16 +1,14 @@
 package org.workfully.resources;
 
-import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.w3c.dom.NodeList;
 import org.workfully.controllers.OperationTrackerDBController;
 
 
-@Path("increment") // https:localhost:8081/xml-api/increment/       
+@Path("incrementcounter") // https:localhost:8081/xml-api/increment/       
 public class IncrementCounterXmlApi {
 
     OperationTrackerDBController operationTrackerDBController;
@@ -22,16 +20,21 @@ public class IncrementCounterXmlApi {
     public String incrementGetProducts(){
         String statusCode = "";
         
-        NodeList elemment = operationTrackerDBController.getXmlDB().getElementsByTagName("productsCounter");
-        System.out.println(elemment);
+
+        //TODO IMPLEMENT INCREMENTATION ON THE TAG <getProducts>
 
         return statusCode;
     }
 
     @PUT
     @Path("/getproduct")
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_XML)
     public String incrementGetProduct() {
+
+
+        //TODO IMPLEMENT INCREMENTATION ON TAG <getProduct>
+
+
         return "Got it!";
     }
 }
