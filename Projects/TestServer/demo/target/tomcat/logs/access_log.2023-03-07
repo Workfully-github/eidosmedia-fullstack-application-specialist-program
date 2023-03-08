@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [07/Mar/2023:18:21:52 +0000] "GET /demo/webapi/myresource HTTP/1.1" 200 7 http-bio-8080-exec-1 117
+0:0:0:0:0:0:0:1 - - [07/Mar/2023:18:21:58 +0000] "GET /demo/webapi/myresource HTTP/1.1" 200 7 http-bio-8080-exec-4 6
+0:0:0:0:0:0:0:1 - - [07/Mar/2023:18:22:00 +0000] "GET /demo/webapi/myresource HTTP/1.1" 200 7 http-bio-8080-exec-5 4
+0:0:0:0:0:0:0:1 - - [07/Mar/2023:18:22:14 +0000] "GET /demo/webapi/myresource HTTP/1.1" 200 7 http-bio-8080-exec-6 8
+0:0:0:0:0:0:0:1 - - [07/Mar/2023:18:22:15 +0000] "GET /demo/webapi/myresource HTTP/1.1" 200 7 http-bio-8080-exec-7 15
+0:0:0:0:0:0:0:1 - - [07/Mar/2023:18:22:16 +0000] "GET /demo/webapi/myresource HTTP/1.1" 200 7 http-bio-8080-exec-8 13
