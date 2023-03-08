@@ -21,6 +21,6 @@ public class Main {
         //productListView.showSearch(search);
 
         String listUrl0 = "https://dummyjson.com/products";
-        productListView.showAllProductWithPagination(listUrl0,30,30);
+        productListView.showAllProductWithPagination(0,30);
     }
 }

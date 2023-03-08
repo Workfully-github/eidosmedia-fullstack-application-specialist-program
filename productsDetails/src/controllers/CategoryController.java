@@ -1,6 +1,7 @@
 package controllers;
 
 import http.HttpController;
+import models.Category;
 import org.json.JSONArray;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ public class CategoryController {
     public List<String> getListOfCategories() throws IOException {
         String method = "GET";
 
-        String url = ProductController.url_basic + "/categories";
+        String url = ProductController.url_basic + Category.ENDPOINT;
         //read data
         String httpBodyJson = HttpController.getJsonData(url, method);
         JSONArray jsonArray = new JSONArray(httpBodyJson);

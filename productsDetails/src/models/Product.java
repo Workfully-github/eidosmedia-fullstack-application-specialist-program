@@ -19,6 +19,9 @@ public class Product {
     private String thumbnail;
     private List<String> images;
 
+    public static final String ENDPOINT = "/products";
+    public static final String KEY_PRODUCTS = "products";
+
     public Product(int id, String title, String description, double price, double discountPercentage, double rating,
                    int stock, String brand, String category, String thumbnail, List<String> images) {
         this.id = id;
@@ -52,7 +55,7 @@ public class Product {
         }
     }
 
-    public static List<Product> createListProduct(JSONArray jsonArray){
+    public static List<Product> getList(JSONArray jsonArray){
         List<Product> listProduct = new ArrayList();
         for(int i=0; i<jsonArray.length(); i++){
             listProduct.add(new Product(jsonArray.getJSONObject(i)));
@@ -149,6 +152,7 @@ public class Product {
     public void setImages(List<String> images) {
         this.images = images;
     }
+
 
     @Override
     public String toString() {
