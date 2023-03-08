@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [08/Mar/2023:00:08:52 +0000] "GET /demo/webapi/myresource HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [08/Mar/2023:00:09:39 +0000] "GET /dummy-api/webapi/myresource HTTP/1.1" 200 7 http-bio-8080-exec-2 79
