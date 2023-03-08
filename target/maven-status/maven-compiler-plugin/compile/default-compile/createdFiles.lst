@@ -1,3 +1,4 @@
 com\workfully\http\APIController.class
+com\workfully\resources\Products.class
+com\workfully\resources\Categories.class
 com\workfully\http\RestController.class
-com\workfully\Products.class

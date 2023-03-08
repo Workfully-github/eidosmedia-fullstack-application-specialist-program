@@ -1,4 +1,4 @@
-package com.workfully;
+package com.workfully.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,15 +14,19 @@ import com.workfully.http.RestController;
 @Path("products")
 public class Products {
 
-    RestController rest = new RestController();
+    private RestController rest = new RestController();
 
     @GET
     @Path("")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getProducts(@QueryParam("limit") String limit, @QueryParam("skip") String skip) {
+    public String getProducts(@QueryParam("limit") String limit, @QueryParam("skip") String skip) throws JSONException {
         if (limit != null || skip != null) {
             return rest.getBody("https://dummyjson.com/products?limit=" + limit + "&skip=" + skip);
         }
+
+        // rest.putRequest("https://dummyjson.com/products?limit="");
+
+        // rest.getProducts("new API", ) <---- response XML
 
         return rest.getBody("https://dummyjson.com/products");
     }
@@ -38,10 +42,23 @@ public class Products {
     @GET
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
-    public String search(@QueryParam("q") String query) {
+    public String search(@QueryParam("q") String query) throws JSONException {
 
         System.out.println("Search Q: " + query);
         return rest.getBody("https://dummyjson.com/products/search?q=" + query);
     }
 
+    @GET
+    @Path("/category/" + "{category}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String searchByCategory(@PathParam("category") String category) throws JSONException {
+        return rest.getBody("https://dummyjson.com/products/category/" + category);
+    }
+
+    @GET
+    @Path("/allproducts")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getAllProducts() {
+        return rest.getBody("https://dummyjson.com/products?limit=100");
+    }
 }
