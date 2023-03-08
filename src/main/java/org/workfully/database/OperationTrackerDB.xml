@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><?xml-model href="OperationTrackerDB.xsd"?><stats>
-    <productsCounter>10</productsCounter>
-    <productCounter>3</productCounter>
+    <pageReaquests>4</pageReaquests>
+    <allProductsRequests>7</allProductsRequests>
+    <productDetailsRequests>3</productDetailsRequests>
+    <searchRequests>4</searchRequests>
+    <searchByCategoryRequests>3</searchByCategoryRequests>
+    <categoriesRequests>9</categoriesRequests>
+</stats>
+<!-- <stats>
+    <productsCounter>15</productsCounter>
+    <getAllProductsCounter>3</getAllProductsCounter>
+    <productCounter>1</productCounter>
     <searchCounter>1</searchCounter>
     <searchByCategoryCounter>1</searchByCategoryCounter>
-    <getAllProductsCounter>2</getAllProductsCounter>
-    <categoriesCounter>5</categoriesCounter>
-</stats>
+    <categoriesCounter>6</categoriesCounter>
+</stats> -->
