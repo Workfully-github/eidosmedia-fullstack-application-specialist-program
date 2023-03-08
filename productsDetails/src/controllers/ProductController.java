@@ -12,7 +12,8 @@ import java.util.List;
 
 public class ProductController {
 
-    public static final String url_basic = "https://dummyjson.com/products";
+    //public static final String url_basic = "https://dummyjson.com/products";
+    public static final String url_basic = "http://localhost:8080/demo/dummy/products";
 
     public Product getProductById(String id) throws IOException {
         String method = "GET";
