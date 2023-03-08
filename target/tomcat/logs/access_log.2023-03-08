@@ -1,2 +1,8 @@
-0:0:0:0:0:0:0:1 - - [08/Mar/2023:00:08:52 +0000] "GET /demo/webapi/myresource HTTP/1.1" 404 - http-bio-8080-exec-1 0
-0:0:0:0:0:0:0:1 - - [08/Mar/2023:00:09:39 +0000] "GET /dummy-api/webapi/myresource HTTP/1.1" 200 7 http-bio-8080-exec-2 79
+0:0:0:0:0:0:0:1 - - [08/Mar/2023:11:29:42 +0000] "GET /dummy-api/webapi/products?limit=10&skip=10 HTTP/1.1" 500 5059 http-bio-8080-exec-1 121
+0:0:0:0:0:0:0:1 - - [08/Mar/2023:11:31:53 +0000] "GET /dummy-api/webapi/products?limit=10&skip=10 HTTP/1.1" 200 5866 http-bio-8080-exec-1 1086
+0:0:0:0:0:0:0:1 - - [08/Mar/2023:11:32:33 +0000] "GET /dummy-api/webapi/products?limit=10&skip=10 HTTP/1.1" 500 5059 http-bio-8080-exec-1 114
+0:0:0:0:0:0:0:1 - - [08/Mar/2023:11:38:01 +0000] "GET /dummy-api/webapi/products?limit=10&skip=10 HTTP/1.1" 200 5866 http-bio-8080-exec-1 1244
+0:0:0:0:0:0:0:1 - - [08/Mar/2023:11:38:08 +0000] "GET /dummy-api/webapi/products HTTP/1.1" 500 4335 http-bio-8080-exec-3 26
+0:0:0:0:0:0:0:1 - - [08/Mar/2023:11:38:14 +0000] "GET /dummy-api/webapi/products/ HTTP/1.1" 500 4335 http-bio-8080-exec-2 29
+0:0:0:0:0:0:0:1 - - [08/Mar/2023:11:38:33 +0000] "GET /dummy-api/webapi/products HTTP/1.1" 200 16756 http-bio-8080-exec-1 1114
+0:0:0:0:0:0:0:1 - - [08/Mar/2023:11:38:39 +0000] "GET /dummy-api/webapi/products?limit=10&skip=10 HTTP/1.1" 200 5866 http-bio-8080-exec-3 437

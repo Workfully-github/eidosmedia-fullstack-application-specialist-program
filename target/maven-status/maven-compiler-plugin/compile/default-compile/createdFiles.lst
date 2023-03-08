@@ -1,1 +1,3 @@
-com\workfully\MyResource.class
+com\workfully\http\APIController.class
+com\workfully\http\RestController.class
+com\workfully\Products.class
