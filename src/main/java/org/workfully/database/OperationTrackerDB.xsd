@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="stats">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="productsCounter" type="xs:string" />
+                <xs:element name="productCounter" type="xs:string" />
+                <xs:element name="searchCounter" type="xs:string" />
+                <xs:element name="searchByCategoryCounter" type="xs:string" />
+                <xs:element name="getAllProductsCounter" type="xs:string" />
+                <xs:element name="categoriesCounter" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
