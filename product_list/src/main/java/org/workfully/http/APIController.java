@@ -6,9 +6,10 @@ import org.workfully.models.Product;
 
 public class APIController {
 
-    private final String BASE_URL = "https://dummyjson.com/products";
+    private final String BASE_URL = "http://localhost:8080/dummy-api/products";
+    private final String ORIGINAL_URL = "https://dummyjson.com/products";
     private final String CATEGORY_FEATURE = "/category";
-    private final String CATEGORIES_RESOURCE = "/categories";
+    private final String CATEGORIES_RESOURCE = "http://localhost:8080/dummy-api/categories";
     private RestController rest;
 
     public APIController() {
@@ -30,15 +31,15 @@ public class APIController {
     }
 
     public Product getProduct(int id) {
-        return new Product(new JSONObject(rest.getBody(BASE_URL + "/" + id)));
+        return new Product(new JSONObject(rest.getBody(this.BASE_URL + "/" + id)));
     }
 
     public JSONArray getCategoryList() {
-        return new JSONArray(rest.getBody(this.BASE_URL + CATEGORIES_RESOURCE));
+        return new JSONArray(rest.getBody(this.CATEGORIES_RESOURCE));
     }
 
     public JSONArray getProductsByCategory(String category) {
-        JSONObject json = new JSONObject(rest.getBody(this.BASE_URL + CATEGORY_FEATURE + "/" + category));
+        JSONObject json = new JSONObject(rest.getBody(this.BASE_URL + this.CATEGORY_FEATURE + "/" + category));
         return json.getJSONArray("products");
     }
 }

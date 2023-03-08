@@ -10,7 +10,10 @@ import org.workfully.http.APIController;
 public class NavigationSelectionUtils {
 
     private APIController apiController;
-    private final String BASE_URL = "https://dummyjson.com/products";
+    private final String BASE_URL = "http://localhost:8080/dummy-api/products";
+    private final String GET_ALL_PRODUCTS = "http://localhost:8080/dummy-api/products/allproducts";
+    private final String ORIGINAL_URL = "https://dummyjson.com/products";
+
     private final String SEARCH_FEATURE = "/search?q=";
     private int pageSelection;
     private int pageIndex;
@@ -84,8 +87,7 @@ public class NavigationSelectionUtils {
     }
 
     public String requestEverything() {
-        this.valuesPerPage = 100;
-        return this.BASE_URL + "?" + "&limit=" + this.valuesPerPage;
+        return GET_ALL_PRODUCTS;
     }
 
     public String requestNextPage() {

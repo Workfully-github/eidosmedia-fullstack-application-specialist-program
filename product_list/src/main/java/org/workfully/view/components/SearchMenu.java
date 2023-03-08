@@ -46,9 +46,6 @@ public class SearchMenu extends BasicView {
         final int SEARCH_BY_ID = 4;
 
         switch (menuSelection) {
-            case SEARCH_BY_ID:
-                searchById();
-                break;
             case SEARCH_BY_KEYWORD:
                 productListView.requestProductsByKeyword();
                 productListView.showAllProductsCategoryView(productListView.getProductList(), false);
@@ -60,6 +57,9 @@ public class SearchMenu extends BasicView {
                 break;
             case SHOW_ALL_PRODUCTS:
                 productListView.display();
+                break;
+            case SEARCH_BY_ID:
+                searchById();
                 break;
             default:
                 StringPrinter.flushConsole();
