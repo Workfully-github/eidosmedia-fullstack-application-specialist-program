@@ -1,9 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-
-<?xml-model href="OperationTrackerDB.xsd"?>
-<stats>
-    <productsCounter>3</productsCounter>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><?xml-model href="OperationTrackerDB.xsd"?><stats>
+    <productsCounter>10</productsCounter>
     <productCounter>3</productCounter>
     <searchCounter>1</searchCounter>
     <searchByCategoryCounter>1</searchByCategoryCounter>
