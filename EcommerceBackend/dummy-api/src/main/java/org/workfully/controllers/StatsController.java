@@ -5,10 +5,10 @@ import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.workfully.models.Stat;
+import org.workfully.models.Stats;
 
 public class StatsController {
-    private Stat stat;
+    private Stats stat;
 
 
     public JSONObject parseXmlToJson(Document xmlData) {
