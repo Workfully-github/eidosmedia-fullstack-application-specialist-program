@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<stats>
-    <stat class="pageReaquests">26</stat>
-    <stat class="allProductsRequests">16</stat>
-    <stat class="productDetailsRequests">9</stat>
-    <stat class="searchRequests">13</stat>
-    <stat class="searchByCategoryRequests">9</stat>
-    <stat class="categoriesRequests">15</stat>
-</stats>
