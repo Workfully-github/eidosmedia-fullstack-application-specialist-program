@@ -3,6 +3,7 @@ package org.workfully.http;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.workfully.models.Product;
+import org.workfully.models.Stats;
 
 public class APIController {
 
@@ -41,5 +42,10 @@ public class APIController {
     public JSONArray getProductsByCategory(String category) {
         JSONObject json = new JSONObject(rest.getBody(this.BASE_URL + this.CATEGORY_FEATURE + "/" + category));
         return json.getJSONArray("products");
+    }
+
+    public Stats getStats() {
+
+        return new Stats(new JSONObject());
     }
 }
