@@ -1,0 +1,10 @@
+{
+    "stats": {
+        "allProductsRequests": "16",
+        "productDetailsRequests": "13",
+        "pageReaquests": "36",
+        "searchRequests": "13",
+        "categoriesRequests": "15",
+        "searchByCategoryRequests": "9"
+    }
+}
