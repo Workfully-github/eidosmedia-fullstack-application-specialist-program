@@ -6,7 +6,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.workfully.resources.UpdateStats;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -36,15 +39,30 @@ public class OperationTrackerDBController {
         }
     }
 
-    public void updateStat(String statProp){
+    public static void main(String[] args) {
+        updateStat("pageReaquests");
+    }
+
+    public static void updateStat(String statProp){
         try {
+
             Document xmlDocument = OperationTrackerDBController.getXmlDB();
 
-            Node elemment = xmlDocument.getElementsByTagName(statProp).item(0);
+            
+            NodeList elemments = xmlDocument.getElementsByTagName("stat");
+
+
+            for(int i = 0; i < elemments.getLength(); i++){
+                
+                if(((Element) elemments.item(i)).getAttribute("class").equals(statProp)) {
+                    int statPreviousValue = Integer.parseInt(elemments.item(i).getTextContent());
+                    elemments.item(i).setTextContent(Integer.toString(statPreviousValue + 1));
+                    System.out.println(elemments.item(i).getTextContent());
+                }
+            }
+            
             // Node elemment = xmlDocument.getElementsByTagName("pageReaquests").item(0);
 
-            int statPreviousValue = Integer.parseInt(elemment.getTextContent());
-            elemment.setTextContent(Integer.toString(statPreviousValue + 1));
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -62,11 +80,6 @@ public class OperationTrackerDBController {
         }
     }
 
-    public static void main(String[] args) {
-
-        // updateGetProductsStat();
-        // System.out.print(getXmlDB().get);
-    }
 
     public void updateGetProductsStat() {
         updateStat("pageReaquests");

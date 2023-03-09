@@ -10,27 +10,24 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.workfully.controllers.OperationTrackerDBController;
 
-
-@Path("stats") // https:localhost:8081/xml-api/increment/       
+@Path("stats") // https:localhost:8081/xml-api/increment/
 public class UpdateStats {
-    
-    OperationTrackerDBController operationTrackerDBController = new OperationTrackerDBController();
 
+    OperationTrackerDBController operationTrackerDBController = new OperationTrackerDBController();
 
     @PUT
     @Path("/page")
-    public ResponseBuilder incrementGetProducts(){
-        //🐞 This is a Blocking Operation, we need an async function to deal with it
+    public ResponseBuilder incrementGetProducts() {
+        // 🐞 This is a Blocking Operation, we need an async function to deal with it
         try {
             operationTrackerDBController.updateGetProductsStat();
-            
-        } catch (Exception e) {
 
-            // TODO: handle exception
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(500);
         }
         return Response.status(200);
     }
-
 
     @PUT
     @Path("/products")
@@ -38,10 +35,11 @@ public class UpdateStats {
 
         try {
             operationTrackerDBController.updateGetAllProductsStat();
-            
+
         } catch (Exception e) {
 
-            // TODO: handle exception
+            e.printStackTrace();
+            return Response.status(500);
         }
         return Response.status(200);
 
@@ -53,9 +51,10 @@ public class UpdateStats {
 
         try {
             operationTrackerDBController.updateGetProductStat();
-            
-        } catch (Exception e) {
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(500);
         }
         return Response.status(200);
 
@@ -66,10 +65,12 @@ public class UpdateStats {
     public ResponseBuilder incrementSearchCounter() {
 
         try {
-            operationTrackerDBController.updateSearchCounterStat();;
-            
-        } catch (Exception e) {
+            operationTrackerDBController.updateSearchCounterStat();
+            ;
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(500);
         }
         return Response.status(200);
 
@@ -80,10 +81,12 @@ public class UpdateStats {
     public ResponseBuilder incrementSearchByCategoryCounter() {
 
         try {
-            operationTrackerDBController.updateSearchByCategoryStat();;
-            
-        } catch (Exception e) {
+            operationTrackerDBController.updateSearchByCategoryStat();
+            ;
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(500);
         }
         return Response.status(200);
 
@@ -94,10 +97,12 @@ public class UpdateStats {
     public ResponseBuilder incrementGetCategories() {
 
         try {
-            operationTrackerDBController.updateGetCategoriesStat();;
-            
-        } catch (Exception e) {
+            operationTrackerDBController.updateGetCategoriesStat();
+            ;
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(500);
         }
         return Response.status(200);
 
