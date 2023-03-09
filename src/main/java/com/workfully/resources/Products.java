@@ -43,8 +43,6 @@ public class Products {
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
     public String search(@QueryParam("q") String query) throws JSONException {
-
-        System.out.println("Search Q: " + query);
         return rest.getBody("https://dummyjson.com/products/search?q=" + query);
     }
 
