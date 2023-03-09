@@ -14,6 +14,8 @@ public class RestController {
 
     public String getBody(String url) {
 
+        System.out.println("Hello");
+
         final CloseableHttpClient HTTP_CLIENT = HttpClients.createDefault();
         HttpGet request = new HttpGet(url);
 
@@ -31,10 +33,11 @@ public class RestController {
             return contentBody;
 
         } catch (IOException e) {
-
+            System.out.println("HTTP request failed: " + e.getMessage());
             return "HTTP request failed: " + e.getMessage();
         }
     }
+
 
     public String updateStats(String route) {
         final CloseableHttpClient HTTP_CLIENT = HttpClients.createDefault();
