@@ -1,0 +1,5 @@
+org\workfully\view\UpdateStats.class
+org\workfully\controllers\OperationTrackerDBController.class
+org\workfully\http\RestController.class
+org\workfully\view\GetStats.class
+org\workfully\controllers\Test.class
