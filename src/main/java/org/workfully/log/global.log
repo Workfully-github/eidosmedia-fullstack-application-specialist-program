@@ -1,0 +1,14 @@
+Mar 09, 2023 9:58:03 AM org.workfully.log.GlobalLogger init
+INFO: Logger Initialized
+Mar 09, 2023 9:58:03 AM org.workfully.log.GlobalLogger main
+WARNING: Exception
+java.lang.ArithmeticException: / by zero
+	at org.workfully.log.GlobalLogger.main(GlobalLogger.java:30)
+
+Mar 09, 2023 9:58:03 AM org.workfully.log.GlobalLogger main
+WARNING: Exception
+java.lang.ArithmeticException: / by zero
+	at org.workfully.log.GlobalLogger.main(GlobalLogger.java:30)
+
+Mar 09, 2023 9:58:03 AM org.workfully.log.GlobalLogger main
+INFO: Program Ended
