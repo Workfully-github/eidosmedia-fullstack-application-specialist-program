@@ -1,10 +1,5 @@
-0:0:0:0:0:0:0:1 - - [09/Mar/2023:13:07:47 +0100] "GET /dummy-api/webapi/products HTTP/1.1" 404 967 http-bio-8080-exec-1 59
-0:0:0:0:0:0:0:1 - - [09/Mar/2023:13:07:47 +0100] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-3 0
-0:0:0:0:0:0:0:1 - - [09/Mar/2023:13:08:02 +0100] "GET /dummy-api/webapi/products?limit=0&skip=30 HTTP/1.1" 404 967 http-bio-8080-exec-6 2
-0:0:0:0:0:0:0:1 - - [09/Mar/2023:13:08:45 +0100] "GET /dummy-api/webapi/products/?limit=0&skip=30 HTTP/1.1" 404 967 http-bio-8080-exec-7 4
-0:0:0:0:0:0:0:1 - - [09/Mar/2023:13:09:11 +0100] "GET /dummy-api/products/?limit=0&skip=30 HTTP/1.1" 200 40362 http-bio-8080-exec-8 1160
-0:0:0:0:0:0:0:1 - - [09/Mar/2023:13:09:22 +0100] "GET /dummy-api/products/?limit=0&skip=30 HTTP/1.1" 200 40362 http-bio-8080-exec-9 483
-0:0:0:0:0:0:0:1 - - [09/Mar/2023:13:27:17 +0100] "GET /dummy-api/products/?limit=0&skip=30 HTTP/1.1" 200 40362 http-bio-8080-exec-3 607
-0:0:0:0:0:0:0:1 - - [09/Mar/2023:13:27:24 +0100] "GET /dummy-api/products/?limit=0&skip=30 HTTP/1.1" 200 40362 http-bio-8080-exec-3 491
-0:0:0:0:0:0:0:1 - - [09/Mar/2023:13:27:26 +0100] "GET /dummy-api/products/?limit=0&skip=30 HTTP/1.1" 200 40362 http-bio-8080-exec-3 505
-0:0:0:0:0:0:0:1 - - [09/Mar/2023:13:27:28 +0100] "GET /dummy-api/products/?limit=0&skip=30 HTTP/1.1" 200 40362 http-bio-8080-exec-3 477
+0:0:0:0:0:0:0:1 - - [09/Mar/2023:16:36:17 +0100] "GET /dummy-api/products/1 HTTP/1.1" 200 519 http-bio-8080-exec-2 1574
+0:0:0:0:0:0:0:1 - - [09/Mar/2023:16:36:25 +0100] "GET /dummy-api/stats/ HTTP/1.1" 200 168 http-bio-8080-exec-3 39
+0:0:0:0:0:0:0:1 - - [09/Mar/2023:16:48:00 +0100] "GET /dummy-api/stats/ HTTP/1.1" 200 168 http-bio-8080-exec-6 15
+0:0:0:0:0:0:0:1 - - [09/Mar/2023:16:49:08 +0100] "GET /dummy-api/stats/ HTTP/1.1" 200 168 http-bio-8080-exec-9 11
+0:0:0:0:0:0:0:1 - - [09/Mar/2023:16:51:47 +0100] "GET /dummy-api/stats/ HTTP/1.1" 200 169 http-bio-8080-exec-2 12

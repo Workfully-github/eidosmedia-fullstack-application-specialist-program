@@ -1,6 +1,9 @@
+com\workfully\resources\Stats.class
+com\workfully\Controllers\StatsController.class
+com\workfully\resources\Categories.class
 com\workfully\xmlresources\XmlHandler.class
 com\workfully\http\APIController.class
+com\workfully\Models\Stat.class
 com\workfully\resources\Products.class
-com\workfully\resources\Categories.class
 com\workfully\http\RestController.class
 com\workfully\xmlresources\OperationTracker.class
