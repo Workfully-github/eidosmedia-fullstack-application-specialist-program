@@ -36,6 +36,32 @@ public class OperationTrackerDBController {
         }
     }
 
+    public void updateStat(String statProp){
+        try {
+            Document xmlDocument = OperationTrackerDBController.getXmlDB();
+
+            Node elemment = xmlDocument.getElementsByTagName(statProp).item(0);
+            // Node elemment = xmlDocument.getElementsByTagName("pageReaquests").item(0);
+
+            int statPreviousValue = Integer.parseInt(elemment.getTextContent());
+            elemment.setTextContent(Integer.toString(statPreviousValue + 1));
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(xmlDocument);
+            StreamResult result = new StreamResult(new File(OperationTrackerDBController.FILE_PATH));
+            transformer.transform(source, result);
+
+            // For console Output.
+            // 🐞
+            // StreamResult consoleResult = new StreamResult(System.out);
+            // transformer.transform(source, consoleResult);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
 
         // updateGetProductsStat();
@@ -43,159 +69,32 @@ public class OperationTrackerDBController {
     }
 
     public void updateGetProductsStat() {
-        OperationTrackerDBController operationTrackerDBController = new OperationTrackerDBController();
-        try {
-            Document xmlDocument = operationTrackerDBController.getXmlDB();
-
-            Node elemment = xmlDocument.getElementsByTagName("pageReaquests").item(0);
-
-            int statPreviousValue = Integer.parseInt(elemment.getTextContent());
-            elemment.setTextContent(Integer.toString(statPreviousValue + 1));
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(xmlDocument);
-            StreamResult result = new StreamResult(new File(operationTrackerDBController.FILE_PATH));
-            transformer.transform(source, result);
-
-            // For console Output.
-            // 🐞
-            // StreamResult consoleResult = new StreamResult(System.out);
-            // transformer.transform(source, consoleResult);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        updateStat("pageReaquests");
     }
 
     public void updateGetAllProductsStat() {
-        OperationTrackerDBController operationTrackerDBController = new OperationTrackerDBController();
-        try {
-            Document xmlDocument = operationTrackerDBController.getXmlDB();
-
-            Node elemment = xmlDocument.getElementsByTagName("allProductsRequests").item(0);
-
-            int statPreviousValue = Integer.parseInt(elemment.getTextContent());
-            elemment.setTextContent(Integer.toString(statPreviousValue + 1));
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(xmlDocument);
-            StreamResult result = new StreamResult(new File(operationTrackerDBController.FILE_PATH));
-            transformer.transform(source, result);
-
-            // For console Output.
-            // 🐞
-            // StreamResult consoleResult = new StreamResult(System.out);
-            // transformer.transform(source, consoleResult);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        updateStat("allProductsRequests");
+        
     }
 
     public void updateGetProductStat() {
-        OperationTrackerDBController operationTrackerDBController = new OperationTrackerDBController();
-        try {
-            Document xmlDocument = operationTrackerDBController.getXmlDB();
-
-            Node elemment = xmlDocument.getElementsByTagName("productDetailsRequests").item(0);
-
-            int statPreviousValue = Integer.parseInt(elemment.getTextContent());
-            elemment.setTextContent(Integer.toString(statPreviousValue + 1));
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(xmlDocument);
-            StreamResult result = new StreamResult(new File(operationTrackerDBController.FILE_PATH));
-            transformer.transform(source, result);
-
-            // For console Output.
-            // 🐞
-            // StreamResult consoleResult = new StreamResult(System.out);
-            // transformer.transform(source, consoleResult);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        updateStat("productDetailsRequests");
+        
     }
 
     public void updateSearchCounterStat() {
-        OperationTrackerDBController operationTrackerDBController = new OperationTrackerDBController();
-        try {
-            Document xmlDocument = operationTrackerDBController.getXmlDB();
-
-            Node elemment = xmlDocument.getElementsByTagName("searchRequests").item(0);
-
-            int statPreviousValue = Integer.parseInt(elemment.getTextContent());
-            elemment.setTextContent(Integer.toString(statPreviousValue + 1));
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(xmlDocument);
-            StreamResult result = new StreamResult(new File(operationTrackerDBController.FILE_PATH));
-            transformer.transform(source, result);
-
-            // For console Output.
-            // 🐞
-            // StreamResult consoleResult = new StreamResult(System.out);
-            // transformer.transform(source, consoleResult);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        updateStat("searchRequests");
+        
     }
 
     public void updateSearchByCategoryStat() {
-        OperationTrackerDBController operationTrackerDBController = new OperationTrackerDBController();
-        try {
-            Document xmlDocument = operationTrackerDBController.getXmlDB();
-
-            Node elemment = xmlDocument.getElementsByTagName("searchByCategoryRequests").item(0);
-
-            int statPreviousValue = Integer.parseInt(elemment.getTextContent());
-            elemment.setTextContent(Integer.toString(statPreviousValue + 1));
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(xmlDocument);
-            StreamResult result = new StreamResult(new File(operationTrackerDBController.FILE_PATH));
-            transformer.transform(source, result);
-
-            // For console Output.
-            // 🐞
-            // StreamResult consoleResult = new StreamResult(System.out);
-            // transformer.transform(source, consoleResult);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        updateStat("searchByCategoryRequests");
+        
     }
 
     public void updateGetCategoriesStat() {
-        OperationTrackerDBController operationTrackerDBController = new OperationTrackerDBController();
-        try {
-            Document xmlDocument = operationTrackerDBController.getXmlDB();
-
-            Node elemment = xmlDocument.getElementsByTagName("categoriesRequests").item(0);
-
-            int statPreviousValue = Integer.parseInt(elemment.getTextContent());
-            elemment.setTextContent(Integer.toString(statPreviousValue + 1));
-
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(xmlDocument);
-            StreamResult result = new StreamResult(new File(operationTrackerDBController.FILE_PATH));
-            transformer.transform(source, result);
-
-            // For console Output.
-            // 🐞
-            // StreamResult consoleResult = new StreamResult(System.out);
-            // transformer.transform(source, consoleResult);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        updateStat("categoriesRequests");
+        
     }
 
 }

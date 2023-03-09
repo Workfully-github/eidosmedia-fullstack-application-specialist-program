@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><?xml-model href="OperationTrackerDB.xsd"?><stats>
-    <pageReaquests>4</pageReaquests>
-    <allProductsRequests>7</allProductsRequests>
-    <productDetailsRequests>3</productDetailsRequests>
-    <searchRequests>4</searchRequests>
-    <searchByCategoryRequests>3</searchByCategoryRequests>
-    <categoriesRequests>9</categoriesRequests>
-</stats>
-<!-- <stats>
+    <pageReaquests>8</pageReaquests>
+    <allProductsRequests>8</allProductsRequests>
+    <productDetailsRequests>4</productDetailsRequests>
+    <searchRequests>5</searchRequests>
+    <searchByCategoryRequests>5</searchByCategoryRequests>
+    <categoriesRequests>11</categoriesRequests>
+</stats><!-- <stats>
     <productsCounter>15</productsCounter>
     <getAllProductsCounter>3</getAllProductsCounter>
     <productCounter>1</productCounter>
