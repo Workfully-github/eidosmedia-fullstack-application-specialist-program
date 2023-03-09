@@ -8,6 +8,7 @@ import org.workfully.models.Stats;
 public class APIController {
 
     private final String BASE_URL = "http://localhost:8080/dummy-api/products";
+    private final String STATS_URL = "http://localhost:8080/dummy-api/stats";
     private final String ORIGINAL_URL = "https://dummyjson.com/products";
     private final String CATEGORY_FEATURE = "/category";
     private final String CATEGORIES_RESOURCE = "http://localhost:8080/dummy-api/categories";
@@ -45,7 +46,6 @@ public class APIController {
     }
 
     public Stats getStats() {
-
-        return new Stats(new JSONObject());
+        return new Stats(new JSONObject(rest.getBody(this.STATS_URL)));
     }
 }
