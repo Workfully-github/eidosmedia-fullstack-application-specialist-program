@@ -5,12 +5,11 @@ import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.workfully.log.GlobalLogger;
-import org.workfully.resources.UpdateStats;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -19,7 +18,9 @@ import javax.xml.transform.stream.StreamResult;
 
 public class OperationTrackerDBController {
 
+    private static final Logger log = LogManager.getLogger(OperationTrackerDBController.class);
     private static final String FILE_PATH = "src/main/java/org/workfully/database/OperationTrackerDB.xml";
+    private static final String SUCCESS_MESSAGE = "Retrieved XML Successfuly";
 
     public static Document getXmlDB() {
         try {
@@ -31,6 +32,8 @@ public class OperationTrackerDBController {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
             Document document = dBuilder.parse(inputFile);
+
+            log.info(SUCCESS_MESSAGE);
 
             return document;
 
@@ -65,11 +68,11 @@ public class OperationTrackerDBController {
             StreamResult result = new StreamResult(new File(OperationTrackerDBController.FILE_PATH));
             transformer.transform(source, result);
 
-            GlobalLogger.writeLogInfo("UPDATE SUCCESS");
+            log.info(SUCCESS_MESSAGE);
 
         } catch (Exception e) {
             e.printStackTrace();
-            GlobalLogger.writeLogWarning("FAILED TO UPDATE THE STAT", e);
+            log.warn("FAILED TO UPDATE STATUS", e);
         }
     }
 

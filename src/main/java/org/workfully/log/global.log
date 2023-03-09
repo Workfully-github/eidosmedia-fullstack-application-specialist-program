@@ -1,4 +1,0 @@
-Mar 09, 2023 11:44:56 AM org.workfully.log.GlobalLogger <clinit>
-INFO: Logger Initialized
-Mar 09, 2023 11:44:56 AM org.workfully.log.GlobalLogger writeLogInfo
-INFO: UPDATE SUCCESS
