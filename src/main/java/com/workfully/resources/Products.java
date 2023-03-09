@@ -20,45 +20,72 @@ public class Products {
     @Path("")
     @Produces(MediaType.APPLICATION_JSON)
     public String getProducts(@QueryParam("limit") String limit, @QueryParam("skip") String skip) throws JSONException {
-        if (limit != null || skip != null) {
-            return rest.getBody("https://dummyjson.com/products?limit=" + limit + "&skip=" + skip);
+        try {
+            if (limit != null || skip != null) {
+                rest.updateStats("page");
+
+                return rest.getBody("https://dummyjson.com/products?limit=" + limit + "&skip=" + skip);
+            }
+            return rest.getBody("https://dummyjson.com/products");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR: " + e.getMessage();
         }
-
-        // rest.putRequest("https://dummyjson.com/products?limit="");
-
-        // rest.getProducts("new API", ) <---- response XML
-
-        return rest.getBody("https://dummyjson.com/products");
     }
 
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getProduct(@PathParam("id") String id) throws JSONException {
-        System.out.println("This is the Parameter: " + id);
-        return rest.getBody("https://dummyjson.com/products/" + id);
+        try {
+            rest.updateStats("product");
+            return rest.getBody("https://dummyjson.com/products/" + id);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR: " + e.getMessage();
+        }
     }
 
     @GET
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
     public String search(@QueryParam("q") String query) throws JSONException {
+        try {
+            rest.updateStats("search");
+            return rest.getBody("https://dummyjson.com/products/search?q=" + query);
 
-        System.out.println("Search Q: " + query);
-        return rest.getBody("https://dummyjson.com/products/search?q=" + query);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR: " + e.getMessage();
+        }
     }
 
     @GET
     @Path("/category/" + "{category}")
     @Produces(MediaType.APPLICATION_JSON)
     public String searchByCategory(@PathParam("category") String category) throws JSONException {
-        return rest.getBody("https://dummyjson.com/products/category/" + category);
+        try {
+            rest.updateStats("category");
+            return rest.getBody("https://dummyjson.com/products/category/" + category);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR: " + e.getMessage();
+        }
     }
 
     @GET
     @Path("/allproducts")
     @Produces(MediaType.APPLICATION_JSON)
     public String getAllProducts() {
-        return rest.getBody("https://dummyjson.com/products?limit=100");
+        try {
+            rest.updateStats("products");
+            return rest.getBody("https://dummyjson.com/products?limit=100");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR: " + e.getMessage();
+        }
     }
 }

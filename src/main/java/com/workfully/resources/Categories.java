@@ -19,6 +19,13 @@ public class Categories {
     @Path("")
     @Produces(MediaType.APPLICATION_JSON)
     public String categories() throws JSONException {
-        return rest.getBody("https://dummyjson.com/products/categories");
+
+        try {
+            rest.updateStats("categories");
+            return rest.getBody("https://dummyjson.com/products/categories");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR: " + e.getMessage();
+        }
     }
 }

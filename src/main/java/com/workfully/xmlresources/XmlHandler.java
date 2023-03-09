@@ -11,7 +11,7 @@ public class XmlHandler {
 
     public void getXML() {
 
-        JSONObject json = new JSONObject(rest.getBody("https://dummyjson.com/products"));
+        JSONObject json = new JSONObject(rest.getBody("http://localhost:8081/xml-api/stats"));
         String xml = XML.toString(json);
 
         System.out.println(xml);

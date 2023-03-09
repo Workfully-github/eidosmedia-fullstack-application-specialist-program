@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
@@ -33,5 +34,21 @@ public class RestController {
 
             return "HTTP request failed: " + e.getMessage();
         }
+    }
+
+    public String updateStats(String route) {
+        final CloseableHttpClient HTTP_CLIENT = HttpClients.createDefault();
+        HttpPut request = new HttpPut("http://localhost:8081/xml-api/stats/" + route);
+
+
+        try {
+
+            CloseableHttpResponse response = HTTP_CLIENT.execute(request);
+            int statusCode = response.getStatusLine().getStatusCode();
+            return Integer.toString(statusCode);
+        } catch (IOException e) {
+            return "HTTP request failed: " + e.getMessage();
+        }
+
     }
 }
