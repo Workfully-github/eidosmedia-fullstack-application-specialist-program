@@ -1,81 +1,33 @@
-2023-03-10 01:34:07 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:34:07 [org.workfully.controllers.OperationTrackerDBController] TRACE categoriesRequests
-2023-03-10 01:34:07 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:34:08 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:34:08 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
-2023-03-10 01:34:08 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:34:08 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:34:08 [org.workfully.controllers.OperationTrackerDBController] TRACE allProductsRequests
-2023-03-10 01:34:08 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:34:09 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:34:09 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
-2023-03-10 01:34:09 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:34:14 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:34:14 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
-2023-03-10 01:34:14 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:34:16 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:34:16 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
-2023-03-10 01:34:16 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:34:24 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:34:24 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
-2023-03-10 01:34:24 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:34:36 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:34:36 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
-2023-03-10 01:34:36 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:34:45 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:34:45 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
-2023-03-10 01:34:45 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:35:32 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:35:32 [org.workfully.controllers.OperationTrackerDBController] TRACE categoriesRequests
-2023-03-10 01:35:32 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:35:33 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:35:33 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
-2023-03-10 01:35:33 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:35:33 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:35:33 [org.workfully.controllers.OperationTrackerDBController] TRACE allProductsRequests
-2023-03-10 01:35:33 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:35:34 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:35:34 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
-2023-03-10 01:35:34 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:35:38 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:35:38 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
-2023-03-10 01:35:38 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:35:40 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:35:40 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
-2023-03-10 01:35:40 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:35:42 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:35:42 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
-2023-03-10 01:35:42 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:35:44 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:35:44 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
-2023-03-10 01:35:44 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:35:48 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:35:48 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
-2023-03-10 01:35:48 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:35:59 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:35:59 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
-2023-03-10 01:35:59 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:36:05 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:36:05 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
-2023-03-10 01:36:05 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:36:13 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:36:13 [org.workfully.controllers.OperationTrackerDBController] TRACE productDetailsRequests
-2023-03-10 01:36:13 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:36:45 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:36:45 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
-2023-03-10 01:36:45 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:37:02 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:37:02 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
-2023-03-10 01:37:02 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:37:16 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:37:16 [org.workfully.controllers.OperationTrackerDBController] TRACE categoriesRequests
-2023-03-10 01:37:16 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:37:17 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:37:17 [org.workfully.controllers.OperationTrackerDBController] TRACE searchByCategoryRequests
-2023-03-10 01:37:17 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:37:21 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:37:21 [org.workfully.controllers.OperationTrackerDBController] TRACE categoriesRequests
-2023-03-10 01:37:21 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
-2023-03-10 01:37:21 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
-2023-03-10 01:37:21 [org.workfully.controllers.OperationTrackerDBController] TRACE searchByCategoryRequests
-2023-03-10 01:37:21 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:56:59 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:00 [org.workfully.controllers.OperationTrackerDBController] TRACE categoriesRequests
+2023-03-10 10:57:00 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:57:00 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:00 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
+2023-03-10 10:57:00 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:57:01 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:01 [org.workfully.controllers.OperationTrackerDBController] TRACE allProductsRequests
+2023-03-10 10:57:01 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:57:01 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:01 [org.workfully.controllers.OperationTrackerDBController] TRACE searchRequests
+2023-03-10 10:57:01 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:57:09 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:09 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
+2023-03-10 10:57:09 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:57:14 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:14 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
+2023-03-10 10:57:14 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:57:16 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:16 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
+2023-03-10 10:57:16 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:57:18 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:18 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
+2023-03-10 10:57:18 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:57:20 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:20 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
+2023-03-10 10:57:20 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:57:22 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:22 [org.workfully.controllers.OperationTrackerDBController] TRACE pageReaquests
+2023-03-10 10:57:22 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
+2023-03-10 10:57:31 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
+2023-03-10 10:57:31 [org.workfully.controllers.OperationTrackerDBController] TRACE productDetailsRequests
+2023-03-10 10:57:31 [org.workfully.controllers.OperationTrackerDBController] INFO XML Updated Successfuly
