@@ -9,7 +9,6 @@ import org.workfully.models.Stats;
 
 public class StatsController {
 
-
     public JSONObject getStats(Document xmlData) {
         JSONObject jsonData = new JSONObject();
         jsonData.put("stats", new JSONObject());

@@ -14,8 +14,6 @@ public class RestController {
 
     public String getBody(String url) {
 
-        System.out.println("Hello");
-
         final CloseableHttpClient HTTP_CLIENT = HttpClients.createDefault();
         HttpGet request = new HttpGet(url);
 

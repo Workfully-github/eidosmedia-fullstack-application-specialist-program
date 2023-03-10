@@ -14,7 +14,7 @@ public class Categories {
     private RestController rest = new RestController();
 
     @GET
-    @Path("")
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public String categories() throws JSONException {
 

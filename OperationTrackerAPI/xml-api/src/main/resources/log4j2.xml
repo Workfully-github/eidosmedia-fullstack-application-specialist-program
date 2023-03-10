@@ -3,7 +3,7 @@
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout>
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Pattern>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%C] %p %m%n</Pattern>
             </PatternLayout>
         </Console>
 
@@ -14,12 +14,12 @@
         filePattern="src/main/resources/logs/global.%d{MM-dd-yyyy-HH-mm}.%i.log.gz" 
         ignoreExceptions="false">
           <PatternLayout>
-              <Pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Pattern>
+              <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%C] %p %m%n</Pattern>
           </PatternLayout>
           <Policies>
               <OnStartupTriggeringPolicy />
-              <SizeBasedTriggeringPolicy size="5 KB" />
-              <TimeBasedTriggeringPolicy />
+              <SizeBasedTriggeringPolicy size="10 KB" />
+              <TimeBasedTriggeringPolicy interval="5" />
           </Policies>
           <DefaultRolloverStrategy>
               <Delete basePath="${baseDir}" maxDepth="2">

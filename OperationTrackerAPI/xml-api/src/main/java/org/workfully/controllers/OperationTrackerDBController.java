@@ -18,9 +18,10 @@ import javax.xml.transform.stream.StreamResult;
 
 public class OperationTrackerDBController {
 
-    private static final Logger log = LogManager.getLogger(OperationTrackerDBController.class);
+    private static final Logger log = LogManager.getLogger(OperationTrackerDBController.class.getName());
     private static final String FILE_PATH = "src/main/java/org/workfully/database/OperationTrackerDB.xml";
     private static final String SUCCESS_MESSAGE = "Returned XML Successfuly";
+    private static final String SAVED_DOCUMENT = "XML Updated Successfuly";
     private static final String FAIL_MESSAGE = "Failed to return XML";
     private static final String FAILED_UPDATE = "Failed to update status";
 
@@ -43,7 +44,6 @@ public class OperationTrackerDBController {
         try {
             Document xmlDocument = updateAndReturnDocument(statToUpdate);
             saveXMLDocument(xmlDocument);
-            log.info(SUCCESS_MESSAGE);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,6 +62,7 @@ public class OperationTrackerDBController {
             }
         }
 
+        log.trace(statToUpdate);
         return xmlDocument;
     }
 
@@ -73,6 +74,7 @@ public class OperationTrackerDBController {
         try (FileOutputStream outputStream = new FileOutputStream(OperationTrackerDBController.FILE_PATH)) {
             StreamResult result = new StreamResult(outputStream);
             transformer.transform(source, result);
+            log.info(SAVED_DOCUMENT);
         }
     }
 

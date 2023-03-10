@@ -94,7 +94,7 @@ public class NavigationSelectionUtils {
         this.pageIndex++;
         this.pageSelection = this.pageIndex + 1;
         this.skip = this.pageIndex * this.valuesPerPage;
-        return this.BASE_URL + SEARCH_FEATURE + "&limit=" + this.valuesPerPage + "&skip="
+        return this.BASE_URL + "?" + "&limit=" + this.valuesPerPage + "&skip="
                 + this.skip;
     }
 
@@ -102,7 +102,7 @@ public class NavigationSelectionUtils {
         this.pageIndex--;
         this.pageSelection = this.pageIndex + 1;
         this.skip = this.pageIndex * this.valuesPerPage;
-        return this.BASE_URL + SEARCH_FEATURE + "&limit=" + this.valuesPerPage + "&skip="
+        return this.BASE_URL + "?" + "&limit=" + this.valuesPerPage + "&skip="
                 + this.skip;
     }
 
