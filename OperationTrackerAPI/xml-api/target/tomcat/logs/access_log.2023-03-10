@@ -1,6 +1,0 @@
-127.0.0.1 - - [10/Mar/2023:01:02:12 +0100] "GET /xml-api/stats HTTP/1.1" 200 361 http-bio-8081-exec-1 651
-0:0:0:0:0:0:0:1 - - [10/Mar/2023:01:02:17 +0100] "PUT /xml-api/stats/page HTTP/1.1" 200 2 http-bio-8081-exec-4 195
-127.0.0.1 - - [10/Mar/2023:01:02:20 +0100] "GET /xml-api/stats HTTP/1.1" 200 361 http-bio-8081-exec-6 11
-127.0.0.1 - - [10/Mar/2023:01:02:53 +0100] "PUT /xml-api/stats/search HTTP/1.1" 200 2 http-bio-8081-exec-8 12
-127.0.0.1 - - [10/Mar/2023:01:02:53 +0100] "PUT /xml-api/stats/products HTTP/1.1" 200 2 http-bio-8081-exec-10 10
-127.0.0.1 - - [10/Mar/2023:01:02:54 +0100] "PUT /xml-api/stats/search HTTP/1.1" 200 2 http-bio-8081-exec-3 12

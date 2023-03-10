@@ -1,7 +1,0 @@
-org\workfully\resources\Categories.class
-org\workfully\resources\Products.class
-org\workfully\xmlresources\XmlHandler.class
-org\workfully\controllers\StatsController.class
-org\workfully\http\RestController.class
-org\workfully\models\Stats.class
-org\workfully\resources\Stats.class
