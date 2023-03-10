@@ -1,4 +1,4 @@
-package org.workfully.view;
+package org.workfully.http;
 
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
