@@ -71,7 +71,7 @@ public class FilterView extends BasicView {
         ArrayList<Product> stockList = new ArrayList<Product>() {
             {
                 for (Product product : list) {
-                    if (product.getStock() > amount) {
+                    if (product.getStock() >= amount) {
                         add(product);
                     }
                 }

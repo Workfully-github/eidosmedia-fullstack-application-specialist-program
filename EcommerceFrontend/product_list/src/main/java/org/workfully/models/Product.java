@@ -134,17 +134,20 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product: \n" + 
-        "Id: " + id + "\n" +
-        "Title: " + title + "\n" +
-        "Description: " + description + "\n" + 
-        "Price: " + price + "\n" +
-        "DiscountPercentage: " + discountPercentage + "\n" + "Rating: " + rating + "\n" + 
-        "Stock: " + stock + "\n" + 
-        "Brand: " + brand + "\n" + 
-        "Category: " + category + "\n" + 
-        "Thumbnail: " + thumbnail + "\n" + 
-        "Images: " + images + "\n";
+        return "\n -----------------------------------------------------\n" +
+        " | ###Product: \n" +
+        " | Id: " + id + "\n" +
+        " | Title: " + title + "\n" +
+        " | Description: " + description + "\n" +
+        " | Price: " + price + "\n" +
+        " | DiscountPercentage: " + discountPercentage + "\n" +
+        " | Rating: " + rating + "\n" +
+        " | Stock: " + stock + "\n" +
+        " | Brand: " + brand + "\n" +
+        " | Category: " + category + "\n" +
+        " | Thumbnail: " + thumbnail + "\n" +
+        " | Images: " + images + "\n" +
+        " -----------------------------------------------------" ;
     }
 
     public String toSimpleString() {
