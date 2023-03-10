@@ -19,7 +19,7 @@ public class Stats {
         StatsController statsController = new StatsController();
         try {
             Document statsXmlString = new XmlHandler().getXML();
-            JSONObject statsJsonObject = statsController.parseXmlToJson(statsXmlString);
+            JSONObject statsJsonObject = statsController.getStats(statsXmlString);
             return statsJsonObject.toString();
         } catch (Exception e) {
             e.printStackTrace();
