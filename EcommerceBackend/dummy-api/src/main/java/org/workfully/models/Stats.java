@@ -1,6 +1,5 @@
 package org.workfully.models;
 
-import org.json.JSONObject;
 import org.w3c.dom.Document;
 
 public class Stats {
