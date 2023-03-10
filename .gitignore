@@ -82,3 +82,4 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+OperationTrackerAPI/xml-api/src/main/resources/logs/roll-by-time-and-size/global.log
