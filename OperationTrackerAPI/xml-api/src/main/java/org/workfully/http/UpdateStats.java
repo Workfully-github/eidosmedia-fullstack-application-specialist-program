@@ -1,13 +1,20 @@
 package org.workfully.http;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.workfully.controllers.OperationTrackerDBController;
+import org.workfully.model.OperationTracker;
 
 @Path("stats") // https:localhost:8081/xml-api/increment/
 public class UpdateStats {
@@ -96,4 +103,5 @@ public class UpdateStats {
             return Response.status(500);
         }
     }
+
 }

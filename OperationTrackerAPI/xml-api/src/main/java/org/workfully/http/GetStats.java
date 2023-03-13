@@ -52,8 +52,5 @@ public class GetStats {
             File xml = new File("src/main/java/org/workfully/database/OperationTracker.xml");
             return (OperationTracker) jc.createUnmarshaller()
             .unmarshal(new FileReader(xml));
-           /*  Marshaller marshaller = jc.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(ot, System.out); */
     }
 }

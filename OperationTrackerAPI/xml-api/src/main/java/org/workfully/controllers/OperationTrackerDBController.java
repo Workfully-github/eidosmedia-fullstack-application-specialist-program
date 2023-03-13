@@ -2,7 +2,10 @@ package org.workfully.controllers;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+
+import javax.xml.bind.JAXBContext;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.logging.log4j.LogManager;
@@ -10,6 +13,8 @@ import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.workfully.model.OperationTracker;
+
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -24,6 +29,20 @@ public class OperationTrackerDBController {
     private static final String SAVED_DOCUMENT = "XML Updated Successfuly";
     private static final String FAIL_MESSAGE = "Failed to return XML";
     private static final String FAILED_UPDATE = "Failed to update status";
+    private final OperationTracker ot = getOperationTrackerXmlInstance();
+    private final File xmlDB = new File(FILE_PATH);
+
+    private OperationTracker getOperationTrackerXmlInstance() {
+        try {
+
+            JAXBContext jc = JAXBContext.newInstance(OperationTracker.class);
+            return (OperationTracker) jc.createUnmarshaller()
+                    .unmarshal(new FileReader(xmlDB));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public static Document getXmlDB() {
         try {
@@ -40,10 +59,26 @@ public class OperationTrackerDBController {
         }
     }
 
-    public static void updateStat(String statToUpdate) {
+    public void updateStat(String statToUpdate) {
         try {
-            Document xmlDocument = updateAndReturnDocument(statToUpdate);
-            saveXMLDocument(xmlDocument);
+
+            System.out.println("Updating stat...");
+            final String PRODUCTS = "allProductsRequests";
+
+            // Document xmlDocument = updateAndReturnDocument(statToUpdate);
+            switch (statToUpdate) {
+                case PRODUCTS:
+                    ot.setAllProductsRequests(ot.getAllProductsRequests() + 1);
+                    System.out.println(ot.getAllProductsRequests());
+                    System.out.println("saved products");
+                    break;
+
+                default:
+                    System.out.println("NaoTaoTao");
+                    break;
+            }
+
+            // saveXMLDocument(xmlDocument);
 
         } catch (Exception e) {
             e.printStackTrace();
