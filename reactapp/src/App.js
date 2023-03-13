@@ -1,24 +1,11 @@
-import logo from './eidosmedia_logo.jpg';
-import './App.css';
+import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Welcome to Eidosmedia Marketstore.
-        </p>
-        <a
-          className="App-link"
-          href="http://localhost:3000/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Continue
-        </a>
-      </header>
-    </div>
+    <>
+    <Navbar />
+    <h1>Congrats, it's working</h1>
+    </>
   );
 }
 
