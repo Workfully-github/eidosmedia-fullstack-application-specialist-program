@@ -1,10 +1,15 @@
 package org.workfully.http;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.StringWriter;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -14,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.workfully.controllers.OperationTrackerDBController;
+import org.workfully.models.OperationTracker;
 
 @Path("stats")
 public class GetStats {
@@ -22,13 +28,13 @@ public class GetStats {
 
     @GET
     @Produces(MediaType.APPLICATION_XML)
-    public String getProductsCounter() {
+    public OperationTracker getProductsCounter() {
         try {
             log.info("Request */xml-api/stats successeful");
-            return getXMLHasString();
+            return getOperationTrackerXml();
         } catch (Exception e) {
             log.error("Unable to perform [*/xml-api/stats] request: ", e.getMessage());
-            return e.getMessage();
+            return null;
         }
     }
 
@@ -39,5 +45,15 @@ public class GetStats {
         StringWriter writer = new StringWriter();
         transformer.transform(new DOMSource(xmlDocument), new StreamResult(writer));
         return writer.getBuffer().toString();
+    }
+
+    private OperationTracker getOperationTrackerXml() throws FileNotFoundException, JAXBException{
+            JAXBContext jc = JAXBContext.newInstance(OperationTracker.class);
+            File xml = new File("C:/Users/ricardo.mendes/Documents/WorkfullyTraining/ECommerceFullstackApp/OperationTrackerAPI/xml-api/src/main/java/org/workfully/database/OperationTracker.xml");
+            return (OperationTracker) jc.createUnmarshaller()
+            .unmarshal(new FileReader(xml));
+           /*  Marshaller marshaller = jc.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.marshal(ot, System.out); */
     }
 }

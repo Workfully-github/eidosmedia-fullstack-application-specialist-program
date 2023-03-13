@@ -14,7 +14,7 @@ public class XmlHandler {
     public Document getXML() {
 
         try {
-            String statsDataString = rest.getBody("http://localhost:8081/xml-api/stats");
+            String statsDataString = rest.getBody("http://localhost:8081/xml-api/api/stats");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(new InputSource(new StringReader(statsDataString)));

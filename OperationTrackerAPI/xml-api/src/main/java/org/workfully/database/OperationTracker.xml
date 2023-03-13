@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><stats>
-    <stat class="pageRequests">27</stat>
-    <stat class="allProductsRequests">28</stat>
-    <stat class="productDetailsRequests">15</stat>
-    <stat class="searchRequests">87</stat>
-    <stat class="searchByCategoryRequests">26</stat>
-    <stat class="categoriesRequests">60</stat>
-</stats>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<operationTracker>
+    <allProductsRequests>0</allProductsRequests>
+    <categoriesRequests>0</categoriesRequests>
+    <pageRequests>5</pageRequests>
+    <productDetailsRequests>0</productDetailsRequests>
+    <searchByCategoryRequests>0</searchByCategoryRequests>
+    <searchRequests>0</searchRequests>
+</operationTracker>
