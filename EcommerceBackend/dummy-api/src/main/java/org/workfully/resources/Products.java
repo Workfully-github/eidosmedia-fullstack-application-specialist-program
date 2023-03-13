@@ -16,13 +16,11 @@ public class Products {
     private RestController rest = new RestController();
 
     @GET
-    @Path("")
     @Produces(MediaType.APPLICATION_JSON)
     public String getProducts(@QueryParam("limit") String limit, @QueryParam("skip") String skip) throws JSONException {
         try {
             if (limit != null || skip != null) {
                 rest.updateStats("page");
-
                 return rest.getBody("https://dummyjson.com/products?limit=" + limit + "&skip=" + skip);
             }
             return rest.getBody("https://dummyjson.com/products");
@@ -39,7 +37,6 @@ public class Products {
         try {
             rest.updateStats("product");
             return rest.getBody("https://dummyjson.com/products/" + id);
-
         } catch (Exception e) {
             e.printStackTrace();
             return "ERROR: " + e.getMessage();

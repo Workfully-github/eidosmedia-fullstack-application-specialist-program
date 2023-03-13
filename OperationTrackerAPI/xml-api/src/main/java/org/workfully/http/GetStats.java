@@ -19,7 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.workfully.controllers.OperationTrackerDBController;
-import org.workfully.models.OperationTracker;
+import org.workfully.model.OperationTracker;
 
 @Path("stats")
 public class GetStats {
@@ -49,7 +49,7 @@ public class GetStats {
 
     private OperationTracker getOperationTrackerXml() throws FileNotFoundException, JAXBException{
             JAXBContext jc = JAXBContext.newInstance(OperationTracker.class);
-            File xml = new File("C:/Users/ricardo.mendes/Documents/WorkfullyTraining/ECommerceFullstackApp/OperationTrackerAPI/xml-api/src/main/java/org/workfully/database/OperationTracker.xml");
+            File xml = new File("src/main/java/org/workfully/database/OperationTracker.xml");
             return (OperationTracker) jc.createUnmarshaller()
             .unmarshal(new FileReader(xml));
            /*  Marshaller marshaller = jc.createMarshaller();

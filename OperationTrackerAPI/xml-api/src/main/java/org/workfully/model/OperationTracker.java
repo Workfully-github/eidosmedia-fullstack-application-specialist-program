@@ -1,4 +1,4 @@
-package org.workfully.models;
+package org.workfully.model;
 
 import javax.xml.bind.annotation.*;
 

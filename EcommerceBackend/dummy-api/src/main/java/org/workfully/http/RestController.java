@@ -36,14 +36,12 @@ public class RestController {
         }
     }
 
-
     public String updateStats(String route) {
         final CloseableHttpClient HTTP_CLIENT = HttpClients.createDefault();
         HttpPut request = new HttpPut("http://localhost:8081/xml-api/api/stats/" + route);
 
 
         try {
-
             CloseableHttpResponse response = HTTP_CLIENT.execute(request);
             int statusCode = response.getStatusLine().getStatusCode();
             return Integer.toString(statusCode);

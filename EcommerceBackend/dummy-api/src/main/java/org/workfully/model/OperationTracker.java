@@ -1,23 +1,31 @@
-package org.workfully.models;
+package org.workfully.model;
 
-import org.w3c.dom.Document;
+import javax.xml.bind.annotation.*;
 
-public class Stats {
-    
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "operationTracker")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class OperationTracker {
+
     private int pageRequests;
     private int allProductsRequests;
     private int productDetailsRequests;
     private int searchRequests;
     private int searchByCategoryRequests;
     private int categoriesRequests;
+       
+    public OperationTracker() {
+    }
 
-    public Stats(Document xmlStatsData) {
-        this.pageRequests =Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(0).getTextContent());
-        this.allProductsRequests = Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(1).getTextContent());
-        this.productDetailsRequests = Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(2).getTextContent());
-        this.searchRequests = Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(3).getTextContent());
-        this.searchByCategoryRequests = Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(4).getTextContent());
-        this.categoriesRequests = Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(5).getTextContent());
+    public OperationTracker(int pageRequests, int allProductsRequests, int productDetailsRequests, int searchRequests,
+            int searchByCategoryRequests, int categoriesRequests) {
+        this.pageRequests = pageRequests;
+        this.allProductsRequests = allProductsRequests;
+        this.productDetailsRequests = productDetailsRequests;
+        this.searchRequests = searchRequests;
+        this.searchByCategoryRequests = searchByCategoryRequests;
+        this.categoriesRequests = categoriesRequests;
     }
 
     public int getPageRequests() {
@@ -67,6 +75,5 @@ public class Stats {
     public void setCategoriesRequests(int categoriesRequests) {
         this.categoriesRequests = categoriesRequests;
     }
-
     
 }
