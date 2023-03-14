@@ -32,7 +32,7 @@ public class Products {
     }
 
     @GET
-    @Path("{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public String getProduct(@PathParam("id") int id) throws JSONException {
         try {
