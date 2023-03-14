@@ -1,0 +1,43 @@
+.cardContainer {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    outline: 1px solid rgba(0,0,0,.205);
+    outline-offset: -1px;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.cardContainer:hover{
+    /* outline: 1px solid rgba(0, 0, 0, 0.504); */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+.cardContainer:hover .productTitle, .cardContainer:hover .price {
+    text-decoration: underline;
+}
+
+.thumbnailContainer{
+    overflow: hidden;
+    width: 100%;
+    height: 350px;
+}
+
+.thumbnail {
+    object-fit: cover;
+    object-position: center;
+    height: 100%;
+    width: 100%;
+}
+
+.cardFooter{
+    /* -webkit-box-shadow: 0px -29px 20px 15px rgba(255,255,255,1);
+    -moz-box-shadow: 0px -29px 20px 15px rgba(255,255,255,1);
+    box-shadow: 0px -29px 20px 15px rgba(255,255,255,1); */
+    box-sizing: border-box;
+    padding: 10px;
+}

@@ -4,7 +4,7 @@ import styles from './Navbar.module.css'
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
-      <div className={styles.container}>
+      <div className="container">
         <div className={styles.navbarContainer}>
           <span className={styles.logo}>EIDOSTORE</span>
           <span className={styles.cart}>
