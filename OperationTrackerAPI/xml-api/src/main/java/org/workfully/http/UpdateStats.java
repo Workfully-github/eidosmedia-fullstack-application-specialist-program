@@ -18,8 +18,10 @@ public class UpdateStats {
     public Response incrementpageRequests() {
         try {
             otc.incrementPageRequests();
+            log.info("incrementpageRequests successeful");
             return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
+            log.error("incrementpageRequests error ", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -29,8 +31,10 @@ public class UpdateStats {
     public Response incrementAllProductsRequests() {
         try {
             otc.incrementAllProductsRequests();
+            log.info("incrementAllProductsRequests successeful");
             return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
+            log.error("incrementAllProductsRequests error ", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -40,8 +44,10 @@ public class UpdateStats {
     public Response incrementProductDetailRequests() {
         try {
             otc.incrementProductDetailsRequests();
+            log.info("incrementProductDetailRequests successeful");
             return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
+            log.error("incrementProductDetailRequests error ",  e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -51,8 +57,10 @@ public class UpdateStats {
     public Response incrementSearchRequests() {
         try {
             otc.incrementSearchRequests();
+            log.info("incrementSearchRequests successeful");
             return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
+            log.error("incrementSearchRequests error ",  e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -62,8 +70,10 @@ public class UpdateStats {
     public Response incrementSearchByCategoryRequests() {
         try {
             otc.incrementSearchByCategoryRequests();
+            log.info("incrementSearchByCategoryRequests successeful");
             return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
+            log.error("incrementSearchByCategoryRequests error ", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -73,8 +83,10 @@ public class UpdateStats {
     public Response incrementCategoriesRequests() {
         try {
             otc.incrementCategoriesRequests();
+            log.info("incrementCategoriesRequests successeful");
             return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
+            log.error("incrementCategoriesRequests error ", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }

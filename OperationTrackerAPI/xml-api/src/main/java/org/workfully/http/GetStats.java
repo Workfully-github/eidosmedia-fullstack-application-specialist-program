@@ -22,10 +22,10 @@ public class GetStats {
     @Produces(MediaType.APPLICATION_XML)
     public OperationTracker getProductsCounter() {
         try {
-            log.info("Request */xml-api/stats successeful");
+            log.info("./xml-api/api/stats successeful");
             return getOperationTrackerXml();
         } catch (Exception e) {
-            log.error("Unable to perform [*/xml-api/stats] request: ", e.getMessage());
+            log.error("Unable to perform ./xml-api/api/stats", e.getMessage());
             return null;
         }
     }
