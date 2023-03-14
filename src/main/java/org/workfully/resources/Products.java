@@ -20,24 +20,14 @@ public class Products {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProducts(@QueryParam("limit") int limit, @QueryParam("skip") int skip) throws JSONException {
         try {
-            if (limit == 0) {
-                rest.updateStats("page");
-                return Response.ok()
-                .entity(rest.getBody("https://dummyjson.com/products?limit=" + 30 + "&skip=" + skip))
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Methods", "GET")
-                .allow("OPTIONS").build();
-            }
-
+            String request = "https://dummyjson.com/products?limit=" + (limit == 0 ? 30 : limit) + "&skip=" + skip;
             rest.updateStats("page");
-
             return Response.ok()
-                .entity(rest.getBody("https://dummyjson.com/products?limit=" + limit + "&skip=" + skip))
-                .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Methods", "GET")
-                .allow("OPTIONS").build();
+                    .entity(rest.getBody(request))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "GET")
+                    .allow("OPTIONS").build();
         } catch (Exception e) {
-            e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -45,7 +35,7 @@ public class Products {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getProduct(@PathParam("id") int id) throws JSONException {
+    public Response getProduct(@PathParam("id") int id) throws JSONException {
         try {
             rest.updateStats("productDetail");
             return rest.getBody("https://dummyjson.com/products/" + id);
