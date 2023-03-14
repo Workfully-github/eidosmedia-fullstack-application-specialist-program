@@ -6,6 +6,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.json.JSONException;
 import org.workfully.http.RestController;
@@ -17,17 +18,27 @@ public class Products {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getProducts(@QueryParam("limit") int limit, @QueryParam("skip") int skip) throws JSONException {
+    public Response getProducts(@QueryParam("limit") int limit, @QueryParam("skip") int skip) throws JSONException {
         try {
             if (limit == 0) {
                 rest.updateStats("page");
-                return rest.getBody("https://dummyjson.com/products?limit=" + 30 + "&skip=" + skip);
+                return Response.ok()
+                .entity(rest.getBody("https://dummyjson.com/products?limit=" + 30 + "&skip=" + skip))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET")
+                .allow("OPTIONS").build();
             }
+
             rest.updateStats("page");
-            return rest.getBody("https://dummyjson.com/products?limit=" + limit + "&skip=" + skip);
+
+            return Response.ok()
+                .entity(rest.getBody("https://dummyjson.com/products?limit=" + limit + "&skip=" + skip))
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Methods", "GET")
+                .allow("OPTIONS").build();
         } catch (Exception e) {
             e.printStackTrace();
-            return "ERROR: " + e.getMessage();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 
