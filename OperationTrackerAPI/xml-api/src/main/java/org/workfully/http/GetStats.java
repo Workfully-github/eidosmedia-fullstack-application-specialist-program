@@ -30,10 +30,10 @@ public class GetStats {
         }
     }
 
-    private OperationTracker getOperationTrackerXml() throws FileNotFoundException, JAXBException{
-            JAXBContext jc = JAXBContext.newInstance(OperationTracker.class);
-            File xml = new File("src/main/java/org/workfully/database/OperationTracker.xml");
-            return (OperationTracker) jc.createUnmarshaller()
-            .unmarshal(new FileReader(xml));
+    private OperationTracker getOperationTrackerXml() throws FileNotFoundException, JAXBException {
+        JAXBContext jc = JAXBContext.newInstance(OperationTracker.class);
+        File xml = new File("src/main/java/org/workfully/database/OperationTracker.xml");
+        return (OperationTracker) jc.createUnmarshaller()
+                .unmarshal(new FileReader(xml));
     }
 }

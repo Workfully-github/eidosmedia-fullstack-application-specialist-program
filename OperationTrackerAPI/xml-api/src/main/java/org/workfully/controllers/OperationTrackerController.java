@@ -17,7 +17,8 @@ public class OperationTrackerController {
     private static OperationTracker ot;
 
     /**
-     * Updates model with {@link src/main/java/org/workfully/database/OperationTracker.xml}
+     * Updates model with
+     * {@link src/main/java/org/workfully/database/OperationTracker.xml}
      */
     public OperationTrackerController() {
         try {

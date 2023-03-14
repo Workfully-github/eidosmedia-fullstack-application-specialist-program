@@ -47,7 +47,7 @@ public class UpdateStats {
             log.info("incrementProductDetailRequests successeful");
             return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
-            log.error("incrementProductDetailRequests error ",  e.getMessage());
+            log.error("incrementProductDetailRequests error ", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
@@ -60,7 +60,7 @@ public class UpdateStats {
             log.info("incrementSearchRequests successeful");
             return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
-            log.error("incrementSearchRequests error ",  e.getMessage());
+            log.error("incrementSearchRequests error ", e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }

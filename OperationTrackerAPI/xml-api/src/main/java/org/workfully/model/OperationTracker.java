@@ -12,7 +12,7 @@ public class OperationTracker {
     private int searchRequests;
     private int searchByCategoryRequests;
     private int categoriesRequests;
-       
+
     public int getPageRequests() {
         return pageRequests;
     }
