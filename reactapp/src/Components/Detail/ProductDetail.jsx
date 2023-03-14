@@ -1,32 +1,33 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios';
 import { useParams } from "react-router-dom";
+import { ProductCall } from '../../ApiCall/ProductCall';
 
 function ProductDetail() {
+
+    const BASE_URL = 'https://dummyjson.com/products/';
 
     const [product, setProduct] = useState(null);
 
     const { id } = useParams();
 
-    const getProduct = async () => {
-        try {
-            const response = await axios.get(`http://localhost:8080/dummy-api/products/${1}`);
-            
-            setProduct(response.data);
-            console.log(response.data);
-        } catch (error) {
-            console.log(error);
-        }
+    const getProductDetail = async (id) => {
+        const data = await ProductCall.get(BASE_URL + `${id}`);
+        return data;
     }
 
     useEffect(() => {
-        getProduct();
+        getProductDetail(id).then((res) => {
+            console.log(res);
+            setProduct(res);
+        });
     }, [])
     
 
   return (
     <div>
         <h2>info on product</h2>
+        {product && <h3>{product.id}</h3>}
+        {product && <h3>{product.title}</h3>}
     </div>
   )
 }
