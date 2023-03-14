@@ -1,17 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import Card from '../Card/Card'
 import styles from './Cards.module.css'
+import SkeletonCard from '../Card/SkeletonCard'
 const Cards = () => {
+
+  const [productList, setProductList] = useState(null);
+  const getProductList = async () => {
+    const response = await axios.get("https://dummyjson.com/products");
+    setProductList(response.data.products);
+  }
+
+  const skeletonArr = ["I am", "gonna", "impliment", "this", "skeleton", "loader", "later", "in", "another", "way", "trust", "me"];
+
+  useEffect(() => {
+    getProductList();
+  }, [])
+
   return (
     <>
       <div className="container">
         <div className={styles.cardsContainer}>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          {productList ?
+          productList?.map((product, index) => (
+            <Card key={product.id} cardDetail={product} />
+          )) :
+          skeletonArr.map((skeleton)=>(
+            <SkeletonCard />
+
+          ))
+        }
         </div>
       </div>
     </>
