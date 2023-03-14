@@ -38,7 +38,7 @@ public class RestController {
 
     public String updateProducts(String route) {
         final CloseableHttpClient HTTP_CLIENT = HttpClients.createDefault();
-        HttpPut request = new HttpPut("http://localhost:8081/xml-api/api/stats/increment/" + route);
+        HttpPut request = new HttpPut("https://optracker.herokuapp.com/api/stats/increment/" + route);
         try {
             CloseableHttpResponse response = HTTP_CLIENT.execute(request);
             int statusCode = response.getStatusLine().getStatusCode();
@@ -50,7 +50,7 @@ public class RestController {
 
     public String updateStats(String route) {
         final CloseableHttpClient HTTP_CLIENT = HttpClients.createDefault();
-        HttpPut request = new HttpPut("http://localhost:8081/xml-api/api/stats/increment/" + route);
+        HttpPut request = new HttpPut("https://optracker.herokuapp.com/api/stats/increment/" + route);
         try {
             CloseableHttpResponse response = HTTP_CLIENT.execute(request);
             int statusCode = response.getStatusLine().getStatusCode();
