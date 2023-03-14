@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 
-import "./SearchComponent.css";
+import styles from "./SearchComponent.module.css";
 
 export default function SearchComponent(props) {
     const {val} = props
     const [search, setSearch] = useState(val);
 
-    const searchProduct = () => {
+    const searchProduct = (e) => {
             // we will call a other react path that will open the home page with the search value in the url
             //redirect path to /home/:search
-            window.location.replace('http://localhost:8000/home/:' + search)
+            e.preventDefault();
+            window.location.replace('http://localhost:3000/search/' + search)
     }
       return (
         <div>
-            <input type="text" className='search' value={search} onChange={(e) => setSearch(e.target.value)} />
-            <button onClick={() => searchProduct()}>Search</button>
+          <form onSubmit={(e) => searchProduct(e)} className={styles.searchForm}>
+
+            <input type="text" className={styles.searchInput} value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search..." required/>
+            <button className={styles.searchButton} type='submit'>Search</button>
+          </form>
         </div>
 
     );

@@ -3,11 +3,13 @@ import axios from 'axios'
 import Card from '../Card/Card'
 import styles from './Cards.module.css'
 import SkeletonCard from '../Card/SkeletonCard'
-const Cards = () => {
+const Cards = (props) => {
 
   const [productList, setProductList] = useState(null);
+  
   const getProductList = async () => {
-    const response = await axios.get("https://dummyjson.com/products");
+    const url = props.searchQuery ? "https://dummyjson.com/products/search?q=" + props.searchQuery : "https://eidos-api.herokuapp.com/products"
+    const response = await axios.get(url);
     setProductList(response.data.products);
   }
 
