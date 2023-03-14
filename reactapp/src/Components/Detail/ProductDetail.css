@@ -1,6 +1,8 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Arial, Verdana, sans-serif;
+    background-color: lightgray;
 }
 
 .profile-image {
@@ -26,4 +28,30 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.display-id-brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-info {
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+}
+
+.description-section {
+    text-align: center;
+}
+
+b {
+    font-size: large;
+    font-weight: 800;
+}
+
+#description-letter {
+    color: grey
 }

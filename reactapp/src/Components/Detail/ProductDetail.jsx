@@ -24,22 +24,33 @@ function ProductDetail() {
 
   return (
     <div>
-      <h2>info on product</h2>
       <section className="header-section">
-        <div>
-          {product && (<img src={product.thumbnail} alt="cover pic" className="profile-image" />)}
+        <div className="product-info">
+        {product && (<img src={product.thumbnail} alt="cover pic" className="profile-image" />)}
+          {product && <h3><b>{product.title}</b></h3>}
+          <div>
+           {/*  {product && <h4><b>About this product:</b></h4>} */}
+            {product && <p id="description-letter">{product.description}</p>}
         </div>
-        <div>
-          {product && <h3>{product.id}</h3>}
-          {product && <h3>{product.title}</h3>}
+          <div className="display-id-brand">
+            {product && <h4>ID: {product.id}</h4>}
+            {product && <h4>Brand: {product.brand}</h4>}
+          </div>
           <div className="display-price-rating">
             {product && <h3>{product.price}$</h3>}
-            {product && <h3>rating: {product.rating}</h3>}
+            {product && <h4>{product.discountPercentage}%</h4>}
+            {product && <h4>Rating: {product.rating}</h4>}
           </div>
           <div className="display-discount-products">
-            {product && <h3>{product.discountPercentage}%</h3>}
-            {product && <h3>{product.stock} products</h3>}
+            {product && <h4>{product.stock} products left</h4>}
+            {product && <h5>Category: {product.category}</h5>}
           </div>
+        </div>
+      </section>
+      <section className="description-section">
+        <div>
+            {product && <h4><b>About this product:</b></h4>}
+            {product && <h4>{product.description}</h4>}
         </div>
       </section>
     </div>
