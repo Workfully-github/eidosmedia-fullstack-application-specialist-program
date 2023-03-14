@@ -35,7 +35,7 @@ public class Products {
     @Produces(MediaType.APPLICATION_JSON)
     public String getProduct(@PathParam("id") String id) throws JSONException {
         try {
-            rest.updateStats("product");
+            rest.updateStats("productDetail");
             return rest.getBody("https://dummyjson.com/products/" + id);
         } catch (Exception e) {
             e.printStackTrace();
