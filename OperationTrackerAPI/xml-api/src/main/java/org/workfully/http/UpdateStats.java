@@ -1,107 +1,81 @@
 package org.workfully.http;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.workfully.controllers.OperationTrackerDBController;
-import org.workfully.model.OperationTracker;
+import org.workfully.controllers.OperationTrackerController;
 
-@Path("stats") // https:localhost:8081/xml-api/increment/
+@Path("stats/increment")
 public class UpdateStats {
 
-    private OperationTrackerDBController operationTrackerDBController = new OperationTrackerDBController();
     private Logger log = LogManager.getLogger(UpdateStats.class.getName());
-    private final String INCREMENTATION_FAILED = "Incrementation Failed";
+    private OperationTrackerController otc = new OperationTrackerController();
 
     @PUT
     @Path("/page")
-    public ResponseBuilder incrementGetProducts() {
-        // 🐞 This is a Blocking Operation, we need an async function to deal with it
+    public Response incrementpageRequests() {
         try {
-            operationTrackerDBController.updateGetProductsStat();
-
+            otc.incrementPageRequests();
+            return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
-            e.printStackTrace();
-            log.warn(INCREMENTATION_FAILED);
-            return Response.status(500);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
-        return Response.status(200);
     }
 
     @PUT
     @Path("/products")
-    public ResponseBuilder incrementGetAllProducts() {
+    public Response incrementAllProductsRequests() {
         try {
-            operationTrackerDBController.updateGetAllProductsStat();
-            return Response.status(200);
+            otc.incrementAllProductsRequests();
+            return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
-            e.printStackTrace();
-            log.warn(INCREMENTATION_FAILED);
-            return Response.status(500);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 
     @PUT
-    @Path("/product")
-    public ResponseBuilder incrementGetProduct() {
+    @Path("/productDetail")
+    public Response incrementProductDetailRequests() {
         try {
-            operationTrackerDBController.updateGetProductStat();
-            return Response.status(200);
-
+            otc.incrementProductDetailsRequests();
+            return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
-            e.printStackTrace();
-            log.warn(INCREMENTATION_FAILED);
-            return Response.status(500);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 
     @PUT
     @Path("/search")
-    public ResponseBuilder incrementSearchCounter() {
+    public Response incrementSearchRequests() {
         try {
-            operationTrackerDBController.updateSearchCounterStat();
-            return Response.status(200);
+            otc.incrementSearchRequests();
+            return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
-            e.printStackTrace();
-            log.warn(INCREMENTATION_FAILED);
-            return Response.status(500);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 
     @PUT
     @Path("/category")
-    public ResponseBuilder incrementSearchByCategoryCounter() {
+    public Response incrementSearchByCategoryRequests() {
         try {
-            operationTrackerDBController.updateSearchByCategoryStat();
-            return Response.status(200);
+            otc.incrementSearchByCategoryRequests();
+            return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
-            e.printStackTrace();
-            log.warn(INCREMENTATION_FAILED);
-            return Response.status(500);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 
     @PUT
     @Path("/categories")
-    public ResponseBuilder incrementGetCategories() {
+    public Response incrementCategoriesRequests() {
         try {
-            operationTrackerDBController.updateGetCategoriesStat();
-            return Response.status(200);
+            otc.incrementCategoriesRequests();
+            return Response.accepted(Response.Status.ACCEPTED).build();
         } catch (Exception e) {
-            e.printStackTrace();
-            log.warn(INCREMENTATION_FAILED);
-            return Response.status(500);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
-
 }

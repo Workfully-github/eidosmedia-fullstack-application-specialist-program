@@ -13,19 +13,6 @@ public class OperationTracker {
     private int searchByCategoryRequests;
     private int categoriesRequests;
        
-    public OperationTracker() {
-    }
-
-    public OperationTracker(int pageRequests, int allProductsRequests, int productDetailsRequests, int searchRequests,
-            int searchByCategoryRequests, int categoriesRequests) {
-        this.pageRequests = pageRequests;
-        this.allProductsRequests = allProductsRequests;
-        this.productDetailsRequests = productDetailsRequests;
-        this.searchRequests = searchRequests;
-        this.searchByCategoryRequests = searchByCategoryRequests;
-        this.categoriesRequests = categoriesRequests;
-    }
-
     public int getPageRequests() {
         return pageRequests;
     }
@@ -73,5 +60,28 @@ public class OperationTracker {
     public void setCategoriesRequests(int categoriesRequests) {
         this.categoriesRequests = categoriesRequests;
     }
-    
+
+    public void incrementPageRequests() {
+        this.pageRequests++;
+    }
+
+    public void incrementAllProductsRequests() {
+        this.allProductsRequests++;
+    }
+
+    public void incrementProductDetailsRequests() {
+        this.productDetailsRequests++;
+    }
+
+    public void incrementSearchRequests() {
+        this.searchRequests++;
+    }
+
+    public void incrementSearchByCategoryRequests() {
+        this.searchByCategoryRequests++;
+    }
+
+    public void incrementCategoriesRequests() {
+        this.categoriesRequests++;
+    }
 }

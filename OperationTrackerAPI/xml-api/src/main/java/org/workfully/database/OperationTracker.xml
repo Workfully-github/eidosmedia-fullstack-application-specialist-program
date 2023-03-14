@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <operationTracker>
-    <allProductsRequests>0</allProductsRequests>
-    <categoriesRequests>0</categoriesRequests>
-    <pageRequests>5</pageRequests>
+    <pageRequests>22</pageRequests>
+    <allProductsRequests>4</allProductsRequests>
     <productDetailsRequests>0</productDetailsRequests>
-    <searchByCategoryRequests>0</searchByCategoryRequests>
     <searchRequests>0</searchRequests>
+    <searchByCategoryRequests>0</searchByCategoryRequests>
+    <categoriesRequests>0</categoriesRequests>
 </operationTracker>
