@@ -17,13 +17,14 @@ public class Products {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getProducts(@QueryParam("limit") String limit, @QueryParam("skip") String skip) throws JSONException {
+    public String getProducts(@QueryParam("limit") int limit, @QueryParam("skip") int skip) throws JSONException {
         try {
-            if (limit != null || skip != null) {
+            if (limit == 0) {
                 rest.updateStats("page");
-                return rest.getBody("https://dummyjson.com/products?limit=" + limit + "&skip=" + skip);
+                return rest.getBody("https://dummyjson.com/products?limit=" + 30 + "&skip=" + skip);
             }
-            return rest.getBody("https://dummyjson.com/products");
+            rest.updateStats("page");
+            return rest.getBody("https://dummyjson.com/products?limit=" + limit + "&skip=" + skip);
         } catch (Exception e) {
             e.printStackTrace();
             return "ERROR: " + e.getMessage();
@@ -33,7 +34,7 @@ public class Products {
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getProduct(@PathParam("id") String id) throws JSONException {
+    public String getProduct(@PathParam("id") int id) throws JSONException {
         try {
             rest.updateStats("productDetail");
             return rest.getBody("https://dummyjson.com/products/" + id);

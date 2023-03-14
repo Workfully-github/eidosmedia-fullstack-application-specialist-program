@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <operationTracker>
-    <pageRequests>22</pageRequests>
-    <allProductsRequests>4</allProductsRequests>
-    <productDetailsRequests>0</productDetailsRequests>
+    <pageRequests>28</pageRequests>
+    <allProductsRequests>6</allProductsRequests>
+    <productDetailsRequests>21</productDetailsRequests>
     <searchRequests>0</searchRequests>
     <searchByCategoryRequests>0</searchByCategoryRequests>
     <categoriesRequests>0</categoriesRequests>
