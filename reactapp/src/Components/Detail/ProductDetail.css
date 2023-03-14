@@ -2,3 +2,28 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.profile-image {
+    display: flex;
+    justify-content: center;
+    height: 50vh;
+    width: 50vw;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.display-price-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.display-discount-products {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
