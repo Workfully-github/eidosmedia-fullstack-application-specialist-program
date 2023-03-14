@@ -3,7 +3,7 @@ package org.workfully.controllers;
 
 import org.json.JSONObject;
 import org.w3c.dom.Document;
-import org.workfully.models.Stats;
+import org.workfully.model.OperationTracker;
 
 // import org.workfully.Models.Stats;
 
@@ -13,14 +13,16 @@ public class StatsController {
         JSONObject jsonData = new JSONObject();
         jsonData.put("stats", new JSONObject());
 
-        Stats stats = new Stats(xmlData);
+        OperationTracker ot = new OperationTracker();
 
-        jsonData.getJSONObject("stats").put("pageRequests", stats.getPageRequests());
-        jsonData.getJSONObject("stats").put("allProductsRequests", stats.getAllProductsRequests());
-        jsonData.getJSONObject("stats").put("productDetailsRequests", stats.getProductDetailsRequests());
-        jsonData.getJSONObject("stats").put("searchRequests", stats.getSearchRequests());
-        jsonData.getJSONObject("stats").put("searchByCategoryRequests", stats.getSearchByCategoryRequests());
-        jsonData.getJSONObject("stats").put("categoriesRequests", stats.getCategoriesRequests());
+        
+
+        jsonData.getJSONObject("stats").put("pageRequests", ot.getPageRequests());
+        jsonData.getJSONObject("stats").put("allProductsRequests", ot.getAllProductsRequests());
+        jsonData.getJSONObject("stats").put("productDetailsRequests", ot.getProductDetailsRequests());
+        jsonData.getJSONObject("stats").put("searchRequests", ot.getSearchRequests());
+        jsonData.getJSONObject("stats").put("searchByCategoryRequests", ot.getSearchByCategoryRequests());
+        jsonData.getJSONObject("stats").put("categoriesRequests", ot.getCategoriesRequests());
 
        
         return jsonData;

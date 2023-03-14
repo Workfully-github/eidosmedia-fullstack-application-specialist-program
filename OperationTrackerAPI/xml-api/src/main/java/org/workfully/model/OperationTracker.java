@@ -1,24 +1,17 @@
-package org.workfully.models;
+package org.workfully.model;
 
-import org.w3c.dom.Document;
+import javax.xml.bind.annotation.*;
 
-public class Stats {
-    
+@XmlRootElement(name = "operationTracker")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class OperationTracker {
+
     private int pageRequests;
     private int allProductsRequests;
     private int productDetailsRequests;
     private int searchRequests;
     private int searchByCategoryRequests;
     private int categoriesRequests;
-
-    public Stats(Document xmlStatsData) {
-        this.pageRequests =Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(0).getTextContent());
-        this.allProductsRequests = Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(1).getTextContent());
-        this.productDetailsRequests = Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(2).getTextContent());
-        this.searchRequests = Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(3).getTextContent());
-        this.searchByCategoryRequests = Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(4).getTextContent());
-        this.categoriesRequests = Integer.parseInt(xmlStatsData.getElementsByTagName("stat").item(5).getTextContent());
-    }
 
     public int getPageRequests() {
         return pageRequests;
@@ -68,5 +61,27 @@ public class Stats {
         this.categoriesRequests = categoriesRequests;
     }
 
-    
+    public void incrementPageRequests() {
+        this.pageRequests++;
+    }
+
+    public void incrementAllProductsRequests() {
+        this.allProductsRequests++;
+    }
+
+    public void incrementProductDetailsRequests() {
+        this.productDetailsRequests++;
+    }
+
+    public void incrementSearchRequests() {
+        this.searchRequests++;
+    }
+
+    public void incrementSearchByCategoryRequests() {
+        this.searchByCategoryRequests++;
+    }
+
+    public void incrementCategoriesRequests() {
+        this.categoriesRequests++;
+    }
 }

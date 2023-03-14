@@ -1,0 +1,2 @@
+2023-03-13 01:42:14 [org.workfully.http.GetStats] INFO Request */xml-api/stats successeful
+2023-03-13 01:42:14 [org.workfully.controllers.OperationTrackerDBController] INFO Returned XML Successfuly
