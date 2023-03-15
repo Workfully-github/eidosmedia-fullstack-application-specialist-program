@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { Route, Routes, Switch } from 'react-router-dom';
 import './App.css';  
@@ -7,7 +8,7 @@ import ProductDetails from './Components/ProductDetails/ProductDetails';
 class App extends Component {         
   render() {         
     return (         
-        <div className="App">             
+        <div className="App">     
           <div className="App-content">              
             <Routes>                       
               <Route  path="/" element={<Home />}/>                     
