@@ -20,9 +20,10 @@ public class Products {
     public Response getProducts(@QueryParam("limit") int limit, @QueryParam("skip") int skip) throws JSONException {
         try {
             String request = "https://dummyjson.com/products?limit=" + (limit == 0 ? 30 : limit) + "&skip=" + skip;
+            String response = rest.getBody(request).getEntity().toString(); 
             rest.updateStats("page");
             return Response.ok()
-                    .entity(rest.getBody(request))
+                    .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
                     .allow("GET").build();
@@ -38,8 +39,9 @@ public class Products {
         try {
             rest.updateStats("productDetail");
             String request = "https://dummyjson.com/products/" + id;
+            String response = rest.getBody(request).getEntity().toString(); 
             return Response.ok()
-                    .entity(rest.getBody(request))
+                    .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
                     .allow("GET").build();
@@ -54,9 +56,10 @@ public class Products {
     public Response search(@QueryParam("q") String query) throws JSONException {
         try {
             String request = "https://dummyjson.com/products/search?q=" + query;
+            String response = rest.getBody(request).getEntity().toString();
             rest.updateStats("search");
             return Response.ok()
-                    .entity(rest.getBody(request))
+                    .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
                     .allow("GET").build();
@@ -71,9 +74,10 @@ public class Products {
     public Response searchByCategory(@PathParam("category") String category) throws JSONException {
         try {
             String request = "https://dummyjson.com/products/category/" + category;
+            String response = rest.getBody(request).getEntity().toString();
             rest.updateStats("category");
             return Response.ok()
-                    .entity(rest.getBody(request))
+                    .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
                     .allow("GET").build();
@@ -88,9 +92,10 @@ public class Products {
     public Response getAllProducts() {
         try {
             String request = "https://dummyjson.com/products?limit=100";
+            String response = rest.getBody(request).getEntity().toString();
             rest.updateStats("products");
             return Response.ok()
-                    .entity(rest.getBody(request))
+                    .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
                     .allow("GET").build();
