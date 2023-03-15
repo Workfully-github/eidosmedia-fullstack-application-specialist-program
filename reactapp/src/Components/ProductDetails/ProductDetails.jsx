@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Container} from "reactstrap";
+import ProductDetail from '../Detail/ProductDetail';
 import "./ProductDetails.css";
 
 export default function ProductDetails(props) {
@@ -9,8 +10,7 @@ export default function ProductDetails(props) {
             <Container >
                 <section className="section section-a">
                   <div className="container">
-                    <h1>Congrats, it's working</h1> 
-                    <h2>Here we are in the product details page</h2>
+                    <ProductDetail />
                   </div>
                 </section>
             </Container>
