@@ -1,8 +1,5 @@
 export class ProductCall {
 
-    BASE_URL = 'https://dummyjson.com/products/';
-
-
     static async get(url) {
         try {
             const data = await fetch(url);

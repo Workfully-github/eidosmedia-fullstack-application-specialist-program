@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ProductCall } from "../../ApiCall/ProductCall";
 import "../Detail/ProductDetail.css";
+import Recommendation from "../Recommendation/Recommendation";
 
 function ProductDetail() {
-  const BASE_URL = "https://eidos-api.herokuapp.com/api/products/";
+  const BASE_URL = "https://eidos-api.herokuapp.com/api/v1/products/";
 
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(0);
@@ -20,30 +21,40 @@ function ProductDetail() {
 
   useEffect(() => {
     getProductDetail(id).then((res) => {
-      console.log(res);
       setProduct(res);
     });
   }, []);
 
   const addToCart = async (productId) => {
     const data = await ProductCall.addCart(BASE_URL + `${id}`);
-    return data 
+    return data;
   };
 
   return (
     <div>
       <section className="header-section">
         <section className="image-section">
-
           <div className="small-images-div">
-            {product && (product.images.map((image) => (
-              <img src={image} className="smaller-images" />)))}
+            {product &&
+              product.images.map((image) => (
+                <img key={product.id} src={image} className="smaller-images" />
+              ))}
           </div>
 
-          {product && (<img src={product.thumbnail} alt="cover pic" className="profile-image" />)}
+          {product && (
+            <img
+              src={product.thumbnail}
+              alt="cover pic"
+              className="profile-image"
+            />
+          )}
         </section>
         <div className="product-info">
-          {product && <h2 className="product-title" ><b>{product.title}</b></h2>}
+          {product && (
+            <h2 className="product-title">
+              <b>{product.title}</b>
+            </h2>
+          )}
 
           <div>
             {product && <p id="description-letter">{product.description}</p>}
@@ -62,15 +73,29 @@ function ProductDetail() {
           <div className="quantity-div">
             <form className="quantity-form" onSubmit="">
               <label htmlFor="quantity">Quantity: </label>
-              <input className="quantity-input" type="number" name="quantity" value={quantity} onChange={handleQuantity} />
+              <input
+                className="quantity-input"
+                type="number"
+                name="quantity"
+                value={quantity}
+                onChange={handleQuantity}
+              />
             </form>
           </div>
 
           <div className="buttons-div">
-            <Link className="buy-now" to="/cart">Buy now</Link>
-            <button className="add-cart-button" onClick={addToCart}>Add to Cart</button>
+            <Link className="buy-now" to="/cart">
+              Buy now
+            </Link>
+            <button className="add-cart-button" onClick={addToCart}>
+              Add to Cart
+            </button>
           </div>
         </div>
+      </section>
+
+      <section>
+        <Recommendation categoryProduct={product?.category} />
       </section>
     </div>
   );
