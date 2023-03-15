@@ -5,16 +5,14 @@ import java.io.StringWriter;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
-import org.workfully.model.OperationTracker;
-import org.workfully.utils.RestUtils;
+import org.workfully.models.OperationTracker;
+
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 
 public class OperationTrackerController {
-
-    private RestUtils rest = new RestUtils();
 
     private OperationTracker unmarshalledXml(String xml) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(OperationTracker.class);

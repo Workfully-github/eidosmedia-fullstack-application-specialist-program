@@ -4,7 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
+import javax.ws.rs.core.Response;
 import org.json.JSONException;
 import org.workfully.utils.RestUtils;
 
@@ -15,14 +15,17 @@ public class Categories {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String categories() throws JSONException {
-
+    public Response categories() throws JSONException {
         try {
+            String request = rest.getBody("https://dummyjson.com/products/categories").getEntity().toString();
             rest.updateStats("categories");
-            return rest.getBody("https://dummyjson.com/products/categories");
+            return Response.ok()
+                    .entity(request)
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "GET")
+                    .allow("GET").build();
         } catch (Exception e) {
-            e.printStackTrace();
-            return "ERROR: " + e.getMessage();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 }

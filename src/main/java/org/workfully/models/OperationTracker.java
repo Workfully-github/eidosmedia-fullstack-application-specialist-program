@@ -1,4 +1,4 @@
-package org.workfully.model;
+package org.workfully.models;
 
 import jakarta.xml.bind.annotation.*;
 
