@@ -1,0 +1,12 @@
+.container {
+    margin: 0px auto;
+    max-width: 1200px;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    padding: 0px 12px;
+}
+
+a {
+    text-decoration: none;    
+    color: unset;
+}
