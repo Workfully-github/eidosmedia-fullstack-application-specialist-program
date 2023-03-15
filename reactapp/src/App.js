@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Route, Routes, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';  
 import Home from './Components/Home/Home';
 import ProductDetails from './Components/ProductDetails/ProductDetails';
@@ -13,7 +13,7 @@ class App extends Component {
             <Routes>                       
               <Route  path="/" element={<Home />}/>                     
               <Route  path="/home" element={<Home />}/>                     
-              <Route  path="/search/:searchQuery" element={<Home />}/>                     
+              <Route  path="/search/:searchQuery" element={<Home />}/>                  
               <Route  path ="/details/:id" element={<ProductDetails />}/>                    
             </Routes>
           </div>         

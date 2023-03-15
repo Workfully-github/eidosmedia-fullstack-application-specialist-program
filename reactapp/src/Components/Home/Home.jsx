@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Container } from "reactstrap";
+import axios from 'axios'
+import { Container} from "reactstrap";
 import "./Home.css";
 import Navbar from "../Navbar/Navbar";
 import SearchComponent from '../SearchComponent/SearchComponent';
@@ -8,22 +9,71 @@ import { useParams } from 'react-router-dom';
 import Cards from '../Cards/Cards';
 import Footer from '../Footer/Footer';
 
+import {Box, Drawer, IconButton, FormControl, Select, MenuItem, FormControlLabel, InputLabel} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+
 
 
 export default function Home(props) {
  //the idea will be to get the search by the url
-  const {searchQuery} = useParams();
+  var {searchQuery} = useParams();
+  var [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  var [isLoading, setIsLoading] = useState(true);
+  var [categoriesList, setCategoriesList] = useState(null);
+  var [category, setCategory] = useState(null);
+  var [stock, setStock] = useState(null);
+  var [selectMessage, setSelectMessage] = useState(false);
+  var [filterType, setFilterType] = useState("search");
+  var [searchValue, setSearchValue] = useState(searchQuery);
+
   useEffect(()=>{
-    
+    getCategoriesList("https://eidos-api.herokuapp.com/api/v1/categories")
     {console.log(searchQuery)}
   }, [])
+
+  const getCategoriesList = async (url) => {
+        setIsLoading(true)
+        const response = await axios.get(url);
+        setCategoriesList(response.data);
+        setTimeout(() => {
+        setIsLoading(false)
+        }, 500)
+    }
+
+
   return (
     <>
       <Navbar />
-      <SearchComponent val={searchQuery} />
+      <IconButton size="large" edge="start" color="inherit" aria-label='logo' onClick={()=>setIsDrawerOpen(true)}>
+         <MenuIcon/>
+      </IconButton>
+      <Drawer anchor='left' open={isDrawerOpen} onClose={()=>setIsDrawerOpen(false)}>
+        <Box p={2} width="250px" textAlign='center' role='presentation' >
+            <h4>Filter:</h4>
+            <br/>
+            <FormControl fullWidth>
+                <InputLabel id="menu">Categories</InputLabel>
+                <Select labelId="menu" id="menu-list" label="categories">
+                    {!isLoading && categoriesList.map(cat => 
+                    <MenuItem value={cat} onClick={()=>{
+                        setFilterType("category")
+                        setCategory(cat)
+                        // setIsDrawerOpen(false)
+                        setSelectMessage(true)
+                        setSearchValue("")
+                        
+                    }}>
+                        {cat}
+                    </MenuItem>)}
+                </Select>
+            </FormControl>
+        </Box>
+      </Drawer>
+      <SearchComponent val={searchValue} />
+      {selectMessage && <div>filter for Category/stock : {category}</div>}
       <Container >
 
-        <Cards searchQuery={searchQuery} />
+        <Cards searchQuery={searchValue} filterType={filterType} categoryQuery={category} stockQuery={stock}/>
 
       </Container>
       <Footer />
