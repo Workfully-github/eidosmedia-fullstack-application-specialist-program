@@ -6,7 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
+import javax.ws.rs.core.Response;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,12 +19,6 @@ import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 
-/* import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller; */
-
-
 @Path("stats")
 public class Stats {
 
@@ -32,34 +26,41 @@ public class Stats {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getStats() {
+    public Response getStats() {
         try {
-            String xml = rest.getBody("https://optracker.herokuapp.com/api/stats/");
-            OperationTracker ot = unmarshalXml(xml);
-            return convertToJson(ot);
+            String request = rest.getBody("https://optracker.herokuapp.com/api/stats/");
+            return Response.ok()
+                    .entity(convertToJson(request))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "GET")
+                    .allow("GET").build();
         } catch (Exception e) {
-            e.printStackTrace();
-            return "ERROR: " + e.getMessage();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
-    
-    private OperationTracker unmarshalXml(String xml) throws JAXBException {
+
+    private OperationTracker unmarshalledXml(String xml) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(OperationTracker.class);
         Unmarshaller unmarshaller = jc.createUnmarshaller();
         return (OperationTracker) unmarshaller.unmarshal(new StringReader(xml));
     }
-    
-    private String convertToJson(OperationTracker ot) throws JSONException, JAXBException {
+
+    private String marshalledXml(OperationTracker unmarshalledOperationTracker) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(OperationTracker.class);
         Marshaller marshaller = jc.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-    
+
         StringWriter sw = new StringWriter();
-        marshaller.marshal(ot, sw);
+        marshaller.marshal(unmarshalledOperationTracker, sw);
         String formattedXml = sw.toString();
-    
+
         JSONObject jsonObject = XML.toJSONObject(formattedXml);
         return jsonObject.toString();
     }
-    
+
+    private String convertToJson(String xmlRequest) throws JSONException, JAXBException {
+        OperationTracker ot = unmarshalledXml(xmlRequest);
+        return marshalledXml(ot);
+    }
+
 }
