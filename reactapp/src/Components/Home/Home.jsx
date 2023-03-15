@@ -12,15 +12,18 @@ import Cards from '../Cards/Cards';
 
 export default function Home(props) {
  //the idea will be to get the search by the url
-  
+  const {searchQuery} = useParams();
+  useEffect(()=>{
+    
+    {console.log(searchQuery)}
+  }, [])
   return (
     <>
       <Navbar />
-      <SearchComponent val={props.match.params.searchQuery} />
-      {/* <ProductList search={search}/> */}
+      <SearchComponent val={searchQuery} />
       <Container >
 
-        <Cards searchQuery={props.match.params.searchQuery} />
+        <Cards searchQuery={searchQuery} />
 
       </Container>
     </>

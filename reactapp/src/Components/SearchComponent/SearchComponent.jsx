@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-
+import { Link, redirect } from "react-router-dom";
 import styles from "./SearchComponent.module.css";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function SearchComponent(props) {
-    const {val} = props
-    const [search, setSearch] = useState(val);
-
-    const searchProduct = (e) => {
-            // we will call a other react path that will open the home page with the search value in the url
-            //redirect path to /home/:search
-            e.preventDefault();
-            window.location.replace('http://localhost:3000/search/' + search)
+  const navigate = useNavigate();
+  const {val} = props
+  const [search, setSearch] = useState(val ? val : "");
+  
+  const searchProduct = (e) => {
+    // we will call a other react path that will open the home page with the search value in the url
+    //redirect path to /home/:search
+    e.preventDefault();
+    navigate('/search/' + search);
+            // redirect('/search/' + search);
     }
       return (
         <div>
