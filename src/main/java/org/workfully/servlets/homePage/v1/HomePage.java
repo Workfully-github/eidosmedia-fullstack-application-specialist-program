@@ -1,4 +1,4 @@
-package org.workfully.resources;
+package org.workfully.servlets.homePage.v1;
 
 import java.net.URI;
 

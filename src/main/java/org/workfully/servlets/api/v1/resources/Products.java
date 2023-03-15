@@ -1,4 +1,4 @@
-package org.workfully.resources;
+package org.workfully.servlets.api.v1.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

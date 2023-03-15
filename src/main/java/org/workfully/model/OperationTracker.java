@@ -73,5 +73,4 @@ public class OperationTracker {
     public void setCategoriesRequests(int categoriesRequests) {
         this.categoriesRequests = categoriesRequests;
     }
-    
 }
