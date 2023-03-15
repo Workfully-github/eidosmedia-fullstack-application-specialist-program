@@ -1,0 +1,7 @@
+org\workfully\resources\Categories.class
+org\workfully\utils\RestUtils.class
+org\workfully\resources\Products.class
+org\workfully\model\OperationTracker.class
+org\workfully\controllers\StatsController.class
+org\workfully\resources\Stats.class
+org\workfully\resources\HomePage.class
