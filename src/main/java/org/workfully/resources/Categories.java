@@ -6,12 +6,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.json.JSONException;
-import org.workfully.http.RestController;
+import org.workfully.utils.RestUtils;
 
 @Path("categories")
 public class Categories {
 
-    private RestController rest = new RestController();
+    private RestUtils rest = new RestUtils();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

@@ -11,8 +11,8 @@ import javax.ws.rs.core.MediaType;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
-import org.workfully.http.RestController;
 import org.workfully.model.OperationTracker;
+import org.workfully.utils.RestUtils;
 
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
@@ -28,7 +28,7 @@ import javax.xml.bind.Unmarshaller; */
 @Path("stats")
 public class Stats {
 
-    private RestController rest = new RestController();
+    private RestUtils rest = new RestUtils();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

@@ -1,4 +1,4 @@
-package org.workfully.http;
+package org.workfully.utils;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-public class RestController {
+public class RestUtils {
 
     public String getBody(String url) {
 

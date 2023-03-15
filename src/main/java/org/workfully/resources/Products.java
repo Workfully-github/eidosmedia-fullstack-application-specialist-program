@@ -9,12 +9,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.json.JSONException;
-import org.workfully.http.RestController;
+import org.workfully.utils.RestUtils;
 
 @Path("products")
 public class Products {
 
-    private RestController rest = new RestController();
+    private RestUtils rest = new RestUtils();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
