@@ -2,43 +2,70 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, Verdana, sans-serif;
-    background-color: lightgray;
+}
+
+.image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.small-images-div {
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-image {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    height: 50vh;
-    width: 50vw;
+    border-radius: 10px;
+    margin: 0% 5%;
+    height: 45vh;
+    width: 45vw;
+}
+
+.smaller-images {
+    border-radius: 10px;
+    margin: 15% 5%;
+    height: 6vh;
+    width: 6vw;
 }
 
 .header-section {
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
+    margin-top: 100px;
 }
 
-.display-price-rating {
+.display-price {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
 
 .display-discount-products {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
 
 .display-id-brand {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
 
 .product-info {
-    border: 1px solid lightgrey;
-    border-radius: 10px;
+    /* border: 1px solid lightgrey;
+    border-radius: 10px; */
+    display: flex;
+    flex-direction: column;
     padding: 20px;
     background-color: white;
 }
@@ -48,10 +75,60 @@ body {
 }
 
 b {
-    font-size: large;
+    font-size: larger;
     font-weight: 800;
 }
 
 #description-letter {
     color: grey
+}
+
+#price-header {
+    color: rgb(20, 119, 232);
+}
+
+.quantity-div {
+    margin: 15px 0;
+}
+
+.quantity-input {
+    width: 30px;
+    height: 25px;
+}
+
+.buttons-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.buy-now {
+    text-decoration: none;
+    border: 1px rgb(20, 119, 232) solid;
+    border-radius: 2.5px;
+    background-color: rgb(20, 119, 232);
+    padding: 5px 25px;
+    color: white;
+}
+.buy-now:hover {
+    transform: scale(1.2);
+}
+
+.add-cart-button {
+    border: 1px rgb(20, 119, 232) solid;
+    border-radius: 2.5px;
+    background-color: white;
+    padding: 5px 25px;
+    color: rgb(20, 119, 232);
+}
+
+.add-cart-button:hover {
+    transform: scale(1.2);
+}
+
+.brand-styles {
+    border-radius: 15px;
+    background-color: lightsalmon;
+    padding: 2px 7px;
+    color: rgb(123, 64, 40);
 }

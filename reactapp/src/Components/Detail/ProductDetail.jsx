@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { ProductCall } from "../../ApiCall/ProductCall";
 import "../Detail/ProductDetail.css";
 
 function ProductDetail() {
-  const BASE_URL = "https://dummyjson.com/products/";
+  const BASE_URL = "https://eidos-api.herokuapp.com/api/products/";
 
   const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(0);
 
   const { id } = useParams();
+
+  const handleQuantity = (e) => setQuantity(e.target.value);
 
   const getProductDetail = async (id) => {
     const data = await ProductCall.get(BASE_URL + `${id}`);
@@ -22,35 +25,51 @@ function ProductDetail() {
     });
   }, []);
 
+  const addToCart = async (productId) => {
+    const data = await ProductCall.addCart(BASE_URL + `${id}`);
+    return data 
+  };
+
   return (
     <div>
       <section className="header-section">
+        <section className="image-section">
+
+          <div className="small-images-div">
+            {product && (product.images.map((image) => (
+              <img src={image} className="smaller-images" />)))}
+          </div>
+
+          {product && (<img src={product.thumbnail} alt="cover pic" className="profile-image" />)}
+        </section>
         <div className="product-info">
-        {product && (<img src={product.thumbnail} alt="cover pic" className="profile-image" />)}
-          {product && <h3><b>{product.title}</b></h3>}
+          {product && <h2 className="product-title" ><b>{product.title}</b></h2>}
+
           <div>
-           {/*  {product && <h4><b>About this product:</b></h4>} */}
             {product && <p id="description-letter">{product.description}</p>}
-        </div>
+          </div>
+
+          <div className="display-price">
+            {product && <h3 id="price-header">{product.price}$</h3>}
+          </div>
+
           <div className="display-id-brand">
-            {product && <h4>ID: {product.id}</h4>}
-            {product && <h4>Brand: {product.brand}</h4>}
+            {product && <p className="brand-styles">Brand: {product.brand}</p>}
+            {product && <p>In stock: {product.stock}</p>}
+            {product && <p>Rating: {product.rating}</p>}
           </div>
-          <div className="display-price-rating">
-            {product && <h3>{product.price}$</h3>}
-            {product && <h4>{product.discountPercentage}%</h4>}
-            {product && <h4>Rating: {product.rating}</h4>}
+
+          <div className="quantity-div">
+            <form className="quantity-form" onSubmit="">
+              <label htmlFor="quantity">Quantity: </label>
+              <input className="quantity-input" type="number" name="quantity" value={quantity} onChange={handleQuantity} />
+            </form>
           </div>
-          <div className="display-discount-products">
-            {product && <h4>{product.stock} products left</h4>}
-            {product && <h5>Category: {product.category}</h5>}
+
+          <div className="buttons-div">
+            <Link className="buy-now" to="/cart">Buy now</Link>
+            <button className="add-cart-button" onClick={addToCart}>Add to Cart</button>
           </div>
-        </div>
-      </section>
-      <section className="description-section">
-        <div>
-            {product && <h4><b>About this product:</b></h4>}
-            {product && <h4>{product.description}</h4>}
         </div>
       </section>
     </div>
