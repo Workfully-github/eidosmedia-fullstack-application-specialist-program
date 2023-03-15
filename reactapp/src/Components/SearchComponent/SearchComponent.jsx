@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link, redirect } from "react-router-dom";
 import styles from "./SearchComponent.module.css";
 import { useNavigate } from 'react-router-dom';
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; 
 
 const ProductList = (props) => {
-  const {search} = props;
+  //const {search} = props;
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(10);
