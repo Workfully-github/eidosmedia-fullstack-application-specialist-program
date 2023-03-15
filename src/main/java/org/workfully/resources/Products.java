@@ -26,7 +26,7 @@ public class Products {
                     .entity(rest.getBody(request))
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
-                    .allow("OPTIONS").build();
+                    .allow("GET").build();
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
@@ -38,52 +38,65 @@ public class Products {
     public Response getProduct(@PathParam("id") int id) throws JSONException {
         try {
             rest.updateStats("productDetail");
-            return rest.getBody("https://dummyjson.com/products/" + id);
+            String request = "https://dummyjson.com/products/" + id;
+            return Response.ok()
+                    .entity(rest.getBody(request))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "GET")
+                    .allow("GET").build();
         } catch (Exception e) {
-            e.printStackTrace();
-            return "ERROR: " + e.getMessage();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 
     @GET
     @Path("/search")
     @Produces(MediaType.APPLICATION_JSON)
-    public String search(@QueryParam("q") String query) throws JSONException {
+    public Response search(@QueryParam("q") String query) throws JSONException {
         try {
+            String request = "https://dummyjson.com/products/search?q=" + query;
             rest.updateStats("search");
-            return rest.getBody("https://dummyjson.com/products/search?q=" + query);
-
+            return Response.ok()
+                    .entity(rest.getBody(request))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "GET")
+                    .allow("GET").build();
         } catch (Exception e) {
-            e.printStackTrace();
-            return "ERROR: " + e.getMessage();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 
     @GET
     @Path("/category/" + "{category}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String searchByCategory(@PathParam("category") String category) throws JSONException {
+    public Response searchByCategory(@PathParam("category") String category) throws JSONException {
         try {
+            String request = "https://dummyjson.com/products/category/" + category;
             rest.updateStats("category");
-            return rest.getBody("https://dummyjson.com/products/category/" + category);
-
+            return Response.ok()
+                    .entity(rest.getBody(request))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "GET")
+                    .allow("GET").build();
         } catch (Exception e) {
-            e.printStackTrace();
-            return "ERROR: " + e.getMessage();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 
     @GET
     @Path("/allproducts")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getAllProducts() {
+    public Response getAllProducts() {
         try {
+            String request = "https://dummyjson.com/products?limit=100";
             rest.updateStats("products");
-            return rest.getBody("https://dummyjson.com/products?limit=100");
-
+            return Response.ok()
+                    .entity(rest.getBody(request))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "GET")
+                    .allow("GET").build();
         } catch (Exception e) {
-            e.printStackTrace();
-            return "ERROR: " + e.getMessage();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
     }
 }
