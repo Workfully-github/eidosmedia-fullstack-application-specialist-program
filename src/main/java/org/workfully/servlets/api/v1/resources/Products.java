@@ -20,7 +20,7 @@ public class Products {
     public Response getProducts(@QueryParam("limit") int limit, @QueryParam("skip") int skip) throws JSONException {
         try {
             String request = "https://dummyjson.com/products?limit=" + (limit == 0 ? 30 : limit) + "&skip=" + skip;
-            String response = rest.getBody(request).getEntity().toString(); 
+            String response = rest.getBody(request).getEntity().toString();
             rest.updateStats("page");
             return Response.ok()
                     .entity(response)
@@ -39,7 +39,7 @@ public class Products {
         try {
             rest.updateStats("productDetail");
             String request = "https://dummyjson.com/products/" + id;
-            String response = rest.getBody(request).getEntity().toString(); 
+            String response = rest.getBody(request).getEntity().toString();
             return Response.ok()
                     .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
