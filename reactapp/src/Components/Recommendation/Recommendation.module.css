@@ -1,0 +1,10 @@
+.recommendationCards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 19px;
+    margin-top: 5%;
+}
+
+.recommendationSection {
+    margin: 10% 0;
+}

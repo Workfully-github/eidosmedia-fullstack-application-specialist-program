@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import styles from "../Recommendation/Recommendation.module.css";
 import { ProductCall } from "../../ApiCall/ProductCall";
-import { Card } from "reactstrap";
+import Card from '../Card/Card';
 
-function Recommendation({categoryProduct}) {
+function Recommendation({categoryProduct, productId}) {
 
     const category  = categoryProduct;
+    const id = productId;
 
     const BASE_URL = "https://eidos-api.herokuapp.com/api/v1/products/category/";
 
@@ -13,25 +14,25 @@ function Recommendation({categoryProduct}) {
 
     const getProducts = async () => {
         const response = await ProductCall.get(BASE_URL + `${category}`);
-        console.log(response)
         return response.products;
     }
 
     useEffect(() => {
         getProducts().then((res) => {
-            setProducts(res);
-            console.log(res)
+            if (res.length > 4) setProducts(res.slice(0,5));
+            else setProducts(res);
         });
-    }, []);
+    }, [products]);
 
 
   return (
-    <div>
+    <div className={styles.recommendationSection}>
         <h2>People also viewed:</h2>
-        <div>
-            {products && products.map((product) => (
-                <Card key={product.id} props={product} />
-            ))}
+        <div className={styles.recommendationCards}>
+            {products?.map((product) => (
+                id !== product.id && <Card key={product.id} cardDetail={product} />
+                
+            ))} 
         </div>
     </div>
   );    

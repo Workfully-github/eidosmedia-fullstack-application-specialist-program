@@ -95,7 +95,7 @@ function ProductDetail() {
       </section>
 
       <section>
-        <Recommendation categoryProduct={product?.category} />
+        <Recommendation categoryProduct={product?.category} productId={product?.id}/>
       </section>
     </div>
   );
