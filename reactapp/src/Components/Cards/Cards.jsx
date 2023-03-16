@@ -4,17 +4,19 @@ import Card from '../Card/Card'
 import styles from './Cards.module.css'
 import SkeletonCard from '../Card/SkeletonCard'
 import { useParams } from 'react-router-dom'
+import { useStateContext } from "../Context/StateContext"
+
 const Cards = (props) => {
+  const {url, setUrl} = useStateContext();
   const params = useParams()
 
   const [productList, setProductList] = useState(null);
-  //const [searchQuery, setSearchQuery] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [url, setUrl] = useState("https://eidos-api.herokuapp.com/api/v1/products");
 
   const getProductList = async (url) => {
-    // const url = params.searchQuery ? "https://dummyjson.com/products/search?q=" + searchQuery : "https://eidos-api.herokuapp.com/products"
+    setIsLoading(true)
     const response = await axios.get(url);
     if(props.filterType==="stock") {
       //filter the list of products before set the state here
@@ -30,7 +32,20 @@ const Cards = (props) => {
     }, 500)
   }
 
-  const skeletonArr = ["I am", "gonna", "impliment", "this", "skeleton", "loader", "later", "in", "another", "way", "trust", "me"];
+  const skeletonArr = [
+    "I am",
+    "gonna",
+    "impliment",
+    "this",
+    "skeleton",
+    "loader",
+    "later",
+    "in",
+    "another",
+    "way",
+    "trust",
+    "me"
+  ];
 
   useEffect(() => {
     if(props.filterType==="stock"){
@@ -52,17 +67,16 @@ const Cards = (props) => {
   return (
     <>
       <div className="container">
-        <button onClick={()=>{setUrl("https://dummyjson.com/products/search?q=laptop")}}>click me</button>
         <div className={styles.cardsContainer}>
-          {productList ?
-          productList?.map((product, index) => (
-            <Card key={product.id} cardDetail={product} />
-          )) :
-          skeletonArr.map((skeleton)=>(
-            <SkeletonCard />
+          {!isLoading ?
+            productList?.map((product) => (
+              <Card key={product.id} cardDetail={product} />
+            )) :
+            skeletonArr.map((skeleton) => (
+              <SkeletonCard />
 
-          ))
-        }
+            ))
+          }
         </div>
       </div>
     </>

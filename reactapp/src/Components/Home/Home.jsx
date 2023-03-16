@@ -7,6 +7,7 @@ import Navbar from "../Navbar/Navbar";
 import SearchComponent from '../SearchComponent/SearchComponent';
 import { useParams } from 'react-router-dom';
 import Cards from '../Cards/Cards';
+import Pagination from "../Pagination/Pagination"
 import Footer from '../Footer/Footer';
 
 import {Box, Drawer, IconButton, FormControl, Select, MenuItem, FormControlLabel, InputLabel} from '@mui/material';
@@ -73,8 +74,8 @@ export default function Home(props) {
       {selectMessage && <div>filter for Category/stock : {category}</div>}
       <Container >
 
-        <Cards searchQuery={searchValue} filterType={filterType} categoryQuery={category} stockQuery={stock}/>
-
+        <Cards searchQuery={searchQuery} />
+        <Pagination />
       </Container>
       <Footer />
     </>

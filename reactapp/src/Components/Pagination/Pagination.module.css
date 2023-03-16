@@ -1,0 +1,33 @@
+.paginationContainer {
+    height: 80px;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 100px auto;
+
+}
+
+.back, .next {
+    height: 58px;
+    width: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #416FB4;
+    font-size: 30px;
+    color: #416FB4;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.back:hover, .next:hover {
+    background-color: #dbdbdb;
+}
+
+button:disabled {
+    border: 3px solid #828282;
+    cursor: not-allowed;
+}
