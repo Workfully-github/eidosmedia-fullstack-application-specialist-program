@@ -6,6 +6,7 @@ import Navbar from "../Navbar/Navbar";
 import SearchComponent from '../SearchComponent/SearchComponent';
 import { useParams } from 'react-router-dom';
 import Cards from '../Cards/Cards';
+import Pagination from "../Pagination/Pagination"
 import Footer from '../Footer/Footer';
 
 
@@ -24,7 +25,7 @@ export default function Home(props) {
       <Container >
 
         <Cards searchQuery={searchQuery} />
-
+        <Pagination />
       </Container>
       <Footer />
     </>

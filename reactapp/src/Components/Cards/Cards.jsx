@@ -4,14 +4,16 @@ import Card from '../Card/Card'
 import styles from './Cards.module.css'
 import SkeletonCard from '../Card/SkeletonCard'
 import { useParams } from 'react-router-dom'
+import { useStateContext } from "../Context/StateContext"
+
 const Cards = (props) => {
+  const {url, setUrl} = useStateContext();
   const params = useParams()
 
   const [productList, setProductList] = useState(null);
   const [searchQuery, setSearchQuery] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [url, setUrl] = useState("https://eidos-api.herokuapp.com/products");
 
   const getProductList = async (url) => {
     setIsLoading(true)
@@ -39,14 +41,12 @@ const Cards = (props) => {
   ];
 
   useEffect(() => {
-    setUrl(params ? "https://dummyjson.com/products/search?q=" + params.searchQuery : "https://eidos-api.herokuapp.com/products")
     getProductList(url);
-  }, [url, params])
+  }, [url])
 
   return (
     <>
       <div className="container">
-        <button onClick={() => { setUrl("https://dummyjson.com/products/search?q=laptop") }}>click me</button>
         <div className={styles.cardsContainer}>
           {!isLoading ?
             productList?.map((product) => (

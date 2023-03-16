@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styles from "./SearchComponent.module.css";
 import { useNavigate } from 'react-router-dom';
-
+import { useStateContext } from "../Context/StateContext"
 
 export default function SearchComponent(props) {
+    const {url, setUrl} = useStateContext();
   const navigate = useNavigate();
   const { val } = props
   const [search, setSearch] = useState(val ? val : "");
@@ -11,6 +12,7 @@ export default function SearchComponent(props) {
   const searchProduct = (e) => {
     e.preventDefault();
     navigate('/search/' + search);
+    setUrl("https://eidos-api.herokuapp.com/api/v1/products/search?q=" + search)
   }
   return (
     <div>
