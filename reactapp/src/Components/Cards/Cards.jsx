@@ -11,21 +11,19 @@ const Cards = (props) => {
   const params = useParams()
 
   const [productList, setProductList] = useState(null);
-  const [searchQuery, setSearchQuery] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
 
   const getProductList = async (url) => {
     setIsLoading(true)
     const response = await axios.get(url);
-    if(props.filterType==="stock") {
+    //if(props.filterType==="stock") {
       //filter the list of products before set the state here
-      var products = response.data.products.filter(p => {return p.stock==props.stockQuery})
-      setProductList(products);
-    }
-    else{
-      setProductList(response.data.products);
-    }
+      // var products = response.data.products.filter(p => {return p.stock==props.stockQuery})
+      // setProductList(products);
+    //}
+    
+    setProductList(response.data.products);
     setTimeout(() => {
 
       setIsLoading(false)
@@ -48,19 +46,7 @@ const Cards = (props) => {
   ];
 
   useEffect(() => {
-    if(props.filterType==="stock"){
-      //the filter will be done in the getProductsList()
-      setUrl("https://eidos-api.herokuapp.com/api/v1/products")
-    }
-    else if(props.filterType==="category"){
-      console.log("we can be here")
-      setUrl("https://dummyjson.com/products/category/" + props.categoryQuery)
 
-    }
-    else {
-      console.log("never be can be here")
-      setUrl(props.searchValue ? "https://dummyjson.com/products/search?q=" + props.searchValue : "https://eidos-api.herokuapp.com/api/v1/products")
-    }
     getProductList(url);
   }, [url])
 

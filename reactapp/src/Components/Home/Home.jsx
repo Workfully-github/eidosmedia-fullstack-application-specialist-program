@@ -14,6 +14,9 @@ import {Box, Drawer, IconButton, FormControl, Select, MenuItem, FormControlLabel
 import MenuIcon from '@mui/icons-material/Menu';
 
 
+import { useStateContext } from "../Context/StateContext"
+
+
 
 export default function Home(props) {
  //the idea will be to get the search by the url
@@ -24,8 +27,8 @@ export default function Home(props) {
   var [category, setCategory] = useState(null);
   var [stock, setStock] = useState(null);
   var [selectMessage, setSelectMessage] = useState(false);
-  var [filterType, setFilterType] = useState("search");
   var [searchValue, setSearchValue] = useState(searchQuery);
+  const { url,setUrl, filterType, setFilterType } = useStateContext();
 
   useEffect(()=>{
     getCategoriesList("https://eidos-api.herokuapp.com/api/v1/categories")
@@ -57,7 +60,7 @@ export default function Home(props) {
                 <Select labelId="menu" id="menu-list" label="categories">
                     {!isLoading && categoriesList.map(cat => 
                     <MenuItem value={cat} onClick={()=>{
-                        setFilterType("category")
+                        setUrl("https://dummyjson.com/products/category/" + cat)
                         setCategory(cat)
                         // setIsDrawerOpen(false)
                         setSelectMessage(true)
@@ -74,7 +77,7 @@ export default function Home(props) {
       {selectMessage && <div>filter for Category/stock : {category}</div>}
       <Container >
 
-        <Cards searchQuery={searchQuery} />
+        <Cards />
         <Pagination />
       </Container>
       <Footer />
