@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import axios from 'axios'
-import Card from '../Card/Card'
 import styles from './Cards.module.css'
 import SkeletonCard from '../Card/SkeletonCard'
-import { useParams } from 'react-router-dom'
 import { useStateContext } from "../Context/StateContext"
+import { lazy } from 'react';
+const Card = lazy(() => import('../Card/Card'));
 
 const Cards = (props) => {
-  const {url, setUrl} = useStateContext();
-  const params = useParams()
+  const {url} = useStateContext();
 
   const [productList, setProductList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -54,15 +53,15 @@ const Cards = (props) => {
     <>
       <div className="container">
         <div className={styles.cardsContainer}>
-          {!isLoading ?
-            productList?.map((product) => (
+        <Suspense fallback={<SkeletonCard />}>
+            {!isLoading ? productList?.map((product) => (
               <Card key={product.id} cardDetail={product} />
             )) :
-            skeletonArr.map((skeleton) => (
-              <SkeletonCard />
-
-            ))
-          }
+              skeletonArr.map((skeletonCard) => (
+                <SkeletonCard />
+              ))
+            }
+          </Suspense>
         </div>
       </div>
     </>

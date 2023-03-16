@@ -6,7 +6,7 @@ const Card = ({cardDetail}) => {
     <a href={`/details/${id}`}  >
       <div className={styles.cardContainer}>
         <div className={styles.thumbnailContainer}>
-          <img src={thumbnail} alt="#" className={styles.thumbnail} />
+          <img src={thumbnail} alt="#" className={styles.thumbnail}  loading="lazy"/>
         </div>
         <div className={styles.cardFooter}>
           <h3 className={styles.productTitle}>{title}</h3>
