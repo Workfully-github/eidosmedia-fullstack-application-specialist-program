@@ -23,6 +23,7 @@ public class Categories {
                     .entity(request)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
+                    .encoding("gzip")
                     .allow("GET").build();
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();

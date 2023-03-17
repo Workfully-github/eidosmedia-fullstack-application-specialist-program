@@ -4,13 +4,19 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-    <!-- VERSION 1.0 SERVLETS -->
+
     <servlet>
-        <servlet-name>dummy-api-v1</servlet-name>
+        <servlet-name>ProductsServlet</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <!-- context-param for Servlet -->
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>org.workfully.servlets.api.v1.resources.config.ProductsServlet</param-value>
+        </init-param>
+        <!-- Jersey configuration -->
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>org.workfully.servlets.api.v1</param-value>
+            <param-value>org.workfully.servlets.api.v1.resources</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -24,12 +30,6 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
-    <!-- VERSION 1.0 SERVLET MAPPING -->
-    <servlet-mapping>
-        <servlet-name>dummy-api-v1</servlet-name>
-        <url-pattern>/api/v1/*</url-pattern>
-    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>home-page</servlet-name>

@@ -1,6 +1,6 @@
 package org.workfully.models;
 
-import jakarta.xml.bind.annotation.*;
+import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "operationTracker")
 @XmlAccessorType(XmlAccessType.FIELD)

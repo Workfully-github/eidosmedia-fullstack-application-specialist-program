@@ -1,13 +1,13 @@
 package org.workfully.servlets.api.v1.resources;
 
 import java.net.URI;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
 import org.apache.hadoop.shaded.javax.ws.rs.core.Response;
 import com.stripe.Stripe;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 
 @Path("checkout")
 public class Checkout {
@@ -33,7 +33,10 @@ public class Checkout {
                     .build();
             Session session = Session.create(params);
 
-            return Response.temporaryRedirect(new URI(session.getUrl())).build();
+            return Response.temporaryRedirect(new URI(session.getUrl()))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .header("Access-Control-Allow-Methods", "POST")
+                    .build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();

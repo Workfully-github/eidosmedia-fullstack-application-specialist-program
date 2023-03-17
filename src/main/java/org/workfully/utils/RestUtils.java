@@ -1,7 +1,6 @@
 package org.workfully.utils;
 
 import java.io.IOException;
-import javax.ws.rs.core.Response;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -10,6 +9,7 @@ import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import javax.ws.rs.core.Response;
 
 public class RestUtils {
 
@@ -19,7 +19,11 @@ public class RestUtils {
             HttpEntity httpEntity = httpResponse.getEntity();
 
             if (HttpStatus.SC_OK == httpResponse.getStatusLine().getStatusCode()) {
-                return Response.ok(EntityUtils.toString(httpEntity)).build();
+                return Response.ok(EntityUtils.toString(httpEntity))
+                        .header("Access-Control-Allow-Origin", "*")
+                        .header("Access-Control-Allow-Methods", "GET")
+                        .encoding("gzip")
+                        .build();
             }
 
             EntityUtils.consume(httpEntity);

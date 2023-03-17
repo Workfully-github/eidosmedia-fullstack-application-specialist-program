@@ -22,11 +22,14 @@ public class Products {
             String request = "https://dummyjson.com/products?limit=" + (limit == 0 ? 30 : limit) + "&skip=" + skip;
             String response = rest.getBody(request).getEntity().toString();
             rest.updateStats("page");
+
             return Response.ok()
                     .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
-                    .allow("GET").build();
+                    .encoding("gzip")
+                    .allow("GET")
+                    .build();
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
@@ -44,7 +47,9 @@ public class Products {
                     .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
-                    .allow("GET").build();
+                    .encoding("gzip")
+                    .allow("GET")
+                    .build();
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
@@ -62,7 +67,9 @@ public class Products {
                     .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
-                    .allow("GET").build();
+                    .encoding("gzip")
+                    .allow("GET")
+                    .build();
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
@@ -75,12 +82,15 @@ public class Products {
         try {
             String request = "https://dummyjson.com/products/category/" + category;
             String response = rest.getBody(request).getEntity().toString();
+
             rest.updateStats("category");
             return Response.ok()
                     .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
-                    .allow("GET").build();
+                    .encoding("gzip")
+                    .allow("GET")
+                    .build();
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
@@ -93,12 +103,15 @@ public class Products {
         try {
             String request = "https://dummyjson.com/products?limit=100";
             String response = rest.getBody(request).getEntity().toString();
+
             rest.updateStats("products");
             return Response.ok()
                     .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
-                    .allow("GET").build();
+                    .encoding("gzip")
+                    .allow("GET")
+                    .build();
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
         }
