@@ -7,7 +7,7 @@ import { lazy } from 'react';
 const Card = lazy(() => import('../Card/Card'));
 
 const Cards = (props) => {
-  const {url, stock, isStock, setIsStock} = useStateContext();
+  const {url, stock, isStock, stockSelected} = useStateContext();
 
   const [productList, setProductList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,7 +49,8 @@ const Cards = (props) => {
   useEffect(() => {
 
     getProductList(url);
-  }, [url])
+    console.log(isStock)
+  }, [url,props])
 
   return (
     <>

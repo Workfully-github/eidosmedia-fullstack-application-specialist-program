@@ -7,6 +7,7 @@ export const StateContext = ({children}) =>{
     const [page, setPage] = useState(1)
     const [stock, setStock] = useState("")
     const [isStock, setIsStock] = useState(false)
+    const [stockSelected, setStockSelected] = useState(false)
     const [categorySelected, setCategorySelected] = useState(false)
     const [searchSelected, setSearchSelected] = useState(true)
     return (
@@ -23,7 +24,9 @@ export const StateContext = ({children}) =>{
             categorySelected,
             setCategorySelected,
             searchSelected, 
-            setSearchSelected
+            setSearchSelected,
+            stockSelected, 
+            setStockSelected
           }}
         >
           {children}

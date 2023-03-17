@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStateContext } from "../Context/StateContext"
 
 export default function SearchComponent(props) {
-    const {setUrl, setIsStock,setCategorySelected,setSearchSelected} = useStateContext();
+    const {setUrl, setIsStock, setCategorySelected,setSearchSelected} = useStateContext();
   const navigate = useNavigate();
   const { val } = props
   const [search, setSearch] = useState(val ? val : "");

@@ -22,11 +22,12 @@ export default function Home(props) {
   var [isLoading, setIsLoading] = useState(true);
   var [categoriesList, setCategoriesList] = useState(null);
   var [category, setCategory] = useState(null);
-  var [selectMessage, setSelectMessage] = useState(false);
   var [searchValue, setSearchValue] = useState(searchQuery);
   const { url, setUrl,
      stock, setStock, 
      isStock, setIsStock, 
+     stockSelected,
+     setStockSelected,
      categorySelected, setCategorySelected,
       searchSelected, setSearchSelected } = useStateContext();
 
@@ -45,11 +46,12 @@ export default function Home(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUrl("https://eidos-api.herokuapp.com/api/v1/products")
     setIsStock(true)
+    setStockSelected(!stockSelected)
+    setUrl("https://eidos-api.herokuapp.com/api/v1/products/")
     setCategorySelected(false)
     setSearchSelected(false)
-    console.log("Submitted value: ", stock);
+    console.log("Submitted value: ", isStock);
     // perform any necessary actions with the submitted value here
   };
 
@@ -103,7 +105,7 @@ export default function Home(props) {
       
       <Container >
 
-        <Cards />
+        <Cards change={stockSelected}/>
         <Pagination />
       </Container>
       <Footer />
