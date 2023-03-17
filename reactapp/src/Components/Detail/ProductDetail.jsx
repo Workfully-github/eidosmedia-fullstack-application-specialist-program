@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ProductCall } from "../../ApiCall/ProductCall";
 import styles from './ProductDetail.module.css'
 import Recommendation from "../Recommendation/Recommendation";
+import { useStateContext } from "../Context/StateContext";
 
 function ProductDetail() {
+  const { decQty, incQty, qty, setQty, onAdd, toggleCart } = useStateContext();
   const BASE_URL = "https://eidos-api.herokuapp.com/api/v1/products/";
-
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(0);
-
   const { id } = useParams();
-
-  const handleQuantity = (e) => setQuantity(e.target.value);
+  const quan = useRef();
+  const handleQuantity = (e) => setQty(e.target.value);
 
   const getProductDetail = async (id) => {
     const data = await ProductCall.get(BASE_URL + `${id}`);
@@ -23,12 +23,14 @@ function ProductDetail() {
     getProductDetail(id).then((res) => {
       setProduct(res);
     });
+    // console.log(quan.current)
+    // quan.current.addEventListener()
   }, []);
 
-  const addToCart = async (productId) => {
-    const data = await ProductCall.addCart(BASE_URL + `${id}`);
-    return data;
-  };
+  // const addToCart = async (productId) => {
+  //   const data = await ProductCall.addCart(BASE_URL + `${id}`);
+  //   return data;
+  // };
 
   return (
     <div>
@@ -81,8 +83,9 @@ function ProductDetail() {
                 name="quantity"
                 min="0"
                 max="50"
-                value={quantity}
+                value={qty}
                 onChange={handleQuantity}
+
               />
             </form>
           </div>
@@ -91,7 +94,7 @@ function ProductDetail() {
             <Link className={styles.buyNow} to="/cart">
               Buy now
             </Link>
-            <button className={styles.addCartButton} onClick={addToCart}>
+            <button className={styles.addCartButton}  onClick={() => onAdd(product, qty)}>
               Add to Cart
             </button>
           </div>
@@ -99,7 +102,7 @@ function ProductDetail() {
       </section>
 
       <section>
-        <Recommendation categoryProduct={product?.category} productId={product?.id}/>
+        {/* <Recommendation categoryProduct={product?.category} productId={product?.id}/> */}
       </section>
     </div>
   );
