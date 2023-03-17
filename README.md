@@ -1,10 +1,10 @@
 # Dummy API
-This API will be a service used by the E-Commerce project. 
+This API heavily uses and is based on dummyjson.com API
 
-https://github.com/Workfully-github/eidosmedia-fullstack-application-specialist-program/tree/RicardoMendes/ProductList/dev
 
-## Run this application with webapp-runner
+## For quick use
+### Run this application with webapp-runner
 java -jar target/dependency/webapp-runner.jar target/*.war
 
-## Deploy
+### Deploy
 mvn clean heroku:deploy-war
