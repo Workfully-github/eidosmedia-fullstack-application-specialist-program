@@ -7,7 +7,7 @@ import { lazy } from 'react';
 const Card = lazy(() => import('../Card/Card'));
 
 const Cards = (props) => {
-  const {url} = useStateContext();
+  const {url, stock, isStock, setIsStock} = useStateContext();
 
   const [productList, setProductList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -16,15 +16,17 @@ const Cards = (props) => {
   const getProductList = async (url) => {
     setIsLoading(true)
     const response = await axios.get(url);
-    //if(props.filterType==="stock") {
-      //filter the list of products before set the state here
-      // var products = response.data.products.filter(p => {return p.stock==props.stockQuery})
-      // setProductList(products);
-    //}
     
-    setProductList(response.data.products);
+    if(isStock){
+      var products = response.data.products.filter(p => {return p.stock==stock})
+      setProductList(products);
+      //setIsStock(false)
+    }
+    else {
+      setProductList(response.data.products);
+    }
+    
     setTimeout(() => {
-
       setIsLoading(false)
     }, 500)
   }

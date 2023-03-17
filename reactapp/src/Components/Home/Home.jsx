@@ -10,13 +10,10 @@ import Cards from '../Cards/Cards';
 import Pagination from "../Pagination/Pagination"
 import Footer from '../Footer/Footer';
 
-import { Box, Drawer, IconButton, FormControl, Select, MenuItem, FormControlLabel, InputLabel } from '@mui/material';
+import { Box, Drawer, IconButton, FormControl, Select, MenuItem, InputLabel } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-
 import { useStateContext } from "../Context/StateContext"
-
-
 
 export default function Home(props) {
   //the idea will be to get the search by the url
@@ -25,10 +22,13 @@ export default function Home(props) {
   var [isLoading, setIsLoading] = useState(true);
   var [categoriesList, setCategoriesList] = useState(null);
   var [category, setCategory] = useState(null);
-  var [stock, setStock] = useState(null);
   var [selectMessage, setSelectMessage] = useState(false);
   var [searchValue, setSearchValue] = useState(searchQuery);
-  const { url, setUrl, filterType, setFilterType } = useStateContext();
+  const { url, setUrl,
+     stock, setStock, 
+     isStock, setIsStock, 
+     categorySelected, setCategorySelected,
+      searchSelected, setSearchSelected } = useStateContext();
 
   useEffect(() => {
     getCategoriesList("https://eidos-api.herokuapp.com/api/v1/categories")
@@ -43,6 +43,15 @@ export default function Home(props) {
       setIsLoading(false)
     }, 500)
   }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUrl("https://eidos-api.herokuapp.com/api/v1/products")
+    setIsStock(true)
+    setCategorySelected(false)
+    setSearchSelected(false)
+    console.log("Submitted value: ", stock);
+    // perform any necessary actions with the submitted value here
+  };
 
 
   return (
@@ -62,24 +71,36 @@ export default function Home(props) {
                 <MenuItem value={cat} onClick={() => {
                   setUrl("https://dummyjson.com/products/category/" + cat)
                   setCategory(cat)
-                  // setIsDrawerOpen(false)
-                  setSelectMessage(true)
                   setSearchValue("")
+                  setCategorySelected(true)
+                  setSearchSelected(false)
+                  setIsStock(false)
 
                 }}>
                   {cat}
                 </MenuItem>)}
             </Select>
           </FormControl>
+          <form onSubmit={handleSubmit} className="form">
+            <label>
+              Stock:
+              <input
+                type="number"
+                value={stock}
+                onChange={(e) => setStock(e.target.value)}
+                className="input"
+              />
+            </label>
+            <button type="submit">Submit</button>
+          </form>
         </Box>
       </Drawer>
       <SearchComponent val={searchValue} />
-      {selectMessage &&
-      <div className="container">
 
-      <div>filter for Category/stock : <b >{category}</b></div>
-      </div>
-      }
+      {categorySelected && <div>filter for Category : <b >{category}</b></div>}
+      {isStock && <div>filter for stock : <b >{stock}</b></div>}
+      {searchSelected && <div>filter for search : <b >{searchQuery}</b></div>}
+      
       <Container >
 
         <Cards />
