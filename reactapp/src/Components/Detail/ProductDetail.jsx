@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ProductCall } from "../../ApiCall/ProductCall";
+//import { ProductCall } from "../../ApiCall/ProductCall";
 import styles from "./ProductDetail.module.css";
 import Recommendation from "../Recommendation/Recommendation";
 import SkeletonCard from "../Card/SkeletonCard";
@@ -11,6 +11,8 @@ function ProductDetail() {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [coverImage, setCoverImage] = useState(null);
+  const [imageSrc, setImageSrc] = useState("");
 
   const { id } = useParams();
 
@@ -30,23 +32,34 @@ function ProductDetail() {
   ];
 
   const handleQuantity = (e) => setQuantity(e.target.value);
+  const handleImageChange = (e) => {
+    setCoverImage(e.target.currentSrc);
+  };
 
   const getProductDetail = async (id) => {
-    const data = await ProductCall.get(BASE_URL + `${id}`);
-    return data;
+    /* const data = await ProductCall.get(BASE_URL + `${id}`); */
+    try {
+      const data = await fetch(BASE_URL + `${id}`);
+      return await data.json();
+      
+  } catch (error) {
+      console.log(error);
+  }
+    //return data;
   };
 
   useEffect(() => {
     getProductDetail(id).then((res) => {
       setProduct(res);
+      if (coverImage === null) {setCoverImage(res.thumbnail)};
       setIsLoading(false);
     });
   }, []);
 
-  const addToCart = async (productId) => {
+ /*  const addToCart = async (productId) => {
     const data = await ProductCall.addCart(BASE_URL + `${id}`);
     return data;
-  };
+  }; */
 
   return (
     <div>
@@ -67,6 +80,7 @@ function ProductDetail() {
                       key={product.id}
                       src={image}
                       className={`${styles.smallerImages} ${styles.imageAnimation}`}
+                      onClick={handleImageChange}
                     />
                   </div>
                 ))}
@@ -74,7 +88,7 @@ function ProductDetail() {
 
             {product && (
               <img
-                src={product.thumbnail}
+                src={coverImage}
                 alt="cover pic"
                 className={`${styles.profileImage}`}
               />
@@ -128,7 +142,7 @@ function ProductDetail() {
             <Link className={styles.buyNow} to="/cart">
               Buy now
             </Link>
-            <button className={styles.addCartButton} onClick={addToCart}>
+            <button className={styles.addCartButton}>
               Add to Cart
             </button>
           </div>
@@ -137,7 +151,7 @@ function ProductDetail() {
 
       <section>
         <Recommendation
-          categoryProduct={product?.category}
+          category={product?.category}
           productId={product?.id}
         />
       </section>
