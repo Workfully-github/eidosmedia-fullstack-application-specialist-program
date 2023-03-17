@@ -1,16 +1,33 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ProductCall } from "../../ApiCall/ProductCall";
-import styles from './ProductDetail.module.css'
+import styles from "./ProductDetail.module.css";
 import Recommendation from "../Recommendation/Recommendation";
+import SkeletonCard from "../Card/SkeletonCard";
 
 function ProductDetail() {
   const BASE_URL = "https://eidos-api.herokuapp.com/api/v1/products/";
 
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { id } = useParams();
+
+  const skeletonArr = [
+    "I am",
+    "gonna",
+    "impliment",
+    "this",
+    "skeleton",
+    "loader",
+    "later",
+    "in",
+    "another",
+    "way",
+    "trust",
+    "me",
+  ];
 
   const handleQuantity = (e) => setQuantity(e.target.value);
 
@@ -22,6 +39,7 @@ function ProductDetail() {
   useEffect(() => {
     getProductDetail(id).then((res) => {
       setProduct(res);
+      setIsLoading(false);
     });
   }, []);
 
@@ -32,34 +50,51 @@ function ProductDetail() {
 
   return (
     <div>
-      <section className={styles.headerSection}>
-        <section className={styles.imageSection}>
-          <div className={styles.smallImagesDiv}>
-            {product &&
-              product.images.map((image) => (
-                <div className={styles.smallImageContainer}>
-                  <img key={product.id} src={image} className={`${styles.smallerImages} ${styles.imageAnimation}`} />
-                </div>
-              ))}
-          </div>
+      <div className={styles.backButtonDiv}>
+        <Link className={styles.gobackButton} to="/">
+        ⬅ Go back
+        </Link>
+      </div>
 
-          {product && (
-            <img
-              src={product.thumbnail}
-              alt="cover pic"
-              className={`${styles.profileImage}`}
-            />
-          )}
-        </section>
+      <section className={styles.headerSection}>
+        {!isLoading ? (
+          <section className={styles.imageSection}>
+            <div className={styles.smallImagesDiv}>
+              {product &&
+                product.images.map((image) => (
+                  <div className={styles.smallImageContainer}>
+                    <img
+                      key={product.id}
+                      src={image}
+                      className={`${styles.smallerImages} ${styles.imageAnimation}`}
+                    />
+                  </div>
+                ))}
+            </div>
+
+            {product && (
+              <img
+                src={product.thumbnail}
+                alt="cover pic"
+                className={`${styles.profileImage}`}
+              />
+            )}
+          </section>
+        ) : (
+          skeletonArr.map((skeleton) => <SkeletonCard />)
+        )}
+
         <div className={styles.productInfo}>
           {product && (
-            <h2 className={styles.productTitle}>
+            <h1 className={styles.productTitle}>
               <b>{product.title}</b>
-            </h2>
+            </h1>
           )}
 
           <div>
-            {product && <p id={styles.descriptionLetter}>{product.description}</p>}
+            {product && (
+              <p id={styles.descriptionLetter}>{product.description}</p>
+            )}
           </div>
 
           <div className={styles.displayPrice}>
@@ -67,8 +102,10 @@ function ProductDetail() {
           </div>
 
           <div className={styles.displayIdBrand}>
-            {product && <p className={styles.brandStyles}>Brand: {product.brand}</p>}
-            {product && <p>In stock: {product.stock}</p>}
+            {product && (
+              <p className={styles.brandStyles}>Brand: {product.brand}</p>
+            )}
+            {product && <p>Stock: {product.stock}</p>}
             {product && <p>Rating: {product.rating}</p>}
           </div>
 
@@ -99,7 +136,10 @@ function ProductDetail() {
       </section>
 
       <section>
-        <Recommendation categoryProduct={product?.category} productId={product?.id}/>
+        <Recommendation
+          categoryProduct={product?.category}
+          productId={product?.id}
+        />
       </section>
     </div>
   );

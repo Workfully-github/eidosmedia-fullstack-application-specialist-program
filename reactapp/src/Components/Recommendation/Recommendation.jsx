@@ -34,7 +34,6 @@ function Recommendation({ categoryProduct, productId }) {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     getProducts().then((res) => {
       if (res.length > 4) setProducts(res.slice(0, 5));
       else setProducts(res);
