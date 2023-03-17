@@ -2,6 +2,7 @@ import React from 'react'
 import CartSlide from '../Cart/CartSlide'
 import styles from './Navbar.module.css'
 import { useStateContext } from "../Context/StateContext";
+import SearchComponent from '../SearchComponent/SearchComponent';
 const Navbar = () => {
   const { totalQuantities, showCart, toggleCart } = useStateContext();
   return (
@@ -10,12 +11,17 @@ const Navbar = () => {
         <div className="container">
           <div className={styles.navbarContainer}>
             <span className={styles.logo}>EIDOSTORE</span>
+            <div className={styles.navRight}>
+
+            <SearchComponent />
+
             <span
               onClick={() => {
                 toggleCart();
               }}
               className="cart-container"
             >
+
               <span className="cart">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -31,6 +37,7 @@ const Navbar = () => {
                 <span className="cart-products">{totalQuantities}</span>
               )}
             </span>
+            </div>
           </div>
         </div>
       </nav>

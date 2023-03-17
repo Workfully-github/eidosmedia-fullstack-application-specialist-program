@@ -5,7 +5,7 @@ import './App.css';
 import { StateContext } from './Components/Context/StateContext';
 import Home from './Components/Home/Home';
 import ProductDetails from './Components/ProductDetails/ProductDetails';
-// import { StateContext } from "../context/StateContext";
+import Search from './Components/Search/Search';
 class App extends Component {         
   render() {         
     return (     
@@ -17,7 +17,7 @@ class App extends Component {
             <Routes>                       
               <Route  path="/" element={<Home />}/>                     
               <Route  path="/home" element={<Home />}/>                     
-              <Route  path="/search/:searchQuery" element={<Home />}/>                  
+              <Route  path="/search/:searchQuery" element={<Search />}/>                  
               <Route  path ="/details/:id" element={<ProductDetails />}/>                    
             </Routes>
           </div>         

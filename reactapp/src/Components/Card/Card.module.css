@@ -1,5 +1,5 @@
 .cardContainer {
-    height: 350px;
+    height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -24,7 +24,8 @@
 .thumbnailContainer{
     overflow: hidden;
     width: 100%;
-    height: 350px;
+    max-height: 350px;
+    min-height: 260px;
 }
 
 .thumbnail {
@@ -40,6 +41,18 @@
     padding: 10px;
 }
 
+.productTitle {
+    display: block;
+    font-size: 17px;
+}
+
+.productCategory{
+    color: grey;
+    font-size: 15px;
+}
+
+
+/* =========== SKeleton Card =========== */
 .skeletonCardContainer{
     height: 350px;
     display: flex;

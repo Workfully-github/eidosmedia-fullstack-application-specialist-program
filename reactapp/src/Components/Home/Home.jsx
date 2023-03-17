@@ -14,9 +14,9 @@ import { Box, Drawer, IconButton, FormControl, Select, MenuItem, InputLabel } fr
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { useStateContext } from "../Context/StateContext"
+import Layout from '../layout/Layout';
 
 export default function Home(props) {
-  //the idea will be to get the search by the url
   var { searchQuery } = useParams();
   var [isDrawerOpen, setIsDrawerOpen] = useState(false);
   var [isLoading, setIsLoading] = useState(true);
@@ -50,13 +50,13 @@ export default function Home(props) {
     setCategorySelected(false)
     setSearchSelected(false)
     console.log("Submitted value: ", stock);
-    // perform any necessary actions with the submitted value here
   };
 
 
   return (
     <>
-      <Navbar />
+    <Layout >
+
       <IconButton size="large" edge="start" color="inherit" aria-label='logo' onClick={() => setIsDrawerOpen(true)}>
         <MenuIcon />
       </IconButton>
@@ -95,18 +95,15 @@ export default function Home(props) {
           </form>
         </Box>
       </Drawer>
-      <SearchComponent val={searchValue} />
 
       {categorySelected && <div>filter for Category : <b >{category}</b></div>}
       {isStock && <div>filter for stock : <b >{stock}</b></div>}
       {searchSelected && <div>filter for search : <b >{searchQuery}</b></div>}
       
-      <Container >
 
         <Cards />
         <Pagination />
-      </Container>
-      <Footer />
+    </Layout>
     </>
 
 

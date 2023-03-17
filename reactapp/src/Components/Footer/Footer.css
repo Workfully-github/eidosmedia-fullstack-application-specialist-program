@@ -1,36 +1,9 @@
-.logo {
-    font-size: 23px;
-    font-weight: 600;
-    color: #055AD1;
-    position: absolute;
-    left: 0;
+footer {
+    height: 200px;
+    background-color: #f1f1f1;
+    padding-top: 60px;
 }
-
-.footerbody{
-    left: 0;
-    position: absolute;
-    margin-top: 10px;
-    padding-left: 10px;
-}
-
-.footer {
-    position: static;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background-color: rgb(240, 233, 233);
-    color: rgb(18, 17, 17);
-    text-align: center;
-    padding-top: 10px;
-    margin-top: 10px;
-    padding-left: 5px;
-}
-
-.footerbar {
-    background-color: #fff;
-    -webkit-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    -moz-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    font-family: 'Roboto', sans-serif;
+.logo{
+    color: #416FB4;
+    font-size: 50px;
 }
