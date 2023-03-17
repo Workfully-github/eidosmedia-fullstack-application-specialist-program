@@ -6,8 +6,6 @@ body {
 
 .imageSection {
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
 }
 
 .smallImagesDiv {
@@ -27,32 +25,20 @@ body {
 }
 
 .profileImage {
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: center; */
     border-radius: 10px;
-    /* margin: 0% 5%; */
     height: 40vh;
-    /* width: 45vw; */
 }
 
 .smallerImages {
     border-radius: 10px;
-    /* margin: 7% 5%; */
     height: 6vh;
     width: 6vw;
     object-fit: cover;
     object-position: center;
 }
 
-.smallImageContainer {
-    
-}
-
 .headerSection {
     display: flex;
-    /* flex-wrap: wrap; */
-    /* justify-content: space-evenly; */
     align-items: center;
     margin-top: 100px;
     width: 100%;
@@ -75,14 +61,15 @@ body {
 .displayIdBrand {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .productInfo {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    /* padding: 10px; */
+    margin-left: 30px;
     background-color: white;
 }
 
@@ -90,8 +77,8 @@ body {
     text-align: center;
 }
 
-b {
-    font-size: larger;
+.productTitle {
+    font-size: x-large;
     font-weight: 800;
 }
 
@@ -147,4 +134,24 @@ b {
     background-color: lightsalmon;
     padding: 2px 7px;
     color: rgb(123, 64, 40);
+}
+
+.gobackButton {
+    text-decoration: none;
+    border: 1px rgb(20, 119, 232) solid;
+    border-radius: 2.5px;
+    background-color: white;
+    padding: 5px 15px;
+    color: rgb(20, 119, 232);
+}
+
+.gobackButton:hover {
+    transform: scale(1.5);
+}
+
+.backButtonDiv {
+    margin-top: 2%;
+    position: absolute;
+    right: 20%;
+    top: 7%;
 }
