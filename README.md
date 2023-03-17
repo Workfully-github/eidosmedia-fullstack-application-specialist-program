@@ -5,3 +5,6 @@ https://github.com/Workfully-github/eidosmedia-fullstack-application-specialist-
 
 ## Run this application with webapp-runner
 java -jar target/dependency/webapp-runner.jar target/*.war
+
+## Deploy
+mvn clean heroku:deploy-war
