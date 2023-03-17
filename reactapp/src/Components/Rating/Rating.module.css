@@ -1,0 +1,21 @@
+.ratingContainer {
+    display: flex;
+    gap: 2px;
+}
+
+.starContainer{
+    /* background: linear-gradient(90deg, #fbaf33 70%, #00ffff00 50%); */
+    height: 18px;
+    width: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star{
+    /* object-fit: cover; */
+    /* width: 100%;
+    height: 100%; */
+    height: 18px;
+    width: 18px;
+}

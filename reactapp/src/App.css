@@ -238,3 +238,8 @@ a {
     border-color: #000;
     width: 25px;
   }
+
+  .layout{
+    margin-top: 60px;
+    min-height: 100vh;
+  }

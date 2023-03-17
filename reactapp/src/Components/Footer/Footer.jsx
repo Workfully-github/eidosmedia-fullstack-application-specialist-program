@@ -3,13 +3,13 @@ import './Footer.css'
 
 const Footer = () => {
   return (
-    <nav className="footerbar">
-        <div className="footer">
-          <span className="logo">EIDOSTORE</span>
-          <br/>
-          <span className='footerbody'>Made by Eidosmedia team</span>
-        </div>
-    </nav>
+    <footer className="footer">
+        <div className="container">
+
+            <div className="logo">EIDOSTORE</div>
+          <div className='footerbody'>Made with ❤ by Eidosmedia team</div>
+      </div>
+    </footer>
   )
 }
 

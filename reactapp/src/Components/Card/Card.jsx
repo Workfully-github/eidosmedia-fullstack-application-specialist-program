@@ -1,7 +1,8 @@
 import React from 'react'
+import Rating from '../Rating/Rating';
 import styles from './Card.module.css'
 const Card = ({cardDetail}) => {
-  const {id, title, price, thumbnail} = cardDetail;
+  const {id, title, price, category, thumbnail} = cardDetail;
   return (
     <a href={`/details/${id}`}  >
       <div className={styles.cardContainer}>
@@ -9,8 +10,10 @@ const Card = ({cardDetail}) => {
           <img src={thumbnail} alt="#" className={styles.thumbnail}  loading="lazy"/>
         </div>
         <div className={styles.cardFooter}>
-          <h3 className={styles.productTitle}>{title}</h3>
-          <span className={styles.price}>€{price}</span>
+          <span className={styles.productTitle}>{title}</span>
+          <i className={styles.productCategory}>  {category}</i>
+          <Rating rating={4.53} />
+          <h3 className={styles.price}>€{price}</h3>
         </div>
       </div>
     </a>
