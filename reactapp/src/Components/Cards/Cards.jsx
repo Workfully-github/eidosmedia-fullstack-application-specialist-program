@@ -7,11 +7,7 @@ import { useParams } from 'react-router-dom'
 const Card = lazy(() => import('../Card/Card'));
 
 const Cards = (props) => {
-<<<<<<< HEAD
-  const {url, stock, isStock, setIsStock} = useStateContext();
-=======
-  const {url, setUrl} = useStateContext();
->>>>>>> AR@Cart
+  const {url,setUrl, stock, isStock, setIsStock} = useStateContext();
 
   const [productList, setProductList] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

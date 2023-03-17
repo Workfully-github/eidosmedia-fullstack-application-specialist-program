@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState } from "react";
 
 const Context = createContext();
 
-<<<<<<< HEAD
 export const StateContext = ({children}) =>{
     const [url, setUrl] = useState("https://eidos-api.herokuapp.com/api/v1/products")
     const [page, setPage] = useState(1)
@@ -10,30 +9,8 @@ export const StateContext = ({children}) =>{
     const [isStock, setIsStock] = useState(false)
     const [categorySelected, setCategorySelected] = useState(false)
     const [searchSelected, setSearchSelected] = useState(true)
-    return (
-        <Context.Provider
-          value={{
-            url,
-            setUrl,
-            page,
-            setPage,
-            stock,
-            setStock,
-            isStock,
-            setIsStock,
-            categorySelected,
-            setCategorySelected,
-            searchSelected, 
-            setSearchSelected
-          }}
-        >
-          {children}
-        </Context.Provider>
-      );
-=======
-export const StateContext = ({ children }) => {
-  const [url, setUrl] = useState("https://eidos-api.herokuapp.com/api/v1/products")
-  const [page, setPage] = useState(1)
+   
+
   const [showCart, setShowCart] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -113,7 +90,6 @@ export const StateContext = ({ children }) => {
     setCartItems([...cartItemsArrToBeUpdated]);
   };
 
-
   return (
     <Context.Provider
       value={{
@@ -121,6 +97,14 @@ export const StateContext = ({ children }) => {
         setUrl,
         page,
         setPage,
+        stock,
+        setStock,
+        isStock,
+        setIsStock,
+        categorySelected,
+        setCategorySelected,
+        searchSelected, 
+        setSearchSelected,
         showCart,
         cartItems,
         totalPrice,
@@ -139,7 +123,6 @@ export const StateContext = ({ children }) => {
       {children}
     </Context.Provider>
   );
->>>>>>> AR@Cart
 }
 
 export const useStateContext = () => useContext(Context);
