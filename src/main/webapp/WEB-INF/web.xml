@@ -32,7 +32,7 @@
         <!-- Jersey configuration -->
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>org.workfully.servlets.api.v1.resources</param-value>
+            <param-value>org.workfully.servlets.api.v2.resources</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
