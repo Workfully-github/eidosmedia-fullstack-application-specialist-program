@@ -18,13 +18,21 @@
     justify-content: space-between;
 }
 
-.navRight{
+/* .navRight{
     display: flex;
     gap: 15px;
     align-items: center;
-}
+    
+} */
 
 .logo {
+    font-size: 23px;
+    font-weight: 600;
+    color: #055AD1;
+}
+
+.resLogo{
+    display: none;
     font-size: 23px;
     font-weight: 600;
     color: #055AD1;
@@ -34,4 +42,14 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    .resLogo{
+        display: block;
+    }
+
+    .logo{
+        display: none;
+    }
 }

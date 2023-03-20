@@ -11,10 +11,14 @@ body {
 .smallImagesDiv {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     box-sizing: border-box;
+    gap: 15px;
     padding: 0 5px;
     margin-right: 10px;
+}
+
+.smallImageContainer{
+    cursor: pointer;
 }
 
 .imageAnimation:hover {
@@ -24,9 +28,17 @@ body {
     transition: 1ms ease;
 }
 
+.profileImageContainer{
+    width: 500px;
+    min-height: 400px;
+}
+
 .profileImage {
     border-radius: 10px;
-    height: 40vh;
+    /* height: 100%; */
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .smallerImages {
@@ -40,7 +52,7 @@ body {
 .headerSection {
     display: flex;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 56px;
     width: 100%;
 }
 
@@ -61,8 +73,9 @@ body {
 .displayIdBrand {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
+    gap: 18px;
+    /* justify-content: space-evenly; */
+    /* align-items: center; */
 }
 
 .productInfo {
@@ -71,6 +84,16 @@ body {
     /* padding: 10px; */
     margin-left: 30px;
     background-color: white;
+    
+}
+
+.productInfo > * {
+    /* box-sizing: border-box; */
+    margin: 0;
+}
+
+.p {
+    margin: 0px !important;
 }
 
 .descriptionSection {
@@ -88,6 +111,7 @@ body {
 
 #priceHeader {
     color: rgb(20, 119, 232);
+    font-size: xx-large;
 }
 
 .quantityDiv {
@@ -102,31 +126,48 @@ body {
 .buttonsDiv {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+    gap: 15px;
 }
 
 .buyNow {
+    all: unset;
     text-decoration: none;
-    border: 1px rgb(20, 119, 232) solid;
+    border: 1px solid #416FB4 ;
     border-radius: 2.5px;
-    background-color: rgb(20, 119, 232);
-    padding: 5px 25px;
+    background-color: #416FB4;
+    /* padding: 5px 25px; */
     color: white;
+    font-size: 18px;
 }
 .buyNow:hover {
-    transform: scale(1.2);
+    background-color: rgba(20, 119, 232, 0);
+    color: #416FB4;
 }
 
 .addCartButton {
+    all: unset;
     border: 1px rgb(20, 119, 232) solid;
     border-radius: 2.5px;
     background-color: white;
-    padding: 5px 25px;
+    /* padding: 5px 25px; */
     color: rgb(20, 119, 232);
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.buyNow, .addCartButton {
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .05s ease-in-out;
 }
 
 .addCartButton:hover {
-    transform: scale(1.2);
+    color: white;
+    background-color: #416FB4;
 }
 
 .brandStyles {
@@ -150,8 +191,15 @@ body {
 }
 
 .backButtonDiv {
-    margin-top: 2%;
-    position: absolute;
-    right: 20%;
-    top: 7%;
+    /* margin-top: -2%; */
+    /* position: absolute; */
+    /* right: 20%;
+    top: 7%; */
+    z-index: 999;
+}
+
+@media only screen and (max-width: 945px) {
+    .headerSection{
+        flex-direction: column;
+    }
 }

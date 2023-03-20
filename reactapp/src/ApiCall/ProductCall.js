@@ -10,15 +10,4 @@ export class ProductCall {
         }
     }
 
-    static async addCart(url) {
-        try {
-            const data = await fetch(url, {
-                method:'POST'
-            });
-            return await data.json();
-            
-        } catch (error) {
-            console.log(error);
-        }
-    }
 }

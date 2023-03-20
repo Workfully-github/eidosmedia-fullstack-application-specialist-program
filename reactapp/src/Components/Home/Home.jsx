@@ -1,111 +1,23 @@
 import React, { useEffect, useState } from 'react';
 
-import axios from 'axios'
-import { Container } from "reactstrap";
 import "./Home.css";
-import Navbar from "../Navbar/Navbar";
-import SearchComponent from '../SearchComponent/SearchComponent';
-import { useParams } from 'react-router-dom';
 import Cards from '../Cards/Cards';
 import Pagination from "../Pagination/Pagination"
-import Footer from '../Footer/Footer';
-
-import { Box, Drawer, IconButton, FormControl, Select, MenuItem, InputLabel } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-
-import { useStateContext } from "../Context/StateContext"
 import Layout from '../layout/Layout';
-
-export default function Home(props) {
-  var { searchQuery } = useParams();
-  var [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  var [isLoading, setIsLoading] = useState(true);
-  var [categoriesList, setCategoriesList] = useState(null);
-  var [category, setCategory] = useState(null);
-  var [searchValue, setSearchValue] = useState(searchQuery);
-  const { url, setUrl,
-     stock, setStock, 
-     isStock, setIsStock, 
-     stockSelected,
-     setStockSelected,
-     categorySelected, setCategorySelected,
-      searchSelected, setSearchSelected } = useStateContext();
-
-  useEffect(() => {
-    getCategoriesList("https://eidos-api.herokuapp.com/api/v1/categories")
-    { console.log(searchQuery) }
-  }, [])
-
-  const getCategoriesList = async (url) => {
-    setIsLoading(true)
-    const response = await axios.get(url);
-    setCategoriesList(response.data);
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 500)
-  }
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsStock(true)
-    setStockSelected(!stockSelected)
-    setUrl("https://eidos-api.herokuapp.com/api/v1/products/")
-    setCategorySelected(false)
-    setSearchSelected(false)
-    console.log("Submitted value: ", stock);
-  };
-
+import call from '../../ApiCall/call';
+import { useStateContext } from '../Context/StateContext'
+import useFetch from '../../ApiCall/call';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+export default function Home() {
+  const { data } = useFetch("https://eidos-api.herokuapp.com/api/v1/products/")
 
   return (
     <>
-    <Layout >
-
-      <IconButton size="large" edge="start" color="inherit" aria-label='logo' onClick={() => setIsDrawerOpen(true)}>
-        <MenuIcon />
-      </IconButton>
-      <Drawer anchor='left' open={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-        <Box p={2} width="250px" textAlign='center' role='presentation' >
-          <h4>Filter:</h4>
-          <br />
-          <FormControl fullWidth>
-            <InputLabel id="menu">Categories</InputLabel>
-            <Select labelId="menu" id="menu-list" label="categories">
-              {!isLoading && categoriesList.map(cat =>
-                <MenuItem value={cat} onClick={() => {
-                  setUrl("https://dummyjson.com/products/category/" + cat)
-                  setCategory(cat)
-                  setSearchValue("")
-                  setCategorySelected(true)
-                  setSearchSelected(false)
-                  setIsStock(false)
-
-                }}>
-                  {cat}
-                </MenuItem>)}
-            </Select>
-          </FormControl>
-          <form onSubmit={handleSubmit} className="form">
-            <label>
-              Stock:
-              <input
-                type="number"
-                value={stock}
-                onChange={(e) => setStock(e.target.value)}
-                className="input"
-              />
-            </label>
-            <button type="submit">Submit</button>
-          </form>
-        </Box>
-      </Drawer>
-
-      {categorySelected && <div>filter for Category : <b >{category}</b></div>}
-      {isStock && <div>filter for stock : <b >{stock}</b></div>}
-      {searchSelected && <div>filter for search : <b >{searchQuery}</b></div>}
-      
-
-        <Cards change={stockSelected}/>
+      <Layout >
+        <Cards data={data?.products} />
         <Pagination />
-    </Layout>
+      </Layout>
     </>
 
 

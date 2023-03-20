@@ -1,19 +1,32 @@
-import React from 'react'
+import React  from 'react'
 import CartSlide from '../Cart/CartSlide'
 import styles from './Navbar.module.css'
 import { useStateContext } from "../Context/StateContext";
 import SearchComponent from '../SearchComponent/SearchComponent';
+import { Link, useParams } from 'react-router-dom';
+
+import SideBar from '../SideBar/SideBar';
 const Navbar = () => {
   const { totalQuantities, showCart, toggleCart } = useStateContext();
+  var { searchQuery } = useParams();
+ 
   return (
+    
     <>
       <nav className={styles.navbar}>
         <div className="container">
           <div className={styles.navbarContainer}>
+          <div style={{display: "flex", alignItems: "center"}}>
+            <SideBar />
+            <Link to="/">
+
             <span className={styles.logo}>EIDOSTORE</span>
+            <span className={styles.resLogo}>ES</span>
+            </Link>
+          </div>
+            <SearchComponent val={searchQuery ? searchQuery : ""} />
             <div className={styles.navRight}>
 
-            <SearchComponent />
 
             <span
               onClick={() => {

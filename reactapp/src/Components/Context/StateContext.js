@@ -5,9 +5,6 @@ const Context = createContext();
 export const StateContext = ({children}) =>{
     const [url, setUrl] = useState("https://eidos-api.herokuapp.com/api/v1/products")
     const [page, setPage] = useState(1)
-    const [stock, setStock] = useState("")
-    const [isStock, setIsStock] = useState(false)
-    const [stockSelected, setStockSelected] = useState(false)
     const [categorySelected, setCategorySelected] = useState(false)
     const [searchSelected, setSearchSelected] = useState(true)
     const [showCart, setShowCart] = useState(false);
@@ -15,6 +12,7 @@ export const StateContext = ({children}) =>{
     const [totalPrice, setTotalPrice] = useState(0);
     const [totalQuantities, setTotalQuantities] = useState(0);
     const [qty, setQty] = useState(1);
+    const [isLoading, setIsLoading] = useState(false)
 
   const incQty = () => {
     setQty((prevQty) => prevQty + 1);
@@ -92,20 +90,16 @@ export const StateContext = ({children}) =>{
   return (
     <Context.Provider
       value={{
+        isLoading,
+        setIsLoading,
         url,
         setUrl,
         page,
         setPage,
-        stock,
-        setStock,
-        isStock,
-        setIsStock,
         categorySelected,
         setCategorySelected,
         searchSelected, 
         setSearchSelected,
-        stockSelected,
-        setStockSelected,
         showCart,
         cartItems,
         totalPrice,

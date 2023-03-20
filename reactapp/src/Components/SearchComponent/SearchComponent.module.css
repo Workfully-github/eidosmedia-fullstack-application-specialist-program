@@ -1,8 +1,15 @@
+.search {
+    display: flex;
+    align-items: center;
+}
+
 .searchForm {
     display: flex;
     justify-content: space-between;
     max-width: 500px;
+    position: relative;
 }
+
 .searchInput {
     min-width: 130px;
     width: 100%;
@@ -19,7 +26,7 @@
     transition: outline .1s ease-in-out;
 }
 
-.searchInput:focus{
+.searchInput:focus {
     outline: 1px solid #6893d4;
 }
 
@@ -38,4 +45,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.responsiveSearchBtn {
+    display: none;
+
+}
+
+
+@media only screen and (max-width: 600px) {
+    .responsiveSearchBtn {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .searchForm {
+        /* max-width: 700px;
+        min-width: 300px; */
+        flex-basis: 1;
+       
+    }
+
+    
 }

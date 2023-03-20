@@ -13,7 +13,7 @@ const Pagination = () => {
     }
 
     const goToPage = (page) => {
-        navigate(`?page=${page}`);
+        navigate(`/page/${page}`);
         setPage(page)
         setUrl(translatePageToUrl(page))
     }

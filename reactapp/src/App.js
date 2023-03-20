@@ -2,9 +2,11 @@
 import React, { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';  
+import Category from './Components/Category/Category';
 import { StateContext } from './Components/Context/StateContext';
 import Home from './Components/Home/Home';
-import ProductDetails from './Components/ProductDetails/ProductDetails';
+import Page from './Components/Page/Page';
+import ProductDetail from './Components/Detail/ProductDetail';
 import Search from './Components/Search/Search';
 class App extends Component {         
   render() {         
@@ -18,7 +20,9 @@ class App extends Component {
               <Route  path="/" element={<Home />}/>                     
               <Route  path="/home" element={<Home />}/>                     
               <Route  path="/search/:searchQuery" element={<Search />}/>                  
-              <Route  path ="/details/:id" element={<ProductDetails />}/>                    
+              <Route  path="/category/:category" element={<Category />}/>                  
+              <Route  path="/page/:page" element={<Page />}/>                  
+              <Route  path ="/details/:id" element={<ProductDetail />}/>                    
             </Routes>
           </div>         
         </div>         
