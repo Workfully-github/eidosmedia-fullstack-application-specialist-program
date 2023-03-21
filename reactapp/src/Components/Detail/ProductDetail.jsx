@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 //import { ProductCall } from "../../ApiCall/ProductCall";
 import styles from "./ProductDetail.module.css";
@@ -11,15 +11,14 @@ import Layout from "../layout/Layout";
 function ProductDetail() {
   const { decQty, incQty, qty, setQty, onAdd, isLoading } = useStateContext();
   const BASE_URL = "https://eidos-api.herokuapp.com/api/v1/products/";
-  const [product, setProduct] = useState(null);
   const { id } = useParams();
   const { data } = useFetch(BASE_URL + id)
   const [coverImage, setCoverImage] = useState(null);
 
   useEffect(()=>{
     setCoverImage(data?.thumbnail)
-    // console.log(data)
-  }, [data])
+    setQty(1);
+  }, [data, setQty])
 
   const skeletonArr = [
     "I am",
@@ -52,10 +51,12 @@ function ProductDetail() {
                     data.images.map((image) => (
                       <div className={styles.smallImageContainer}>
                         <img
+                        alt="product view"
                           key={data.id}
                           src={image}
                           className={`${styles.smallerImages} ${styles.imageAnimation}`}
                           onClick={()=>setCoverImage(image)}
+                          loading="lazy"
                         />
                       </div>
                     ))}
@@ -68,6 +69,8 @@ function ProductDetail() {
                       src={coverImage && coverImage}
                       alt="cover pic"
                       className={`${styles.profileImage}`}
+                      loading="lazy"
+
                     />
                 )}
                   </div>

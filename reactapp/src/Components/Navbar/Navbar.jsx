@@ -20,8 +20,8 @@ const Navbar = () => {
             <SideBar />
             <Link to="/">
 
-            <span className={styles.logo}>EIDOSTORE</span>
-            <span className={styles.resLogo}>ES</span>
+            <span onClick={window.scroll({top: 0})} className={styles.logo}>EIDOSTORE</span>
+            <span onClick={window.scroll({top: 0})} className={styles.resLogo}>ES</span>
             </Link>
           </div>
             <SearchComponent val={searchQuery ? searchQuery : ""} />
