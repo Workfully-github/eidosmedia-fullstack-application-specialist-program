@@ -8,31 +8,28 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.workfully.utils.MakeFileUtils;
+import static org.workfully.utils.MakeFileUtils.*;
 import org.workfully.utils.RestUtils;
 
 @Path("products")
 public class Products {
 
+    private static String allProductsLocalCache = null;
+    private static String getProductsCache = null;
     private RestUtils rest = new RestUtils();
-    private final static String RESOURCES_BASE_PATH = "src/main/java/org/workfully/resources/";
-    private final static String HEROKU_RESOURCES_BASE_PATH = System.getenv("RESOURCES_BASE_PATH");
-    
-    private static String getAllProductsResponse = null;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProducts(@QueryParam("limit") int limit, @QueryParam("skip") int skip) {
-        final String GET_PRODUCTS_PATH = "get_products_" + "l" + limit + "&" + "s" + skip;
+        final String FILE_NAME = "get_products_" + "limit=" + limit + "&" + "skip=" + skip;
+        final String REQUEST_PATH = "https://dummyjson.com/products?limit=" + (limit == 0 ? 30 : limit) + "&" + "skip=" + skip;
         try {
-            String request = "https://dummyjson.com/products?limit=" + (limit == 0 ? 30 : limit) + "&skip=" + skip;
-            String response = rest.getBody(request).getEntity().toString();
-            File file = MakeFileUtils.makeFile(response, GET_PRODUCTS_PATH);
-            String localResponse = MakeFileUtils.readFile(file);
-
+            getProductsCache = callApiIfCacheNull(getProductsCache, REQUEST_PATH);
+            File file = makeFile(getProductsCache, FILE_NAME);
+            String response = readFile(file);
             rest.updateStats("page");
             return Response.ok()
-                    .entity(localResponse)
+                    .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
                     .encoding("gzip")
@@ -50,10 +47,10 @@ public class Products {
         final String PRODUCT_ID_PATH = "product_id_" + id;
 
         try {
-            String request = "https://dummyjson.com/products/" + id;
-            String response = rest.getBody(request).getEntity().toString();
-            File file = MakeFileUtils.makeFile(response, PRODUCT_ID_PATH);
-            String localResponse = MakeFileUtils.readFile(file);
+            String REQUEST_PATH = "https://dummyjson.com/products/" + id;
+            String response = rest.getBody(REQUEST_PATH).getEntity().toString();
+            File file = makeFile(response, PRODUCT_ID_PATH);
+            String localResponse = readFile(file);
 
             rest.updateStats("productDetail");
             return Response.ok()
@@ -74,8 +71,8 @@ public class Products {
     public Response search(@QueryParam("q") String query) {
         // TODO Implement local caching
         try {
-            String request = "https://dummyjson.com/products/search?q=" + query;
-            String response = rest.getBody(request).getEntity().toString();
+            String REQUEST_PATH = "https://dummyjson.com/products/search?q=" + query;
+            String response = rest.getBody(REQUEST_PATH).getEntity().toString();
             rest.updateStats("search");
             return Response.ok()
                     .entity(response)
@@ -95,8 +92,8 @@ public class Products {
     public Response searchByCategory(@PathParam("category") String category) {
         // TODO Implement local caching
         try {
-            String request = "https://dummyjson.com/products/category/" + category;
-            String response = rest.getBody(request).getEntity().toString();
+            String REQUEST_PATH = "https://dummyjson.com/products/category/" + category;
+            String response = rest.getBody(REQUEST_PATH).getEntity().toString();
 
             rest.updateStats("category");
             return Response.ok()
@@ -115,15 +112,15 @@ public class Products {
     @Path("/allproducts")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllProducts() {
-        final String ALL_PRODUCTS = "allproducts";
-        String request = "https://dummyjson.com/products?limit=100";
+        final String FILE_NAME = "allproducts";
+        final String REQUEST_PATH = "https://dummyjson.com/products?limit=100";
         try {
-            callApiIfResponseNull(Products.getAllProductsResponse, request);
-            File file = MakeFileUtils.makeFile(getAllProductsResponse, ALL_PRODUCTS);
-            String localResponse = MakeFileUtils.readFile(file);
+            allProductsLocalCache = callApiIfCacheNull(allProductsLocalCache, REQUEST_PATH);
+            File file = makeFile(allProductsLocalCache, FILE_NAME);
+            String response = readFile(file);
             rest.updateStats("products");
             return Response.ok()
-                    .entity(localResponse)
+                    .entity(response)
                     .header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET")
                     .encoding("gzip")
@@ -134,26 +131,19 @@ public class Products {
         }
     }
 
-    public static void main(String[] args) {
-        Products products = new Products();
-        products.getAllProducts();
+    private String callApiIfCacheNull(String response, final String REQUEST_PATH) {
+        return response == null ? rest.getBody(REQUEST_PATH).getEntity().toString() : allProductsLocalCache;
     }
 
-    public void callApiIfResponseNull(String response, String request) {
-        if (response == null) {
-            getAllProductsResponse = rest.getBody(request).getEntity().toString();
-        }
-    }
-
-    public void cronJobIfApiResponseDifferent(String response, String request) {
-        if (response.hashCode() != rest.getBody(request).getEntity().toString().hashCode()) {
-            getAllProductsResponse = rest.getBody(request).getEntity().toString();
+    public void cronJobIfApiResponseDifferent(String response, String REQUEST_PATH) {
+        if (response.hashCode() != rest.getBody(REQUEST_PATH).getEntity().toString().hashCode()) {
+            allProductsLocalCache = rest.getBody(REQUEST_PATH).getEntity().toString();
             System.out.println("Api called, Hash Code is different...");
         }
     }
 
     public void cronJob() {
-        final String REQUEST_ALL_PRODUCTS = "https://dummyjson.com/products?limit=100";
-        cronJobIfApiResponseDifferent(Products.getAllProductsResponse, REQUEST_ALL_PRODUCTS);
+        final String REQUEST_PATH_ALL_PRODUCTS = "https://dummyjson.com/products?limit=100";
+        cronJobIfApiResponseDifferent(Products.allProductsLocalCache, REQUEST_PATH_ALL_PRODUCTS);
     }
 }

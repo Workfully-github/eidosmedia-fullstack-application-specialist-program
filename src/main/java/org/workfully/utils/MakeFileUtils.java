@@ -10,7 +10,7 @@ import com.google.gson.GsonBuilder;
 
 public class MakeFileUtils {
 
-    private final static String RESOURCES_BASE_PATH = "./src/main/java/org/workfully/resources/";
+    //private final static String RESOURCES_BASE_PATH = "./src/main/java/org/workfully/resources/";
     private final static String HEROKU_RESOURCES_BASE_PATH = System.getenv("RESOURCES_BASE_PATH");
 
     private static File makeJsonFile(String data, String jsonName) throws IOException {
@@ -92,22 +92,12 @@ public class MakeFileUtils {
             File tempFile = MakeFileUtils.makeTempFile(response, pathResource);
             File file = MakeFileUtils.makeJsonFile(response, pathResource);
 
-            if (file.hashCode() != tempFile.hashCode())
-                MakeFileUtils.mergeFiles(file, tempFile);
+            if (file.hashCode() != tempFile.hashCode()) MakeFileUtils.mergeFiles(file, tempFile);
 
             return file;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
-        } /*
-           * finally {
-           * new File(RESOURCES_BASE_PATH + "temp_" + pathResource + ".json").delete();
-           * System.out.println("Temp file deleted");
-           * }
-           */
-    }
-
-    public static void main(String[] args) {
-        makeTempFile("Test", "allproducts");
+        }
     }
 }
