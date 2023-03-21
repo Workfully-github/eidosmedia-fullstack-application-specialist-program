@@ -9,7 +9,7 @@ import SideBar from '../SideBar/SideBar';
 const Navbar = () => {
   const { totalQuantities, showCart, toggleCart } = useStateContext();
   var { searchQuery } = useParams();
- 
+ console.log(totalQuantities)
   return (
     
     <>

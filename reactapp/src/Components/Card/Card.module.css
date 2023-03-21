@@ -1,5 +1,5 @@
 .cardContainer {
-    height: 350px;
+    height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,6 +49,7 @@
 .productCategory{
     color: grey;
     font-size: 15px;
+    
 }
 
 

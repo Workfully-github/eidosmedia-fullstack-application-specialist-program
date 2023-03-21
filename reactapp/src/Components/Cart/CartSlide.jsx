@@ -17,13 +17,13 @@ const CartSlide = () => {
     cartItemQnt.innerHTML = cartItem[index]?.quantity;
   };
 
-  useEffect(() => {
-    document.addEventListener("click", (e) => {
-      if (e.path[0] === cartOpacBg.current) {
-        toggleCart();
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("click", (e) => {
+  //     if (e.path[0] === cartOpacBg.current) {
+  //       toggleCart();
+  //     }
+  //   });
+  // }, []);
 
   const handleCheckout = async () => {
 

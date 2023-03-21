@@ -9,57 +9,29 @@ import useFetch from "../../ApiCall/call";
 import Layout from "../layout/Layout";
 
 function ProductDetail() {
-  const { decQty, incQty, qty, setQty, onAdd, toggleCart } = useStateContext();
+  const { decQty, incQty, qty, setQty, onAdd, isLoading } = useStateContext();
   const BASE_URL = "https://eidos-api.herokuapp.com/api/v1/products/";
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(0);
   const { id } = useParams();
-  const quan = useRef();
-  const handleQuantity = (e) => setQty(e.target.value);
-  const [isLoading, setIsLoading] = useState(true);
+  const { data } = useFetch(BASE_URL + id)
   const [coverImage, setCoverImage] = useState(null);
 
-  const { data } = useFetch(BASE_URL + id)
+  useEffect(()=>{
+    setCoverImage(data?.thumbnail)
+    // console.log(data)
+  }, [data])
 
   const skeletonArr = [
     "I am",
     "gonna",
     "impliment",
     "this",
-    "skeleton",
-    "loader",
-    "later",
-    "in",
-    "another",
-    "way",
-    "trust",
-    "me",
+   
   ];
 
-  //const handleQuantity = (e) => setQuantity(e.target.value);
-  const handleImageChange = (e) => {
-    setCoverImage(e.target.currentSrc);
-  };
+  
 
-  const getProductDetail = async (id) => {
-    /* const data = await ProductCall.get(BASE_URL + `${id}`); */
-    try {
-      const data = await fetch(BASE_URL + `${id}`);
-      return await data.json();
-
-    } catch (error) {
-      console.log(error);
-    }
-    //return data;
-  };
-
-  useEffect(() => {
-    getProductDetail(id).then((res) => {
-      setProduct(res);
-      if (coverImage === null) { setCoverImage(res.thumbnail) };
-      setIsLoading(false);
-    });
-  }, []);
+ 
 
   return (
     <Layout>
@@ -83,7 +55,7 @@ function ProductDetail() {
                           key={data.id}
                           src={image}
                           className={`${styles.smallerImages} ${styles.imageAnimation}`}
-                          onClick={handleImageChange}
+                          onClick={()=>setCoverImage(image)}
                         />
                       </div>
                     ))}
@@ -93,7 +65,7 @@ function ProductDetail() {
                 {
                     data && (
                     <img
-                      src={coverImage}
+                      src={coverImage && coverImage}
                       alt="cover pic"
                       className={`${styles.profileImage}`}
                     />
@@ -161,7 +133,7 @@ function ProductDetail() {
                     Buy now
                   </button>
                 </Link>
-                <button className={styles.addCartButton} onClick={() => onAdd(product, qty)}>
+                <button className={styles.addCartButton} onClick={() => onAdd(data, qty)}>
                   Add to Cart
                 </button>
               </div>
