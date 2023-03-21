@@ -238,6 +238,56 @@ a {
     width: 25px;
   }
 
+  .quantity {
+    border: 1px solid rgb(44, 44, 44);
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+  }
+
+  .quantity > span {
+    margin-right: 10px;
+    font-weight: 600;
+    font-size: 17px;
+  }
+
+  .qnt-changer {
+    background-color: #fff;
+    width: 60px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 26px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    border: none;
+  }
+  
+  .qnt-changer:focus {
+    outline: 2px solid grey;
+    outline-offset: 4px;
+  }
+  
+  .qnt-changer:hover {
+    background-color: rgb(218, 218, 218);
+  }
+
+  .item-qty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: 700;
+    border-left: 1px solid rgb(44, 44, 44);
+    border-right: 1px solid rgb(44, 44, 44);
+  }
+
   .layout{
     margin-top: 60px;
     min-height: 100vh;

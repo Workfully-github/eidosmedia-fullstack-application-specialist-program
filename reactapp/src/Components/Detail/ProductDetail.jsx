@@ -59,18 +59,7 @@ function ProductDetail() {
       if (coverImage === null) { setCoverImage(res.thumbnail) };
       setIsLoading(false);
     });
-    // console.log(quan.current)
-    // quan.current.addEventListener()
   }, []);
-
-  // const addToCart = async (productId) => {
-  //   const data = await ProductCall.addCart(BASE_URL + `${id}`);
-  //   return data;
-  // };
-  /*  const addToCart = async (productId) => {
-     const data = await ProductCall.addCart(BASE_URL + `${id}`);
-     return data;
-   }; */
 
   return (
     <Layout>
@@ -79,7 +68,7 @@ function ProductDetail() {
         <div>
           <div className={styles.backButtonDiv}>
             <Link className={styles.gobackButton} to="/">
-              ⬅ Go back
+              ◀  Go back
             </Link>
           </div>
 
@@ -141,7 +130,7 @@ function ProductDetail() {
               </div>
 
               <div className={styles.quantityDiv}>
-                <form className={styles.quantityForm} onSubmit="">
+                {/* <form className={styles.quantityForm} onSubmit="">
                   <label htmlFor="quantity">Quantity: </label>
                   <input
                     className={styles.quantityInput}
@@ -153,7 +142,16 @@ function ProductDetail() {
                     onChange={handleQuantity}
 
                   />
-                </form>
+                </form> */}
+                <div className="quantity">
+                    <button onClick={decQty} className="minus qnt-changer">
+                      <span>&#8722;</span>
+                    </button>
+                    <div className="item-qty">{qty}</div>
+                    <button onClick={incQty} className="plus qnt-changer">
+                      <span>&#43;</span>
+                    </button>
+                  </div>
               </div>
 
               <div className={styles.buttonsDiv}>

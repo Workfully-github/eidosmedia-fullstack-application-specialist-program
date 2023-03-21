@@ -1,9 +1,3 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Verdana, sans-serif;
-}
-
 .imageSection {
     display: flex;
 }
@@ -29,13 +23,15 @@ body {
 }
 
 .profileImageContainer{
-    width: 500px;
-    min-height: 400px;
+    width: 380px;
+    /* min-width: 342px;
+    max-width: 442px; */
+    height: 342px;
 }
 
 .profileImage {
     border-radius: 10px;
-    /* height: 100%; */
+    height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
@@ -52,8 +48,8 @@ body {
 .headerSection {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-top: 56px;
-    width: 100%;
 }
 
 .displayPrice {
@@ -84,7 +80,7 @@ body {
     /* padding: 10px; */
     margin-left: 30px;
     background-color: white;
-    
+    width: 40%;
 }
 
 .productInfo > * {
